@@ -26,6 +26,23 @@
       <link rel="stylesheet" href="app/main/main.css">
       <!-- endinjector -->
     <!-- endbuild -->
+    <!--dave-->
+    <style>
+       html { height: 100%;}
+       #map-outer {height: auto; border: 2px solid #CCC; margin-bottom: 20px; background-color:#FFF }
+       #map-canvas { height: auto;  font-family: 'Roboto', sans-serif;margin-left: 0px;margin-right: 0px;background-color: #ffffff;}
+       .table-panel { width: 100%; }
+       @media all and (max-width: 850px) {
+           #map-outer  { height: 650px }
+       }
+       .angular-google-map-container { height: 500px;width:100%;font-family: 'Roboto', sans-serif; margin-left: 0px;margin-right: 0px;background-color: #ffffff;}
+    </style>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+       google.load('visualization', '1.0', {'packages':['corechart']});
+    </script>
+    <!--dave end-->
   </head>
   <body ng-app="telusLg2App">
     <!--[if lt IE 7]>
@@ -63,6 +80,10 @@
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDD0AzispXTaQ6xvSAGHolfht2DXUJarw4&sensor=false&libraries=places"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>

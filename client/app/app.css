@@ -26,10 +26,28 @@
     font-weight: normal;
     font-style: normal;
 }
-
 /**
  * App-wide Styles
  */
+
+ .content {
+     visibility: hidden;
+ }
+ a {
+    color: #6ebe44;
+}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #6ebe44;
+}
+ accordion .panel {
+   border: none;
+ }
+ accordion .panel-default > .panel-heading {
+   background-color: #fff;
+ }
+ accordion .panel-body {
+   padding: 0px;
+ }
 
 .browsehappy {
     margin: 0.2em 0;
