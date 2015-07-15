@@ -7,6 +7,6 @@ angular.module('telusLg2App')
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
-        //authenticate: 'true'
-      });
+        authenticate: 'true'
+     });
   });

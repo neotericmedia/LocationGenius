@@ -315,7 +315,7 @@ angular.module('telusLg2App')
 
               }
               $scope.dayIndex = 0;
-              $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day.toLowerCase();
+              $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
               $scope.data = google.visualization.arrayToDataTable(dailyData);
               $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
               $scope.showDailyData();
@@ -325,6 +325,9 @@ angular.module('telusLg2App')
               $scope.findTweeters();
           })
        }
+
+
+
 
 
 
@@ -439,7 +442,7 @@ angular.module('telusLg2App')
 
                        var durations = results.durations;
                        $scope.durationData = [];
-                       var durationitem = ['Minutes', 'Counts', { role: 'style' }];
+                       var durationitem = ['Minutes', 'Number of Vistis', { role: 'style' }];
                        $scope.durationData.push(durationitem);
                        for(var i=0; i<durations.length;i++) {
                            durationitem = [i, durations[i],'#6ebe44'];

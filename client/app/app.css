@@ -30,12 +30,74 @@
  * App-wide Styles
  */
 
+
+ html, body {
+     height: 100%;
+ }
+ body {
+     padding-right: 0px;
+     padding-left: 0px;
+     margin: 0;
+     overflow-x: hidden;
+ }
+ .slide {
+     height: 0px - 20px;
+     width: 100%;
+ }
+ .csliderup {
+     width: 100%;
+     z-index: 940;
+     position: absolute;
+     bottom: 0px;
+     height: 80px;
+     text-align: center;
+ }
+
+
+.navbar {
+   margin-bottom: 0px;
+}
+
+
+ .btn-success {
+     background-color: #6ebe44;
+     border: #6ebe44;
+ }
+ .btn-success:hover {
+     background-color: #30134F;
+     border: #30134F;
+ }
+
+
+.hLight {
+   color: #6ebe44;
+   font-weight: bold;
+}
+
+
+.verticalLine {
+   border-left: 2px #ccc solid;
+}
+.visitors {
+   font-size:20px;
+   font-weight:bold;
+   color:#6ebe44;
+}
+
  .content {
      visibility: hidden;
  }
  a {
     color: #6ebe44;
 }
+a:hover,.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+   color: #30134F;
+}
+
+p.ng-binding, h2 {
+   color: #30134F;
+}
+
  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: #6ebe44;
 }

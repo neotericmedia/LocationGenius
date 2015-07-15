@@ -40,7 +40,7 @@ angular.module('telusLg2App')
   //ISSUE
   //Request header field Authorization is not allowed by Access-Control-Allow-Headers
   .service('TweeterSearch', function ($resource) {
-      return $resource('http://54.85.105.154\\:7777/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
+      return $resource('http://54.85.105.154:7777/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
           query: {method: 'GET', isArray:true, },
       });
   })
@@ -68,8 +68,8 @@ angular.module('telusLg2App')
 
 
    .service('TweetReports', function ($resource) {
-      return $resource('http://54.86.239.240\\:7777/twitterdayreports/:locationId?days=:days&top=100', {}, {
-          query: {method: 'GET', isArray:false }
+      return $resource('http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', {}, {
+          query: {method: 'GET', isArray:false},
       });
    })
    //sample call
@@ -83,9 +83,30 @@ angular.module('telusLg2App')
 
 
    .service('OnsitePregenReport', function ($resource) {
-      return $resource('http://54.85.105.154\\:80/onsitereport/:buildingId?date=:dt', {}, {
+      return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
       //return $resource('http://localhost\\:9100/onsitereport/:buildingId?date=:dt', {}, {
       //http://52.2.128.53:9100/onsitereport/180?date=2015-04-02
           query: {method: 'GET', isArray:false }
       });
    })
+
+
+
+
+
+
+
+
+
+
+
+  //  .service('OnsiteReport', function ($resource) {
+  //    return $resource('http://ironman.simplygood.com/report/run_report/', {}, {
+  //        fetch: {
+  //            method: 'POST',
+  //            isArray:false ,
+  //            url : 'http://ironman.simplygood.com/report/run_report/',
+  //            headers : {'Content-Type': 'application/x-www-form-urlencoded','Content-Type': 'application/json;charset=UTF-8'}
+  //        }
+  //    });
+  //  })

@@ -21,9 +21,16 @@ angular.module('telusLg2App', [
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
+
+        // if ($cookieStore.get('token')) {
+        //   config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+        // }
+
+        //FIX - ADDED SERVICE IP'S TO TOKEN Authorization
+        if ($cookieStore.get('token') && config.url.indexOf('http://54.86.239.240:7777')===-1 && config.url.indexOf('http://54.85.105.154:80')===-1 && config.url.indexOf('http://54.85.105.154:7777')===-1) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
+
         return config;
       },
 
