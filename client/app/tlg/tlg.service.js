@@ -37,10 +37,16 @@ angular.module('telusLg2App')
 
 
 
+
+
+
+
+
   //ISSUE
   //Request header field Authorization is not allowed by Access-Control-Allow-Headers
   .service('TweeterSearch', function ($resource) {
       return $resource('http://54.85.105.154:7777/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
+      //return $resource('http://52.3.87.216:9100/twitter/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
           query: {method: 'GET', isArray:true, },
       });
   })

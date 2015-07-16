@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+
+
+
+
+
+
+<title>hi</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<style media="screen" type="text/css">
+	html, body {
+	    height: 100%;
+	}
+	body {
+	    padding-right: 0px;
+	    padding-left: 0px;
+	    font-family: Lato, Arial;
+	    margin: 0;
+	    overflow-x: hidden;
+	    background-color: white;
+	}
+	.slide {
+	    height: 0px;
+	    width: 100%;
+	}
+	.csliderup {
+	    width: 100%;
+	    z-index: 940;
+	    position: absolute;
+	    bottom: 0px;
+	    height: 105px;
+	    text-align: center;
+	}
+</style>
+<script type='text/javascript'>
+	function sliderHeight ()  {
+		var wheight = $(window).height();
+		$(".slide").height(wheight)
+	}
+	$(window).resize(function() {
+		$(sliderHeight);
+	});
+	$(document).ready(function() {
+		$(sliderHeight);
+	});
+</script>
+
+
+
+
+
+</head>
+<body>
+
+
+
+<div class="slide" style="background-color:#ccc">12</div>
+<div class="csliderup"><h3>What you feel is What You Are</h3></div>
+
+
+<div class="clear"></div>
+<p>Become our distributor</p>
+
+
+
+
+
+
+
+</body>
+</html>

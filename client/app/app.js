@@ -8,6 +8,8 @@ angular.module('telusLg2App', [
   'ui.bootstrap',
   'uiGmapgoogle-maps'
 ])
+
+
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
       .otherwise('/');
@@ -15,6 +17,8 @@ angular.module('telusLg2App', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
+
+
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
@@ -27,10 +31,9 @@ angular.module('telusLg2App', [
         // }
 
         //FIX - ADDED SERVICE IP'S TO TOKEN Authorization
-        if ($cookieStore.get('token') && config.url.indexOf('http://54.86.239.240:7777')===-1 && config.url.indexOf('http://54.85.105.154:80')===-1 && config.url.indexOf('http://54.85.105.154:7777')===-1) {
+        if ($cookieStore.get('token') && config.url.indexOf('http://54.86.239.240:7777')===-1 && config.url.indexOf('http://54.85.105.154:80')===-1 && config.url.indexOf('http://54.85.105.154:7777')===-1 && config.url.indexOf('http://52.2.128.53:9100')===-1) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
-
         return config;
       },
 
@@ -48,6 +51,8 @@ angular.module('telusLg2App', [
       }
     };
   })
+
+
 
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in

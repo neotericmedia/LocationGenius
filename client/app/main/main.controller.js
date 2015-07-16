@@ -4,6 +4,26 @@ angular.module('telusLg2App')
   .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
 
 
+
+    $http.get('data/outputs.json').success(function(response) {
+       $scope.locationsA = response;
+    });
+
+    // $scope.locations = [];
+    // $http.get('data/outputs.json', {
+    //   //headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
+    //   //params: { bookId: 42 }
+    // }).success(function() {
+    //   $scope.locations = locations;
+    // })
+
+
+    // var output = this;
+    // output.locations = [];
+    // $http.get('data/outputs.json').success(function(data){
+    //   output.locations = data;
+    // });
+
     $scope.locations = [
         { id: 180, title: "Boston Pizza", address: "400 Progress Avenue, Scarborough, ON M1P 5J1, Canada", lat: "43.77543", lng:"-79.263066" },
         { id: 181, title: "East Side Marios", address: "12 Lebovic Avenue, Toronto, ON M1L 4W1, Canada", lat: "43.7242333",lng:"-79.29024" },
@@ -16,6 +36,11 @@ angular.module('telusLg2App')
         { id: 175, title: "Jimmy's Coffee", address: "107 Portland Street, Toronto, ON M5V 3N8, Canada", lat: "43.645281",lng:"-79.400271" },
         { id: 122, title: "One Eleven Office", address: "111 Richmond Street West, Toronto, ON M5H 3K6, Canada", lat: "43.6502837",lng:"-79.3843006" },
     ];
+
+
+
+
+
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     $scope.hourlyData;
     var chart;
@@ -72,7 +97,7 @@ angular.module('telusLg2App')
 
     $scope.setSelectedLocation = function(location) {
         console.log("Setting selected location:" + location.title);
-        document.getElementById("contentArea").style.visibility = "visible";
+        document.getElementById("contentArea").style.display = "block";
         LocationResults.setCurrentLocation(location);
         $scope.currentLocation = LocationResults.getCurrentLocation();
         console.log("New CurrentLocation:" + $scope.currentLocation);
@@ -315,7 +340,13 @@ angular.module('telusLg2App')
 
               }
               $scope.dayIndex = 0;
-              $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+
+              //NEW july 16
+              //$scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+              if($scope.tweetReports.dailyReports[0]!=null) {
+                $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+              }
+
               $scope.data = google.visualization.arrayToDataTable(dailyData);
               $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
               $scope.showDailyData();
@@ -613,6 +644,27 @@ angular.module('telusLg2App')
 
 
 
+
+  .controller('OutputCtrl', function ($scope, $http) {
+    var output = this;
+    output.locationsB = [];
+    $http.get('data/outputs.json').success(function(data){
+      output.locationsB = data;
+    });
+  })
+
+
+
+
+  // .controller('OutputCtrl', function ($scope, $http) {
+  //   var output = this;
+  //   output.locations = [];
+  //   $http.get('http://52.2.128.53:9100/user/lgweb/location', {
+  //       headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
+  //   }).success(function(data) {
+  //       output.locations = data;
+  //   })
+  // })
 
 
 
