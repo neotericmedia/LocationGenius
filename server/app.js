@@ -11,14 +11,30 @@ var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
 
+
+
+
+
+
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Populate DB with sample data
 if(config.seedDB) { require('./config/seed'); }
 
+
+
+
+
 // Setup server
+var cors = require('cors');
 var app = express();
+app.use(cors());
+
+
+
+
+
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);

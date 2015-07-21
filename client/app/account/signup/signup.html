@@ -59,12 +59,12 @@
            <label style="color: #30134F">Password</label>
 
            <input type="password" name="password" class="form-control" ng-model="user.password"
-                   ng-minlength="3"
+                   ng-minlength="6"
                    required
                    mongoose-error/>
            <p class="help-block"
               ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-              Password must be at least 3 characters.
+              Password must be at least 6 characters.
            </p>
            <p class="help-block" ng-show="form.password.$error.mongoose">
               {{ errors.password }}

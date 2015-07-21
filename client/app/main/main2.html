@@ -5,16 +5,45 @@
 
 
 
-    <div ng-repeat="location in locationsA">
+    <div ng-repeat="location in locations">
       {{ location.address }}
     </div>
 
 
-    <div ng-controller="OutputCtrl as output">
+    <!-- <div ng-controller="OutputCtrl as output">
       <div class="list-group-item" ng-repeat="output in output.locationsB">
         <p>{{output.address}}</p>
       </div>
+    </div> -->
+
+
+
+    <div ng-controller="MyCtrl1">
+        <!--<div ng-repeat="issue in myData.issues">-->
+        <div ng-repeat="issue in issues">
+          <p>{{issue.address}}</p>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+    <div ng-controller="OutputCtrl as output">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>resultat : {{result}}</p>
+        <p>status : {{status}}</p>
+        <p>reponse : {{data}}</p>
+    </div>
+
+
+
 
 
 
