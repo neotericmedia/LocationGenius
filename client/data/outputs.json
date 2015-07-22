@@ -4,7 +4,7 @@
       "buildingId":"177",
       "name":"Geox",
       "geoFence":{
-         "topLefLatitude":"43.750",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.510",
          "bottomRightLatitude":"43.670",
          "bottomRightLongitude":"-79.450"
@@ -22,7 +22,7 @@
       "buildingId":"180",
       "name":"Boston Pizza",
       "geoFence":{
-         "topLefLatitude":"43.800",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.297",
          "bottomRightLatitude":"43.768",
          "bottomRightLongitude":"-79.245"
@@ -40,7 +40,7 @@
       "buildingId":"178",
       "name":"Golden Thai",
       "geoFence":{
-         "topLefLatitude":"43.6699824973308",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.38677787780762",
          "bottomRightLatitude":"43.65706767227905",
          "bottomRightLongitude":"-79.3567371368408"
@@ -58,7 +58,7 @@
       "buildingId":"175",
       "name":"Jimmy’s Coffee",
       "geoFence":{
-         "topLefLatitude":"43.65203758972934",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.40634727478027",
          "bottomRightLatitude":"43.64359107144082",
          "bottomRightLongitude":"-79.38995361328125"
@@ -76,7 +76,7 @@
       "buildingId":"176",
       "name":"Little Caesar’s",
       "geoFence":{
-         "topLefLatitude":"43.6171880464744",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.76211547851562",
          "bottomRightLatitude":"43.61457817660976",
          "bottomRightLongitude":"-79.62839126586914"
@@ -94,7 +94,7 @@
       "buildingId":"122",
       "name":"One Eleven Office",
       "geoFence":{
-         "topLefLatitude":"43.65756444769408",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.38918113708496",
          "bottomRightLatitude":"43.6483113310164",
          "bottomRightLongitude":"-79.37089920043945"
@@ -112,7 +112,7 @@
       "buildingId":"154",
       "name":"Pizza Depot",
       "geoFence":{
-         "topLefLatitude":"43.75200119590339",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.90013122558594",
          "bottomRightLatitude":"43.70312610418604",
          "bottomRightLongitude":"-79.64126586914062"
@@ -130,7 +130,7 @@
       "buildingId":"179",
       "name":"St. Louis Wings",
       "geoFence":{
-         "topLefLatitude":"43.841460676451305",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.6343994140625",
          "bottomRightLatitude":"43.76068041570689",
          "bottomRightLongitude":"-79.4699478149414"
@@ -148,7 +148,7 @@
       "buildingId":"181",
       "name":"East Side Marios",
       "geoFence":{
-         "topLefLatitude":"43.724",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.2904",
          "bottomRightLatitude":"43.75",
          "bottomRightLongitude":"-79.00"
@@ -166,7 +166,7 @@
       "buildingId":"182",
       "name":"Wild Wing",
       "geoFence":{
-         "topLefLatitude":"43.3",
+         "topLeftLatitude":null,
          "topLeftLongitude":"-79.70",
          "bottomRightLatitude":"43.8",
          "bottomRightLongitude":"-79.3"
@@ -177,6 +177,42 @@
       },
       "searchRadiusMeters":4000,
       "address":"1557 The Queensway Unit 1, Etobicoke, ON M8Z 1T8, Canada",
+      "uid":"lgweb"
+   },
+   {
+      "id":"55ae75d2e4b07bb5d99c8150",
+      "buildingId":"188",
+      "name":"TELUS Dynamic Insights",
+      "geoFence":{
+         "topLeftLatitude":"43.64419",
+         "topLeftLongitude":"-79.382122",
+         "bottomRightLatitude":"43.643793",
+         "bottomRightLongitude":"-79.378388"
+      },
+      "center":{
+         "longitude":"-79.381114",
+         "latitude":"43.643477"
+      },
+      "searchRadiusMeters":1000,
+      "address":"25 York Street, Toronto, ON M5J 2V5, Canada",
+      "uid":"lgweb"
+   },
+   {
+      "id":"55ae764ae4b07bb5d99c8151",
+      "buildingId":"189",
+      "name":"TELUS WiFi Lab",
+      "geoFence":{
+         "topLeftLatitude":"49.282588",
+         "topLeftLongitude":"-123.119788",
+         "bottomRightLatitude":"49.281734",
+         "bottomRightLongitude":"-123.116913"
+      },
+      "center":{
+         "longitude":"-123.117550",
+         "latitude":"49.281561"
+      },
+      "searchRadiusMeters":1000,
+      "address":"768 Seymour Street, Vancouver, BC V6B, Canada",
       "uid":"lgweb"
    }
 ]

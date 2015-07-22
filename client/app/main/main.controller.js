@@ -5,17 +5,17 @@ angular.module('telusLg2App')
 
 
 
-    $http.get('data/outputs.json').success(function(response) {
-       $scope.locationsA = response;
+    $http.get('data/outputs.json').success(function(locations) {
+       $scope.locations = locations;
     });
 
-    $scope.locations = [];
-    $http.get('http://52.2.128.53:9101/user/lgweb/location', {
-      headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
-      //params: { bookId: 42 }
-    }).success(function() {
-      $scope.locations = locations;
-    })
+    // $scope.locations = [];
+    // $http.get('data/outputs.json', {
+    //   headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
+    //   //params: { bookId: 42 }
+    // }).success(function() {
+    //   $scope.locations = locations;
+    // })
 
     // var output = this;
     // output.locations = [];
@@ -24,17 +24,127 @@ angular.module('telusLg2App')
     // });
 
     // $scope.locations = [
-    //     { id: 180, title: "Boston Pizza", address: "400 Progress Avenue, Scarborough, ON M1P 5J1, Canada", lat: "43.77543", lng:"-79.263066" },
-    //     { id: 181, title: "East Side Marios", address: "12 Lebovic Avenue, Toronto, ON M1L 4W1, Canada", lat: "43.7242333",lng:"-79.29024" },
-    //     { id: 182, title: "Wild Wing", address: "1557 The Queensway Unit 1, Etobicoke, ON M8Z 1T8, Canada", lat: "43.6181012",lng:"-79.5390509" },
-    //     { id: 179, title: "St. Louis Bar and Grill", address: "90 Edgeley Boulevard , Unit 106, Concord, ON L4K 5W7, Canada", lat:"43.7966469",lng:"-79.5331189" },
-    //     { id: 178, title: "Golden Thai Restaurant", address: "105 Church Street, Toronto, ON M5C 2G8, Canada", lat:"43.652352",lng:"-79.375134" },
-    //     { id: 154, title: "Pizza Depot", address: "945 Peter Robertson Boulevard, Brampton, ON L6R 0K1, Canada", lat: "43.7477189",lng:"-79.7456055" },
-    //     { id: 177, title: "Geox (Yorkdale Mall)", address: "3401 Dufferin Street, North York, ON M6A 2T9, Canada", lat: "43.725454",lng:"-79.451664" },
-    //     { id: 176, title: "Little Caesars", address: "3055 Argentia Road, Mississauga, ON L5N 8E1, Canada", lat:"43.595088",lng:"-79.78698" },
-    //     { id: 175, title: "Jimmy's Coffee", address: "107 Portland Street, Toronto, ON M5V 3N8, Canada", lat: "43.645281",lng:"-79.400271" },
-    //     { id: 122, title: "One Eleven Office", address: "111 Richmond Street West, Toronto, ON M5H 3K6, Canada", lat: "43.6502837",lng:"-79.3843006" },
+    //   { id: 180, title: "Boston Pizza", address: "400 Progress Avenue, Scarborough, ON M1P 5J1, Canada", lat: "43.77543", lng:"-79.263066" },
+    //   { id: 181, title: "East Side Marios", address: "12 Lebovic Avenue, Toronto, ON M1L 4W1, Canada", lat: "43.7242333",lng:"-79.29024" },
+    //   { id: 182, title: "Wild Wing", address: "1557 The Queensway Unit 1, Etobicoke, ON M8Z 1T8, Canada", lat: "43.6181012",lng:"-79.5390509" },
+    //   { id: 179, title: "St. Louis Bar and Grill", address: "90 Edgeley Boulevard , Unit 106, Concord, ON L4K 5W7, Canada", lat:"43.7966469",lng:"-79.5331189" },
+    //   { id: 178, title: "Golden Thai Restaurant", address: "105 Church Street, Toronto, ON M5C 2G8, Canada", lat:"43.652352",lng:"-79.375134" },
+    //   { id: 154, title: "Pizza Depot", address: "945 Peter Robertson Boulevard, Brampton, ON L6R 0K1, Canada", lat: "43.7477189",lng:"-79.7456055" },
+    //   { id: 177, title: "Geox (Yorkdale Mall)", address: "3401 Dufferin Street, North York, ON M6A 2T9, Canada", lat: "43.725454",lng:"-79.451664" },
+    //   { id: 176, title: "Little Caesars", address: "3055 Argentia Road, Mississauga, ON L5N 8E1, Canada", lat:"43.595088",lng:"-79.78698" },
+    //   { id: 175, title: "Jimmy's Coffee", address: "107 Portland Street, Toronto, ON M5V 3N8, Canada", lat: "43.645281",lng:"-79.400271" },
+    //   { id: 122, title: "One Eleven Office", address: "111 Richmond Street West, Toronto, ON M5H 3K6, Canada", lat: "43.6502837",lng:"-79.3843006" },
+    //   { id: 189, title: "Via Informatics TELUS WiFi Lab", address: "768 Seymour Street, Vancouver, BC V6B, Canada America/Vancouver" },
+    //   { id: 188, title: "Via Informatics TELUS Dynamic Insights", address: "25 York Street, Toronto, ON M5J 2V5, Canada America/Toronto" }
     // ];
+
+  //   $scope.locations =
+  //
+  //   [
+  //     {
+  //       "id": "180",
+  //       "name": "Boston Pizza",
+  //       "address": "400 Progress Avenue, Scarborough, ON M1P 5J1, Canada",
+  //       "center":{
+  //          "longitude":"-79.451664",
+  //          "latitude":"43.725454"
+  //          //"lat": "43.77543",
+  //          //"lng":"-79.263066"
+  //       }
+  //     },
+  //     {
+  //       "id": "181",
+  //       "name": "East Side Marios",
+  //       "address": "12 Lebovic Avenue, Toronto, ON M1L 4W1, Canada",
+  //       "center":{
+  //         "latitude": "43.7242333",
+  //         "longitude":"-79.29024"
+  //       }
+  //     },
+  //     {
+  //       "id": "182",
+  //       "name": "Wild Wing",
+  //       "address": "1557 The Queensway Unit 1, Etobicoke, ON M8Z 1T8, Canada",
+  //       "center":{
+  //         "latitude": "43.6181012",
+  //         "longitude":"-79.5390509"
+  //       }
+  //     },
+  //     {
+  //       "id": "179",
+  //       "name": "St. Louis Bar and Grill",
+  //       "address": "90 Edgeley Boulevard , Unit 106, Concord, ON L4K 5W7, Canada",
+  //       "center":{
+  //         "latitude":"43.7966469",
+  //         "longitude":"-79.5331189"
+  //       }
+  //     },
+  //     {
+  //       "id": "178",
+  //       "name": "Golden Thai Restaurant",
+  //       "address": "105 Church Street, Toronto, ON M5C 2G8, Canada",
+  //       "center":{
+  //         "latitude":"43.652352",
+  //         "longitude":"-79.375134"
+  //       }
+  //     },
+  //     {
+  //       "id": "154",
+  //       "name": "Pizza Depot",
+  //       "address": "945 Peter Robertson Boulevard, Brampton, ON L6R 0K1, Canada",
+  //       "center":{
+  //         "latitude": "43.7477189",
+  //         "longitude":"-79.7456055"
+  //       }
+  //     },
+  //     {
+  //       "id": "177",
+  //       "name": "Geox (Yorkdale Mall)",
+  //       "address": "3401 Dufferin Street, North York, ON M6A 2T9, Canada",
+  //       "center":{
+  //         "latitude": "43.725454",
+  //         "longitude":"-79.451664"
+  //       }
+  //     },
+  //     {
+  //       "id": "176",
+  //       "name": "Little Caesars",
+  //       "address": "3055 Argentia Road, Mississauga, ON L5N 8E1, Canada",
+  //       "center":{
+  //         "latitude":"43.595088",
+  //         "longitude":"-79.78698"
+  //       }
+  //     },
+  //     {
+  //       "id": "175",
+  //       "name": "Jimmy's Coffee",
+  //       "address": "107 Portland Street, Toronto, ON M5V 3N8, Canada",
+  //       "center":{
+  //         "latitude": "43.645281",
+  //         "longitude":"-79.400271"
+  //       }
+  //     },
+  //     {
+  //       "id": "122",
+  //       "name": "One Eleven Office",
+  //       "address": "111 Richmond Street West, Toronto, ON M5H 3K6, Canada",
+  //       "center":{
+  //         "latitude": "43.6502837",
+  //         "longitude":"-79.3843006"
+  //       }
+  //     },
+  //     {
+  //       "id": "189",
+  //       "name": "Via Informatics TELUS WiFi Lab",
+  //       "address": "768 Seymour Street, Vancouver, BC V6B, Canada America/Vancouver"
+  //     },
+  //     {
+  //       "id": "188",
+  //       "name": "Via Informatics TELUS Dynamic Insights",
+  //       "address": "25 York Street, Toronto, ON M5J 2V5, Canada America/Toronto"
+  //     }
+  //
+  // ];
 
 
 
@@ -57,7 +167,7 @@ angular.module('telusLg2App')
             latitude: 43.650505,
             longitude: -79.383989
         },
-        options: { title: "111 Richmond St. Toronto, Ontario",opacity:0.8 }
+        options: { name: "111 Richmond St. Toronto, Ontario",opacity:0.8 }
     };
     $scope.circles = [
         {
@@ -95,7 +205,7 @@ angular.module('telusLg2App')
 
 
     $scope.setSelectedLocation = function(location) {
-        console.log("Setting selected location:" + location.title);
+        console.log("Setting selected location:" + location.name);
         document.getElementById("contentArea").style.display = "block";
         LocationResults.setCurrentLocation(location);
         $scope.currentLocation = LocationResults.getCurrentLocation();
@@ -114,25 +224,25 @@ angular.module('telusLg2App')
     }
 
     if($scope.currentLocation!=null) {
-        console.log("Showing selected location..." + $scope.currentLocation.lat) ;
+        console.log("Showing selected location..." + $scope.currentLocation.center.latitude) ;
         //$scope.addLocationToMap();
         $scope.marker.coords = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
 
         $scope.marker.options = {
-            title: $scope.currentLocation.title
+            name: $scope.currentLocation.name
         };
         $scope.circles[0].radius = $scope.searchrange;
         $scope.map.pan = true;
         $scope.map.center = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
         $scope.circles[0].center = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
     }
 
@@ -142,22 +252,22 @@ angular.module('telusLg2App')
     $scope.addLocationToMap = function() {
         console.log("Showing selected location...");
         $scope.marker.coords = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
 
         $scope.marker.options = {
-            title: $scope.currentLocation.title
+            name: $scope.currentLocation.name
         };
         $scope.circles[0].radius = $scope.searchrange;
         $scope.map.pan = true;
         $scope.map.center = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
         $scope.circles[0].center = {
-            latitude: $scope.currentLocation.lat,
-            longitude: $scope.currentLocation.lng
+            latitude: $scope.currentLocation.center.latitude,
+            longitude: $scope.currentLocation.center.longitude
         };
     }
 
@@ -259,8 +369,8 @@ angular.module('telusLg2App')
 
           $scope.tweetReports;
           console.log("NumDays:" + numDays);
-          var params = {"locationId": $scope.currentLocation.id,"days":numDays};
-          console.log("Location id:" + $scope.currentLocation.id);
+          var params = {"locationId": $scope.currentLocation.buildingId,"days":numDays};
+          console.log("Location id:" + $scope.currentLocation.buildingId);
           $scope.results = TweetReports.query(params);
 
           $scope.results.$promise.then(function (results) {
@@ -368,7 +478,7 @@ angular.module('telusLg2App')
 
        $scope.getOnsiteDataPreGenReport = function () {
                $scope.currentLocation = LocationResults.getCurrentLocation();
-               console.log("Onsite data CurrentLocation:" + $scope.currentLocation.id);
+               console.log("Onsite data CurrentLocation:" + $scope.currentLocation.buildingId);
 
                $scope.mostVisitedHour ="N/A";
                $scope.mostPostalCode = "N/A";
@@ -391,9 +501,9 @@ angular.module('telusLg2App')
                var item = ['Day', 'Number of Visitors', { role: 'style' }, 'New Visitors', { role: 'style' }];
                dailyVisitorData.push(item);
 
-               console.log("Getting onsite report for :" + $scope.currentLocation.id);
+               console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-               var params = {"buildingId": $scope.currentLocation.id, "dt":"2015-04-26"};
+               var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
                $scope.report = OnsitePregenReport.query(params);
                $scope.report.$promise.then(function (results) {
                    console.log("Onsite Report Results:" + results.totalVisits);
@@ -563,7 +673,7 @@ angular.module('telusLg2App')
 
              $scope.showTweeters = function () {
                    document.getElementById("contentArea").style.visibility = "visible";
-                   $scope.currentLocation = { id:"", title:$scope.searchString, address: "", lat: "", lng:"" };
+                   $scope.currentLocation = { id:"", name:$scope.searchString, address: "", lat: "", lng:"" };
                    $scope.dayrange = "30";
                    //$scope.$apply();
                    $scope.findTweeters();
@@ -590,7 +700,7 @@ angular.module('telusLg2App')
                            };
 
                            $scope.marker.options = {
-                               title: $scope.searchString
+                               name: $scope.searchString
                            };
                            $scope.circles[0].radius = $scope.searchrange;
                            $scope.map.pan = true;
@@ -639,21 +749,34 @@ angular.module('telusLg2App')
 
 
 
-  .controller('OutputCtrl', function($scope, $http) {
-    $http({
-      //url : "http://52.2.128.53:9101/user/lgweb/location",
-      url : "data/outputs.json",
-      method : 'GET',
-      headers: {'Authorization':'Basic bGd3ZWI6bGdlbjF1cw==', 'Access-Control-Request-Headers':'accept-language, origin, accept-encoding', 'Access-Control-Allow-Headers':'x-requested-with, content-type, accept, origin, authorization, x-csrftoken'}
-      })
-    .success(function(status, data) {
-      $scope.status = status;
-      $scope.data = data;
-        $scope.result = "ok";
-    }).error(function(data) {
-        $scope.result = "ko";
-    });
+  .controller('AccordionDemoCtrl', function ($scope) {
+    $scope.oneAtATime = true;
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+      };
   })
+
+
+
+
+
+
+  // .controller('OutputCtrl', function($scope, $http) {
+  //   $http({
+  //     //url : "http://52.2.128.53:9101/user/lgweb/location",
+  //     url : "data/outputs.json",
+  //     method : 'GET',
+  //     headers: {'Authorization':'Basic bGd3ZWI6bGdlbjF1cw==', 'Access-Control-Request-Headers':'accept-language, origin, accept-encoding', 'Access-Control-Allow-Headers':'x-requested-with, content-type, accept, origin, authorization, x-csrftoken'}
+  //     })
+  //   .success(function(status, data) {
+  //     $scope.status = status;
+  //     $scope.data = data;
+  //       $scope.result = "ok";
+  //   }).error(function(data) {
+  //       $scope.result = "ko";
+  //   });
+  // })
 
 
   // .controller('OutputCtrl', function ($scope, $http) {
@@ -676,22 +799,22 @@ angular.module('telusLg2App')
 
 
 
-  .factory('ngIssues', function ($resource) {
-      return $resource('http://52.2.128.53:9101/user/lgweb/location');
-  })
-
-
-  .controller('MyCtrl1', ['$scope', 'ngIssues', function (scope, ngIssues) {
-      //scope.myData = { issues:[] };
-      scope.setList = function () {
-          ngIssues.query({
-          }, function (data) {
-              //scope.myData.issues = data;
-              scope.issues = data;
-          });
-      };
-      scope.setList();
-  }])
+  // .factory('ngIssues', function ($resource) {
+  //     return $resource('http://52.2.128.53:9101/user/lgweb/location');
+  // })
+  //
+  //
+  // .controller('MyCtrl1', ['$scope', 'ngIssues', function (scope, ngIssues) {
+  //     //scope.myData = { issues:[] };
+  //     scope.setList = function () {
+  //         ngIssues.query({
+  //         }, function (data) {
+  //             //scope.myData.issues = data;
+  //             scope.issues = data;
+  //         });
+  //     };
+  //     scope.setList();
+  // }])
 
 
 
@@ -705,19 +828,3 @@ angular.module('telusLg2App')
   //     output.locationsB = data;
   //   });
   // })
-
-
-
-
-
-
-
-
-
-  .controller('AccordionDemoCtrl', function ($scope) {
-    $scope.oneAtATime = true;
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-      };
-  })
