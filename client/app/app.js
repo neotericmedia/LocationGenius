@@ -33,7 +33,7 @@ angular.module('telusLg2App', [
         config.headers = config.headers || {};
         //FIX - ADDED SERVICE IP'S TO TOKEN Authorization
         //if ($cookieStore.get('token')) {
-        if ($cookieStore.get('token') && config.url.indexOf('http://54.86.239.240:7777')===-1 && config.url.indexOf('http://54.85.105.154:80')===-1 && config.url.indexOf('http://54.85.105.154:7777')===-1 && config.url.indexOf('http://52.2.128.53:9101')===-1) {
+        if ($cookieStore.get('token') && config.url.indexOf('http://54.86.239.240:7777')===-1 && config.url.indexOf('http://54.85.105.154:80')===-1 && config.url.indexOf('http://54.85.105.154:7777')===-1 && config.url.indexOf('http://52.3.87.216:9100')===-1) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
         return config;

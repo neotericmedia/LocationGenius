@@ -3,19 +3,17 @@
 angular.module('telusLg2App')
   .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
 
+    //$scope.locations = [];
+    $http.get('http://52.3.87.216:9100/user/lgweb/location', {
+      headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
+    }).success(function(locations) {
+      $scope.locations = locations;
+    })
 
-
-    $http.get('data/outputs.json').success(function(locations) {
-       $scope.locations = locations;
-    });
-
-    // $scope.locations = [];
-    // $http.get('data/outputs.json', {
-    //   headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
-    //   //params: { bookId: 42 }
-    // }).success(function() {
-    //   $scope.locations = locations;
-    // })
+    //http://52.3.87.216:9100/user/lgweb/location
+   //  $http.get('data/outputs.json').success(function(locations) {
+   //     $scope.locations = locations;
+   //  });
 
     // var output = this;
     // output.locations = [];
@@ -762,10 +760,15 @@ angular.module('telusLg2App')
 
 
 
+
+
+
+
   // .controller('OutputCtrl', function($scope, $http) {
   //   $http({
   //     //url : "http://52.2.128.53:9101/user/lgweb/location",
-  //     url : "data/outputs.json",
+  //     //url : "http://52.3.87.216:9100/user/lgweb/location",
+  //     url : "https://api.github.com/repos/angular/angular.js/issues/",
   //     method : 'GET',
   //     headers: {'Authorization':'Basic bGd3ZWI6bGdlbjF1cw==', 'Access-Control-Request-Headers':'accept-language, origin, accept-encoding', 'Access-Control-Allow-Headers':'x-requested-with, content-type, accept, origin, authorization, x-csrftoken'}
   //     })
@@ -799,22 +802,24 @@ angular.module('telusLg2App')
 
 
 
-  // .factory('ngIssues', function ($resource) {
-  //     return $resource('http://52.2.128.53:9101/user/lgweb/location');
-  // })
-  //
-  //
-  // .controller('MyCtrl1', ['$scope', 'ngIssues', function (scope, ngIssues) {
-  //     //scope.myData = { issues:[] };
-  //     scope.setList = function () {
-  //         ngIssues.query({
-  //         }, function (data) {
-  //             //scope.myData.issues = data;
-  //             scope.issues = data;
-  //         });
-  //     };
-  //     scope.setList();
-  // }])
+  .factory('ngIssues', function ($resource) {
+      //return $resource('http://52.2.128.53:9101/user/lgweb/location');
+      //return $resource('data/outputs.json');
+      return $resource('https://api.github.com/repos/angular/angular.js/issues/');
+  })
+
+
+  .controller('MyCtrl1', ['$scope', 'ngIssues', function (scope, ngIssues) {
+      //scope.myData = { issues:[] };
+      scope.setList = function () {
+          ngIssues.query({
+          }, function (data) {
+              //scope.myData.issues = data;
+              scope.issues = data;
+          });
+      };
+      scope.setList();
+  }])
 
 
 
