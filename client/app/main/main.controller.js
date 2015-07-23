@@ -4,11 +4,28 @@ angular.module('telusLg2App')
   .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
 
     //$scope.locations = [];
-    $http.get('http://52.3.87.216:9100/user/lgweb/location', {
-      headers: { 'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==' }
+    $http.get('data/outputs.json', {
+    //$http.get('http://52.3.87.216:9100/user/lgweb/location', {
+      headers: {
+        'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==',
+        //'Access-Control-Allow-Origin': '*',
+        //'Access-Control-Allow-Methods': 'GET,POST,PUT,HEAD,DELETE,OPTIONS',
+        //'Access-Control-Allow-Headers': 'content-Type,x-requested-with'
+        //'Access-Control-Allow-Origin': 'http://52.3.87.216:9100/user/lgweb/location',
+        //'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+        //'Access-Control-Allow-Headers': 'Content-Type, Accept, Authorization'
+      }
+      //headers: {'Authorization':'Basic bGd3ZWI6bGdlbjF1cw==', 'Access-Control-Request-Headers':'accept-language, origin, accept-encoding', 'Access-Control-Allow-Headers':'x-requested-with, content-type, accept, origin, authorization, x-csrftoken'}
     }).success(function(locations) {
       $scope.locations = locations;
     })
+
+
+
+
+
+
+
 
     //http://52.3.87.216:9100/user/lgweb/location
    //  $http.get('data/outputs.json').success(function(locations) {
@@ -454,10 +471,22 @@ angular.module('telusLg2App')
                 $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
               }
 
+              //NEW july 23
+              if(dailyData.length>1) {
+                console.log("Daily data:" + dailyData);
+                $scope.data = google.visualization.arrayToDataTable(dailyData);
+                $scope.showDailyData();
+              }
+              if($scope.hourlyData.length>0) {
+                console.log("Hourly data:" + $scope.hourlyData);
+                $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
+                $scope.showHourlyData(0);
+              }
+
               $scope.data = google.visualization.arrayToDataTable(dailyData);
               $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
-              $scope.showDailyData();
-              $scope.showHourlyData(0);
+              //$scope.showDailyData();
+              //$scope.showHourlyData(0);
               $scope.searchString = $scope.currentLocation.address;
               $scope.dayrange = numDays;
               $scope.findTweeters();

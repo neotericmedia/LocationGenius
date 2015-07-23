@@ -13,9 +13,6 @@ var config = require('./config/environment');
 
 
 
-
-
-
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
@@ -30,7 +27,6 @@ if(config.seedDB) { require('./config/seed'); }
 var cors = require('cors');
 var app = express();
 app.use(cors());
-
 
 
 
