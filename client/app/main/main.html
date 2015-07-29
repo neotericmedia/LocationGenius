@@ -2,16 +2,16 @@
 <div class="container">
   <div class="row">
     <!--///////////////////////////////////////////////////////////////////SEARCH-->
-      <div id="searchbar" style="z-index: 5000; position:absolute; top:105px; width:900px; left: 50%; transform: translate(-50%);opacity: 0.9;">
+      <div id="searchbar">
         <div id="searchpanel" class="panel panel-default" style="margin-bottom:0px">
             <div class="container">
                 <div class="row panel-body searchControl">
 
-                    <div class="col-md-1 searchTitle">
-                        Location:
+                    <div class="col-lg-1 searchTitle">
+                        <span class="locationTitle">Location:</span>
                     </div>
 
-                    <div class="dropdown col-md-2 ">
+                    <div class="dropdown col-lg-2 ">
 
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                             Select a saved location
@@ -23,7 +23,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <form role="search" ng-submit="showTweeters()">
                             <div class="input-group " >
                                 <input type="text" class="form-control searchInput" aria-describedby="basic-addon2" placeholder="Enter a location" ng-model="searchString">
@@ -150,7 +150,7 @@
                        <div class="panel panel-default">
                           <div class="panel-body" >
                              <h4>Social Interactions (within 1km)</h4>
-                             <div class="totals">{{totalInteractions}}</div>
+                             <div class="totals">{{totalInteractions | number}}</div>
                              <div>Total Interactions</div>
                              <div class="row">
                                 <div class="col-md-11 col-md-offset-1">
@@ -169,8 +169,7 @@
                                        <h4>Time Breakdown</h4>
                                    </div>
                                    <div class="col-md-4 col-md-offset-8 ">
-                                       <!--<div class="dateStyle"> {{dailyReportDate | capitalize}} </div>-->
-                                       <div class="dateStyle"> {{dailyReportDate} </div>
+                                       <div class="dateStyle"> {{dailyReportDate | capitalize}} </div>
                                    </div>
                               </div>
                               <div class="row">
@@ -237,8 +236,8 @@
 
                       <div class="well well-lg highlightsPanel">
                            <ul>
-                              <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
-                              <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                              <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+                              <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                               <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
                               <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
                            </ul>
@@ -250,7 +249,7 @@
 
                               <div class="row">
                                    <div class="col-md-2 ">
-                                      <div class="totals"><span class="visitors">{{onsiteVisitorsWeek}}</span></div>
+                                      <div class="totals"><span class="visitors">{{onsiteVisitorsWeek | number}}</span></div>
                                       <div>Total Visitors</div>
                                    </div>
                                    <div class="col-md-3 verticalLine">
@@ -258,7 +257,7 @@
                                       <div>Compared to previous week</div>
                                    </div>
                                    <div class="col-md-2 verticalLine">
-                                      <div class="totals"><span class="visitors">{{averageVisitorsDay}}</span></div>
+                                      <div class="totals"><span class="visitors">{{averageVisitorsDay | number}}</span></div>
                                       <div>Average Visitors/Day</div>
                                    </div>
                               </div>

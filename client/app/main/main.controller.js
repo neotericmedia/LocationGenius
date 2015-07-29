@@ -182,7 +182,7 @@ angular.module('telusLg2App')
             width:900,
             height:300,
             colors:['#6ebe44'],
-            chartArea: {left:0,top:20,width: '100%'},
+            chartArea: {left:20,top:60,width: '100%'},
             legend: { position: 'bottom' } ,
             fontSize:11
         };
@@ -231,7 +231,7 @@ angular.module('telusLg2App')
            height:300,
            colors:['#6ebe44'],
            legend: { position: 'bottom' },
-           chartArea: {left:0,top:20,width: '100%'},
+           chartArea: {left:0,top:60,width: '100%'},
            fontSize:11
       };
       var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
@@ -525,8 +525,9 @@ angular.module('telusLg2App')
                      width:900,
                      height:300,
                      colors:['#301050','#6ebe44'],
-                     chartArea: {left:20,top:20,width: '100%'},
-                     legend: { position: 'bottom' },
+                     chartArea: {left:60,top:60,width: '100%'},
+                     //legend: { position: 'bottom'},
+                     legend: { position: 'none'},
                      //legend: { position: 'top', maxLines: 3 },
                      isStacked:true,
                  };
@@ -548,9 +549,9 @@ angular.module('telusLg2App')
                      width:900,
                      height:300,
                      colors:['#6ebe44'],
-                     chartArea: {left:0,top:20,width: '100%'},
-                     legend: { position: 'bottom' },
-                     fontSize:9
+                     chartArea: {left:60,top:60,width: '100%'},
+                     legend: { position: 'bottom' }
+                     //fontSize:9
                  };
 
                  var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
@@ -572,7 +573,7 @@ angular.module('telusLg2App')
                      width:900,
                      height:300,
                      colors:['#6ebe44'],
-                     chartArea: {left:0,top:20,width: '100%'},
+                     chartArea: {left:15,top:60,width: '100%'},
                      legend: { position: 'bottom',alignment :'center' }
                  };
 
