@@ -79,7 +79,7 @@ angular.module('telusLg2App')
       });
    })
    //sample call
-   //http://54.86.239.240:7777/twitterdayreports/180?days=7&top=
+   //http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100
 
 
 
