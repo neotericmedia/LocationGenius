@@ -1,0 +1,87 @@
+[
+  {
+    "totalVisits": 627676,
+    "averageVisitorsDay": 1814,
+    "weeklyChange": 0,
+    "days": [
+      {
+        "day": {
+          "year": 2014,
+          "month": "AUGUST",
+          "dayOfMonth": 18,
+          "dayOfWeek": "MONDAY",
+          "era": "CE",
+          "dayOfYear": 230,
+          "leapYear": false,
+          "monthValue": 8,
+          "chronology": {
+            "id": "ISO",
+            "calendarType": "iso8601"
+          }
+        },
+        "dayOfWeek": "MONDAY",
+        "avg_duration": 0,
+        "total_visit": 1,
+        "hourly": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "hourly": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      43319,
+      121148,
+      108237,
+      81912,
+      71452,
+      64851,
+      55535,
+      46024,
+      35198
+    ],
+    "busiestHour": 23,
+    "mostVisitedWeek": null,
+    "mostVisitedWeekTotal": 0,
+    "mostVisitedDay": null,
+    "mostVisitedDayTotal": 0,
+    "averageVisitDuration": 0,
+    "mostFrequentCustomer": null
+  }
+]

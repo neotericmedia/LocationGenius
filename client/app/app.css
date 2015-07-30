@@ -32,15 +32,73 @@
 
 
 
-#onsite_visitor_chart_div div div {
-   margin-left: 30px;
+
+i.fa {
+  color: #ccc;
+}
+
+.icons {
+  max-width:30px;
+  padding-bottom:3px
+}
+
+div.ng-isolate-scope .nav > li > a {
+  padding: 20px 15px;
+}
+
+.uts {
+  background-color: #f7f7f7;
+  padding: 7px;
+  border-radius: 22px;
+  padding: 10px 20px 10px 20px;
+}
+.uts span {
+  padding-right: 20px;
+}
+.uts span:last-child {
+  padding-right: 0px;
+}
+.uts a i {
+  font-size: 1.35em;
+}
+.uts a i:hover {
+  color: #999
 }
 
 
+.well-lg {
+  margin-top: 50px;
+}
 
+
+/*.panel {
+  padding: 30px;
+}*/
+.panel {
+  -webkit-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
+  -moz-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
+  box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
+  border: none;
+  margin-top: 100px;
+}
+.panel-body {
+  padding: 40px;
+}
+.glyphicon-chevron-up {
+    color: #6ebe44;
+}
+.glyphicon-chevron-down {
+    color: red;
+}
+#searchpanel .panel-body {
+  padding: 0px;
+}
 .table-striped img {
     border-radius: 50%;
 }
+
+
+
 
 
 
@@ -52,6 +110,43 @@
      padding-left: 0px;
      margin: 0;
      overflow-x: hidden;
+     font-family: 'Lato', sans-serif;
+     font-weight: 400;
+ }
+ h1 {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+   font-size: 4em;
+   color: #6ebe44;
+ }
+ .subTxt {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+   font-size: 2em;
+   color: #ccc;
+   text-align: center;
+   display: block;
+   margin-bottom: 50px;
+ }
+ h4 {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+   font-size: 2.75em;
+   color: #6ebe44;
+   margin-top: 0px;
+ }
+ .date {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+   font-size: 2em;
+   color: #999;
+   margin-top: 35px;
+   margin-right: 30px;
+   display: block;
+ }
+ .locateSub {
+   font-size:15px;
+   color: #999;
  }
  .slide {
      height: 0px - 20px;

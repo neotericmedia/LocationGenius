@@ -455,10 +455,10 @@ angular.module('telusLg2App')
                        }
 
                        if($scope.weeklyChange>0) {
-                           $scope.changeIcon = "glyphicons glyphicons-chevron-up";
+                           $scope.changeIcon = "glyphicon glyphicon-chevron-up";
                        }
                        if($scope.weeklyChange<0) {
-                           $scope.changeIcon = "glyphicons glyphicons-chevron-down";
+                           $scope.changeIcon = "glyphicon glyphicon-chevron-down";
                        }
 
                        var dailyReports = results.days;
@@ -573,7 +573,7 @@ angular.module('telusLg2App')
                      width:900,
                      height:300,
                      colors:['#6ebe44'],
-                     chartArea: {left:15,top:60,width: '100%'},
+                     chartArea: {left:3,top:60,width: '100%'},
                      legend: { position: 'bottom',alignment :'center' }
                  };
 
@@ -670,3 +670,17 @@ angular.module('telusLg2App')
         isFirstDisabled: false
       };
   })
+
+
+
+
+  .controller('networkCtrl', function ($scope, $http) {
+    $http ({
+         method: 'GET',
+         url: 'data/outputsNetwork.json',
+         //url: '/api/locations',
+     })
+     .success(function (networkDatas) {
+        $scope.networkDatas = networkDatas;
+      })
+   })

@@ -5,7 +5,7 @@
       <div id="searchbar">
         <div id="searchpanel" class="panel panel-default" style="margin-bottom:0px">
             <div class="container">
-                <div class="row panel-body searchControl">
+                <div class="row panel-body searchControl" style="padding-left:25px;padding-top:25px;padding-bottom:25px">
 
                     <div class="col-lg-1 searchTitle">
                         <span class="locationTitle">Location:</span>
@@ -91,23 +91,33 @@
 
 
 <!--///////////////////////////////////////////////////////////////////CONTENT AREA-->
-<div id="contentArea" class="content" style="margin-top:30px;margin-bottom:60px;">
+<div id="contentArea" class="content" style="margin-top:60px;margin-bottom:60px;">
 <div class="container">
   <div class="row">
         <div class="col-md-12">
           <div class="row ">
-           <div class="col-md-3">
+           <div class="col-md-10">
+           </div>
+           <div class="col-md-2">
+
+              <span class="uts">
+                <span><a href="#"><i class="fa fa-print"></i></a></span>
+                <span><a href="#"><i class="fa fa-envelope"></i></a></span>
+                <span><a href="#"><i class="fa fa-save"></i></a></span>
+              </span>
+
+           </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="row ">
               <div class="locationData" >
-                 <h2 class="locationDataTitle">{{currentLocation.name}}</h2>
-                 <p>{{currentLocation.address}}<br>
-                 {{currentLocation.gps}}</p>
+                 <h1 class="locationDataTitle" align="center">{{currentLocation.name}}</h1>
+                 <span class="subTxt">{{currentLocation.address}}<br>
+                 {{currentLocation.gps}}</span>
               </div>
-           </div>
-           <div class="col-md-5 col-md-offset-4 ">
-              <button type="button" class="btn btn-default reportButton"><i class="fa fa-print"></i> Print Report</button>
-              <button type="button" class="btn btn-default reportButton"><i class="fa fa-envelope"></i> Email Report</button>
-              <button type="button" class="btn btn-default reportButton"><i class="fa fa-save"></i> Save Report</button>
-           </div>
           </div>
         </div>
 
@@ -124,12 +134,12 @@
            <tabset justified="true">
            <tab>
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading><img alt="Social" src="assets/images/social.png" style="max-width:20px;padding-bottom:3px"/>&nbsp;&nbsp;Social</tab-heading>
+              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />&nbsp;&nbsp;Social</tab-heading>
 
                <p>&nbsp;</p>
 
                  <div class="row">
-                   <div class="col-md-6">
+                   <div class="col-md-8">
 
                       <tabset type="pills" class="ng-isolate-scope ng-scope">
                         <tab heading="Last 7 Days" ng-click="showLast7Days()"></tab>
@@ -138,8 +148,8 @@
                       </tabset>
 
                    </div>
-                   <div class="col-md-3 col-md-offset-3">
-                       <h4>{{dateRange}}</h4>
+                   <div class="col-md-4">
+                       <span class="date">{{dateRange}}</span>
                    </div>
                  </div>
 
@@ -147,9 +157,9 @@
                  <p>&nbsp;</p>
 
 
-                       <div class="panel panel-default">
+                       <div class="panel panel-default" style="margin-top:50px;">
                           <div class="panel-body" >
-                             <h4>Social Interactions (within 1km)</h4>
+                             <h4>Visitors <span class="locateSub">(within 1km)</span></h4>
                              <div class="totals">{{totalInteractions | number}}</div>
                              <div>Total Interactions</div>
                              <div class="row">
@@ -165,10 +175,10 @@
                        <div class="panel panel-default">
                            <div class="panel-body">
                               <div class="row">
-                                   <div class="col-md-3">
+                                   <div class="col-md-4">
                                        <h4>Time Breakdown</h4>
                                    </div>
-                                   <div class="col-md-4 col-md-offset-8 ">
+                                   <div class="col-md-3 col-md-offset-9 ">
                                        <div class="dateStyle"> {{dailyReportDate | lowercase}} </div>
                                    </div>
                               </div>
@@ -227,7 +237,7 @@
 
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab>
-               <tab-heading><img alt="Social" src="assets/images/network.png" style="max-width:20px;padding-bottom:3px"/>&nbsp;&nbsp;On-site Data</tab-heading>
+               <tab-heading><img alt="Social" src="assets/images/network.png" class="icons" />&nbsp;&nbsp;On-site Data</tab-heading>
 
                       <p>&nbsp;</p>
 
@@ -245,7 +255,7 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Visitors (Last Week)</h4>
+                              <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
 
                               <div class="row">
                                    <div class="col-md-2 ">
@@ -271,7 +281,7 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Time Breakdown (Last Week)</h4>
+                              <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
                               <div class="totals">{{busiestHourDay}} {{mostVisitedHour}}</div>
                               <div>Busiest Hour (average)</div>
                               <div class="row">
@@ -284,7 +294,7 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Visit Duration (Last Week)</h4>
+                              <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
                               <div class="totals">{{averageVisitDuration}} MIN</div>
                               <div>Average Visit Duration</div>
                               <div class="row">
@@ -336,7 +346,7 @@
 
            <!--////////////////////////////////////NETWORK DATA-->
            <tab>
-               <tab-heading><img alt="Social" src="assets/images/cell.png" style="max-width:20px;padding-bottom:3px"/>&nbsp;&nbsp;Network Data</tab-heading>
+               <tab-heading><img alt="Social" src="assets/images/cell.png" class="icons" />&nbsp;&nbsp;Network Data</tab-heading>
 
                <p>&nbsp;</p>
 
@@ -360,7 +370,7 @@
 
                <div class="panel panel-default graphPanel">
                     <div class="panel-body" >
-                       <h4>Visitors (Last Week)</h4>
+                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
                        <div class="row">
                             <div class="col-md-2 ">
                                <div class="totals"><span class="visitors">{{networkVisitorsWeek}}</span></div>
@@ -390,7 +400,7 @@
 
                <div class="panel panel-default graphPanel">
                     <div class="panel-body" >
-                       <h4>Time Breakdown (Last Week)</h4>
+                       <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
                        <div class="totals">{{networkbusiestHourDay}} {{networkmostVisitedHour}}</div>
                        <div>Busiest Hour (average)</div>
                        <div class="row">
@@ -408,7 +418,7 @@
 
                <div class="panel panel-default graphPanel">
                     <div class="panel-body" >
-                       <h4>Visit Duration (Last Week)</h4>
+                       <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
                        <div class="totals">{{networkaverageVisitDuration}} MIN</div>
                        <div>Average Visit Duration</div>
                        <div class="row">
@@ -429,11 +439,11 @@
                     <div class="panel-body">
                        <div class="row">
                             <div class="col-md-6 ">
-                               <h4>Household Income (Last Week)</h4>
+                               <h4>Household Income <span class="locateSub">(Last Week)</span></h4>
                                <div>Coming Soon</div>
                             </div>
                             <div class="col-md-6">
-                               <h4>Ethnic Composition (Last Week)</h4>
+                               <h4>Ethnic Composition <span class="locateSub">(Last Week)</span></h4>
                                <div>Coming Soon</div>
                             </div>
                        </div>
@@ -450,7 +460,7 @@
                     <div class="panel-body">
                        <div class="row">
                             <div class="col-md-6 ">
-                               <h4>Visitor Home Distribution (Last Week)</h4>
+                               <h4>Visitor Home Distribution <span class="locateSub">(Last Week)</span></h4>
                                <div>Coming Soon</div>
                             </div>
                        </div>
@@ -465,7 +475,7 @@
 
                <div class="panel panel-default graphPanel">
                     <div class="panel-body" >
-                       <h4>Top Visitors (Last Week)</h4>
+                       <h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>
                        <div id="visitors_div">
 
                             <div class="table-responsive tweetTable">
