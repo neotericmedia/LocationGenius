@@ -258,18 +258,37 @@
                               <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
 
                               <div class="row">
-                                   <div class="col-md-2 ">
-                                      <div class="totals"><span class="visitors">{{onsiteVisitorsWeek | number}}</span></div>
-                                      <div>Total Visitors</div>
+
+
+                                   <div class="col-md-3 ">
+                                      <div class="totals">
+                                        <span class="totalBorder">
+                                          <span class="visitorsA">{{onsiteVisitorsWeek | number}}</span>
+                                        </span>&nbsp;&nbsp;&nbsp;Total Visitors
+                                      </div>
                                    </div>
-                                   <div class="col-md-3 verticalLine">
-                                      <div class="totals"><span class="visitors">{{weeklyChange}}%</span> <span id="changeIcon" class="{{changeIcon}}"> </span></div>
-                                      <div>Compared to previous week</div>
+
+
+                                   <div class="col-md-3">
+                                      <div class="totals">
+                                        <span class="{{changeImage}}">
+                                          <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                          <span id="changeIcon" class="{{changeIcon}}"></span>
+                                        </span>
+                                      </div>
+                                      <div style="margin-top:5px;">Compared to previous week</div>
                                    </div>
-                                   <div class="col-md-2 verticalLine">
-                                      <div class="totals"><span class="visitors">{{averageVisitorsDay | number}}</span></div>
-                                      <div>Average Visitors/Day</div>
+
+
+                                   <div class="col-md-3">
+                                      <div class="totals">
+                                        <span class="totalBorder">
+                                          <span class="visitorsA">{{averageVisitorsDay | number}}</span>
+                                        </span>&nbsp;&nbsp;&nbsp;Average Visitors/Day
+                                      </div>
                                    </div>
+
+
                               </div>
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1">

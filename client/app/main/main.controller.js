@@ -454,12 +454,24 @@ angular.module('telusLg2App')
                            }
                        }
 
+
+                       if($scope.weeklyChange>0) {
+                           $scope.changeImage = "up";
+                       }
+                       if($scope.weeklyChange<0) {
+                           $scope.changeImage = "down";
+                       }
+
+
+
                        if($scope.weeklyChange>0) {
                            $scope.changeIcon = "glyphicon glyphicon-chevron-up";
                        }
                        if($scope.weeklyChange<0) {
                            $scope.changeIcon = "glyphicon glyphicon-chevron-down";
                        }
+
+
 
                        var dailyReports = results.days;
                        var item;

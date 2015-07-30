@@ -84,12 +84,42 @@ div.ng-isolate-scope .nav > li > a {
 .panel-body {
   padding: 40px;
 }
+
+
+
+
+.up {
+  background-color: #6ebe44;
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 10px 15px 7px 15px;
+  border-radius: 10px;
+}
+.totalBorder {
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 10px 15px 7px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.down {
+
+}
+
+
+
+
 .glyphicon-chevron-up {
-    color: #6ebe44;
+    color: #fff;
 }
 .glyphicon-chevron-down {
     color: red;
 }
+
+
 #searchpanel .panel-body {
   padding: 0px;
 }
@@ -185,10 +215,13 @@ div.ng-isolate-scope .nav > li > a {
 .verticalLine {
    border-left: 2px #ccc solid;
 }
-.visitors {
+.visitorsA {
    font-size:20px;
-   font-weight:bold;
    color:#6ebe44;
+}
+.visitorsB {
+   font-size:20px;
+   color:#fff;
 }
 
  .content {
