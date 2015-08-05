@@ -75,11 +75,11 @@ div.ng-isolate-scope .nav > li > a {
   padding: 30px;
 }*/
 .panel {
-  -webkit-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
+  /*-webkit-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
   -moz-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
-  box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
+  box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);*/
   border: none;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .panel-body {
   padding: 40px;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
+  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, NetworkReports, LocationResults, OnsitePregenReport) {
 
 
 
@@ -194,6 +194,30 @@ angular.module('telusLg2App')
         google.visualization.events.addListener(chart, 'select', selectHandler);
     }
 
+    $scope.showNetworkDailyData = function () {
+        // Instantiate and draw our chart, passing in some options.
+        // Set chart options
+        var options = {
+            width:900,
+            height:300,
+            colors:['#6ebe44'],
+            chartArea: {left:20,top:60,width: '100%'},
+            legend: { position: 'bottom' } ,
+            fontSize:11
+        };
+
+        chart = new google.visualization.ColumnChart(document.getElementById('barchart_network_div'));
+        chart.draw($scope.data, options);
+        // Every time the table fires the "select" event, it should call your
+        // selectHandler() function.
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+    }
+
+
+
+
+
+
 
 
     function selectHandler(e) {
@@ -360,6 +384,7 @@ angular.module('telusLg2App')
                 console.log("Daily data:" + dailyData);
                 $scope.data = google.visualization.arrayToDataTable(dailyData);
                 $scope.showDailyData();
+                $scope.showNetworkDailyData();
               }
               if($scope.hourlyData.length>0) {
                 console.log("Hourly data:" + $scope.hourlyData);
@@ -459,7 +484,7 @@ angular.module('telusLg2App')
                            $scope.changeImage = "up";
                        }
                        if($scope.weeklyChange<0) {
-                           $scope.changeImage = "down";
+                           $scope.changeIma = "glyphicon glyphicon-chevron-down";
                        }
 
 
