@@ -42,9 +42,57 @@ i.fa {
   padding-bottom:3px
 }
 
-div.ng-isolate-scope .nav > li > a {
-  padding: 20px 15px;
+
+#miniTab div.ng-isolate-scope .nav {
+  float: right;
 }
+
+
+
+
+
+#miniTab div.ng-isolate-scope .nav > li:nth-child(1) {
+  background-color: #f7f7f7;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+#miniTab div.ng-isolate-scope .nav > li {
+  background-color: #f7f7f7;
+}
+
+/*#miniTab div.ng-isolate-scope .nav > li:nth-child(1):hover {
+  background-color: red;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}*/
+
+.nav-pills > li.active > a, .nav-pills > li:nth-child(1).active > a:hover, .nav-pills > li:nth-child(1).active > a:focus {
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+#miniTab div.ng-isolate-scope .nav > li:nth-child(1) > a:hover,#miniTab div.ng-isolate-scope .nav > li:nth-child(1) > a:focus {
+  background-color: #eee;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+div.ng-isolate-scope .nav > li > a {
+  padding: 15px 15px;
+}
+
+.nav-pills > li > a {
+  border-radius: 0px;
+}
+
+
+
+
+
+
+
+
+
 
 .uts {
   background-color: #f7f7f7;
@@ -79,10 +127,11 @@ div.ng-isolate-scope .nav > li > a {
   -moz-box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);
   box-shadow: 0px 0px 33px 1px rgba(0,0,0,0.08);*/
   border: none;
-  margin-top: 50px;
+  margin-bottom: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 }
 .panel-body {
-  padding: 40px;
+  padding: 0px 10px 0px 10px;
 }
 
 
@@ -95,6 +144,10 @@ div.ng-isolate-scope .nav > li > a {
   color: #fff;
   padding: 10px 15px 7px 15px;
   border-radius: 10px;
+}
+.totals {
+  display: block;
+  height: 35px;
 }
 .totalBorder {
   width: auto;
@@ -170,7 +223,8 @@ div.ng-isolate-scope .nav > li > a {
    font-weight: 100;
    font-size: 2em;
    color: #999;
-   margin-top: 35px;
+   margin-top: 0px;
+   margin-bottom: 30px;
    margin-right: 30px;
    display: block;
  }

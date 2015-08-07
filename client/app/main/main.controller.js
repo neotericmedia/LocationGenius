@@ -179,8 +179,8 @@ angular.module('telusLg2App')
         // Instantiate and draw our chart, passing in some options.
         // Set chart options
         var options = {
-            width:900,
-            height:300,
+            width:1075,
+            height:550,
             colors:['#6ebe44'],
             chartArea: {left:20,top:60,width: '100%'},
             legend: { position: 'bottom' } ,
@@ -198,8 +198,8 @@ angular.module('telusLg2App')
         // Instantiate and draw our chart, passing in some options.
         // Set chart options
         var options = {
-            width:900,
-            height:300,
+          width:1075,
+            height:550,
             colors:['#6ebe44'],
             chartArea: {left:20,top:60,width: '100%'},
             legend: { position: 'bottom' } ,
@@ -251,8 +251,8 @@ angular.module('telusLg2App')
 
     $scope.showHourlyData = function (day) {
       var options = {
-           width:900,
-           height:300,
+        width:1075,
+           height:550,
            colors:['#6ebe44'],
            legend: { position: 'bottom' },
            chartArea: {left:0,top:60,width: '100%'},
@@ -559,8 +559,8 @@ angular.module('telusLg2App')
                  // Instantiate and draw our chart, passing in some options.
                  // Set chart options
                  var options = {
-                     width:900,
-                     height:300,
+                   width:1075,
+                     height:500,
                      colors:['#301050','#6ebe44'],
                      chartArea: {left:60,top:60,width: '100%'},
                      //legend: { position: 'bottom'},
@@ -583,8 +583,8 @@ angular.module('telusLg2App')
                  // Set chart options
                  console.log("Graphing hourly data...");
                  var options = {
-                     width:900,
-                     height:300,
+                   width:1075,
+                      height:550,
                      colors:['#6ebe44'],
                      chartArea: {left:60,top:60,width: '100%'},
                      legend: { position: 'bottom' }
@@ -607,8 +607,8 @@ angular.module('telusLg2App')
                  // Set chart options
                  console.log("Graphing online visitor duration data...");
                  var options = {
-                     width:900,
-                     height:300,
+                   width:1075,
+                      height:550,
                      colors:['#6ebe44'],
                      chartArea: {left:3,top:60,width: '100%'},
                      legend: { position: 'bottom',alignment :'center' }

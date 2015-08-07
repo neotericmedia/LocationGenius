@@ -99,8 +99,8 @@ angular.module('telusLg2App')
 
 
 
-
-
+    //http://54.85.105.154:80/onsitereport/190?date=2015-04-26
+    //http://54.85.105.154:80/onsitereport/180?date=2015-04-02
 
    .service('OnsitePregenReport', function ($resource) {
       return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
