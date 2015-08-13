@@ -490,10 +490,10 @@ angular.module('telusLg2App')
 
 
                        if($scope.weeklyChange>0) {
-                           $scope.changeIcon = "glyphicon glyphicon-chevron-up";
+                           $scope.changeIcon = "fa fa-angle-up";
                        }
                        if($scope.weeklyChange<0) {
-                           $scope.changeIcon = "glyphicon glyphicon-chevron-down";
+                           $scope.changeIcon = "fa fa-angle-down";
                        }
 
 
@@ -505,7 +505,7 @@ angular.module('telusLg2App')
                            if (dailyReports[i] != null) {
                                console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
                                var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
-                               item = [date, dailyReports[i].total_visit, '#301050', dailyReports[i].newMac, '#6ebe44'];
+                               item = [date, dailyReports[i].total_visit, '#30134F', dailyReports[i].newMac, '#6ebe44'];
                                dailyVisitorData.push(item);
                            }
                        }
@@ -561,7 +561,7 @@ angular.module('telusLg2App')
                  var options = {
                    width:1075,
                      height:500,
-                     colors:['#301050','#6ebe44'],
+                     colors:['#30134F','#6ebe44'],
                      chartArea: {left:60,top:60,width: '100%'},
                      //legend: { position: 'bottom'},
                      legend: { position: 'none'},
@@ -700,13 +700,18 @@ angular.module('telusLg2App')
 
 
 
-  .controller('AccordionDemoCtrl', function ($scope) {
-    $scope.oneAtATime = true;
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-      };
-  })
+
+
+
+.controller('AccordionDemoCtrl', function ($scope) {
+  $scope.oneAtATime = true;
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+})
+
+
 
 
 
@@ -721,3 +726,144 @@ angular.module('telusLg2App')
         $scope.networkDatas = networkDatas;
       })
    })
+
+
+
+
+
+
+
+
+
+
+  .controller('DatepickerDemoCtrl', function ($scope) {
+     $scope.today = function() {
+       $scope.dt = new Date();
+     };
+     $scope.today();
+
+     $scope.clear = function () {
+       $scope.dt = null;
+     };
+
+     // Disable weekend selection
+     $scope.disabled = function(date, mode) {
+       return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+     };
+
+     $scope.toggleMin = function() {
+       $scope.minDate = $scope.minDate ? null : new Date();
+     };
+     $scope.toggleMin();
+
+     $scope.open = function($event) {
+       $scope.status.opened = true;
+     };
+
+     $scope.dateOptions = {
+       formatYear: 'yy',
+       startingDay: 1
+     };
+
+     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+     $scope.format = $scope.formats[0];
+
+     $scope.status = {
+       opened: false
+     };
+
+     var tomorrow = new Date();
+     tomorrow.setDate(tomorrow.getDate() + 1);
+     var afterTomorrow = new Date();
+     afterTomorrow.setDate(tomorrow.getDate() + 2);
+     $scope.events =
+       [
+         {
+           date: tomorrow,
+           status: 'full'
+         },
+         {
+           date: afterTomorrow,
+           status: 'partially'
+         }
+       ];
+
+     $scope.getDayClass = function(date, mode) {
+       if (mode === 'day') {
+         var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+         for (var i=0;i<$scope.events.length;i++){
+           var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+           if (dayToCheck === currentDay) {
+             return $scope.events[i].status;
+           }
+         }
+       }
+
+       return '';
+     };
+   })
+
+
+
+
+
+
+
+
+
+
+
+
+.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+})
+
+
+
+
+.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});

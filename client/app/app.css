@@ -2,7 +2,11 @@
 /**
  * Bootstrap Fonts
  */
-
+/*
+775d90
+301050
+30134F
+*/
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
@@ -29,9 +33,98 @@
 /**
  * App-wide Styles
  */
+/*#tweeters_div thead {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  display: block;
+}
+#tweeters_div thead tr th {
+  width: 100%;
+}*/
+
+#tweeters_div .table > tbody > tr > td {
+  border-top: 0px;
+  padding: 20px 20px 20px 20px;
+  color: #999;
+}
+
+
+#tweeters_header .table > thead:first-child > tr:first-child > th {
+  border-top: 0px;
+  padding: 20px 20px 20px 20px;
+  color: #999;
+}
 
 
 
+.up .fa-angle-up {
+   font-size: 2.5em;
+   position: absolute;
+   top: 32px;
+ }
+
+ .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+ }
+.nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+  background-color: #f7f7f7;
+  margin-right: 0px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-tabs > li > a {
+  border: none;
+}
+
+.cAll {
+  width:15px;
+  height:15px;
+  background-color:#6ebe44;
+  border-radius:50%;
+  float:left;
+  margin-right:7px;
+  margin-top:3px;
+}
+.cNew {
+  width:15px;
+  height:15px;
+  background-color:#775d90;
+  border-radius:50%;
+  float:left;
+  margin-right:7px;
+  margin-top:3px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#social-highlights-panel .panel-group {
+  margin-bottom: 0px;
+}
+#social-highlights-panel .panel-heading {
+  padding: 0px;
+}
+#social-highlights-panel .accordion-toggle {
+  height: 40px;
+  display: block;
+}
+
+#social-highlights-panel .well-lg {
+  margin-top: 10px;
+}
+
+#social-highlights-panel .panel-group .panel-heading + .panel-collapse .panel-body {
+  border-top: 0px;
+}
+
+
+i.fa-angle-down {
+  font-size:2.5em;position:absolute;top:13px;
+}
 
 i.fa {
   color: #ccc;
@@ -45,6 +138,7 @@ i.fa {
 
 #miniTab div.ng-isolate-scope .nav {
   float: right;
+  margin-top: 15px;
 }
 
 
@@ -55,6 +149,10 @@ i.fa {
   background-color: #f7f7f7;
   border-top-left-radius: 2em;
   border-bottom-left-radius: 2em;
+}
+#miniTab div.ng-isolate-scope .nav > li:nth-child(6) {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
 }
 #miniTab div.ng-isolate-scope .nav > li {
   background-color: #f7f7f7;
@@ -77,8 +175,33 @@ i.fa {
   border-bottom-left-radius: 2em;
 }
 
+
+
+.nav-pills > li.active > a, .nav-pills > li:nth-child(6).active > a:hover, .nav-pills > li:nth-child(6).active > a:focus {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+#miniTab div.ng-isolate-scope .nav > li:nth-child(6) > a:hover,#miniTab div.ng-isolate-scope .nav > li:nth-child(6) > a:focus {
+  background-color: #eee;
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+
+
+
+
 div.ng-isolate-scope .nav > li > a {
-  padding: 15px 15px;
+  padding: 22px 52px;
+}
+
+#miniTab div.ng-isolate-scope .nav > li > a {
+  padding: 10px 12px;
+  font-size: .95em;
+}
+.nav-pills > li + li {
+  margin-left: 0px;
 }
 
 .nav-pills > li > a {
@@ -142,20 +265,36 @@ div.ng-isolate-scope .nav > li > a {
   width: auto;
   height: auto;
   color: #fff;
-  padding: 10px 15px 7px 15px;
+  padding: 7px 9px 7px 10px;
   border-radius: 10px;
 }
 .totals {
   display: block;
   height: 35px;
+  margin-top: 40px;
 }
-.totalBorder {
+.totalBorderB {
   width: auto;
   height: auto;
   color: #fff;
-  padding: 10px 15px 7px 15px;
+  padding: 7px 9px 7px 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  color:#ccc;
+}
+.totalBorderA {
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 20px 15px 10px 15px;
+  border-radius: 10px;
+  border: none;
+  color:#000;
+  font-weight: 500;
+  background: #f7f7f7;
+}
+.totalBorderA a {
+  color:#ccc;
 }
 
 .down {
@@ -224,9 +363,9 @@ div.ng-isolate-scope .nav > li > a {
    font-size: 2em;
    color: #999;
    margin-top: 0px;
-   margin-bottom: 30px;
    margin-right: 30px;
    display: block;
+   z-index: 5000;
  }
  .locateSub {
    font-size:15px;
@@ -270,11 +409,11 @@ div.ng-isolate-scope .nav > li > a {
    border-left: 2px #ccc solid;
 }
 .visitorsA {
-   font-size:20px;
+   font-size:16px;
    color:#6ebe44;
 }
 .visitorsB {
-   font-size:20px;
+   font-size:16px;
    color:#fff;
 }
 
@@ -361,7 +500,12 @@ p.ng-binding, h2 {
   .locationTitle {
      padding-top: 7px;
      display:block
- }
+  }
+  .date {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
 }
 @media only screen and (min-width: 75em) {
   /* 1200 =================================================== */
