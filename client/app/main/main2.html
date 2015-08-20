@@ -14,24 +14,17 @@
     <p>&nbsp;</p>
 
 
-    <div ng-controller="networkCtrl">
+    <div ng-controller="networkCtrlB">
       <div class="list-group-item" ng-repeat="networkData in networkDatas">
-        <p>{{networkData}}</p>
-        <p>{{networkData.days[0].day.dayOfWeek}}</p>
-        <p>{{networkData.totalVisits}}</p>
+         <p>{{networkData.id}}</p>
+         <p>{{networkData.date}}</p>
+         <p>{{networkData.uniqueVisitors}}</p>
+         <p>{{networkData.hourlyTotals}}</p>
       </div>
     </div>
 
 
 
-    <div ng-controller="networkDataCtrl">
-      <div class="list-group-item" ng-repeat="nData in networkDataB">
-        <p>{{nData}}</p>
-        <p>{{nData.date}}</p>
-        <p>{{nData.uniqueVisitors}}</p>
-        <p>{{nData.hourlyTotals}}</p>
-      </div>
-    </div>
 
 
 

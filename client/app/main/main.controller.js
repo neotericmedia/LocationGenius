@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, NetworkReports, LocationResults, OnsitePregenReport) {
+  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
 
 
 
@@ -746,27 +746,27 @@ angular.module('telusLg2App')
 
 
 
-  .controller('networkCtrl', function ($scope, $http) {
-    $http ({
-         method: 'GET',
-         url: 'data/outputsNetwork.json',
-         //url: '/api/locations',
-     })
-     .success(function (networkDatas) {
-        $scope.networkDatas = networkDatas;
-      })
-   })
 
 
-   .controller('networkDataCtrl', function ($scope, $http) {
-     $http ({
-          method: 'GET',
-          url: '/api/carrier',
-      })
-      .success(function (networkDataB) {
-         $scope.networkDataB = networkDataB;
-       })
+
+   //*******************
+   //******************* Note (Backend) from service. Service pulls in from API route
+   .controller('networkCtrlB', function ($scope, NetworkReports) {
+      $scope.networkDatas = NetworkReports.query();
     })
+    //*******************
+   //******************* Note (Frontend) from Angular HTTP call to API route 
+  // .controller('networkCtrl', function ($scope, $http) {
+  //   $http ({
+  //        method: 'GET',
+  //        url: '/api/carrier',
+  //    })
+  //    .success(function (networkDatas) {
+  //       $scope.networkDatas = networkDatas;
+  //     })
+  //  })
+
+
 
 
 

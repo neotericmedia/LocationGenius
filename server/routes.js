@@ -48,23 +48,30 @@ var request = require('request');
    // });
 
 
-   request({
-       //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-       //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-       url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
-       //qs: {from: 'blog example', time: +new Date()}, //Query string data
-       method: 'GET',
-       headers: {
-           'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
-       }
-   }, function(error, response, body){
-       if(error) {
-           console.log(error);
-       } else {
-           console.log(body);
-           //res.send(body)
-       }
-   });
+   // request({
+   //     //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
+   //     //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
+   //     url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+   //     //qs: {from: 'blog example', time: +new Date()}, //Query string data
+   //     method: 'GET',
+   //     headers: {
+   //         'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
+   //     }
+   // }, function(error, response, body){
+   //     if(error) {
+   //         console.log(error);
+   //     } else {
+   //         console.log(body);
+   //         //res.send(body)
+   //     }
+   // });
+
+
+
+
+
+
+
 
 
 
@@ -79,6 +86,31 @@ module.exports = function(app) {
        res.header('Access-Control-Allow-Headers', 'Content-Type');
        next();
   });
+
+
+
+
+  app.get('/log/goal', function(req, res){
+     request({
+        url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+        //url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-04-02',
+        method: 'GET',
+        headers: {
+            'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
+        }
+    }, function(error, response, body){
+        if(error) {
+            console.log(error);
+        } else {
+            console.log(body);
+            res.send(body)
+        }
+    });
+  });
+
+
+
+
 
 
 
