@@ -34,8 +34,11 @@ angular.module('telusLg2App')
 
 
 
-
-
+  .service('NetworkDataA', function ($resource) {
+      return $resource('http://192.99.16.178:9105/api/v1/carrierreport/180/5?endDate=2014-08-19', {}, {
+          query: {method: 'GET', isArray:true, },
+      });
+  })
 
 
 
@@ -73,10 +76,8 @@ angular.module('telusLg2App')
 
 
 
-  .service('NetworkReports', function ($resource) {
-     return $resource('data/outputsNetwork.json', {}, {
-         query: {method: 'GET', isArray:false},
-     });
+  .factory('NetworkReports', function ($resource) {
+     return $resource('data/outputsNetwork.json', {})
   })
 
 
@@ -101,12 +102,17 @@ angular.module('telusLg2App')
 
     //http://54.85.105.154:80/onsitereport/190?date=2015-04-26
     //http://54.85.105.154:80/onsitereport/180?date=2015-04-02
+    //http://192.99.16.178:9100/onsitereport/180?date=2015-04-02
 
    .service('OnsitePregenReport', function ($resource) {
+      //return $resource('/api/onsite/:buildingId?date=:dt', {}, {
+      //return $resource('http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt', {}, {
       return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
-      //return $resource('http://localhost\\:9100/onsitereport/:buildingId?date=:dt', {}, {
       //http://52.2.128.53:9100/onsitereport/180?date=2015-04-02
-          query: {method: 'GET', isArray:false }
+          query: {
+             method: 'GET',
+             isArray:false
+          }
       });
    })
 

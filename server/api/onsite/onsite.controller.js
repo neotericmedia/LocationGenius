@@ -1,20 +1,21 @@
 'use strict';
 
 var _ = require('lodash');
-var Locations = require('./locations.model');
+var Onsite = require('./onsite.model');
 var request = require('request');
 
 
-
-// Get list of locationss
+// Get list of onsites
 exports.index = function(req, res) {
 
    request({
        //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
        //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-       //url: 'http://52.3.87.216:9100/user/lgweb/location',
-       //url: 'http://52.3.118.45:9100/user/lgweb/location',
-       url: 'http://ec2-52-3-118-45.compute-1.amazonaws.com:9100/user/lgweb/location',
+       //url: 'http://54.85.105.154:80/onsitereport/:buildingId?date=:dt',
+       //url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-04-02',
+       url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+       //var buildingId = req.body.user_id,
+       //var dt = req.body.dt,
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',
        headers: {
@@ -38,45 +39,43 @@ exports.index = function(req, res) {
 
 
 
-
-
-// Get a single locations
+// Get a single onsite
 exports.show = function(req, res) {
-  Locations.findById(req.params.id, function (err, locations) {
+  Onsite.findById(req.params.id, function (err, onsite) {
     if(err) { return handleError(res, err); }
-    if(!locations) { return res.send(404); }
-    return res.json(locations);
+    if(!onsite) { return res.send(404); }
+    return res.json(onsite);
   });
 };
 
-// Creates a new locations in the DB.
+// Creates a new onsite in the DB.
 exports.create = function(req, res) {
-  Locations.create(req.body, function(err, locations) {
+  Onsite.create(req.body, function(err, onsite) {
     if(err) { return handleError(res, err); }
-    return res.json(201, locations);
+    return res.json(201, onsite);
   });
 };
 
-// Updates an existing locations in the DB.
+// Updates an existing onsite in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Locations.findById(req.params.id, function (err, locations) {
+  Onsite.findById(req.params.id, function (err, onsite) {
     if (err) { return handleError(res, err); }
-    if(!locations) { return res.send(404); }
-    var updated = _.merge(locations, req.body);
+    if(!onsite) { return res.send(404); }
+    var updated = _.merge(onsite, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, locations);
+      return res.json(200, onsite);
     });
   });
 };
 
-// Deletes a locations from the DB.
+// Deletes a onsite from the DB.
 exports.destroy = function(req, res) {
-  Locations.findById(req.params.id, function (err, locations) {
+  Onsite.findById(req.params.id, function (err, onsite) {
     if(err) { return handleError(res, err); }
-    if(!locations) { return res.send(404); }
-    locations.remove(function(err) {
+    if(!onsite) { return res.send(404); }
+    onsite.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

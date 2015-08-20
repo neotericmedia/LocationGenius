@@ -7,39 +7,33 @@
             <div class="container">
                 <div class="row panel-body searchControl" style="padding-left:25px;padding-top:25px;padding-bottom:25px">
 
-                    <div class="col-lg-1 searchTitle">
-                        <span class="locationTitle">Location</span>
-                    </div>
+                    <!--<div class="col-lg-1 searchTitle">
+                        <span class="locationTitle">Subscribed Locations</span>
+                    </div>-->
 
-                    <div class="dropdown col-lg-2 ">
 
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                            Select a saved location
-                            <span class="caret"></span>
-                        </button>
 
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li ng-repeat="location in locations" role="presentation" ><a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location)">{{location.name}}</a></li>
-                        </ul>
+                    <div class="dropdown col-lg-3" style="margin:0 auto;">
+
+                           <i class="fa fa-map-marker" style="text-align:right; float:left;font-size:2.25em; color:#6ebe44; margin-right:12px;"></i>
+                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="float:left;">
+                              Subscribed Locations
+                              <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="float:left;">
+                              <li ng-repeat="location in locations" role="presentation" ><a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location)">{{location.name}}</a></li>
+                           </ul>
 
                     </div>
 
 
                     <div class="col-lg-6">
-                        <div class="row">
-                          <div class="col-lg-1" style="margin-right:0px;padding-right:0px;">
-                            <i class="fa fa-map-marker" style="text-align:right; font-size:2.25em; color:#6ebe44;"></i>
-                          </div>
-                          <div class="col-lg-11" style="margin-left:0px;padding-left:0px;">
                             <form role="search" ng-submit="showTweeters()">
                                 <div class="input-group">
                                     <input type="text" class="form-control searchInput" aria-describedby="basic-addon2" placeholder="Enter a location" ng-model="searchString">
                                     <span class="input-group-addon searchButton" id="basic-addon2" ng-click="showTweeters()" ><div class="searchtext">Search</div></span>
                                 </div>
                             </form>
-                          </div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -61,7 +55,7 @@
 <div class="slide" style="background-color:#ccc">
    <!--///////////////////////////////////////////////////////////////////MAP-->
    <div id="map-canvas">
-     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
          <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
          <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control"></ui-gmap-circle>
      </ui-gmap-google-map>
@@ -173,6 +167,130 @@
 
 
 
+                 <div class="row">
+                       <div class="col-md-9">
+                          <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
+                            <div ng-controller="AccordionDemoCtrl">
+                             <accordion close-others="oneAtATime">
+                                <accordion-group>
+                                 <accordion-heading>
+                                    <div style="display:block;margin-top:14px;">
+                                      <span class="totalBorderA" style="padding-top:11px;">
+                                       <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
+                                      </span>
+                                    </div>
+                                 </accordion-heading>
+
+                                 <div class="well well-lg highlightsPanel">
+                                       <ul style="margin-bottom:0px;">
+                                          <li>Most Visitors in a Week: <span class="hLight">{{socialVisitorsWeek | number}}</span> visitors <span class="hLight">{{socialWeek}}</span></li>
+                                          <li>Most Visitors in a Day: <span class="hLight">{{socialMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{socialMostVisitedDay}}</span></li>
+                                          <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                          <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                       </ul>
+                                 </div>
+
+                                </accordion-group>
+                             </accordion>
+                            </div>
+                          </div>
+                       </div>
+
+
+                       <div class="col-md-3" style="text-align:right;">
+                        <br>
+                        <div ng-controller="DropdownCtrl">
+                             <span dropdown on-toggle="toggled(open)">
+                              <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+                                  <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+
+                                    <div ng-controller="DatepickerDemoCtrl">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="input-group">
+                                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                  <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                  </span>
+                                                </p>
+                                            </div>
+                                          </div>
+
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="input-group">
+                                                  <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                  <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                  </span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                  </div>
+                              </span>
+                        </div>
+                        <!--<div ng-controller="ModalDemoCtrl">
+                             <script type="text/ng-template" id="myModalContent.html">
+                                 <div class="modal-body">
+                                     <style>
+                                       .full button span {
+                                         background-color: limegreen;
+                                         border-radius: 32px;
+                                         color: black;
+                                       }
+                                       .partially button span {
+                                         background-color: orange;
+                                         border-radius: 32px;
+                                         color: black;
+                                       }
+                                     </style>
+                                     <div ng-controller="DatepickerDemoCtrl">
+                                         <h4>Custom Date</h4>
+                                         <div class="row">
+                                             <div class="col-md-6">
+                                                 <p class="input-group">
+                                                   <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                   <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                   </span>
+                                                 </p>
+                                             </div>
+
+                                             <div class="col-md-6">
+                                                 <p class="input-group">
+                                                   <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                   <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                   </span>
+                                                 </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="modal-footer">
+                                     <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                                     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                                 </div>
+                             </script>
+                             <span class="totalBorderB" style="padding-top:7px;"><a href="#" ng-click="open()"><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+                        </div>-->
+                       </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
                        <div class="panel panel-default">
                           <div class="panel-body">
 
@@ -180,66 +298,6 @@
                                  <div class="col-md-9">
                                    <br>
                                    <h4>Visitors <span class="locateSub">(within 1km)</span></h4>
-                                 </div>
-                                 <div class="col-md-3" style="text-align:right;">
-                                   <br>
-
-
-
-
-                                   <div ng-controller="ModalDemoCtrl">
-                                       <script type="text/ng-template" id="myModalContent.html">
-                                           <div class="modal-body">
-                                               <style>
-                                                 .full button span {
-                                                   background-color: limegreen;
-                                                   border-radius: 32px;
-                                                   color: black;
-                                                 }
-                                                 .partially button span {
-                                                   background-color: orange;
-                                                   border-radius: 32px;
-                                                   color: black;
-                                                 }
-                                               </style>
-                                               <div ng-controller="DatepickerDemoCtrl">
-                                                   <h4>Custom Date</h4>
-                                                   <div class="row">
-                                                       <div class="col-md-6">
-                                                           <p class="input-group">
-                                                             <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                             <span class="input-group-btn">
-                                                               <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                             </span>
-                                                           </p>
-                                                       </div>
-
-                                                       <div class="col-md-6">
-                                                           <p class="input-group">
-                                                             <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                             <span class="input-group-btn">
-                                                               <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                             </span>
-                                                           </p>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                           <div class="modal-footer">
-                                               <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                                               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                                           </div>
-                                       </script>
-                                       <span class="totalBorderB" style="padding-top:7px;"><a href="#" ng-click="open()"><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
-                                   </div>
-
-
-
-
-
-
-
                                  </div>
                              </div>
 
@@ -254,37 +312,6 @@
                                       <span class="visitorsA">{{totalInteractions | number}}</span>
                                     </span>&nbsp;&nbsp;&nbsp;Total Interactions
                                   </div>
-
-
-
-                                  <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
-                                    <div ng-controller="AccordionDemoCtrl">
-                                      <accordion close-others="oneAtATime">
-                                        <accordion-group>
-                                          <accordion-heading>
-                                            <div style="display:block;margin-top:14px;">
-                                              <span class="totalBorderA" style="padding-top:11px;">
-                                                <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
-                                              </span>
-                                            </div>
-                                          </accordion-heading>
-
-                                          <div class="well well-lg highlightsPanel">
-                                               <ul style="margin-bottom:0px;">
-                                                  <li>Most Visitors in a Week: <span class="hLight">{{socialVisitorsWeek | number}}</span> visitors <span class="hLight">{{socialWeek}}</span></li>
-                                                  <li>Most Visitors in a Day: <span class="hLight">{{socialMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{socialMostVisitedDay}}</span></li>
-                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
-                                               </ul>
-                                          </div>
-
-                                        </accordion-group>
-                                      </accordion>
-                                    </div>
-                                  </div>
-
-
-
 
                                    <div id="barchart_div"></div>
                                 </div>
@@ -414,7 +441,7 @@
                       <div id="miniTab" class="row">
                         <div class="col-md-12">
                            <tabset type="pills" class="ng-isolate-scope ng-scope">
-                             <tab heading="Last 7 Days" ng-click="showLast7Days()"></tab>
+                             <tab heading="Last Week" ng-click="showLast7Days()"></tab>
                              <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
                              <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
                              <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
@@ -425,89 +452,114 @@
                       </div>
 
 
+
+
+                      <div class="row">
+                          <div class="col-md-9">
+
+                                <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
+
+                                    <div ng-controller="AccordionDemoCtrl">
+
+                                       <accordion close-others="oneAtATime">
+
+                                         <accordion-group>
+
+                                           <accordion-heading>
+                                             <div style="display:block;margin-top:14px;">
+                                               <span class="totalBorderA" style="padding-top:11px;">
+                                                 <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
+                                               </span>
+                                             </div>
+                                           </accordion-heading>
+
+                                           <div class="well well-lg highlightsPanel">
+                                                <ul style="margin-bottom:0px;">
+                                                  <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+                                                  <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                                </ul>
+                                           </div>
+
+                                         </accordion-group>
+
+                                       </accordion>
+
+                                    </div>
+
+                                </div>
+                          </div>
+
+
+
+
+                          <div class="col-md-3" style="text-align:right;">
+                               <br>
+                               <div ng-controller="DropdownCtrl">
+
+                                   <span dropdown on-toggle="toggled(open)">
+
+                                     <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+
+                                     <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+
+                                          <div ng-controller="DatepickerDemoCtrl">
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                      <p class="input-group">
+                                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                        <span class="input-group-btn">
+                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        </span>
+                                                      </p>
+                                                  </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                      <p class="input-group">
+                                                        <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                        <span class="input-group-btn">
+                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        </span>
+                                                      </p>
+                                                  </div>
+                                                </div>
+                                          </div>
+
+                                     </div>
+
+                                   </span>
+
+                               </div>
+                            </div>
+                     </div>
+
+
+
+
+
+
+
+
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
 
 
-
                              <div class="row">
 
-                                   <div class="col-md-9">
+                                   <div class="col-md-12">
                                       <br>
                                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
                                    </div>
 
-
-                                   <div class="col-md-3" style="text-align:right;">
-                                     <br>
-
-                                     <div ng-controller="ModalDemoCtrl">
-                                         <script type="text/ng-template" id="myModalContent.html">
-                                             <div class="modal-body">
-                                                 <style>
-                                                   .full button span {
-                                                     background-color: limegreen;
-                                                     border-radius: 32px;
-                                                     color: black;
-                                                   }
-                                                   .partially button span {
-                                                     background-color: orange;
-                                                     border-radius: 32px;
-                                                     color: black;
-                                                   }
-                                                 </style>
-                                                 <div ng-controller="DatepickerDemoCtrl">
-                                                     <h4>Custom Date</h4>
-                                                     <div class="row">
-                                                         <div class="col-md-6">
-                                                             <p class="input-group">
-                                                               <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                               <span class="input-group-btn">
-                                                                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                               </span>
-                                                             </p>
-                                                         </div>
-
-                                                         <div class="col-md-6">
-                                                             <p class="input-group">
-                                                               <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                               <span class="input-group-btn">
-                                                                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                               </span>
-                                                             </p>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-
-                                             <div class="modal-footer">
-                                                 <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                                                 <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                                             </div>
-                                         </script>
-                                         <span class="totalBorderB" style="padding-top:7px;"><a href="#" ng-click="open()"><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
-                                     </div>
-                                   </div>
-
-                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
+                             </div>
 
 
 
                               <div class="row">
-
-
                                 <div class="col-md-6">
 
                                     <div style="float:left; margin-right:20px;">
@@ -526,7 +578,7 @@
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
                                          </span>
                                        </div>
-                                       <div style="margin-top:0px; font-size:.75em">Compared to previous week</div>
+                                       <div style="margin-top:-3px; font-size:.75em">Compared to previous week</div>
                                     </div>
 
 
@@ -575,33 +627,7 @@
 
 
 
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:10px;">
-                                    <div ng-controller="AccordionDemoCtrl">
-                                      <accordion close-others="oneAtATime">
-                                        <accordion-group>
-                                          <accordion-heading>
-                                            <div style="display:block;margin-top:14px;">
-                                              <span class="totalBorderA" style="padding-top:11px;">
-                                                <a href="#"><i class="fa fa-angle-down" style="top:15px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
-                                              </span>
-                                            </div>
-                                          </accordion-heading>
-                                          <div class="well well-lg highlightsPanel">
-                                               <ul style="margin-bottom:0px;">
-                                                 <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
-                                                 <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
-                                                 <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                 <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
-                                               </ul>
-                                          </div>
-                                        </accordion-group>
-                                      </accordion>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+
 
 
 
@@ -714,7 +740,7 @@
                <div id="miniTab" class="row">
                  <div class="col-md-12">
                     <tabset type="pills" class="ng-isolate-scope ng-scope">
-                      <tab heading="Last 7 Days" ng-click="showLast7Days()"></tab>
+                      <tab heading="Last Week" ng-click="showLast7Days()"></tab>
                       <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
                       <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
                       <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
@@ -727,20 +753,118 @@
 
 
 
-               <div class="panel panel-default graphPanel" ng-controller="networkCtrl">
-                    <div class="panel-body" >
-                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
+
+
+
+               <div class="row">
+                  <div class="col-md-9">
+
+                        <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
+
+                             <div ng-controller="AccordionDemoCtrl">
+
+                                <accordion close-others="oneAtATime">
+
+                                  <accordion-group>
+
+                                   <accordion-heading>
+                                      <div style="display:block;margin-top:14px;">
+                                        <span class="totalBorderA" style="padding-top:11px;">
+                                         <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network Highlights at a Glance</a>
+                                        </span>
+                                      </div>
+                                   </accordion-heading>
+
+                                   <div class="well well-lg highlightsPanel">
+                                         <ul style="margin-bottom:0px;">
+                                           <li>Most Visitors in a Week: <span class="hLight">{{networkVisitorsWeek | number}}</span> visitors <span class="hLight">{{networkWeek}}</span></li>
+                                           <li>Most Visitors in a Day: <span class="hLight">{{networkMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{networkMostVisitedDay}}</span></li>
+                                           <li>Average Visit Duration: <span class="hLight">{{networkaverageVisitDuration}}</span></li>
+                                           <li>Most Frequent Visitor: Customer <span class="hLight">{{networkmostFrequentCustomer}}</span>, postal code <span class="hLight">{{networkmostPostalCode}}</span> (<span class="hLight">{{networkmostFrequentCustomerVisits}}</span> visits to date)</li>
+                                         </ul>
+                                   </div>
+
+                                  </accordion-group>
+
+                                </accordion>
+
+                             </div>
+
+                        </div>
+                  </div>
+
+
+
+
+                  <div class="col-md-3" style="text-align:right;">
+                        <br>
+                        <div ng-controller="DropdownCtrl">
+
+                            <span dropdown on-toggle="toggled(open)">
+
+                             <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+
+                             <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+
+                                   <div ng-controller="DatepickerDemoCtrl">
+                                         <div class="row">
+                                           <div class="col-md-12">
+                                               <p class="input-group">
+                                                 <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                 <span class="input-group-btn">
+                                                   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                 </span>
+                                               </p>
+                                           </div>
+                                         </div>
+
+
+                                         <div class="row">
+                                           <div class="col-md-12">
+                                               <p class="input-group">
+                                                 <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                 <span class="input-group-btn">
+                                                   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                 </span>
+                                               </p>
+                                           </div>
+                                         </div>
+                                   </div>
+
+                             </div>
+
+                            </span>
+
+                        </div>
+                     </div>
+             </div>
+
+
+
+
+
+
+
+
+
+               <div class="panel panel-default graphPanel" ng-controller="networkDataCtrl">
+                    <div class="panel-body" ng-repeat="networkData in networkDataB">
+
                        <div class="row">
 
+                             <div class="col-md-12">
+                                <br>
+                                <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
+                             </div>
+
+                       </div>
 
 
-
-
-
-                         <div class="col-md-3" ng-repeat="networkData in networkDatas">
+                       <div class="row">
+                         <div class="col-md-3">
                             <div class="totals">
                               <span class="totalBorderB">
-                                <span class="visitorsA">{{networkData.totalVisits | number}}</span>
+                                <span class="visitorsA">{{networkData.uniqueVisitors | number}}</span>
                               </span>&nbsp;&nbsp;&nbsp;Total Visitors
                             </div>
                          </div>
@@ -748,7 +872,7 @@
 
 
 
-                         <div class="col-md-3" ng-repeat="networkData in networkDatas">
+                         <div class="col-md-3">
                             <div class="totals">
                               <span class="{{changeImage}}">
                                 <span class="visitorsB">{{networkData.weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
@@ -759,7 +883,7 @@
                          </div>
 
 
-                         <div class="col-md-3" ng-repeat="networkData in networkDatas">
+                         <div class="col-md-3">
                             <div class="totals">
                               <span class="totalBorderB">
                                 <span class="visitorsA">{{networkData.averageVisitorsDay | number}}</span>
@@ -769,6 +893,9 @@
 
 
                           <div class="col-md-3">
+
+
+
                           </div>
 
 
@@ -787,35 +914,7 @@
 
 
 
-                       <div class="row">
-                         <div class="col-md-12">
-                           <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
-                             <div ng-controller="AccordionDemoCtrl">
-                               <accordion close-others="oneAtATime">
-                                 <accordion-group>
-                                   <accordion-heading>
-                                     <div style="display:block;margin-top:14px;">
-                                       <span class="totalBorderA" style="padding-top:11px;">
-                                         <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network Data Highlights at a Glance</a>
-                                       </span>
-                                     </div>
-                                   </accordion-heading>
 
-                                   <div class="well well-lg highlightsPanel" ng-controller="networkCtrl">
-                                        <ul style="margin-bottom:0px;">
-                                          <li>Most Visitors in a Week: <span class="hLight">{{networkData.mostVisitedWeek}}</span> visitors <span class="hLight">{{networkData.Week}}</span></li>
-                                          <li>Most Visitors in a Day: <span class="hLight">{{networkData.MostVisitedDayTotal}}</span> visitors on <span class="hLight">{{networkData.MostVisitedDay}}</span></li>
-                                          <li>Average Visit Duration: <span class="hLight">{{networkData.averageVisitDuration}}</span></li>
-                                          <li>Most Frequent Visitor: Customer <span class="hLight">{{networkData.mostFrequentCustomer}}</span>, postal code <span class="hLight">{{networkData.mostPostalCode}}</span> (<span class="hLight">{{networkData.mostFrequentCustomerVisits}}</span> visits to date)</li>
-                                        </ul>
-                                   </div>
-
-                                 </accordion-group>
-                               </accordion>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
 
 
 

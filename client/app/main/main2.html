@@ -24,12 +24,18 @@
 
 
 
-    <!--<div ng-controller="MyCtrl1">
-        <div ng-repeat="issue in myData.issues">
-        <div ng-repeat="issue in issues">
-          <p>{{issue.address}}</p>
-        </div>
-    </div>-->
+    <div ng-controller="networkDataCtrl">
+      <div class="list-group-item" ng-repeat="nData in networkDataB">
+        <p>{{nData}}</p>
+        <p>{{nData.date}}</p>
+        <p>{{nData.uniqueVisitors}}</p>
+        <p>{{nData.hourlyTotals}}</p>
+      </div>
+    </div>
+
+
+
+
 
 
 

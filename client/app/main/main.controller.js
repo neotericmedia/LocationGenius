@@ -57,9 +57,11 @@ angular.module('telusLg2App')
         center: {latitude: 43.650505, longitude: -79.383989 },
         zoom: 12,
         pan: true,
-        options : {panControl:true, tilt:45}
+        //options : {panControl:true, tilt:45},
+        options: {scrollwheel: false, pan: true, panControl:true, tilt:45, mapTypeId: google.maps.MapTypeId.HYBRID }
+        //options: {scrollwheel: false,pan: true, panControl:true, tilt:45, mapTypeId: google.maps.MapTypeId.SATELLITE }
     };
-    $scope.options = {scrollwheel: false,pan: true};
+    //$scope.options = {scrollwheel: false,pan: true};
     $scope.marker = {
         id: 0,
         coords: {
@@ -103,6 +105,8 @@ angular.module('telusLg2App')
 
 
 
+
+
     $scope.setSelectedLocation = function(location) {
         console.log("Setting selected location:" + location.name);
         document.getElementById("contentArea").style.display = "block";
@@ -111,9 +115,17 @@ angular.module('telusLg2App')
         console.log("New CurrentLocation:" + $scope.currentLocation);
         //this tells function getReport to function showLast7Days which gets getDayReport. getDayReport tells tweetReports based on location. magic happens in this function.
         $scope.getReport();
+        $scope.addLocationToMap();
+    }
+    $scope.setOnsiteDataPreGenReport = function(location) {
+        document.getElementById("contentArea").style.display = "block";
+        LocationResults.setCurrentLocation(location);
+        $scope.currentLocation = LocationResults.getCurrentLocation();
         $scope.getOnsiteDataPreGenReport();
         $scope.addLocationToMap();
     }
+
+
 
 
 
@@ -439,10 +451,23 @@ angular.module('telusLg2App')
 
                console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-               var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
                var d = Date();
 
-               if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
+
+
+
+               //new aug 19
+               var buildingId = $scope.currentLocation.buildingId;
+
+               if(buildingId === "188" || buildingId === "189" || buildingId === "190") {
+                  var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
+               }
+               else {
+                  var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+               }
+
+
+
 
                $scope.report = OnsitePregenReport.query(params);
                $scope.report.$promise.then(function (results) {
@@ -544,6 +569,11 @@ angular.module('telusLg2App')
 
                        $scope.visitordata = google.visualization.arrayToDataTable(dailyVisitorData);
                        $scope.showDailyVisitorData();
+
+
+
+
+
                        $scope.showHourlyVisitorData();
                        $scope.showDurationData();
                    }
@@ -703,13 +733,13 @@ angular.module('telusLg2App')
 
 
 
-.controller('AccordionDemoCtrl', function ($scope) {
-  $scope.oneAtATime = true;
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-})
+  .controller('AccordionDemoCtrl', function ($scope) {
+    $scope.oneAtATime = true;
+    $scope.status = {
+      isFirstOpen: true,
+      isFirstDisabled: false
+    };
+  })
 
 
 
@@ -726,6 +756,19 @@ angular.module('telusLg2App')
         $scope.networkDatas = networkDatas;
       })
    })
+
+
+   .controller('networkDataCtrl', function ($scope, $http) {
+     $http ({
+          method: 'GET',
+          url: '/api/carrier',
+      })
+      .success(function (networkDataB) {
+         $scope.networkDataB = networkDataB;
+       })
+    })
+
+
 
 
 
@@ -808,6 +851,27 @@ angular.module('telusLg2App')
 
 
 
+   .controller('DropdownCtrl', function ($scope, $log) {
+     $scope.items = [
+       'The first choice!',
+       'And another choice for you.',
+       'but wait! A third!'
+     ];
+
+     $scope.status = {
+       isopen: false
+     };
+
+     $scope.toggled = function(open) {
+       $log.log('Dropdown is now: ', open);
+     };
+
+     $scope.toggleDropdown = function($event) {
+       $event.preventDefault();
+       $event.stopPropagation();
+       $scope.status.isopen = !$scope.status.isopen;
+     };
+   });
 
 
 
@@ -816,54 +880,60 @@ angular.module('telusLg2App')
 
 
 
-.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-
-  $scope.items = ['item1', 'item2', 'item3'];
-
-  $scope.animationsEnabled = true;
-
-  $scope.open = function (size) {
-
-    var modalInstance = $modal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
-
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
-  };
-
-})
 
 
 
-
-.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
-
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});
+// .controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+//
+//   $scope.items = ['item1', 'item2', 'item3'];
+//
+//   $scope.animationsEnabled = true;
+//
+//   $scope.open = function (size) {
+//
+//     var modalInstance = $modal.open({
+//       animation: $scope.animationsEnabled,
+//       templateUrl: 'myModalContent.html',
+//       controller: 'ModalInstanceCtrl',
+//       size: size,
+//       resolve: {
+//         items: function () {
+//           return $scope.items;
+//         }
+//       }
+//     });
+//
+//     modalInstance.result.then(function (selectedItem) {
+//       $scope.selected = selectedItem;
+//     }, function () {
+//       $log.info('Modal dismissed at: ' + new Date());
+//     });
+//   };
+//
+//   $scope.toggleAnimation = function () {
+//     $scope.animationsEnabled = !$scope.animationsEnabled;
+//   };
+//
+// })
+//
+//
+//
+//
+//
+//
+//
+// .controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+//
+//   $scope.items = items;
+//   $scope.selected = {
+//     item: $scope.items[0]
+//   };
+//
+//   $scope.ok = function () {
+//     $modalInstance.close($scope.selected.item);
+//   };
+//
+//   $scope.cancel = function () {
+//     $modalInstance.dismiss('cancel');
+//   };
+// })

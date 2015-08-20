@@ -48,6 +48,26 @@ var request = require('request');
    // });
 
 
+   request({
+       //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
+       //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
+       url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+       //qs: {from: 'blog example', time: +new Date()}, //Query string data
+       method: 'GET',
+       headers: {
+           'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
+       }
+   }, function(error, response, body){
+       if(error) {
+           console.log(error);
+       } else {
+           console.log(body);
+           //res.send(body)
+       }
+   });
+
+
+
 
 
 module.exports = function(app) {
@@ -63,6 +83,8 @@ module.exports = function(app) {
 
 
   // Insert routes below
+  app.use('/api/onsite', require('./api/onsite'));
+  app.use('/api/carrier', require('./api/carrier'));
   app.use('/api/locations', require('./api/locations'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
