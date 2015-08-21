@@ -51,7 +51,8 @@ var request = require('request');
    // request({
    //     //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
    //     //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-   //     url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+   //     //url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+   //     url: 'http://192.99.16.178:9100/carrier/180/7?endDate=2014-08-18',
    //     //qs: {from: 'blog example', time: +new Date()}, //Query string data
    //     method: 'GET',
    //     headers: {
@@ -87,26 +88,10 @@ module.exports = function(app) {
        next();
   });
 
+  var request = require('request');
 
 
 
-  app.get('/log/goal', function(req, res){
-     request({
-        url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
-        //url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-04-02',
-        method: 'GET',
-        headers: {
-            'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
-        }
-    }, function(error, response, body){
-        if(error) {
-            console.log(error);
-        } else {
-            console.log(body);
-            res.send(body)
-        }
-    });
-  });
 
 
 

@@ -549,7 +549,6 @@
 
 
                              <div class="row">
-
                                    <div class="col-md-12">
                                       <br>
                                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
@@ -847,8 +846,8 @@
 
 
 
-               <div class="panel panel-default graphPanel" ng-controller="networkDataCtrl">
-                    <div class="panel-body" ng-repeat="networkData in networkDataB">
+               <div class="panel panel-default graphPanel" ng-controller="networkCtrlB">
+                    <div class="panel-body">
 
                        <div class="row">
 
@@ -864,8 +863,8 @@
                          <div class="col-md-3">
                             <div class="totals">
                               <span class="totalBorderB">
-                                <span class="visitorsA">{{networkData.uniqueVisitors | number}}</span>
-                              </span>&nbsp;&nbsp;&nbsp;Total Visitors
+                                <span class="visitorsA">{{uniqueVisitors | number}}</span>
+                             </span>&nbsp;&nbsp;&nbsp;Unique Visitors
                             </div>
                          </div>
 
@@ -875,7 +874,7 @@
                          <div class="col-md-3">
                             <div class="totals">
                               <span class="{{changeImage}}">
-                                <span class="visitorsB">{{networkData.weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                <span class="visitorsB">{{hourlyTotals}}%&nbsp;&nbsp;&nbsp;</span>
                                 <span id="changeIcon" class="{{changeIcon}}"></span>
                               </span>
                             </div>

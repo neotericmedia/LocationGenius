@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport) {
+  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, NetworkReports) {
 
 
 
@@ -451,20 +451,31 @@ angular.module('telusLg2App')
 
                console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-               var d = Date();
 
 
 
+
+               var dateobj= new Date()
+               var month = dateobj.getMonth()
+               var day = dateobj.getDate()
+               var year = dateobj.getFullYear()
+
+               //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
 
                //new aug 19
                var buildingId = $scope.currentLocation.buildingId;
 
-               if(buildingId === "188" || buildingId === "189" || buildingId === "190") {
+               if(buildingId === "188" || buildingId === "189") {
+                  var params = {buildingId: $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
+               }
+               else if(buildingId === "190") {
                   var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
                }
                else {
                   var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
                }
+
+
 
 
 
@@ -572,13 +583,199 @@ angular.module('telusLg2App')
 
 
 
-
-
                        $scope.showHourlyVisitorData();
                        $scope.showDurationData();
                    }
                })
            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           //get carrier
+           $scope.getCarrierDataPreGenReport = function () {
+                   $scope.currentLocation = LocationResults.getCurrentLocation();
+                   console.log("Carrier data CurrentLocation:" + $scope.currentLocation.buildingId);
+
+                   $scope.mostVisitedHour ="N/A";
+                   $scope.mostPostalCode = "N/A";
+                   $scope.mostVisitsToDate = "N/A";
+                   $scope.mostCustomer = "N/A";
+
+                   $scope.carrierVisitorsWeek = "N/A";
+
+                   $scope.carrierWeek = "N/A";
+                   $scope.averageVisitorsDay = "N/A";
+                   $scope.averageVisitDuration = "N/A";
+
+                   $scope.carrierMostVisitedDay = "N/A";
+
+                   $scope.carrierMostVisitedDayTotal = "N/A";
+                   $scope.weeklyChange = "N/A";
+                   $scope.mostFrequestCustomer = "N/A";
+                   $scope.mostFrequestCustomerVisits = "N/A";
+                   $scope.busiestHourDay = "N/A";
+                   $scope.busiestHour = "N/A";
+                   $scope.busiestHourVisits = "N/A";
+
+                   var dailyCarrierVisitorData = [];
+                   var item = ['Day', 'Number of Visitors', { role: 'style' }, 'New Visitors', { role: 'style' }];
+                   dailyCarrierVisitorData.push(item);
+
+                   console.log("Getting Carrier report for :" + $scope.currentLocation.buildingId);
+
+                   //var d = Date();
+
+
+
+                  //  //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
+                   //
+                   //
+                  //  //new aug 19
+                  //  var buildingId = $scope.currentLocation.buildingId;
+                   //
+                  //  if(buildingId === "188") {
+                  //     var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
+                  //  }
+                  //  else if(buildingId === "189" || buildingId === "190") {
+                  //     var params = {buildingId: $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
+                  //  }
+                  //  else {
+                  //     var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+                  //  }
+
+
+
+
+                   $scope.report = CarrierPregenReport.query(params);
+                   $scope.report.$promise.then(function (results) {
+                      console.log("Carrier Report Results:" + results.totalVisits);
+                      if(results!=null) {
+                           $scope.carrierVisitorsWeek = results.totalVisits.toString().toLocaleString();
+                           //$scope.onsiteVisitorsWeek.toLocaleString();
+
+                           $scope.carrierWeek = results.weekName;
+
+                           $scope.averageVisitorsDay = results.averageVisitorsDay;
+                           $scope.weeklyChange = results.weeklyChange.toFixed(2);
+
+                           $scope.carrierMostVisitedDay = results.mostVisitedDay;
+                           $scope.carrierMostVisitedDayTotal = results.mostVisitedDayTotal;
+
+                           $scope.averageVisitDuration = results.averageVisitDuration;
+                           $scope.mostFrequentCustomer = results.mostFrequentCustomer.mac;
+                           $scope.mostFrequentCustomerVisits = results.mostFrequentCustomer.numVisits;
+                           $scope.busiestHourDay = results.busiestHour.day;
+                           $scope.busiestHour = parseInt(results.busiestHour.hour);
+                           $scope.busiestHourDay = results.busiestHour.day;
+                           $scope.busiestHourVisits = results.busiestHour.visits;
+                           $scope.topCustomers = results.topCustomers;
+                           $scope.hourlyBreakdown = results.hourlyBreakdown;
+                           $scope.durations = results.durations;
+                           $scope.days = results.days;
+
+                           var busyHour = $scope.busiestHour;
+                           $scope.mostVisitedHour;
+                           if(busyHour==12) {
+                               $scope.mostVisitedHour = "12PM" + " - " + "1PM";
+                           } else {
+                               if (busyHour > 12) {
+                                   $scope.mostVisitedHour = (busyHour - 12) + "PM - " + (busyHour - 11) + "PM";
+                               } else {
+                                   $scope.mostVisitedHour = (busyHour) + "AM - " + (busyHour + 1) + "AM";
+                               }
+                           }
+
+
+                           if($scope.weeklyChange>0) {
+                               $scope.changeImage = "up";
+                           }
+                           if($scope.weeklyChange<0) {
+                               $scope.changeIma = "glyphicon glyphicon-chevron-down";
+                           }
+
+
+
+                           if($scope.weeklyChange>0) {
+                               $scope.changeIcon = "fa fa-angle-up";
+                           }
+                           if($scope.weeklyChange<0) {
+                               $scope.changeIcon = "fa fa-angle-down";
+                           }
+
+
+
+                           var dailyReports = results.days;
+                           var item;
+
+                           for (var i = 0; i < dailyReports.length; i++) {
+                               if (dailyReports[i] != null) {
+                                   console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
+                                   var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
+                                   item = [date, dailyReports[i].total_visit, '#30134F', dailyReports[i].newMac, '#6ebe44'];
+                                   dailyCarrierVisitorData.push(item);
+                               }
+                           }
+
+                           var hourlyReports = results.hourly_breakdown;
+                           $scope.hourlyCarrierVisitorData = [];
+                           var hourlyitem = ['Hour', 'Number of Visitors', { role: 'style' }];
+                           $scope.hourlyCarrierVisitorData.push(hourlyitem);
+
+                           var hourlyTotals = results.hourlyBreakdown;
+
+                           var ampm = "am";
+                           var h = 0;
+                           for(var i=0; i<24;i++) {
+                               h = i;
+                               if(i>11) {
+                                   ampm = "pm";
+                                   if(i>=13) {
+                                      h = h - 12;
+                                   }
+                               }
+                               hourlyitem = [h+ampm, hourlyTotals[i],'#6ebe44'];
+                               $scope.hourlyCarrierVisitorData.push(hourlyitem);
+                               h++;
+                           }
+
+                           var durations = results.durations;
+                           $scope.durationData = [];
+                           var durationitem = ['Minutes', 'Number of Vistis', { role: 'style' }];
+                           $scope.durationData.push(durationitem);
+                           for(var i=0; i<durations.length;i++) {
+                               durationitem = [i, durations[i],'#6ebe44'];
+                               console.log("DurationItem:" + durationitem);
+                               $scope.durationData.push(durationitem);
+                           }
+
+                           $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyVisitorData);
+                           $scope.showCarrierDailyVisitorData();
+
+
+
+
+                           $scope.showCarrierHourlyVisitorData();
+                           $scope.showCarrierDurationData();
+                      }
+                   })
+              }
+
+
+
+
+
 
 
 
@@ -602,6 +799,28 @@ angular.module('telusLg2App')
                  var visitorchart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
                  visitorchart.draw($scope.visitordata, options);
              }
+
+
+
+
+
+             $scope.showDailyCarrierVisitorData = function () {
+                   // Instantiate and draw our chart, passing in some options.
+                   // Set chart options
+                   var options = {
+                    width:1075,
+                       height:500,
+                       colors:['#30134F','#6ebe44'],
+                       chartArea: {left:60,top:60,width: '100%'},
+                       //legend: { position: 'bottom'},
+                       legend: { position: 'none'},
+                       //legend: { position: 'top', maxLines: 3 },
+                       isStacked:true,
+                   };
+
+                   var carriervisitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
+                   carriervisitorchart.draw($scope.carriervisitordata, options);
+              }
 
 
 
@@ -755,16 +974,16 @@ angular.module('telusLg2App')
       $scope.networkDatas = NetworkReports.query();
     })
     //*******************
-   //******************* Note (Frontend) from Angular HTTP call to API route 
-  // .controller('networkCtrl', function ($scope, $http) {
-  //   $http ({
-  //        method: 'GET',
-  //        url: '/api/carrier',
-  //    })
-  //    .success(function (networkDatas) {
-  //       $scope.networkDatas = networkDatas;
-  //     })
-  //  })
+   //******************* Note (Frontend) from Angular HTTP call to API route
+  .controller('networkCtrl', function ($scope, $http) {
+    $http ({
+         method: 'GET',
+         url: '/api/carrier',
+     })
+     .success(function (networkDatas) {
+        $scope.networkDatas = networkDatas;
+      })
+   })
 
 
 

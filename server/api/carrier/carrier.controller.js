@@ -10,10 +10,7 @@ var request = require('request');
 exports.index = function(req, res) {
 
    request({
-       //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-       //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
        url: 'http://192.99.16.178:9100/carrier/180/7?endDate=2014-08-18',
-       //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',
        headers: {
            'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
@@ -26,11 +23,6 @@ exports.index = function(req, res) {
            res.send(body)
        }
    });
-
-  // Locations.find(function (err, locationss) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.json(200, locationss);
-  // });
 };
 
 
