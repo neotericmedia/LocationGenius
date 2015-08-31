@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, NetworkReports) {
+  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
 
 
 
@@ -124,6 +124,15 @@ angular.module('telusLg2App')
         $scope.getOnsiteDataPreGenReport();
         $scope.addLocationToMap();
     }
+    $scope.setCarrierDataPreGenReport = function(location) {
+        document.getElementById("contentArea").style.display = "block";
+        LocationResults.setCurrentLocation(location);
+        $scope.currentLocation = LocationResults.getCurrentLocation();
+        $scope.getCarrierDataPreGenReport();
+        $scope.addLocationToMap();
+    }
+
+
 
 
 
@@ -196,7 +205,14 @@ angular.module('telusLg2App')
             colors:['#6ebe44'],
             chartArea: {left:20,top:60,width: '100%'},
             legend: { position: 'bottom' } ,
-            fontSize:11
+            format: 'short',
+            fontSize:11,
+            hAxis: {
+               //textPosition: 'none',
+               slantedText:true,
+               slantedTextAngle:45
+            },
+
         };
 
         chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
@@ -206,24 +222,24 @@ angular.module('telusLg2App')
         google.visualization.events.addListener(chart, 'select', selectHandler);
     }
 
-    $scope.showNetworkDailyData = function () {
-        // Instantiate and draw our chart, passing in some options.
-        // Set chart options
-        var options = {
-          width:1075,
-            height:550,
-            colors:['#6ebe44'],
-            chartArea: {left:20,top:60,width: '100%'},
-            legend: { position: 'bottom' } ,
-            fontSize:11
-        };
-
-        chart = new google.visualization.ColumnChart(document.getElementById('barchart_network_div'));
-        chart.draw($scope.data, options);
-        // Every time the table fires the "select" event, it should call your
-        // selectHandler() function.
-        google.visualization.events.addListener(chart, 'select', selectHandler);
-    }
+   //  $scope.showNetworkDailyData = function () {
+   //      // Instantiate and draw our chart, passing in some options.
+   //      // Set chart options
+   //      var options = {
+   //        width:1075,
+   //          height:550,
+   //          colors:['#6ebe44'],
+   //          chartArea: {left:20,top:60,width: '100%'},
+   //          legend: { position: 'bottom' } ,
+   //          fontSize:11
+   //      };
+    //
+   //      chart = new google.visualization.ColumnChart(document.getElementById('barchart_network_div'));
+   //      chart.draw($scope.data, options);
+   //      // Every time the table fires the "select" event, it should call your
+   //      // selectHandler() function.
+   //      google.visualization.events.addListener(chart, 'select', selectHandler);
+   //  }
 
 
 
@@ -333,7 +349,12 @@ angular.module('telusLg2App')
               console.log("Report date:" + $scope.tweetReports.dateRange);
 
               $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
+              $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
               $scope.topTweeters = $scope.tweetReports.topTweeters;
+              $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
+              $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
+              //$scope.dateRange = $scope.tweetReports.dateRange;
+
               console.log("Top Tweeters:" + $scope.topTweeters);
 
               $scope.hourlyData = [];
@@ -396,7 +417,7 @@ angular.module('telusLg2App')
                 console.log("Daily data:" + dailyData);
                 $scope.data = google.visualization.arrayToDataTable(dailyData);
                 $scope.showDailyData();
-                $scope.showNetworkDailyData();
+                //$scope.showNetworkDailyData();
               }
               if($scope.hourlyData.length>0) {
                 console.log("Hourly data:" + $scope.hourlyData);
@@ -409,6 +430,7 @@ angular.module('telusLg2App')
               //$scope.showDailyData();
               //$scope.showHourlyData(0);
               $scope.searchString = $scope.currentLocation.address;
+              $scope.searchStringName = $scope.currentLocation.name;
               $scope.dayrange = numDays;
               $scope.findTweeters();
           })
@@ -451,10 +473,6 @@ angular.module('telusLg2App')
 
                console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-
-
-
-
                var dateobj= new Date()
                var month = dateobj.getMonth()
                var day = dateobj.getDate()
@@ -462,21 +480,20 @@ angular.module('telusLg2App')
 
                //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
 
+
+
                //new aug 19
                var buildingId = $scope.currentLocation.buildingId;
 
-               if(buildingId === "188" || buildingId === "189") {
+               if(buildingId === "188" || buildingId === "189" || buildingId === "122") {
                   var params = {buildingId: $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
                }
                else if(buildingId === "190") {
                   var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
                }
                else {
-                  var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+                  var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-04-26"};
                }
-
-
-
 
 
 
@@ -581,8 +598,6 @@ angular.module('telusLg2App')
                        $scope.visitordata = google.visualization.arrayToDataTable(dailyVisitorData);
                        $scope.showDailyVisitorData();
 
-
-
                        $scope.showHourlyVisitorData();
                        $scope.showDurationData();
                    }
@@ -603,25 +618,23 @@ angular.module('telusLg2App')
 
 
 
-           //get carrier
            $scope.getCarrierDataPreGenReport = function () {
                    $scope.currentLocation = LocationResults.getCurrentLocation();
-                   console.log("Carrier data CurrentLocation:" + $scope.currentLocation.buildingId);
+                   console.log("Onsite data CurrentLocation:" + $scope.currentLocation.buildingId);
 
                    $scope.mostVisitedHour ="N/A";
                    $scope.mostPostalCode = "N/A";
                    $scope.mostVisitsToDate = "N/A";
                    $scope.mostCustomer = "N/A";
+                   $scope.onsiteVisitorsWeek = "N/A";
 
-                   $scope.carrierVisitorsWeek = "N/A";
+                   $scope.carrierUniqueVisitors = "N/A";
 
-                   $scope.carrierWeek = "N/A";
+                   $scope.onsiteWeek = "N/A";
                    $scope.averageVisitorsDay = "N/A";
                    $scope.averageVisitDuration = "N/A";
-
-                   $scope.carrierMostVisitedDay = "N/A";
-
-                   $scope.carrierMostVisitedDayTotal = "N/A";
+                   $scope.onsiteMostVisitedDay = "N/A";
+                   $scope.onsiteMostVisitedDayTotal = "N/A";
                    $scope.weeklyChange = "N/A";
                    $scope.mostFrequestCustomer = "N/A";
                    $scope.mostFrequestCustomerVisits = "N/A";
@@ -633,56 +646,52 @@ angular.module('telusLg2App')
                    var item = ['Day', 'Number of Visitors', { role: 'style' }, 'New Visitors', { role: 'style' }];
                    dailyCarrierVisitorData.push(item);
 
-                   console.log("Getting Carrier report for :" + $scope.currentLocation.buildingId);
+                   console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-                   //var d = Date();
+                   var dateobj= new Date()
+                   var month = dateobj.getMonth()
+                   var day = dateobj.getDate()
+                   var year = dateobj.getFullYear()
 
+                   //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
 
+                   //new aug 19
+                   var buildingId = $scope.currentLocation.buildingId;
 
-                  //  //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
-                   //
-                   //
-                  //  //new aug 19
-                  //  var buildingId = $scope.currentLocation.buildingId;
-                   //
-                  //  if(buildingId === "188") {
-                  //     var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
-                  //  }
-                  //  else if(buildingId === "189" || buildingId === "190") {
-                  //     var params = {buildingId: $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
-                  //  }
-                  //  else {
-                  //     var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
-                  //  }
-
-
-
+                   if(buildingId === "188" || buildingId === "189") {
+                      var params = {buildingId: $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
+                   }
+                   else if(buildingId === "190") {
+                      var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
+                   }
+                   else {
+                      var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+                   }
 
                    $scope.report = CarrierPregenReport.query(params);
                    $scope.report.$promise.then(function (results) {
-                      console.log("Carrier Report Results:" + results.totalVisits);
+                      console.log("Onsite Report Results:" + results.totalVisits);
                       if(results!=null) {
-                           $scope.carrierVisitorsWeek = results.totalVisits.toString().toLocaleString();
+                           //$scope.onsiteVisitorsWeek = results.totalVisits.toString().toLocaleString();
+
+                           $scope.carrierUniqueVisitors = results.uniqueVisitors;
+
                            //$scope.onsiteVisitorsWeek.toLocaleString();
-
-                           $scope.carrierWeek = results.weekName;
-
+                           $scope.onsiteWeek = results.weekName;
                            $scope.averageVisitorsDay = results.averageVisitorsDay;
-                           $scope.weeklyChange = results.weeklyChange.toFixed(2);
-
-                           $scope.carrierMostVisitedDay = results.mostVisitedDay;
-                           $scope.carrierMostVisitedDayTotal = results.mostVisitedDayTotal;
-
+                           //$scope.weeklyChange = results.weeklyChange.toFixed(2);
+                           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
+                           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
                            $scope.averageVisitDuration = results.averageVisitDuration;
-                           $scope.mostFrequentCustomer = results.mostFrequentCustomer.mac;
-                           $scope.mostFrequentCustomerVisits = results.mostFrequentCustomer.numVisits;
-                           $scope.busiestHourDay = results.busiestHour.day;
-                           $scope.busiestHour = parseInt(results.busiestHour.hour);
-                           $scope.busiestHourDay = results.busiestHour.day;
-                           $scope.busiestHourVisits = results.busiestHour.visits;
+                           //$scope.mostFrequentCustomer = results.mostFrequentCustomer.mac;
+                           //$scope.mostFrequentCustomerVisits = results.mostFrequentCustomer.numVisits;
+                           //$scope.busiestHourDay = results.busiestHour.day;
+                           //$scope.busiestHour = parseInt(results.busiestHour.hour);
+                           //$scope.busiestHourDay = results.busiestHour.day;
+                           //$scope.busiestHourVisits = results.busiestHour.visits;
                            $scope.topCustomers = results.topCustomers;
                            $scope.hourlyBreakdown = results.hourlyBreakdown;
-                           $scope.durations = results.durations;
+                           $scope.dwellTimes = results.dwellTimes;
                            $scope.days = results.days;
 
                            var busyHour = $scope.busiestHour;
@@ -716,17 +725,17 @@ angular.module('telusLg2App')
 
 
 
-                           var dailyReports = results.days;
+                           //var dailyReports = results.days;
                            var item;
 
-                           for (var i = 0; i < dailyReports.length; i++) {
-                               if (dailyReports[i] != null) {
-                                   console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
-                                   var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
-                                   item = [date, dailyReports[i].total_visit, '#30134F', dailyReports[i].newMac, '#6ebe44'];
-                                   dailyCarrierVisitorData.push(item);
-                               }
-                           }
+                           // for (var i = 0; i < dailyReports.length; i++) {
+                           //     if (dailyReports[i] != null) {
+                           //         console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
+                           //         var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
+                           //         item = [date, dailyReports[i].total_visit, '#30134F', dailyReports[i].newMac, '#6ebe44'];
+                           //         dailyCarrierVisitorData.push(item);
+                           //     }
+                           // }
 
                            var hourlyReports = results.hourly_breakdown;
                            $scope.hourlyCarrierVisitorData = [];
@@ -735,42 +744,43 @@ angular.module('telusLg2App')
 
                            var hourlyTotals = results.hourlyBreakdown;
 
-                           var ampm = "am";
-                           var h = 0;
-                           for(var i=0; i<24;i++) {
-                               h = i;
-                               if(i>11) {
-                                   ampm = "pm";
-                                   if(i>=13) {
-                                      h = h - 12;
-                                   }
-                               }
-                               hourlyitem = [h+ampm, hourlyTotals[i],'#6ebe44'];
-                               $scope.hourlyCarrierVisitorData.push(hourlyitem);
-                               h++;
+                           // var ampm = "am";
+                           // var h = 0;
+                           // for(var i=0; i<24;i++) {
+                           //     h = i;
+                           //     if(i>11) {
+                           //         ampm = "pm";
+                           //         if(i>=13) {
+                           //            h = h - 12;
+                           //         }
+                           //     }
+                           //     hourlyitem = [h+ampm, hourlyTotals[i],'#6ebe44'];
+                           //     $scope.hourlyCarrierVisitorData.push(hourlyitem);
+                           //     h++;
+                           // }
+
+                           var dwellTimes = results.dwellTimes;
+                           $scope.carrierDwellTimesData = [];
+                           var dwellTimesitem = ['Minutes', 'Number of Vistis', { role: 'style' }];
+                           $scope.carrierDwellTimesData.push(dwellTimesitem);
+                           for(var i=0; i<dwellTimes.length;i++) {
+                               dwellTimesitem = [i, dwellTimes[i],'#6ebe44'];
+                               $scope.dwellTimesData.push(dwellTimesitem);
                            }
 
-                           var durations = results.durations;
-                           $scope.durationData = [];
-                           var durationitem = ['Minutes', 'Number of Vistis', { role: 'style' }];
-                           $scope.durationData.push(durationitem);
-                           for(var i=0; i<durations.length;i++) {
-                               durationitem = [i, durations[i],'#6ebe44'];
-                               console.log("DurationItem:" + durationitem);
-                               $scope.durationData.push(durationitem);
-                           }
-
-                           $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyVisitorData);
+                           $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyCarrierVisitorData);
                            $scope.showCarrierDailyVisitorData();
 
-
-
-
-                           $scope.showCarrierHourlyVisitorData();
+                           $scope.showHourlyCarrierVisitorData();
                            $scope.showCarrierDurationData();
                       }
                    })
               }
+
+
+
+
+
 
 
 
@@ -802,25 +812,27 @@ angular.module('telusLg2App')
 
 
 
-
-
-             $scope.showDailyCarrierVisitorData = function () {
-                   // Instantiate and draw our chart, passing in some options.
-                   // Set chart options
-                   var options = {
+             $scope.showCarrierDailyVisitorData = function () {
+                  // Instantiate and draw our chart, passing in some options.
+                  // Set chart options
+                  var options = {
                     width:1075,
-                       height:500,
-                       colors:['#30134F','#6ebe44'],
-                       chartArea: {left:60,top:60,width: '100%'},
-                       //legend: { position: 'bottom'},
-                       legend: { position: 'none'},
-                       //legend: { position: 'top', maxLines: 3 },
-                       isStacked:true,
-                   };
+                      height:500,
+                      colors:['#30134F','#6ebe44'],
+                      chartArea: {left:60,top:60,width: '100%'},
+                      //legend: { position: 'bottom'},
+                      legend: { position: 'none'},
+                      //legend: { position: 'top', maxLines: 3 },
+                      isStacked:true,
+                  };
 
-                   var carriervisitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
-                   carriervisitorchart.draw($scope.carriervisitordata, options);
+                  var visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
+                  visitorchart.draw($scope.carriervisitordata, options);
               }
+
+
+
+
 
 
 
@@ -846,11 +858,6 @@ angular.module('telusLg2App')
 
                  linechart.draw(hourly, options);
              }
-
-
-
-
-
              $scope.showDurationData = function () {
                  // Instantiate and draw our chart, passing in some options.
                  // Set chart options
@@ -868,6 +875,54 @@ angular.module('telusLg2App')
                  var minutesData = google.visualization.arrayToDataTable($scope.durationData);
                  linechart.draw(minutesData, options);
              }
+
+
+
+
+
+
+
+             $scope.showHourlyCarrierVisitorData = function () {
+                 // Instantiate and draw our chart, passing in some options.
+                 // Set chart options
+                 console.log("Graphing hourly data...");
+                 var options = {
+                   width:1075,
+                      height:550,
+                     colors:['#6ebe44'],
+                     chartArea: {left:60,top:60,width: '100%'},
+                     legend: { position: 'bottom' }
+                     //fontSize:9
+                 };
+
+                 var linechart = new google.visualization.AreaChart(document.getElementById('carrier_timebreakdown_chart_div'));
+                 //console.log("Graphing ..." + $scope.hourlyVisitorData);
+                 var hourly = google.visualization.arrayToDataTable($scope.hourlyCarrierVisitorData);
+
+                 linechart.draw(hourly, options);
+             }
+             $scope.showDwellTimesData = function () {
+                 // Instantiate and draw our chart, passing in some options.
+                 // Set chart options
+                 console.log("Graphing online visitor duration data...");
+                 var options = {
+                   width:1075,
+                      height:550,
+                     colors:['#6ebe44'],
+                     chartArea: {left:3,top:60,width: '100%'},
+                     legend: { position: 'bottom',alignment :'center' }
+                 };
+
+                 var linechart = new google.visualization.AreaChart(document.getElementById('carrier_visitor_chart_div'));
+                 //console.log("Graphing ..." + $scope.durationData);
+                 var minutesData = google.visualization.arrayToDataTable($scope.carrierdwellTimesData);
+                 linechart.draw(minutesData, options);
+             }
+
+
+
+
+
 
 
 
@@ -970,8 +1025,8 @@ angular.module('telusLg2App')
 
    //*******************
    //******************* Note (Backend) from service. Service pulls in from API route
-   .controller('networkCtrlB', function ($scope, NetworkReports) {
-      $scope.networkDatas = NetworkReports.query();
+   .controller('networkCtrlB', function ($scope, CarrierPregenReport) {
+      $scope.carrierDatas = CarrierPregenReport.query();
     })
     //*******************
    //******************* Note (Frontend) from Angular HTTP call to API route

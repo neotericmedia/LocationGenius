@@ -8,9 +8,11 @@ var request = require('request');
 
 // Get list of carriers
 exports.index = function(req, res) {
-
    request({
        url: 'http://192.99.16.178:9100/carrier/180/7?endDate=2014-08-18',
+       //url: 'http://192.99.16.178:9100/carrier/:buildingId/7',
+       //url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+       //url: 'data/outputsNetwork2.json',
        method: 'GET',
        headers: {
            'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='

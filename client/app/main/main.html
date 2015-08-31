@@ -16,12 +16,17 @@
                     <div class="dropdown col-lg-3" style="margin:0 auto;">
 
                            <i class="fa fa-map-marker" style="text-align:right; float:left;font-size:2.25em; color:#6ebe44; margin-right:12px;"></i>
+
                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="float:left;">
-                              Subscribed Locations
+                              <!--Subscribed Locations-->
+                              <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
                               <span class="caret"></span>
                            </button>
+
                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="float:left;">
-                              <li ng-repeat="location in locations" role="presentation" ><a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location)">{{location.name}}</a></li>
+                              <li ng-repeat="location in locations" role="presentation" >
+                                 <a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);setCarrierDataPreGenReport(location)">{{location.name}}</a>
+                              </li>
                            </ul>
 
                     </div>
@@ -52,6 +57,12 @@
 
 
 
+
+
+
+
+
+
 <div class="slide" style="background-color:#ccc">
    <!--///////////////////////////////////////////////////////////////////MAP-->
    <div id="map-canvas">
@@ -69,11 +80,12 @@
 
 
 
+
+
+
+
 <!-- <div class="csliderup"><a href="#btm">More</a></div> -->
-
-
 <!--<div class="clear" style="height:30px;"></div>-->
-
 <!-- <div id="btm"></div> -->
 
 
@@ -133,13 +145,15 @@
 
 
 
-        <div class="col-md-12">
-            <span class="date" style="text-align:right">{{dateRange}}</span>
-        </div>
+
 
 
         <!--///////////////////////////TABS-->
         <div class="col-md-12" >
+
+
+
+
 
 
 
@@ -148,6 +162,8 @@
            <tab>
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" /></tab-heading>
+
+                 <div class="date" style="position:absolute;">{{dateRange}}</div>
 
                  <div id="miniTab" class="row">
                    <div class="col-md-12">
@@ -183,10 +199,12 @@
 
                                  <div class="well well-lg highlightsPanel">
                                        <ul style="margin-bottom:0px;">
-                                          <li>Most Visitors in a Week: <span class="hLight">{{socialVisitorsWeek | number}}</span> visitors <span class="hLight">{{socialWeek}}</span></li>
-                                          <li>Most Visitors in a Day: <span class="hLight">{{socialMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{socialMostVisitedDay}}</span></li>
-                                          <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                          <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions | number}}</span> visitors <span class="hLight">{{dateRange}}</span></li>
+                                          <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | number}}</span></li>
+                                          <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date}}</span></li>
+                                          <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
+                                          <li>Top Tweeter: <span class="hLight">{{topTweeters[0].name}}</span> Tweets: <span class="hLight">{{topTweeters[0].tweets}}</span> Followers: <span class="hLight">{{topTweeters[0].followers}}</span></li>
+                                          <li>Most Frequent Author: <span class="hLight">{{mostFrequentAuthor.name}}</span> Tweets: <span class="hLight">{{mostFrequentAuthor.tweets}}</span> Followers: <span class="hLight">{{mostFrequentAuthor.followers}}</span></li>
                                        </ul>
                                  </div>
 
@@ -366,7 +384,6 @@
 
 
 
-                       <br>
 
                        <div class="panel panel-default">
 
@@ -430,12 +447,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab>
                <tab-heading><img alt="Social" src="assets/images/network.png" class="icons" /></tab-heading>
 
 
-
+                      <div class="date" style="position:absolute;">{{onsiteWeek}}</div>
 
 
                       <div id="miniTab" class="row">
@@ -622,21 +649,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
                                <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
                                   <div id="onsite_visitors_barchart_div"></div>
                                </div>
                            </div>
                       </div>
+
+
+
+
 
 
 
@@ -728,238 +749,124 @@
 
 
 
-           <!--////////////////////////////////////NETWORK DATA-->
+
+
+
+
+
+
+
+
+
+
+
+
+           <!--////////////////////////////////////CARRIER DATA-->
            <tab>
-               <tab-heading><img alt="Social" src="assets/images/cell.png" class="icons" /></tab-heading>
+               <tab-heading><img alt="Social" src="assets/images/network.png" class="icons" /></tab-heading>
 
 
 
 
 
-               <div id="miniTab" class="row">
-                 <div class="col-md-12">
-                    <tabset type="pills" class="ng-isolate-scope ng-scope">
-                      <tab heading="Last Week" ng-click="showLast7Days()"></tab>
-                      <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
-                      <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                      <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
-                      <tab heading="Last 60 Days" ng-click="showLast8Weeks()"></tab>
-                      <tab heading="Last 90 Days" ng-click="showLast8Weeks()"></tab>
-                    </tabset>
-                 </div>
-               </div>
-
-
-
-
-
-
-
-               <div class="row">
-                  <div class="col-md-9">
-
-                        <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
-
-                             <div ng-controller="AccordionDemoCtrl">
-
-                                <accordion close-others="oneAtATime">
-
-                                  <accordion-group>
-
-                                   <accordion-heading>
-                                      <div style="display:block;margin-top:14px;">
-                                        <span class="totalBorderA" style="padding-top:11px;">
-                                         <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network Highlights at a Glance</a>
-                                        </span>
-                                      </div>
-                                   </accordion-heading>
-
-                                   <div class="well well-lg highlightsPanel">
-                                         <ul style="margin-bottom:0px;">
-                                           <li>Most Visitors in a Week: <span class="hLight">{{networkVisitorsWeek | number}}</span> visitors <span class="hLight">{{networkWeek}}</span></li>
-                                           <li>Most Visitors in a Day: <span class="hLight">{{networkMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{networkMostVisitedDay}}</span></li>
-                                           <li>Average Visit Duration: <span class="hLight">{{networkaverageVisitDuration}}</span></li>
-                                           <li>Most Frequent Visitor: Customer <span class="hLight">{{networkmostFrequentCustomer}}</span>, postal code <span class="hLight">{{networkmostPostalCode}}</span> (<span class="hLight">{{networkmostFrequentCustomerVisits}}</span> visits to date)</li>
-                                         </ul>
-                                   </div>
-
-                                  </accordion-group>
-
-                                </accordion>
-
-                             </div>
-
+                      <div id="miniTab" class="row">
+                        <div class="col-md-12">
+                           <tabset type="pills" class="ng-isolate-scope ng-scope">
+                             <tab heading="Last Week" ng-click="showLast7Days()"></tab>
+                             <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
+                             <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
+                             <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
+                             <tab heading="Last 60 Days" ng-click="showLast8Weeks()"></tab>
+                             <tab heading="Last 90 Days" ng-click="showLast8Weeks()"></tab>
+                           </tabset>
                         </div>
-                  </div>
+                      </div>
 
 
 
 
-                  <div class="col-md-3" style="text-align:right;">
-                        <br>
-                        <div ng-controller="DropdownCtrl">
+                      <div class="row">
+                          <div class="col-md-9">
 
-                            <span dropdown on-toggle="toggled(open)">
+                                <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
 
-                             <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+                                    <div ng-controller="AccordionDemoCtrl">
 
-                             <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+                                       <accordion close-others="oneAtATime">
 
-                                   <div ng-controller="DatepickerDemoCtrl">
-                                         <div class="row">
-                                           <div class="col-md-12">
-                                               <p class="input-group">
-                                                 <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                 <span class="input-group-btn">
-                                                   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                 </span>
-                                               </p>
+                                         <accordion-group>
+
+                                           <accordion-heading>
+                                             <div style="display:block;margin-top:14px;">
+                                               <span class="totalBorderA" style="padding-top:11px;">
+                                                 <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
+                                               </span>
+                                             </div>
+                                           </accordion-heading>
+
+                                           <div class="well well-lg highlightsPanel">
+                                                <ul style="margin-bottom:0px;">
+                                                  <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+                                                  <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                                </ul>
                                            </div>
-                                         </div>
 
+                                         </accordion-group>
 
-                                         <div class="row">
-                                           <div class="col-md-12">
-                                               <p class="input-group">
-                                                 <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                 <span class="input-group-btn">
-                                                   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                 </span>
-                                               </p>
-                                           </div>
-                                         </div>
-                                   </div>
+                                       </accordion>
 
-                             </div>
+                                    </div>
 
-                            </span>
-
-                        </div>
-                     </div>
-             </div>
-
-
-
-
-
-
-
-
-
-               <div class="panel panel-default graphPanel" ng-controller="networkCtrlB">
-                    <div class="panel-body">
-
-                       <div class="row">
-
-                             <div class="col-md-12">
-                                <br>
-                                <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
-                             </div>
-
-                       </div>
-
-
-                       <div class="row">
-                         <div class="col-md-3">
-                            <div class="totals">
-                              <span class="totalBorderB">
-                                <span class="visitorsA">{{uniqueVisitors | number}}</span>
-                             </span>&nbsp;&nbsp;&nbsp;Unique Visitors
-                            </div>
-                         </div>
-
-
-
-
-                         <div class="col-md-3">
-                            <div class="totals">
-                              <span class="{{changeImage}}">
-                                <span class="visitorsB">{{hourlyTotals}}%&nbsp;&nbsp;&nbsp;</span>
-                                <span id="changeIcon" class="{{changeIcon}}"></span>
-                              </span>
-                            </div>
-                            <div style="margin-top:5px;">Compared to previous week</div>
-                         </div>
-
-
-                         <div class="col-md-3">
-                            <div class="totals">
-                              <span class="totalBorderB">
-                                <span class="visitorsA">{{networkData.averageVisitorsDay | number}}</span>
-                              </span>&nbsp;&nbsp;&nbsp;Average Visitors/Day
-                            </div>
-                         </div>
-
-
-                          <div class="col-md-3">
-
-
-
+                                </div>
                           </div>
 
 
 
 
+                          <div class="col-md-3" style="text-align:right;">
+                               <br>
+                               <div ng-controller="DropdownCtrl">
+
+                                   <span dropdown on-toggle="toggled(open)">
+
+                                     <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+
+                                     <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+
+                                          <div ng-controller="DatepickerDemoCtrl">
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                      <p class="input-group">
+                                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                        <span class="input-group-btn">
+                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        </span>
+                                                      </p>
+                                                  </div>
+                                                </div>
 
 
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                      <p class="input-group">
+                                                        <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                        <span class="input-group-btn">
+                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        </span>
+                                                      </p>
+                                                  </div>
+                                                </div>
+                                          </div>
 
+                                     </div>
 
+                                   </span>
 
-
-                       </div>
-
-
-
-
-
-
-
-
-
-
-                       <div class="row">
-                            <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                               <div id="barchart_network_div"></div>
+                               </div>
                             </div>
-                       </div>
-                    </div>
-               </div>
-
-
-
-
-
-
-               <div class="panel panel-default graphPanel">
-                    <div class="panel-body" >
-                       <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
-                       <div class="totals">{{networkbusiestHourDay}} {{networkmostVisitedHour}}</div>
-                       <div>Busiest Hour (average)</div>
-                       <div class="row">
-                            <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                               <div id="network_timebreakdown_chart_div"></div>
-                            </div>
-                       </div>
-                    </div>
-               </div>
-
-
-
-
-
-
-               <div class="panel panel-default graphPanel">
-                    <div class="panel-body" >
-                       <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
-                       <div class="totals">{{networkaverageVisitDuration}} MIN</div>
-                       <div>Average Visit Duration</div>
-                       <div class="row">
-                            <div class="col-md-11 col-md-offset-1">
-                               <div id="network_visitor_chart_div" style="margin-left:0px;"></div>
-                            </div>
-                       </div>
-                    </div>
-               </div>
+                     </div>
 
 
 
@@ -967,83 +874,172 @@
 
 
 
-               <div class="panel panel-default graphPanel">
-                    <div class="panel-body">
-                       <div class="row">
-                            <div class="col-md-6 ">
-                               <h4>Household Income <span class="locateSub">(Last Week)</span></h4>
-                               <div>Coming Soon</div>
-                            </div>
-                            <div class="col-md-6">
-                               <h4>Ethnic Composition <span class="locateSub">(Last Week)</span></h4>
-                               <div>Coming Soon</div>
-                            </div>
-                       </div>
-                    </div>
-               </div>
+
+                      <div class="panel panel-default graphPanel">
+                           <div class="panel-body" >
 
 
-
-
-
-
-
-               <div class="panel panel-default graphPanel">
-                    <div class="panel-body">
-                       <div class="row">
-                            <div class="col-md-6 ">
-                               <h4>Visitor Home Distribution <span class="locateSub">(Last Week)</span></h4>
-                               <div>Coming Soon</div>
-                            </div>
-                       </div>
-                    </div>
-               </div>
-
-
-
-
-
-
-
-               <div class="panel panel-default graphPanel">
-                    <div class="panel-body" >
-                       <h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>
-                       <div id="visitors_div">
-
-                            <div class="table-responsive tweetTable">
-                               <!-- Table -->
-                               <table class="table-striped table table-panel">
-                                   <thead >
-                                   <tr>
-                                      <th>Customer</th>
-                                      <th>Postal Code</th>
-                                      <th>No. of Visits</th>
-                                   </tr>
-                                   </thead>
-
-                                   <div >
-                                      <div >
-                                            <tr ng-repeat="visitor in topCustomers track by $index">
-                                                <td class="customer">{{visitor.mac}}</td>
-                                                <td>{{visitor.postalCode}}</td>
-                                                <td>{{visitor.numVisits}}</td>
-                                            </tr>
-                                      </div>
-
+                             <div class="row">
+                                   <div class="col-md-12">
+                                      <br>
+                                      <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
                                    </div>
 
-                               </table>
-
-                            </div>
-                       </div>
-                    </div>
-               </div>
+                             </div>
 
 
 
+                              <div class="row">
+                                <div class="col-md-6">
+
+                                    <div style="float:left; margin-right:20px;">
+                                       <div class="totals">
+                                         <span class="totalBorderB">
+                                           <span class="visitorsA">{{carrierUniqueVisitors | number}}</span>
+                                         </span>&nbsp;&nbsp;&nbsp;Total Visitors
+                                       </div>
+                                    </div>
+
+
+                                    <div style="float:left; margin-right:20px;">
+                                       <div class="totals">
+                                         <span class="{{changeImage}}" style="padding-right:30px;">
+                                           <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                           <span id="changeIcon" class="{{changeIcon}}"></span>
+                                         </span>
+                                       </div>
+                                       <div style="margin-top:-3px; font-size:.75em">Compared to previous week</div>
+                                    </div>
+
+
+                                    <div style="float:left">
+                                       <div class="totals">
+                                         <span class="totalBorderB">
+                                           <span class="visitorsA">{{averageVisitorsDay | number}}</span>
+                                         </span>&nbsp;&nbsp;&nbsp;Average Visitors/Day
+                                       </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                  <div class="row" style="margin-top:43px;">
+
+                                    <div class="col-md-6">
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                      <div style="float:left; margin-right:20px;">
+                                        <div class="cNew"></div>All Visitors
+                                      </div>
+
+
+                                      <div style="float:left">
+                                        <div class="cAll"></div>New Visitors
+                                      </div>
+
+                                    </div>
+
+                                  </div>
+                                </div>
+
+
+
+                              </div>
+
+
+
+                               <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                  <div id="carrier_visitors_barchart_div"></div>
+                               </div>
+                           </div>
+                      </div>
+
+
+
+
+
+
+
+                      <div class="panel panel-default graphPanel">
+                           <div class="panel-body" >
+                              <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
+
+                              <div class="totals">
+                                <span class="totalBorderB">
+                                  <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
+                                </span>&nbsp;&nbsp;&nbsp;Busiest Hour (average)
+                              </div>
+
+                              <div class="row">
+                                   <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                      <div id="carrier_timebreakdown_chart_div"></div>
+                                   </div>
+                              </div>
+                           </div>
+                      </div>
+
+
+
+                      <div class="panel panel-default graphPanel">
+                           <div class="panel-body" >
+                              <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
+
+                              <div class="totals">
+                                <span class="totalBorderB">
+                                  <span class="visitorsA">{{averageVisitDuration}} MIN</span>
+                                </span>&nbsp;&nbsp;&nbsp;Average Visit Duration
+                              </div>
+
+                              <div class="row">
+                                   <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                      <div id="carrier_visitor_chart_div"></div>
+                                   </div>
+                              </div>
+                           </div>
+                      </div>
+
+                      <div class="panel panel-default graphPanel">
+                           <div class="panel-body" >
+                              <h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>
+                              <div id="visitors_div">
+
+                                   <div class="table-responsive tweetTable">
+                                      <!-- Table -->
+                                      <table class="table-striped table table-panel">
+                                          <thead >
+                                          <tr>
+                                             <th>Customer</th>
+                                             <th>Postal Code</th>
+                                             <th>No. of Visits</th>
+                                          </tr>
+                                          </thead>
+
+                                          <div >
+                                             <div >
+                                                   <tr ng-repeat="visitor in topCustomers track by $index">
+                                                       <td class="customer">{{visitor.mac}}</td>
+                                                       <td>{{visitor.postalCode}}</td>
+                                                       <td>{{visitor.numVisits}}</td>
+                                                   </tr>
+                                             </div>
+
+                                          </div>
+
+                                      </table>
+
+                                   </div>
+                              </div>
+                           </div>
+                      </div>
 
 
            </tab>
+           <!--END CARRIER TAB-->
 
 
 

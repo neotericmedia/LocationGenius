@@ -3,7 +3,7 @@
 angular.module('telusLg2App')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Dashboard',
       'link': '/'
     }];
 

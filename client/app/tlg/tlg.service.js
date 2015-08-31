@@ -77,7 +77,7 @@ angular.module('telusLg2App')
 
 
   // .factory('NetworkReports', function ($resource) {
-  //    return $resource('data/outputsNetwork.json', {})
+  //    return $resource('data/outputsNetwork2.json', {})
   // })
 
 
@@ -85,7 +85,7 @@ angular.module('telusLg2App')
 
 
   // talks to Backend carrier data API route
-  .service('NetworkReports', function ($resource) {
+  .service('CarrierPregenReport', function ($resource) {
      return $resource('/api/carrier', {}, {
          query: {method: 'GET', isArray:true},
      });

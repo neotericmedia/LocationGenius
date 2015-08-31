@@ -43,6 +43,10 @@
   width: 100%;
 }*/
 
+.well li {
+   font-weight: bold;
+}
+
 .dropdown-menu {
    left: 45px;
    width: 225px;
@@ -60,14 +64,14 @@
 
 #tweeters_div .table > tbody > tr > td {
   border-top: 0px;
-  padding: 20px 20px 20px 20px;
+  padding: 10px 10px 10px 10px;
   color: #999;
 }
 
 
 #tweeters_header .table > thead:first-child > tr:first-child > th {
   border-top: 0px;
-  padding: 20px 20px 20px 20px;
+  padding: 20px 10px 20px 10px;
   color: #999;
 }
 
@@ -416,7 +420,8 @@ div.ng-isolate-scope .nav > li > a {
 
 
 .hLight {
-   color: #6ebe44;
+   color: #000;
+   font-weight: 100;
 }
 
 
