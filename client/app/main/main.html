@@ -25,7 +25,7 @@
 
                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="float:left;">
                               <li ng-repeat="location in locations" role="presentation" >
-                                 <a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);setCarrierDataPreGenReport(location)">{{location.name}}</a>
+                                 <a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);setCarrierDataPreGenReport(location);selected($index)">{{location.name}}</a>
                               </li>
                            </ul>
 
@@ -157,6 +157,7 @@
 
 
 
+
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
            <tab>
@@ -166,17 +167,27 @@
                  <div class="date" style="position:absolute;">{{dateRange}}</div>
 
                  <div id="miniTab" class="row">
-                   <div class="col-md-12">
-                      <tabset type="pills" class="ng-isolate-scope ng-scope">
+                   <div class="col-md-6"></div>
+                   <div class="col-md-6">
+                      <div class="filters_ct" ng-controller="selectFilter">
+                          <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                             <li>
+                                <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
+                             </li>
+                          </ul>
+                      </div>
+                      <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
                         <tab heading="Last Week" ng-click="showLast7Days()"></tab>
                         <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
                         <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                        <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
-                        <tab heading="Last 60 Days" ng-click="showLast8Weeks()"></tab>
-                        <tab heading="Last 90 Days" ng-click="showLast8Weeks()"></tab>
-                      </tabset>
+                        <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
+                        <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
+                     </tabset>-->
                    </div>
                  </div>
+
+
+
 
 
 
@@ -466,17 +477,24 @@
 
 
                       <div id="miniTab" class="row">
-                        <div class="col-md-12">
-                           <tabset type="pills" class="ng-isolate-scope ng-scope">
-                             <tab heading="Last Week" ng-click="showLast7Days()"></tab>
-                             <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
-                             <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                             <tab heading="Last 30 Days" ng-click="showLast8Weeks()"></tab>
-                             <tab heading="Last 60 Days" ng-click="showLast8Weeks()"></tab>
-                             <tab heading="Last 90 Days" ng-click="showLast8Weeks()"></tab>
-                           </tabset>
-                        </div>
-                      </div>
+                       <div class="col-md-6"></div>
+                       <div class="col-md-6">
+                          <div class="filters_ct" ng-controller="selectFilter">
+                              <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                                 <li>
+                                    <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
+                                 </li>
+                              </ul>
+                          </div>
+                          <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
+                            <tab heading="Last Week" ng-click="showLast7Days()"></tab>
+                            <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
+                            <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
+                            <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
+                            <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
+                         </tabset>-->
+                       </div>
+                     </div>
 
 
 
@@ -763,7 +781,7 @@
 
            <!--////////////////////////////////////CARRIER DATA-->
            <tab>
-               <tab-heading><img alt="Social" src="assets/images/network.png" class="icons" /></tab-heading>
+               <tab-heading><img alt="Social" src="assets/images/cell.png" class="icons" /></tab-heading>
 
 
 

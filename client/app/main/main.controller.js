@@ -20,6 +20,8 @@ angular.module('telusLg2App')
 
 
 
+
+
      //  //$scope.locations = [];
      //  //$http.get('data/outputs.json', {
      //  $http.get('http://52.3.87.216:9100/user/lgweb/location', {
@@ -295,6 +297,60 @@ angular.module('telusLg2App')
 
 
 
+    $scope.selectFilter = function () {
+
+       $scope.filters = [
+               {
+                   filterId: 1,
+                   time: 'Last Week',
+                   showLast7Days: function () {
+                      $scope.getDayReport(7);
+                   }
+               },
+               {
+                   filterId: 2,
+                   time: 'Last 4 Weeks',
+                   showLast4Weeks: function () {
+                      $scope.getDayReport(28);
+                   }
+               },
+               {
+                   filterId: 3,
+                   time: 'Last 8 Weeks',
+                   showLast8Weeks: function () {
+                     $scope.getDayReport(56);
+                  }
+               },
+               {
+                   filterId: 4,
+                   time: 'Last 3 Months',
+                   showLast84days: function () {
+                     $scope.getDayReport(84);
+                  }
+               },
+               {
+                   filterId: 5,
+                   time: 'Last 4 Months',
+                   showLast112days: function () {
+                     $scope.getDayReport(112);
+                  }
+               }
+           ];
+       $scope.selectedIndex = 0;
+
+       $scope.select= function(i) {
+         $scope.selectedIndex=i;
+       };
+
+       $scope.selected= function(i) {
+         $scope.selectedIndex = 0;
+         $scope.getDayReport(7);
+       };
+    }
+
+
+
+
 
    $scope.showLast7Days = function () {
       //console.log("Last 7 days");
@@ -308,8 +364,14 @@ angular.module('telusLg2App')
       //console.log("Last 8 weeks");
       $scope.getDayReport(56);
    }
-
-
+   $scope.showLast84days = function () {
+      //console.log("Last 8 weeks");
+      $scope.getDayReport(84);
+   }
+   $scope.showLast112days = function () {
+      //console.log("Last 8 weeks");
+      $scope.getDayReport(112);
+   }
 
 
 
@@ -1007,6 +1069,13 @@ angular.module('telusLg2App')
 
 
 
+
+
+
+
+
+
+
   .controller('AccordionDemoCtrl', function ($scope) {
     $scope.oneAtATime = true;
     $scope.status = {
@@ -1145,9 +1214,7 @@ angular.module('telusLg2App')
        $event.stopPropagation();
        $scope.status.isopen = !$scope.status.isopen;
      };
-   });
-
-
+   })
 
 
 
