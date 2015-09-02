@@ -116,11 +116,13 @@
            </div>
            <div class="col-md-2">
 
+
               <span class="uts">
-                <span><a href="#"><i class="fa fa-print"></i></a></span>
-                <span><a href="#"><i class="fa fa-envelope"></i></a></span>
-                <span><a href="#"><i class="fa fa-save"></i></a></span>
+                <span><a href="javascript:window.print()"><i class="fa fa-print"></i></a></span>
+                <span><a href="mailto:?subject=Checkout These Locations Stats!"><i class="fa fa-envelope"></i></a></span>
+                <span><a href="javascript:saveIt()"><i class="fa fa-save"></i></a></span>
               </span>
+
 
            </div>
           </div>
@@ -784,6 +786,7 @@
                <tab-heading><img alt="Social" src="assets/images/cell.png" class="icons" /></tab-heading>
 
 
+                    <div class="date" style="position:absolute;">{{carrierDate}}</div>
 
 
 
@@ -824,8 +827,9 @@
 
                                            <div class="well well-lg highlightsPanel">
                                                 <ul style="margin-bottom:0px;">
-                                                  <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
-                                                  <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                                                  <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+
+                                                  <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
                                                   <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
                                                 </ul>

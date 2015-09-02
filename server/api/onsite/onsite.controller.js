@@ -5,18 +5,15 @@ var Onsite = require('./onsite.model');
 var request = require('request');
 
 
-// Get list of onsites
+// Get a single onsite report
 exports.index = function(req, res) {
-
    request({
-       //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-       //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-       //url: 'http://54.85.105.154:80/onsitereport/:buildingId?date=:dt',
-       //url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-04-02',
-       url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-04-02',
-       //var buildingId = req.body.user_id,
-       //var dt = req.body.dt,
-       //qs: {from: 'blog example', time: +new Date()}, //Query string data
+      //url: 'http://192.99.16.178:9100/onsitereport/180?date=2015-09-01',
+      //url: 'http://192.99.16.178:9100/onsitereport/' + req.params.id + '?date=2015-09-01',
+       url: 'http://192.99.16.178:9100/onsitereport/' + req.params.id + '?date=' + req.query.date,
+       //url: 'http://192.99.16.178:9100/carrier/:buildingId/7',
+       //url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
+       //url: 'data/outputsNetwork2.json',
        method: 'GET',
        headers: {
            'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
@@ -29,24 +26,18 @@ exports.index = function(req, res) {
            res.send(body)
        }
    });
-
-  // Locations.find(function (err, locationss) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.json(200, locationss);
-  // });
 };
-
 
 
 
 // Get a single onsite
-exports.show = function(req, res) {
-  Onsite.findById(req.params.id, function (err, onsite) {
-    if(err) { return handleError(res, err); }
-    if(!onsite) { return res.send(404); }
-    return res.json(onsite);
-  });
-};
+// exports.show = function(req, res) {
+//   Onsite.findById(req.params.id, function (err, onsite) {
+//     if(err) { return handleError(res, err); }
+//     if(!onsite) { return res.send(404); }
+//     return res.json(onsite);
+//   });
+// };
 
 // Creates a new onsite in the DB.
 exports.create = function(req, res) {

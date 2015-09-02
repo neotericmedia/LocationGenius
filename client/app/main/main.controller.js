@@ -680,7 +680,7 @@ angular.module('telusLg2App')
 
 
 
-           $scope.getCarrierDataPreGenReport = function () {
+           $scope.getCarrierDataPreGenReport = function (numDays) {
                    $scope.currentLocation = LocationResults.getCurrentLocation();
                    console.log("Onsite data CurrentLocation:" + $scope.currentLocation.buildingId);
 
@@ -691,6 +691,7 @@ angular.module('telusLg2App')
                    $scope.onsiteVisitorsWeek = "N/A";
 
                    $scope.carrierUniqueVisitors = "N/A";
+                   $scope.carrierDate = "N/A";
 
                    $scope.onsiteWeek = "N/A";
                    $scope.averageVisitorsDay = "N/A";
@@ -726,20 +727,26 @@ angular.module('telusLg2App')
                    else if(buildingId === "190") {
                       var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
                    }
-                   else {
-                      var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
-                   }
+                  //  else {
+                  //     var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+                  //  }
 
+
+                  //sept 1 15
+                   var params = {"locationId": $scope.currentLocation.buildingId, "days":numDays, "endDate":"2014-08-18"};
                    $scope.report = CarrierPregenReport.query(params);
+
+
+
                    $scope.report.$promise.then(function (results) {
                       console.log("Onsite Report Results:" + results.totalVisits);
                       if(results!=null) {
                            //$scope.onsiteVisitorsWeek = results.totalVisits.toString().toLocaleString();
 
+                           $scope.carrierDate = results.date;
                            $scope.carrierUniqueVisitors = results.uniqueVisitors;
 
                            //$scope.onsiteVisitorsWeek.toLocaleString();
-                           $scope.onsiteWeek = results.weekName;
                            $scope.averageVisitorsDay = results.averageVisitorsDay;
                            //$scope.weeklyChange = results.weeklyChange.toFixed(2);
                            $scope.onsiteMostVisitedDay = results.mostVisitedDay;
@@ -1088,6 +1095,37 @@ angular.module('telusLg2App')
 
 
 
+
+
+
+  // .controller('ctrl', function($scope, cs){
+  //   cs.get(function(data){
+  //     $scope.totalVisits = data.totalVisits;
+  //     $scope.weekName = data.weekName;
+  //   });
+  // })
+
+  .controller('networkCtrlA', function ($scope, OnsitePregenReport) {
+      OnsitePregenReport.get(function(data){
+         $scope.totalVisits = data.totalVisits;
+         $scope.averageVisitorsDay = data.averageVisitorsDay;
+         $scope.weeklyChange = data.weeklyChange;
+         $scope.weekName = data.weekName;
+         $scope.mostVisitedDay = data.mostVisitedDay;
+         $scope.mostVisitedDayTotal = data.mostVisitedDayTotal;
+         $scope.averageVisitDuration = data.averageVisitDuration;
+      });
+   })
+
+// mostFrequentCustomer": {
+// mac": "2408612bbc485ec558c36d106b8974bd7d58df815282410ad0d23e8141d982d8",
+// numVisits": 5
+// },
+// busiestHour
+// hour
+// day
+// visits
+// },
 
 
 

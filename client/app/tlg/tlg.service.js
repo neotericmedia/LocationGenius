@@ -45,6 +45,7 @@ angular.module('telusLg2App')
 
 
 
+
   //ISSUE
   //Request header field Authorization is not allowed by Access-Control-Allow-Headers
   .service('TweeterSearch', function ($resource) {
@@ -83,12 +84,15 @@ angular.module('telusLg2App')
 
 
 
-
-  // talks to Backend carrier data API route
   .service('CarrierPregenReport', function ($resource) {
-     return $resource('/api/carrier', {}, {
-         query: {method: 'GET', isArray:true},
+     return $resource('/api/carrier/', {}, {
+         query: {method: 'GET', isArray:false},
      });
+  })
+
+  .factory('OnsitePregenReport', function ($resource) {
+     //return $resource('/api/onsite/189?date=2015-09-02');
+     return $resource('/api/onsite/');
   })
 
 
@@ -115,18 +119,17 @@ angular.module('telusLg2App')
     //http://54.85.105.154:80/onsitereport/180?date=2015-04-02
     //http://192.99.16.178:9100/onsitereport/180?date=2015-04-02
 
-   .service('OnsitePregenReport', function ($resource) {
-      //return $resource('/log/goal', {}, {
-      //return $resource('http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt', {}, {
-      return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
-      //http://52.2.128.53:9100/onsitereport/180?date=2015-04-02
-          query: {
-             method: 'GET',
-             isArray:false
-          }
-      });
-   })
-
+   // .service('OnsitePregenReport', function ($resource) {
+   //    //return $resource('/log/goal', {}, {
+   //    return $resource('http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt', {}, {
+   //    //return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
+   //    //http://52.2.128.53:9100/onsitereport/180?date=2015-04-02
+   //        query: {
+   //           method: 'GET',
+   //           isArray:false
+   //        }
+   //    });
+   // })
 
 
 
