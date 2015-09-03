@@ -309,7 +309,7 @@ angular.module('telusLg2App')
 
 
     /**
-     * GetDayReport - generates the social report
+     * getSocialDayReport - generates the social report
      * for the specified number of days.
      * @param numDays
      */
@@ -423,10 +423,7 @@ angular.module('telusLg2App')
                 $scope.showHourlyData(0);
               }
 
-              //$scope.data = google.visualization.arrayToDataTable(dailyData);
-              //$scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
-              //$scope.showDailyData();
-              //$scope.showHourlyData(0);
+
               $scope.searchString = $scope.currentLocation.address;
               $scope.searchStringName = $scope.currentLocation.name;
               $scope.dayrange = numDays;
@@ -616,113 +613,137 @@ angular.module('telusLg2App')
            }
 
 
+    /**
+     * Gets a carrier report for the current location for the specified number of days
+     * @param numDays
+     */
+   $scope.getCarrierDataPreGenReport = function (numDays) {
+         $scope.currentLocation = LocationResults.getCurrentLocation();
+         $scope.carrierUniqueVisitors = "N/A";
 
+         var dailyCarrierVisitorData = [];
+         var hourlyTotals;
+         $scope.carrierHourlyData = [];
 
+         var item = ['Day', 'Number of Visitors', { role: 'style' }, 'New Visitors', { role: 'style' }];
+         dailyCarrierVisitorData.push(item);
+         console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId);
 
+         var params = {"locationId": $scope.currentLocation.buildingId, "days":numDays, "endDate":"2014-08-18"};
 
-       $scope.getCarrierDataPreGenReport = function (numDays) {
-             $scope.currentLocation = LocationResults.getCurrentLocation();
-             $scope.carrierUniqueVisitors = "N/A";
+         $scope.report = CarrierPregenReport.query(params);
+         $scope.report.$promise.then(function (results) {
 
-             var dailyCarrierVisitorData = [];
-             var hourlyTotals;
-             $scope.carrierHourlyData = [];
+              console.log("Carrier Report Results:" + results.length);
+              if(results!=null) {
+                  for(var i=results.length-1;i>=0;i--) {
+                     console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+                     item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
+                     dailyCarrierVisitorData.push(item);
 
-             var item = ['Day', 'Number of Visitors', { role: 'style' }, 'New Visitors', { role: 'style' }];
-             dailyCarrierVisitorData.push(item);
-             console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId);
-
-             var buildingId = $scope.currentLocation.buildingId;
-             var params = {"locationId": $scope.currentLocation.buildingId, "days":numDays, "endDate":"2014-08-18"};
-
-             $scope.report = CarrierPregenReport.query(params);
-             $scope.report.$promise.then(function (results) {
-
-                  console.log("Carrier Report Results:" + results.length);
-                  if(results!=null) {
-                      for(var i=results.length-1;i>=0;i--) {
-                         console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
-                         item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
-                         dailyCarrierVisitorData.push(item);
-
-                        /*
-                         *  Get the hourly data for that day and push it into a separate array
-                         *  We push an array of 24 hourly totals, for each day in the report.
-                         */
-                        var hourData = [];
-                        var hourItem = ['Time', 'Number of Interactions', { role: 'style' }];
-                        hourData.push(hourItem);
-                        var ampm = "am";
-                        var h = 0;
-                        for (var j = 0; j < 24; j++) {
-                          if(j>11) {
-                            ampm = "pm";
-                            if(h>=13) {
-                              h = h - 12;
-                            }
-                          }
-                          hourItem = [h+ampm, results[i].hourlyTotals[j], '#6ebe44'];
-                          hourData.push(hourItem);
-                          h++;
+                    /*
+                     *  Get the hourly data for that day and push it into a separate array
+                     *  We push an array of 24 hourly totals, for each day in the report.
+                     */
+                    var hourData = [];
+                    var hourItem = ['Time', 'Number of Interactions', { role: 'style' }];
+                    hourData.push(hourItem);
+                    var ampm = "am";
+                    var h = 0;
+                    for (var j = 0; j < 24; j++) {
+                      if(j>11) {
+                        ampm = "pm";
+                        if(h>=13) {
+                          h = h - 12;
                         }
-                        $scope.carrierHourlyData.push(hourData);
-
-                      } // end loop
-
-                      $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyCarrierVisitorData);
-                      $scope.showCarrierDailyVisitorData();
-
-
-                      if($scope.carrierHourlyData.length>0) {
-                         $scope.showHourlyCarrierVisitorData(results.length-1);
                       }
+                      hourItem = [h+ampm, results[i].hourlyTotals[j], '#6ebe44'];
+                      hourData.push(hourItem);
+                      h++;
+                    }
+                    $scope.carrierHourlyData.push(hourData);
 
+                  } // end loop
+
+                  $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyCarrierVisitorData);
+                  $scope.showCarrierDailyVisitorData();
+
+                  if($scope.carrierHourlyData.length>0) {
+                     $scope.showHourlyCarrierVisitorData(results.length-1);
                   }
-             });
-        }
+
+              }
+         });
+    }
 
 
-        $scope.showCarrierDailyVisitorData = function () {
-          // Instantiate and draw our chart, passing in some options.
-          // Set chart options
-          var options = {
-            width:1075,
-            height:500,
-            colors:['#30134F','#6ebe44'],
-            chartArea: {left:60,top:60,width: '100%'},
-            //legend: { position: 'bottom'},
-            legend: { position: 'none'},
-            //legend: { position: 'top', maxLines: 3 },
-            isStacked:true,
-          };
+    /**
+     * Displays the graph for the daily carrier visits
+     */
+    $scope.showCarrierDailyVisitorData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      var options = {
+        width:1075,
+        height:500,
+        colors:['#30134F','#6ebe44'],
+        chartArea: {left:60,top:60,width: '100%'},
+        //legend: { position: 'bottom'},
+        legend: { position: 'none'},
+        //legend: { position: 'top', maxLines: 3 },
+        isStacked:true,
+      };
 
-          var visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
-          visitorchart.draw($scope.carriervisitordata, options);
-        }
-
-
-        $scope.showHourlyCarrierVisitorData = function (day) {
-          // Instantiate and draw our chart, passing in some options.
-          // Set chart options
-          console.log("Graphing hourly carrier data...");
-          var options = {
-            width:1075,
-            height:550,
-            colors:['#6ebe44'],
-            chartArea: {left:60,top:60,width: '100%'},
-            legend: { position: 'bottom' }
-            //fontSize:9
-          };
+      var visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
+      visitorchart.draw($scope.carriervisitordata, options);
+    }
 
 
-          var linechart = new google.visualization.AreaChart(document.getElementById('carrier_timebreakdown_chart_div'));
-          //console.log("Graphing ..." + $scope.hourlyVisitorData);
-          var hours = $scope.carrierHourlyData[day];
-          var hourly = google.visualization.arrayToDataTable(hours);
-          linechart.draw(hourly, options);
-        }
+    /**
+     * Displays the carrier traffic for the specific day
+     * @param day
+     */
+    $scope.showHourlyCarrierVisitorData = function (day) {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      console.log("Graphing hourly carrier data...");
+      var options = {
+        width:1075,
+        height:550,
+        colors:['#6ebe44'],
+        chartArea: {left:60,top:60,width: '100%'},
+        legend: { position: 'bottom' }
+        //fontSize:9
+      };
+
+      var linechart = new google.visualization.AreaChart(document.getElementById('carrier_timebreakdown_chart_div'));
+      //console.log("Graphing ..." + $scope.hourlyVisitorData);
+      var hours = $scope.carrierHourlyData[day];
+      var hourly = google.visualization.arrayToDataTable(hours);
+      linechart.draw(hourly, options);
+    }
 
 
+    /**
+     * Displays the dwell time graph for carrier data
+     */
+    $scope.showDwellTimesData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      console.log("Graphing online visitor duration data...");
+      var options = {
+        width:1075,
+        height:550,
+        colors:['#6ebe44'],
+        chartArea: {left:3,top:60,width: '100%'},
+        legend: { position: 'bottom',alignment :'center' }
+      };
+
+      var linechart = new google.visualization.AreaChart(document.getElementById('carrier_visitor_chart_div'));
+      //console.log("Graphing ..." + $scope.durationData);
+      var minutesData = google.visualization.arrayToDataTable($scope.carrierdwellTimesData);
+      linechart.draw(minutesData, options);
+    }
 
 
 
@@ -795,23 +816,7 @@ angular.module('telusLg2App')
 
 
 
-             $scope.showDwellTimesData = function () {
-                 // Instantiate and draw our chart, passing in some options.
-                 // Set chart options
-                 console.log("Graphing online visitor duration data...");
-                 var options = {
-                   width:1075,
-                      height:550,
-                     colors:['#6ebe44'],
-                     chartArea: {left:3,top:60,width: '100%'},
-                     legend: { position: 'bottom',alignment :'center' }
-                 };
 
-                 var linechart = new google.visualization.AreaChart(document.getElementById('carrier_visitor_chart_div'));
-                 //console.log("Graphing ..." + $scope.durationData);
-                 var minutesData = google.visualization.arrayToDataTable($scope.carrierdwellTimesData);
-                 linechart.draw(minutesData, options);
-             }
 
 
 
@@ -919,22 +924,22 @@ angular.module('telusLg2App')
 
 
 
-   //*******************
-   //******************* Note (Backend) from service. Service pulls in from API route
-   .controller('networkCtrlB', function ($scope, CarrierPregenReport) {
-      $scope.carrierDatas = CarrierPregenReport.query();
-    })
-    //*******************
-   //******************* Note (Frontend) from Angular HTTP call to API route
-  .controller('networkCtrl', function ($scope, $http) {
-    $http ({
-         method: 'GET',
-         url: '/api/carrier',
-     })
-     .success(function (networkDatas) {
-        $scope.networkDatas = networkDatas;
-      })
-   })
+  // //*******************
+  // //******************* Note (Backend) from service. Service pulls in from API route
+  // .controller('networkCtrlB', function ($scope, CarrierPregenReport) {
+  //    $scope.carrierDatas = CarrierPregenReport.query();
+  //  })
+  //  //*******************
+  // //******************* Note (Frontend) from Angular HTTP call to API route
+  //.controller('networkCtrl', function ($scope, $http) {
+  //  $http ({
+  //       method: 'GET',
+  //       url: '/api/carrier',
+  //   })
+  //   .success(function (networkDatas) {
+  //      $scope.networkDatas = networkDatas;
+  //    })
+  // })
 
 
 
