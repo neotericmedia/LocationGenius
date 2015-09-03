@@ -102,24 +102,11 @@ angular.module('telusLg2App')
           query: {method: 'GET', isArray:false},
       });
    })
-   //sample call
-   //http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100
 
 
-
-
-
-
-
-    //http://54.85.105.154:80/onsitereport/190?date=2015-04-26
-    //http://54.85.105.154:80/onsitereport/180?date=2015-04-02
-    //http://192.99.16.178:9100/onsitereport/180?date=2015-04-02
 
    .service('OnsitePregenReport', function ($resource) {
-      //return $resource('/log/goal', {}, {
-      //return $resource('http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt', {}, {
       return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
-      //http://52.2.128.53:9100/onsitereport/180?date=2015-04-02
           query: {
              method: 'GET',
              isArray:false
@@ -128,6 +115,13 @@ angular.module('telusLg2App')
    })
 
 
+// talks to Backend carrier data API route
+  .service('CarrierPregenReport', function ($resource) {
+    //var params = {"locationId": $scope.currentLocation.buildingId, "days":numDays, "endDate":"2014-08-18"};
+    return $resource('/api/carrier/:locationId/:days?endDate=:endDate', {}, {
+      query: {method: 'GET', isArray:true},
+    });
+  })
 
 
 
@@ -137,13 +131,3 @@ angular.module('telusLg2App')
 
 
 
-  //  .service('OnsiteReport', function ($resource) {
-  //    return $resource('http://ironman.simplygood.com/report/run_report/', {}, {
-  //        fetch: {
-  //            method: 'POST',
-  //            isArray:false ,
-  //            url : 'http://ironman.simplygood.com/report/run_report/',
-  //            headers : {'Content-Type': 'application/x-www-form-urlencoded','Content-Type': 'application/json;charset=UTF-8'}
-  //        }
-  //    });
-  //  })
