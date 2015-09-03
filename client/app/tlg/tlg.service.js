@@ -108,6 +108,7 @@ angular.module('telusLg2App')
    .service('OnsitePregenReport', function ($resource) {
       //return $resource('http://54.85.105.154:80/onsitereport/:buildingId?date=:dt', {}, {
     //api/onsite/180?date=2015-04-26
+      console.log( "Getting /api/onsite/"  );
       return $resource('/api/onsite/:buildingId?date=:dt', {}, {
           query: {
              method: 'GET',

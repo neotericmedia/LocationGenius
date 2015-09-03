@@ -315,11 +315,11 @@ angular.module('telusLg2App')
      */
    $scope.getSocialDayReport = function (numDays) {
           $scope.currentLocation = LocationResults.getCurrentLocation();
-          console.log("Getting social day reports for Location:" + $scope.currentLocation);
+          //console.log("Getting social day reports for Location:" + $scope.currentLocation);
 
           // Get the Twitter daily report
           $scope.tweetReports;
-          console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
+          //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
           var params = {"locationId": $scope.currentLocation.buildingId,"days":numDays};
           $scope.results = TweetReports.query(params);
 
@@ -330,7 +330,7 @@ angular.module('telusLg2App')
               LocationResults.setTweetReports($scope.tweetReports);
               $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
               $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
-              console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
+              //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
 
               $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
               $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
@@ -495,17 +495,17 @@ angular.module('telusLg2App')
                var buildingId = $scope.currentLocation.buildingId;
 
                if(buildingId === "188" || buildingId === "189" || buildingId === "122") {
-                  var params = {buildingId: $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
+                  var params = {"buildingId": $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
                }
                else if(buildingId === "190") {
-                  var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-08-01"};
+                  var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-08-01"};
                }
                else {
-                  var params = {buildingId: $scope.currentLocation.buildingId, "dt":"2015-04-26"};
+                  var params = {"buildingId": $scope.currentLocation.buildingId, "dt":"2015-04-26"};
                }
 
 
-
+               console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
                $scope.report = OnsitePregenReport.query(params);
                $scope.report.$promise.then(function (results) {
                    console.log("Onsite Report Results:" + results.totalVisits);
@@ -634,10 +634,9 @@ angular.module('telusLg2App')
          $scope.report = CarrierPregenReport.query(params);
          $scope.report.$promise.then(function (results) {
 
-              console.log("Carrier Report Results:" + results.length);
               if(results!=null) {
                   for(var i=results.length-1;i>=0;i--) {
-                     console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+                     //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
                      item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
                      dailyCarrierVisitorData.push(item);
 
@@ -749,77 +748,63 @@ angular.module('telusLg2App')
 
 
     $scope.showDailyVisitorData = function () {
-                 // Instantiate and draw our chart, passing in some options.
-                 // Set chart options
-                 var options = {
-                   width:1075,
-                     height:500,
-                     colors:['#30134F','#6ebe44'],
-                     chartArea: {left:60,top:60,width: '100%'},
-                     //legend: { position: 'bottom'},
-                     legend: { position: 'none'},
-                     //legend: { position: 'top', maxLines: 3 },
-                     isStacked:true,
-                 };
+         // Instantiate and draw our chart, passing in some options.
+         // Set chart options
+         var options = {
+           width:1075,
+             height:500,
+             colors:['#30134F','#6ebe44'],
+             chartArea: {left:60,top:60,width: '100%'},
+             //legend: { position: 'bottom'},
+             legend: { position: 'none'},
+             //legend: { position: 'top', maxLines: 3 },
+             isStacked:true,
+         };
 
-                 var visitorchart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
-                 visitorchart.draw($scope.visitordata, options);
-             }
-
-
+         var visitorchart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
+         visitorchart.draw($scope.visitordata, options);
+     }
 
 
+     $scope.showHourlyVisitorData = function () {
+         // Instantiate and draw our chart, passing in some options.
+         // Set chart options
+         console.log("Graphing hourly data...");
+         var options = {
+           width:1075,
+              height:550,
+             colors:['#6ebe44'],
+             chartArea: {left:60,top:60,width: '100%'},
+             legend: { position: 'bottom' }
+             //fontSize:9
+         };
 
+         var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
+         //console.log("Graphing ..." + $scope.hourlyVisitorData);
+         var hourly = google.visualization.arrayToDataTable($scope.hourlyVisitorData);
 
-             $scope.showHourlyVisitorData = function () {
-                 // Instantiate and draw our chart, passing in some options.
-                 // Set chart options
-                 console.log("Graphing hourly data...");
-                 var options = {
-                   width:1075,
-                      height:550,
-                     colors:['#6ebe44'],
-                     chartArea: {left:60,top:60,width: '100%'},
-                     legend: { position: 'bottom' }
-                     //fontSize:9
-                 };
-
-                 var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
-                 //console.log("Graphing ..." + $scope.hourlyVisitorData);
-                 var hourly = google.visualization.arrayToDataTable($scope.hourlyVisitorData);
-
-                 linechart.draw(hourly, options);
-             }
-             $scope.showDurationData = function () {
-                 // Instantiate and draw our chart, passing in some options.
-                 // Set chart options
-                 console.log("Graphing online visitor duration data...");
-                 var options = {
-                   width:1075,
-                      height:550,
-                     colors:['#6ebe44'],
-                     chartArea: {left:3,top:60,width: '100%'},
-                     legend: { position: 'bottom',alignment :'center' }
-                 };
-
-                 var linechart = new google.visualization.AreaChart(document.getElementById('onsite_visitor_chart_div'));
-                 //console.log("Graphing ..." + $scope.durationData);
-                 var minutesData = google.visualization.arrayToDataTable($scope.durationData);
-                 linechart.draw(minutesData, options);
-             }
+         linechart.draw(hourly, options);
+     }
 
 
 
+     $scope.showDurationData = function () {
+         // Instantiate and draw our chart, passing in some options.
+         // Set chart options
+         console.log("Graphing online visitor duration data...");
+         var options = {
+           width:1075,
+              height:550,
+             colors:['#6ebe44'],
+             chartArea: {left:3,top:60,width: '100%'},
+             legend: { position: 'bottom',alignment :'center' }
+         };
 
-
-
-
-
-
-
-
-
-
+         var linechart = new google.visualization.AreaChart(document.getElementById('onsite_visitor_chart_div'));
+         //console.log("Graphing ..." + $scope.durationData);
+         var minutesData = google.visualization.arrayToDataTable($scope.durationData);
+         linechart.draw(minutesData, options);
+     }
 
 
 
@@ -903,11 +888,6 @@ angular.module('telusLg2App')
 
 
 
-
-
-
-
-
   .controller('AccordionDemoCtrl', function ($scope) {
     $scope.oneAtATime = true;
     $scope.status = {
@@ -915,38 +895,6 @@ angular.module('telusLg2App')
       isFirstDisabled: false
     };
   })
-
-
-
-
-
-
-
-
-
-  // //*******************
-  // //******************* Note (Backend) from service. Service pulls in from API route
-  // .controller('networkCtrlB', function ($scope, CarrierPregenReport) {
-  //    $scope.carrierDatas = CarrierPregenReport.query();
-  //  })
-  //  //*******************
-  // //******************* Note (Frontend) from Angular HTTP call to API route
-  //.controller('networkCtrl', function ($scope, $http) {
-  //  $http ({
-  //       method: 'GET',
-  //       url: '/api/carrier',
-  //   })
-  //   .success(function (networkDatas) {
-  //      $scope.networkDatas = networkDatas;
-  //    })
-  // })
-
-
-
-
-
-
-
 
 
 
