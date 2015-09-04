@@ -19,7 +19,7 @@ exports.show = function(req, res) {
     if(error) {
       console.log(error);
     } else {
-      //console.log(body);
+      console.log("Carrier Response:" + body);
       res.send(body)
     }
 
