@@ -2,7 +2,7 @@
 
 angular.module('telusLg2App')
   .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
-
+    var visitorchart;
 
     // Get the locations from the Location Service
     $http({
@@ -617,7 +617,7 @@ angular.module('telusLg2App')
             console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
             item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
             dailyCarrierVisitorData.push(item);
-
+            $scope.carrierReports = results;
 
 
             /*
@@ -690,8 +690,40 @@ angular.module('telusLg2App')
         isStacked: true,
       };
 
-      var visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
+      visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
       visitorchart.draw($scope.carriervisitordata, options);
+      // Every time the table fires the "select" event, it should call your
+      // selectHandler() function.
+      google.visualization.events.addListener(visitorchart, 'select', selectCarrierDayHandler);
+    }
+
+
+    /**
+     * Adds a clickable listener to the chart that updates
+     * the time breakdown chart on clicking
+     * @param e
+     */
+    function selectCarrierDayHandler(e) {
+      var selection = visitorchart.getSelection();
+      console.log("Carrier Selection " + selection.length);
+      var index;
+      var item = selection[0];
+      if (item != null) {
+        if (item.row != null && item.column != null) {
+          index = item.row;
+        }
+
+        showCarrierDay(index);
+        $scope.$apply();
+      }
+    }
+
+    var showCarrierDay = function(day) {
+      console.log("Carrier Day Index:" + day);
+
+      if($scope.carrierReports[day]!=null) {
+        $scope.showHourlyCarrierVisitorData(day);
+      }
     }
 
 
@@ -726,7 +758,7 @@ angular.module('telusLg2App')
     $scope.showCarrierDwellTimesData = function () {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
-      console.log("Graphing carrier visitor duration data...");
+      console.log("Graphing carrier visitor dwell time data...");
       var options = {
         width: 1075,
         height: 550,
