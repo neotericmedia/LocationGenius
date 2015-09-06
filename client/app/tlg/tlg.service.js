@@ -108,12 +108,3 @@ angular.module('telusLg2App')
       query: {method: 'GET', isArray:true},
     });
   })
-
-
-
-
-
-
-
-
-
