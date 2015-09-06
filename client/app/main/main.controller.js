@@ -163,7 +163,7 @@ angular.module('telusLg2App')
     }
 
 
-    $scope.showDailyData = function () {
+    $scope.showDailySocialData = function () {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       var options = {
@@ -185,12 +185,13 @@ angular.module('telusLg2App')
       chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
       chart.draw($scope.data, options);
       // Every time the table fires the "select" event, it should call your
-      // selectHandler() function.
-      google.visualization.events.addListener(chart, 'select', selectHandler);
+      // selectSocialHandler() function.
+      console.log("Setting handler..." );
+      google.visualization.events.addListener(chart, 'select', selectSocialHandler);
     }
 
 
-    function selectHandler(e) {
+    function selectSocialHandler(e) {
       var selection = chart.getSelection();
       console.log("Selection " + selection.length);
       var index;
@@ -200,13 +201,24 @@ angular.module('telusLg2App')
           index = item.row;
         }
 
-        $scope.showDay(index);
+        showDay(index);
         $scope.$apply();
       }
     }
 
 
-    $scope.showHourlyData = function (day) {
+    var showDay = function(day) {
+      console.log("Day Index:" + day);
+      $scope.dayIndex = day;
+      if($scope.tweetReports.dailyReports[$scope.dayIndex]!=null) {
+        $scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
+        $scope.showHourlySocialData($scope.dayIndex);
+      }
+    }
+
+
+
+    $scope.showHourlySocialData = function (day) {
       var options = {
         width: 1075,
         height: 550,
@@ -397,14 +409,13 @@ angular.module('telusLg2App')
         if (dailyData.length > 1) {
           //console.log("Daily data:" + dailyData);
           $scope.data = google.visualization.arrayToDataTable(dailyData);
-          $scope.showDailyData();
-          //$scope.showNetworkDailyData();
+          $scope.showDailySocialData();
         }
 
         if ($scope.hourlyData.length > 0) {
           //console.log("Hourly data:" + $scope.hourlyData);
           $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
-          $scope.showHourlyData(0);
+          $scope.showHourlySocialData(0);
         }
 
 
@@ -613,11 +624,11 @@ angular.module('telusLg2App')
       $scope.report.$promise.then(function (results) {
 
         if (results != null) {
+          $scope.carrierReports = results;
           for (var i = results.length - 1; i >= 0; i--) {
-            console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+            //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
             item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
             dailyCarrierVisitorData.push(item);
-            $scope.carrierReports = results;
 
 
             /*
@@ -642,20 +653,6 @@ angular.module('telusLg2App')
             }
             $scope.carrierHourlyData.push(hourData);
 
-            var dwellTimes = results[i].dwellTimes;
-            $scope.averageCarrierVisitDuration = results[i].averageDwellTime;
-            console.log("Avg Dwell time:" + $scope.averageCarrierVisitDuration);
-            console.log("# Dwell times:" + dwellTimes);
-
-            $scope.carrierDwellTimeData = [];
-            var dwellTimeItem = ['Minutes', 'Number of Visits', {role: 'style'}];
-            $scope.carrierDwellTimeData.push(dwellTimeItem);
-            if(dwellTimes != null) {
-              for (var j = 0; j < dwellTimes.length; j++) {
-                dwellTimeItem = [j, dwellTimes[j], '#6ebe44'];
-                $scope.carrierDwellTimeData.push(dwellTimeItem);
-              }
-            }
 
           } // end loop
 
@@ -666,7 +663,13 @@ angular.module('telusLg2App')
             $scope.showHourlyCarrierVisitorData(results.length - 1);
           }
 
-          $scope.showCarrierDwellTimesData()
+          $scope.carrierDwellTimeData = [];
+          var dwellTimeItem = ['Minutes', 'Number of Visits', {role: 'style'}];
+          $scope.carrierDwellTimeData.push();
+
+          console.log("Graphing: " + results[results.length - 1].dwellTimes)
+          $scope.showCarrierDwellTimesData(results.length - 1)
+
 
         }
       });
@@ -693,7 +696,7 @@ angular.module('telusLg2App')
       visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
       visitorchart.draw($scope.carriervisitordata, options);
       // Every time the table fires the "select" event, it should call your
-      // selectHandler() function.
+      // selectSocialHandler() function.
       google.visualization.events.addListener(visitorchart, 'select', selectCarrierDayHandler);
     }
 
@@ -723,6 +726,7 @@ angular.module('telusLg2App')
 
       if($scope.carrierReports[day]!=null) {
         $scope.showHourlyCarrierVisitorData(day);
+        $scope.showCarrierDwellTimesData(day);
       }
     }
 
@@ -755,10 +759,10 @@ angular.module('telusLg2App')
     /**
      * Displays the dwell time graph for carrier data
      */
-    $scope.showCarrierDwellTimesData = function () {
+    $scope.showCarrierDwellTimesData = function (day) {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
-      console.log("Graphing carrier visitor dwell time data...");
+      console.log("Graphing carrier visitor dwell time data for day:" + day);
       var options = {
         width: 1075,
         height: 550,
@@ -768,9 +772,25 @@ angular.module('telusLg2App')
       };
 
       var linechart = new google.visualization.AreaChart(document.getElementById('carrier_visitor_chart_div'));
-      //console.log("Graphing ..." + $scope.durationData);
-      var minutesData = google.visualization.arrayToDataTable($scope.carrierDwellTimeData);
-      linechart.draw(minutesData, options);
+      $scope.carrierDwellTimeData = []
+      var dwellTimes = $scope.carrierReports[day].dwellTimes;
+      console.log("Dwell times:" + dwellTimes);
+
+      $scope.averageCarrierVisitDuration = $scope.carrierReports[day].averageDwellTime;
+      var dwellTimeItem = ['Minutes', 'Number of Visits', {role: 'style'}];
+      $scope.carrierDwellTimeData.push(dwellTimeItem);
+      if(dwellTimes != null) {
+        for (var j = 0; j < dwellTimes.length; j++) {
+          dwellTimeItem = [j, dwellTimes[j], '#6ebe44'];
+          $scope.carrierDwellTimeData.push(dwellTimeItem);
+        }
+        var minutesData = google.visualization.arrayToDataTable($scope.carrierDwellTimeData);
+        linechart.draw(minutesData, options);
+      } else {
+        $scope.averageCarrierVisitDuration = "N/A";
+      }
+
+
     }
 
 
