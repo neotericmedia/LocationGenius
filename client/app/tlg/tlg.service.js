@@ -47,10 +47,12 @@ angular.module('telusLg2App')
 
   //ISSUE
   //Request header field Authorization is not allowed by Access-Control-Allow-Headers
+  //192.99.16.178:9100/twitter/tweeters?meters=1000&days=7&top=100&address=Eiffel Tower
   .service('TweeterSearch', function ($resource) {
-      return $resource('http://54.85.105.154:7777/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
+      //return $resource('http://54.85.105.154:7777/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
       //return $resource('http://52.3.87.216:9100/twitter/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
-          query: {method: 'GET', isArray:true, },
+        return $resource('/api/twitter/tweeters?meters=:range&days=:days&top=:top&address=:searchString', {}, {
+          query: {method: 'GET', isArray:true },
       });
   })
 
@@ -109,12 +111,3 @@ angular.module('telusLg2App')
       query: {method: 'GET', isArray:true},
     });
   })
-
-
-
-
-
-
-
-
-
