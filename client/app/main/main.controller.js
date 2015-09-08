@@ -616,7 +616,7 @@ angular.module('telusLg2App')
 
       var item = ['Day', 'Number of Visitors', {role: 'style'}, 'New Visitors', {role: 'style'}];
       dailyCarrierVisitorData.push(item);
-      console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId);
+      console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
 
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays, "endDate": "2014-08-18"};
 
@@ -625,8 +625,11 @@ angular.module('telusLg2App')
 
         if (results != null) {
           $scope.carrierReports = results;
+          $scope.carrierUniqueVisitors = 0;
+          $scope.carrierAverageVisitorsDay = 0;
           for (var i = results.length - 1; i >= 0; i--) {
-            //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+            console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+            $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + results[i].uniqueVisitors;
             item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
             dailyCarrierVisitorData.push(item);
 
@@ -655,6 +658,7 @@ angular.module('telusLg2App')
 
 
           } // end loop
+          $scope.carrierAverageVisitorsDay = Math.round($scope.carrierUniqueVisitors / results.length);
 
           $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyCarrierVisitorData);
           $scope.showCarrierDailyVisitorData();
