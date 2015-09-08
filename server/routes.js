@@ -102,6 +102,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/onsite', require('./api/onsite'));
   app.use('/api/carrier', require('./api/carrier'));
+  app.use('/api/social', require('./api/social'));
   app.use('/api/locations', require('./api/locations'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));

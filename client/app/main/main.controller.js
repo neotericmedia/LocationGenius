@@ -315,18 +315,18 @@ angular.module('telusLg2App')
 
       // Get the Twitter daily report
       $scope.tweetReports;
-      //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
+      console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
       $scope.results = TweetReports.query(params);
 
       $scope.results.$promise.then(function (results) {
-        //console.log("Social Report Results:" + results);
+        console.log("Social Report Results:" + results);
         $scope.tweetReports = results;
         //console.log("Tweet Reports:" + $scope.tweetReports);
         LocationResults.setTweetReports($scope.tweetReports);
         $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
         $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
-        //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
+        console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
 
         $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
         $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
@@ -628,7 +628,7 @@ angular.module('telusLg2App')
           $scope.carrierUniqueVisitors = 0;
           $scope.carrierAverageVisitorsDay = 0;
           for (var i = results.length - 1; i >= 0; i--) {
-            console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
+            //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + results[i].uniqueVisitors;
             item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', 0, '#6ebe44'];
             dailyCarrierVisitorData.push(item);

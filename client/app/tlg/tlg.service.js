@@ -81,7 +81,8 @@ angular.module('telusLg2App')
 
 
    .service('TweetReports', function ($resource) {
-      return $resource('http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', {}, {
+      //return $resource('http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', {}, {
+      return $resource('/api/social/:locationId?days=:days&top=100', {}, {
           query: {method: 'GET', isArray:false},
       });
    })

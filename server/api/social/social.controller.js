@@ -1,16 +1,17 @@
 'use strict';
 
 var _ = require('lodash');
-var Carrier = require('./carrier.model');
 var request = require('request');
 
 
 
-// Get a single carrier report
+// Get a twitter day report
+// e.g.192.99.16.178:9100/twitter/dayreports/180?days=7&top=100
 exports.show = function(req, res) {
-  console.log('Getting carrier report...' + req.query.endDate);
+
+  console.log('Getting twitter day report...' + req.query.days + " " + req.query.top);
   request({
-    url: 'http://192.99.16.178:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18',
+    url: 'http://192.99.16.178:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
     method: 'GET',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
@@ -19,7 +20,7 @@ exports.show = function(req, res) {
     if(error) {
       console.log(error);
     } else {
-      //console.log("Carrier Response:" + body);
+      //console.log("Twitter Response:" + body);
       res.send(body)
     }
 
