@@ -473,10 +473,10 @@ angular.module('telusLg2App')
 
       //console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
-      var dateobj = new Date()
-      var month = dateobj.getMonth()
-      var day = dateobj.getDate()
-      var year = dateobj.getFullYear()
+      var dateobj = new Date();
+      var month = dateobj.getMonth() + 1;
+      var day = dateobj.getDate();
+      var year = dateobj.getFullYear();
 
       //if("buildingId" == "188" || "buildingId" == "189") params = {"buildingId": $scope.currentLocation.buildingId, "dt": d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay()};
 
@@ -495,7 +495,7 @@ angular.module('telusLg2App')
       }
 
 
-      //console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
+      console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
       $scope.report = OnsitePregenReport.query(params);
       $scope.report.$promise.then(function (results) {
         //console.log("Onsite Report Results:" + results.totalVisits);
