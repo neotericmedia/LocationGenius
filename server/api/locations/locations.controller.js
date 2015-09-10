@@ -8,9 +8,7 @@ var request = require('request');
 
 // Get list of locationss
 exports.index = function(req, res) {
-   console.log("Getting locations...");
    request({
-       //url: 'http://ec2-52-3-118-45.compute-1.amazonaws.com:9100/user/lgweb/location',
        url: 'http://192.99.16.178:9100/user/lgweb/location',
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',
