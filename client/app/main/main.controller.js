@@ -636,13 +636,7 @@ angular.module('telusLg2App')
     }
 
 
-<<<<<<< HEAD
 
-
-
-
-
-=======
     $scope.showOnsiteDailyVisitorData = function () {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
@@ -732,7 +726,8 @@ angular.module('telusLg2App')
       var minutesData = google.visualization.arrayToDataTable($scope.durationData);
       linechart.draw(minutesData, options);
     }
->>>>>>> 5a093c3474aea379075584529eefbceb5615e8f5
+
+
 
 
     /**
