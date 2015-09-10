@@ -20,7 +20,7 @@ exports.show = function(req, res) {
     if(error) {
       console.log(error);
     } else {
-      console.log("Twitter Response:" + body);
+      //console.log("Twitter Response:" + body);
       res.send(body)
     }
 

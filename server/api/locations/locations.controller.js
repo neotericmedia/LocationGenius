@@ -8,13 +8,8 @@ var request = require('request');
 
 // Get list of locationss
 exports.index = function(req, res) {
-
    request({
-       //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-       //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-       //url: 'http://52.3.87.216:9100/user/lgweb/location',
-       //url: 'http://52.3.118.45:9100/user/lgweb/location',
-       url: 'http://ec2-52-3-118-45.compute-1.amazonaws.com:9100/user/lgweb/location',
+       url: 'http://192.99.16.178:9100/user/lgweb/location',
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',
        headers: {
