@@ -3,6 +3,7 @@
 angular.module('telusLg2App')
   .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
     var visitorchart;
+    var onsiteVisitorChart;
 
     // Get the locations from the Location Service
     $http({
@@ -565,22 +566,23 @@ angular.module('telusLg2App')
           var hourlyitem = ['Hour', 'Number of Visitors', {role: 'style'}];
           $scope.hourlyVisitorData.push(hourlyitem);
 
-          var hourlyTotals = results.hourlyBreakdown;
+          //var hourlyTotals = results.hourlyBreakdown;
+          $scope.onsiteHourlyTotals = results.hourlyData;
 
-          var ampm = "am";
-          var h = 0;
-          for (var i = 0; i < 24; i++) {
-            h = i;
-            if (i > 11) {
-              ampm = "pm";
-              if (i >= 13) {
-                h = h - 12;
-              }
-            }
-            hourlyitem = [h + ampm, hourlyTotals[i], '#6ebe44'];
-            $scope.hourlyVisitorData.push(hourlyitem);
-            h++;
-          }
+          //var ampm = "am";
+          //var h = 0;
+          //for (var i = 0; i < 24; i++) {
+          //  h = i;
+          //  if (i > 11) {
+          //    ampm = "pm";
+          //    if (i >= 13) {
+          //      h = h - 12;
+          //    }
+          //  }
+          //  hourlyitem = [h + ampm, hourlyTotals[i], '#6ebe44'];
+          //  $scope.hourlyVisitorData.push(hourlyitem);
+          //  h++;
+          //}
 
           var durations = results.durations;
           $scope.durationData = [];
@@ -593,7 +595,7 @@ angular.module('telusLg2App')
 
           $scope.visitordata = google.visualization.arrayToDataTable(dailyVisitorData);
           $scope.showOnsiteDailyVisitorData();
-          $scope.showOnsiteHourlyVisitorData();
+          $scope.showOnsiteHourlyVisitorData(0);
           $scope.showOnsiteDurationData();
         }
       })
@@ -614,11 +616,11 @@ angular.module('telusLg2App')
         isStacked: true,
       };
 
-      var visitorchart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
-      visitorchart.draw($scope.visitordata, options);
+      onsiteVisitorChart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
+      onsiteVisitorChart.draw($scope.visitordata, options);
       // Every time the table fires the "select" event, it should call your
       // select Handler() function.
-      google.visualization.events.addListener(visitorchart, 'select', selectOnsiteDayHandler);
+      google.visualization.events.addListener(onsiteVisitorChart, 'select', selectOnsiteDayHandler);
     }
 
 
@@ -628,8 +630,8 @@ angular.module('telusLg2App')
      * @param e
      */
     function selectOnsiteDayHandler(e) {
-      var selection = visitorchart.getSelection();
-      //console.log("Onsite Selection " + selection.length);
+      var selection = onsiteVisitorChart.getSelection();
+      console.log("Onsite Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -643,18 +645,16 @@ angular.module('telusLg2App')
     }
 
     var showOnsiteDay = function (day) {
-      //console.log("Onsite Day Index:" + day);
+      console.log("Onsite Day Index:" + day);
 
-      //if($scope.carrierReports[day]!=null) {
-      //  $scope.showHourlyCarrierVisitorData(day);
-      //  $scope.showCarrierDwellTimesData(day);
-      //}
+      $scope.showOnsiteHourlyVisitorData(day);
+
     }
 
-    $scope.showOnsiteHourlyVisitorData = function () {
+    $scope.showOnsiteHourlyVisitorData = function (day) {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
-      //console.log("Graphing hourly data...");
+      console.log("Graphing hourly data for day " + day);
       var options = {
         width: 1075,
         height: 550,
@@ -663,6 +663,44 @@ angular.module('telusLg2App')
         legend: {position: 'bottom'}
         //fontSize:9
       };
+
+
+      $scope.hourlyVisitorData = [];
+      var hourlyitem = ['Hour', 'Number of Visitors', {role: 'style'}];
+      $scope.hourlyVisitorData.push(hourlyitem);
+
+      var hourlyTotals = []
+      var j=0;
+      for(var m in $scope.onsiteHourlyTotals) {
+        if(j==day) {
+          hourlyTotals = $scope.onsiteHourlyTotals[m];
+          break;
+        } else {
+          j++;
+        }
+      }
+
+      console.log("HourlyTotals:" + hourlyTotals);
+
+      var ampm = "am";
+      var h = 0;
+      for (var i = 0; i < 24; i++) {
+        h = i;
+        if (i > 11) {
+          ampm = "pm";
+          if (i >= 13) {
+            h = h - 12;
+          }
+        }
+        hourlyitem = [h + ampm, hourlyTotals[i], '#6ebe44'];
+        $scope.hourlyVisitorData.push(hourlyitem);
+        h++;
+      }
+
+
+
+
+
 
       var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
       //console.log("Graphing ..." + $scope.hourlyVisitorData);
