@@ -234,8 +234,42 @@ angular.module('telusLg2App')
     }
 
 
-    $scope.selectFilter = function () {
 
+
+
+
+    $scope.selectOnsiteFilter = function () {
+      $scope.onsitefilters = [
+        {
+          filterId: 1,
+          time: 'Last Weeks',
+          showOnsiteLast7Days: function () {
+            $scope.getOnsiteDataPreGenReportA();
+          }
+       },
+       {
+         filterId: 1,
+         time: 'Last 4 Weeks',
+         showOnsiteLast4Weeks: function () {
+            $scope.getOnsiteDataPreGenReportB();
+         }
+       }
+      ];
+      $scope.selectedOnsiteIndex = 0;
+      $scope.selectOnsite = function (i) {
+        $scope.selectedOnsiteIndex = i;
+      };
+    }
+
+
+
+
+
+
+
+
+
+    $scope.selectFilter = function () {
       $scope.filters = [
         {
           filterId: 1,
@@ -284,6 +318,8 @@ angular.module('telusLg2App')
         $scope.getSocialDayReport(7);
       };
     }
+
+
 
 
     $scope.showLast4Weeks = function () {
@@ -602,6 +638,7 @@ angular.module('telusLg2App')
     }
 
 
+
     $scope.showOnsiteDailyVisitorData = function () {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
@@ -727,6 +764,8 @@ angular.module('telusLg2App')
       var minutesData = google.visualization.arrayToDataTable($scope.durationData);
       linechart.draw(minutesData, options);
     }
+
+
 
 
     /**
