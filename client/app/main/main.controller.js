@@ -80,6 +80,9 @@ angular.module('telusLg2App')
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
       console.log("New CurrentLocation:" + $scope.currentLocation);
+      console.log("Location lat:" + $scope.currentLocation.center.latitude);
+      console.log("Location lng:" + $scope.currentLocation.center.longitude);
+
       //this tells function getReport to function showLast7Days which gets getSocialDayReport. getSocialDayReport tells tweetReports based on location. magic happens in this function.
       $scope.showLast7Days(7);      // Initially we get the last 7 days of data
       $scope.addLocationToMap();
@@ -109,10 +112,17 @@ angular.module('telusLg2App')
         latitude: $scope.currentLocation.center.latitude,
         longitude: $scope.currentLocation.center.longitude
       };
+
+
+      console.log("Setting map Location lat:" + $scope.currentLocation.center.latitude);
+      console.log("Setting map Location lng:" + $scope.currentLocation.center.longitude);
+
       $scope.circles[0].center = {
         latitude: $scope.currentLocation.center.latitude,
         longitude: $scope.currentLocation.center.longitude
       };
+
+
     }
 
 
@@ -569,20 +579,6 @@ angular.module('telusLg2App')
           //var hourlyTotals = results.hourlyBreakdown;
           $scope.onsiteHourlyTotals = results.hourlyData;
 
-          //var ampm = "am";
-          //var h = 0;
-          //for (var i = 0; i < 24; i++) {
-          //  h = i;
-          //  if (i > 11) {
-          //    ampm = "pm";
-          //    if (i >= 13) {
-          //      h = h - 12;
-          //    }
-          //  }
-          //  hourlyitem = [h + ampm, hourlyTotals[i], '#6ebe44'];
-          //  $scope.hourlyVisitorData.push(hourlyitem);
-          //  h++;
-          //}
 
           var durations = results.durations;
           $scope.durationData = [];
@@ -696,11 +692,6 @@ angular.module('telusLg2App')
         $scope.hourlyVisitorData.push(hourlyitem);
         h++;
       }
-
-
-
-
-
 
       var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
       //console.log("Graphing ..." + $scope.hourlyVisitorData);
@@ -945,31 +936,12 @@ angular.module('telusLg2App')
       $scope.tweeterResults;
       var geocoder = new google.maps.Geocoder();
       if ($scope.searchString != null) {
-        //console.log("Searching for tweeters at address :" + $scope.searchString);
+        console.log("Searching for tweeters at address :" + $scope.searchString);
         //console.log("Days :" + $scope.dayrange + " Meters :" + $scope.searchrange + " Limit :" + $scope.limit);
 
         geocoder.geocode({'address': $scope.searchString}, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
-            //console.log("status:" + results[0].geometry.location);
-            $scope.marker.coords = {
-              latitude: results[0].geometry.location.lat(),
-              longitude: results[0].geometry.location.lng()
-            };
-
-            $scope.marker.options = {
-              name: $scope.searchString
-            };
-            $scope.circles[0].radius = $scope.searchrange;
-            $scope.map.pan = true;
-            $scope.map.center = {
-              latitude: results[0].geometry.location.lat(),
-              longitude: results[0].geometry.location.lng()
-            };
-            $scope.circles[0].center = {
-              latitude: results[0].geometry.location.lat(),
-              longitude: results[0].geometry.location.lng()
-            };
-
+            console.log("status:" + results[0].geometry.location);
 
           } else {
             console.log('Geocode was not successful for the following reason: ' + status);
@@ -1104,58 +1076,3 @@ angular.module('telusLg2App')
     };
   })
 
-
-// .controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-//
-//   $scope.items = ['item1', 'item2', 'item3'];
-//
-//   $scope.animationsEnabled = true;
-//
-//   $scope.open = function (size) {
-//
-//     var modalInstance = $modal.open({
-//       animation: $scope.animationsEnabled,
-//       templateUrl: 'myModalContent.html',
-//       controller: 'ModalInstanceCtrl',
-//       size: size,
-//       resolve: {
-//         items: function () {
-//           return $scope.items;
-//         }
-//       }
-//     });
-//
-//     modalInstance.result.then(function (selectedItem) {
-//       $scope.selected = selectedItem;
-//     }, function () {
-//       $log.info('Modal dismissed at: ' + new Date());
-//     });
-//   };
-//
-//   $scope.toggleAnimation = function () {
-//     $scope.animationsEnabled = !$scope.animationsEnabled;
-//   };
-//
-// })
-//
-//
-//
-//
-//
-//
-//
-// .controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
-//
-//   $scope.items = items;
-//   $scope.selected = {
-//     item: $scope.items[0]
-//   };
-//
-//   $scope.ok = function () {
-//     $modalInstance.close($scope.selected.item);
-//   };
-//
-//   $scope.cancel = function () {
-//     $modalInstance.dismiss('cancel');
-//   };
-// })
