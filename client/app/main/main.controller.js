@@ -341,7 +341,7 @@ angular.module('telusLg2App')
         $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
         $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
         $scope.topTweeters = $scope.tweetReports.topTweeters;
-        //console.log("Top Tweeters:" + $scope.topTweeters);
+        console.log("Top Tweeters:" + $scope.topTweeters);
         $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
         $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
 
@@ -432,7 +432,9 @@ angular.module('telusLg2App')
         $scope.searchString = $scope.currentLocation.address;
         $scope.searchStringName = $scope.currentLocation.name;
         $scope.dayrange = numDays;
-        $scope.findTweeters();
+        TweeterResults.setTweeters($scope.topTweeters);
+        $scope.tweeterResults   = $scope.topTweeters;
+
       })
     }
 
@@ -942,6 +944,24 @@ angular.module('telusLg2App')
         geocoder.geocode({'address': $scope.searchString}, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             console.log("status:" + results[0].geometry.location);
+            $scope.marker.coords = {
+              latitude: results[0].geometry.location.lat(),
+              longitude: results[0].geometry.location.lng()
+            };
+
+            $scope.marker.options = {
+              name: $scope.searchString
+            };
+            $scope.circles[0].radius = $scope.searchrange;
+            $scope.map.pan = true;
+            $scope.map.center = {
+              latitude: results[0].geometry.location.lat(),
+              longitude: results[0].geometry.location.lng()
+            };
+            $scope.circles[0].center = {
+              latitude: results[0].geometry.location.lat(),
+              longitude: results[0].geometry.location.lng()
+            };
 
           } else {
             console.log('Geocode was not successful for the following reason: ' + status);
