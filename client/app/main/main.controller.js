@@ -728,6 +728,11 @@ angular.module('telusLg2App')
      */
     $scope.getCarrierDataPreGenReport = function (numDays) {
       $scope.currentLocation = LocationResults.getCurrentLocation();
+      var xfactor =  $scope.currentLocation.xfactor;
+      console.log("Location Xfactor:" + xfactor);
+      if(xfactor==null) {
+        xfactor = 1.0;
+      }
       $scope.carrierUniqueVisitors = "N/A";
 
       var dailyCarrierVisitorData = [];
@@ -752,8 +757,13 @@ angular.module('telusLg2App')
           // The results come in reverse order
           for (var i = 0; i<results.length;  i++) {
             //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
-            $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + results[i].uniqueVisitors;
-            item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', results[i].newVisitors, '#6ebe44'];
+            var visitors = Math.round(results[i].uniqueVisitors * xfactor);
+            var newVisitors = Math.round(results[i].newVisitors * xfactor);
+            console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
+            //$scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + results[i].uniqueVisitors;
+            $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
+            //item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', results[i].newVisitors, '#6ebe44'];
+            item = [results[i].date.substring(5), visitors, '#30134F', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
 
@@ -816,7 +826,7 @@ angular.module('telusLg2App')
         width: 1075,
         height: 500,
         colors: ['#30134F', '#6ebe44'],
-        chartArea: {left: 60, top: 60, width: '100%'},
+        chartArea: {left: 100, top: 60, width: '100%'},
         //legend: { position: 'bottom'},
         legend: {position: 'none'},
         //legend: { position: 'top', maxLines: 3 },
