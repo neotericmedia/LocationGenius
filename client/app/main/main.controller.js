@@ -760,9 +760,8 @@ angular.module('telusLg2App')
             var visitors = Math.round(results[i].uniqueVisitors * xfactor);
             var newVisitors = Math.round(results[i].newVisitors * xfactor);
             console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
-            //$scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + results[i].uniqueVisitors;
+            console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
-            //item = [results[i].date.substring(5), results[i].uniqueVisitors, '#30134F', results[i].newVisitors, '#6ebe44'];
             item = [results[i].date.substring(5), visitors, '#30134F', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
@@ -784,7 +783,9 @@ angular.module('telusLg2App')
                   h = h - 12;
                 }
               }
-              hourItem = [h + ampm, results[i].hourlyTotals[j], '#6ebe44'];
+              var hourlyTotal = Math.round(results[i].hourlyTotals[j] * xfactor);
+              hourItem = [h + ampm, hourlyTotal, '#6ebe44'];
+              //hourItem = [h + ampm, results[i].hourlyTotals[j], '#6ebe44'];
               hourData.push(hourItem);
               h++;
             }
