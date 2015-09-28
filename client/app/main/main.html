@@ -78,30 +78,9 @@
 
 
 
-
-
-
-
-
-
 <!-- <div class="csliderup"><a href="#btm">More</a></div> -->
 <!--<div class="clear" style="height:30px;"></div>-->
 <!-- <div id="btm"></div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -127,10 +106,6 @@
            </div>
           </div>
         </div>
-
-
-
-
 
 
 
@@ -164,7 +139,7 @@
            <tabset justified="false">
            <tab>
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" /></tab-heading>
+              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social</tab-heading>
 
                  <div class="date" style="position:absolute;">{{dateRange}}</div>
 
@@ -216,8 +191,7 @@
                                           <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | number}}</span></li>
                                           <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date}}</span></li>
                                           <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
-                                          <li>Top Tweeter: <span class="hLight">{{topTweeters[0].name}}</span> Tweets: <span class="hLight">{{topTweeters[0].tweets}}</span> Followers: <span class="hLight">{{topTweeters[0].followers}}</span></li>
-                                          <li>Most Frequent Author: <span class="hLight">{{mostFrequentAuthor.name}}</span> Tweets: <span class="hLight">{{mostFrequentAuthor.tweets}}</span> Followers: <span class="hLight">{{mostFrequentAuthor.followers}}</span></li>
+
                                        </ul>
                                  </div>
 
@@ -358,23 +332,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                        <div class="panel panel-default">
                            <div class="panel-body">
                               <div class="row">
@@ -398,63 +355,63 @@
 
 
 
-                       <div class="panel panel-default">
+                       <!--<div class="panel panel-default">-->
 
-                          <div class="row">
-                             <div class="col-md-6">
-                                <h4>Top Nearby Users</h4>
-                             </div>
-                             <div class="col-md-6" align="right">
-                                <button type="button" class="btn btn-success campaignButton" style="margin-top:7px;">Create Campaign</button>
-                             </div>
-                          </div>
+                          <!--<div class="row">-->
+                             <!--<div class="col-md-6">-->
+                                <!--<h4>Top Nearby Users</h4>-->
+                             <!--</div>-->
+                             <!--<div class="col-md-6" align="right">-->
+                                <!--<button type="button" class="btn btn-success campaignButton" style="margin-top:7px;">Create Campaign</button>-->
+                             <!--</div>-->
+                          <!--</div>-->
 
 
-                           <div class="panel-body" style="padding-top:0px;">
-                                <hr style="margin-bottom:0px; margin-top:30px; color: #000">
+                           <!--<div class="panel-body" style="padding-top:0px;">-->
+                                <!--<hr style="margin-bottom:0px; margin-top:30px; color: #000">-->
 
-                                <div id="tweeters_header">
-                                  <table class="table-striped table table-panel" style="margin-bottom:0px;">
-                                      <thead>
-                                         <tr>
-                                             <th width="3%">#</th>
-                                             <th width="3%">Profile</th>
-                                             <th width="10%">Username</th>
-                                             <th width="40%">Tweets</th>
-                                             <th width="2%"><i class="fa fa-comment-o" style="font-size:1.5em; color:#6ebe44;"></i></th>
-                                             <!--<th width="2%">Followers</th>-->
-                                         </tr>
-                                      </thead>
-                                  </table>
-                                </div>
-                                <div id="tweeters_div">
-                                    <div class="table-responsive tweetTable" style="height: 400px; overflow: scroll">
-                                        <!-- Table -->
-                                        <table class="table-striped table table-panel">
-                                            <!--<thead>
-                                               <tr>
-                                                   <th>#</th>
-                                                   <th>Profile</th>
-                                                   <th>Username</th>
-                                                   <th>Bio</th>
-                                                   <th>#Interactions</th>
-                                                   <th>Followers</th>
-                                               </tr>
-                                            </thead>-->
-                                            <tr ng-repeat="tweeter in tweeterResults track by $index">
-                                               <td width="2%">{{$index+1}}</td>
-                                               <td width="2%"><img ng-src="{{tweeter.imageUrl}}"></td>
-                                               <td width="8%">{{tweeter.name}}<br><span style="font-size:.75em">{{tweeter.followers | number}} Followers</span></td>
-                                               <td width="40%">{{tweeter.description}}</td>
-                                               <td width="2%">{{tweeter.tweets | number}}</td>
-                                               <!--<td width="2%">{{tweeter.followers | number}}</td>-->
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <hr style="margin-bottom:0px; margin-top:0px; color: #000">
-                           </div>
-                       </div>
+                                <!--<div id="tweeters_header">-->
+                                  <!--<table class="table-striped table table-panel" style="margin-bottom:0px;">-->
+                                      <!--<thead>-->
+                                         <!--<tr>-->
+                                             <!--<th width="3%">#</th>-->
+                                             <!--<th width="3%">Profile</th>-->
+                                             <!--<th width="10%">Username</th>-->
+                                             <!--<th width="40%">Tweets</th>-->
+                                             <!--<th width="2%"><i class="fa fa-comment-o" style="font-size:1.5em; color:#6ebe44;"></i></th>-->
+                                             <!--&lt;!&ndash;<th width="2%">Followers</th>&ndash;&gt;-->
+                                         <!--</tr>-->
+                                      <!--</thead>-->
+                                  <!--</table>-->
+                                <!--</div>-->
+                                <!--<div id="tweeters_div">-->
+                                    <!--<div class="table-responsive tweetTable" style="height: 400px; overflow: scroll">-->
+                                        <!--&lt;!&ndash; Table &ndash;&gt;-->
+                                        <!--<table class="table-striped table table-panel">-->
+                                            <!--&lt;!&ndash;<thead>-->
+                                               <!--<tr>-->
+                                                   <!--<th>#</th>-->
+                                                   <!--<th>Profile</th>-->
+                                                   <!--<th>Username</th>-->
+                                                   <!--<th>Bio</th>-->
+                                                   <!--<th>#Interactions</th>-->
+                                                   <!--<th>Followers</th>-->
+                                               <!--</tr>-->
+                                            <!--</thead>&ndash;&gt;-->
+                                            <!--<tr ng-repeat="tweeter in tweeterResults track by $index">-->
+                                               <!--<td width="2%">{{$index+1}}</td>-->
+                                               <!--<td width="2%"><img ng-src="{{tweeter.imageUrl}}"></td>-->
+                                               <!--<td width="8%">{{tweeter.name}}<br><span style="font-size:.75em">{{tweeter.followers | number}} Followers</span></td>-->
+                                               <!--<td width="40%">{{tweeter.description}}</td>-->
+                                               <!--<td width="2%">{{tweeter.tweets | number}}</td>-->
+                                               <!--&lt;!&ndash;<td width="2%">{{tweeter.followers | number}}</td>&ndash;&gt;-->
+                                            <!--</tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<hr style="margin-bottom:0px; margin-top:0px; color: #000">-->
+                           <!--</div>-->
+                       <!--</div>-->
            </tab>
            <!--END SOCIAL TAB-->
 
@@ -472,7 +429,7 @@
 
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab>
-               <tab-heading><img alt="Social" src="assets/images/network.png" class="icons" /></tab-heading>
+               <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensors</tab-heading>
 
 
                       <div class="date" style="position:absolute;">{{onsiteWeek}}</div>
@@ -525,7 +482,7 @@
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                                  <li>Most Frequent Visitor:  postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
                                                 </ul>
                                            </div>
 
@@ -719,39 +676,39 @@
                            </div>
                       </div>
 
-                      <div class="panel panel-default graphPanel">
-                           <div class="panel-body" >
-                              <h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>
-                              <div id="visitors_div">
+                      <!--<div class="panel panel-default graphPanel">-->
+                           <!--<div class="panel-body" >-->
+                              <!--<h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>-->
+                              <!--<div id="visitors_div">-->
 
-                                   <div class="table-responsive tweetTable">
-                                      <!-- Table -->
-                                      <table class="table-striped table table-panel">
-                                          <thead >
-                                          <tr>
-                                             <th>Customer</th>
-                                             <th>Postal Code</th>
-                                             <th>No. of Visits</th>
-                                          </tr>
-                                          </thead>
+                                   <!--<div class="table-responsive tweetTable">-->
+                                      <!--&lt;!&ndash; Table &ndash;&gt;-->
+                                      <!--<table class="table-striped table table-panel">-->
+                                          <!--<thead >-->
+                                          <!--<tr>-->
+                                             <!--<th>Customer</th>-->
+                                             <!--<th>Postal Code</th>-->
+                                             <!--<th>No. of Visits</th>-->
+                                          <!--</tr>-->
+                                          <!--</thead>-->
 
-                                          <div >
-                                             <div >
-                                                   <tr ng-repeat="visitor in topCustomers track by $index">
-                                                       <td class="customer">{{visitor.mac}}</td>
-                                                       <td>{{visitor.postalCode}}</td>
-                                                       <td>{{visitor.numVisits}}</td>
-                                                   </tr>
-                                             </div>
+                                          <!--<div >-->
+                                             <!--<div >-->
+                                                   <!--<tr ng-repeat="visitor in topCustomers track by $index">-->
+                                                       <!--<td class="customer">{{visitor.mac}}</td>-->
+                                                       <!--<td>{{visitor.postalCode}}</td>-->
+                                                       <!--<td>{{visitor.numVisits}}</td>-->
+                                                   <!--</tr>-->
+                                             <!--</div>-->
 
-                                          </div>
+                                          <!--</div>-->
 
-                                      </table>
+                                      <!--</table>-->
 
-                                   </div>
-                              </div>
-                           </div>
-                      </div>
+                                   <!--</div>-->
+                              <!--</div>-->
+                           <!--</div>-->
+                      <!--</div>-->
 
 
            </tab>
@@ -783,7 +740,7 @@
 
            <!--////////////////////////////////////CARRIER DATA-->
            <tab>
-               <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /></tab-heading>
+               <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network</tab-heading>
 
 
                     <div class="date" style="position:absolute;">{{carrierDate}}</div>
