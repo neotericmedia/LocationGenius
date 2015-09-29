@@ -87,7 +87,7 @@ ul.boo.active li a {
 
 .dropdown-menu {
    left: 45px;
-   width: 225px;
+   width: 280px;
 }
 
 .input-group-addon {
@@ -462,18 +462,15 @@ div.ng-isolate-scope .nav > li > a {
    font-size:15px;
    color: #999;
  }
- .slide {
-     height: 0px - 20px;
-     width: 100%;
- }
- .csliderup {
+
+ /*.csliderup {
      width: 100%;
      z-index: 940;
      position: absolute;
      bottom: 0px;
      height: 80px;
      text-align: center;
- }
+ }*/
 
 
 .navbar {

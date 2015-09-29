@@ -63,7 +63,7 @@
 
 
 
-<div class="slide" style="background-color:#ccc">
+<div class="slide" style="height:100px;background-color:#ccc">
    <!--///////////////////////////////////////////////////////////////////MAP-->
    <div id="map-canvas">
      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
@@ -187,7 +187,7 @@
 
                                  <div class="well well-lg highlightsPanel">
                                        <ul style="margin-bottom:0px;">
-                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions | number}}</span> visitors <span class="hLight">{{dateRange}}</span></li>
+                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions | number}}</span> interactions <span class="hLight">{{dateRange}}</span></li>
                                           <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | number}}</span></li>
                                           <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date}}</span></li>
                                           <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
@@ -1039,7 +1039,7 @@
 
 <script type='text/javascript'>
   function sliderHeight ()  {
-      var wheight = $(window).height();
+      var wheight = $(window).height() - 300;
       $(".slide").height(wheight)
   }
   $(window).resize(function() {
