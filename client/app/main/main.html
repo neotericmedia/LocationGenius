@@ -139,7 +139,7 @@
            <tabset justified="false">
            <tab>
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social</tab-heading>
+              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social Data</tab-heading>
 
                  <div class="date" style="position:absolute;">{{dateRange}}</div>
 
@@ -429,7 +429,7 @@
 
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab>
-               <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensors</tab-heading>
+               <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
 
 
                       <div class="date" style="position:absolute;">{{onsiteWeek}}</div>
@@ -482,7 +482,6 @@
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                  <li>Most Frequent Visitor:  postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
                                                 </ul>
                                            </div>
 
@@ -740,7 +739,7 @@
 
            <!--////////////////////////////////////CARRIER DATA-->
            <tab>
-               <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network</tab-heading>
+               <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
 
 
                     <div class="date" style="position:absolute;">{{carrierDate}}</div>
@@ -750,10 +749,9 @@
                       <div id="miniTab" class="row">
                         <div class="col-md-12">
                            <tabset type="pills" class="ng-isolate-scope ng-scope">
-                             <tab heading="Last Week" ng-click="getCarrierDataPreGenReport(7)"></tab>
-                             <tab heading="Last 4 weeks" ng-click="getCarrierDataPreGenReport(28)"></tab>
-                             <tab heading="Last 8 weeks" ng-click="getCarrierDataPreGenReport(56)"></tab>
-                             <tab heading="Last 3 months" ng-click="getCarrierDataPreGenReport(90)"></tab>
+                             <tab heading="Last 30 Days" ng-click="getCarrierDataPreGenReport(30)"></tab>
+                             <tab heading="Last 60 Days" ng-click="getCarrierDataPreGenReport(60)"></tab>
+                             <tab heading="Last 90 Days" ng-click="getCarrierDataPreGenReport(90)"></tab>
                            </tabset>
                         </div>
                       </div>
@@ -786,7 +784,7 @@
 
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{mostPostalCode}}</span> (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
+                                                  <li>Most Frequent Visitor: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, (<span class="hLight">{{mostFrequentCustomerVisits}}</span> visits to date)</li>
                                                 </ul>
                                            </div>
 
