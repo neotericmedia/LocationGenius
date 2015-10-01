@@ -78,6 +78,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   console.log("Adding location:" + JSON.stringify(req.body));
   request({
+    //url: 'http://localhost:9100/user/' + req.params.user + '/location',
     url: 'http://192.99.16.178:9100/user/' + req.params.user + '/location',
     method: 'POST',
     headers: {
