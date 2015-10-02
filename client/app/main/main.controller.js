@@ -5,6 +5,42 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
+    $scope.words = [
+      {text: "Lorem", weight: 13},
+      {text: "Ipsum", weight: 10.5},
+      {text: "Dolor", weight: 9.4},
+      {text: "Sit", weight: 8},
+      {text: "Amet", weight: 6.2},
+      {text: "Consectetur", weight: 5},
+      {text: "Adipiscing", weight: 5},
+      {text: "Elit", weight: 5},
+      {text: "Nam et", weight: 5},
+      {text: "Leo", weight: 4},
+      {text: "Sapien", weight: 4},
+      {text: "Pellentesque", weight: 3},
+      {text: "habitant", weight: 3},
+      {text: "morbi", weight: 3},
+      {text: "tristisque", weight: 3},
+      {text: "senectus", weight: 3},
+      {text: "et netus", weight: 3},
+      {text: "et malesuada", weight: 3},
+      {text: "fames", weight: 2},
+      {text: "ac turpis", weight: 2},
+      {text: "egestas", weight: 2},
+      {text: "Aenean", weight: 2},
+      {text: "vestibulum", weight: 2},
+      {text: "elit", weight: 2},
+      {text: "sit amet", weight: 2},
+      {text: "metus", weight: 2},
+      {text: "adipiscing", weight: 2},
+      {text: "ut ultrices", weight: 2}
+    ];
+    $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
+
+    $scope.update = function() {
+      $scope.words.splice(-5);
+    };
+
     // Get the locations from the Location Service
     $http({
       method: 'GET',
@@ -75,14 +111,14 @@ angular.module('telusLg2App')
      *  When a new location is selected, generate the reports and add a marker on the map
      *************************************************************************************/
     $scope.setSelectedLocation = function (location) {
-      console.log("Setting selected location:" + location.name);
+      //console.log("Setting selected location:" + location.name);
       document.getElementById("contentArea").style.display = "block";
 
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
-      console.log("New CurrentLocation:" + $scope.currentLocation);
-      console.log("Location lat:" + $scope.currentLocation.center.latitude);
-      console.log("Location lng:" + $scope.currentLocation.center.longitude);
+      //console.log("New CurrentLocation:" + $scope.currentLocation);
+      //console.log("Location lat:" + $scope.currentLocation.center.latitude);
+      //console.log("Location lng:" + $scope.currentLocation.center.longitude);
 
       //this tells function getReport to function showLast7Days which gets getSocialDayReport. getSocialDayReport tells tweetReports based on location. magic happens in this function.
       $scope.showLast7Days(7);      // Initially we get the last 7 days of data
@@ -115,8 +151,8 @@ angular.module('telusLg2App')
       };
 
 
-      console.log("Setting map Location lat:" + $scope.currentLocation.center.latitude);
-      console.log("Setting map Location lng:" + $scope.currentLocation.center.longitude);
+      //console.log("Setting map Location lat:" + $scope.currentLocation.center.latitude);
+      //console.log("Setting map Location lng:" + $scope.currentLocation.center.longitude);
 
       $scope.circles[0].center = {
         latitude: $scope.currentLocation.center.latitude,
@@ -325,6 +361,7 @@ angular.module('telusLg2App')
       };
 
       $scope.selected = function (i) {
+        //console.log("Selected 7 days");
         $scope.selectedIndex = 0;
         $scope.getSocialDayReport(7);
       };
@@ -367,20 +404,23 @@ angular.module('telusLg2App')
       $scope.results = TweetReports.query(params);
 
       $scope.results.$promise.then(function (results) {
-        console.log("Social Report Results:" + results);
+        //console.log("Social Report Results:" + results);
         $scope.tweetReports = results;
         //console.log("Tweet Reports:" + $scope.tweetReports);
         LocationResults.setTweetReports($scope.tweetReports);
         $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
         $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
         //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
-
+        var wc  = results.wordCloud;
+        $scope.words = results.wordCloud;
+        console.log("Tweet Word Cloud" + $scope.words);
         $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
         $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
         $scope.topTweeters = $scope.tweetReports.topTweeters;
-        console.log("Top Tweeters:" + $scope.topTweeters);
+        //console.log("Top Tweeters:" + $scope.topTweeters);
         $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
         $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
+
 
         $scope.hourlyData = [];  // HourlyData contains the hourly totals for each day
         var hourData = [];
@@ -545,7 +585,7 @@ angular.module('telusLg2App')
       }
 
 
-      console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
+      //console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
       $scope.report = OnsitePregenReport.query(params);
       $scope.report.$promise.then(function (results) {
         //console.log("Onsite Report Results:" + results.totalVisits);
@@ -565,6 +605,7 @@ angular.module('telusLg2App')
           $scope.busiestHourDay = results.busiestHour.day;
           $scope.busiestHourVisits = results.busiestHour.visits;
           $scope.topCustomers = results.topCustomers;
+          $scope.topCustomersTotals = results.topCustomers;
           $scope.hourlyBreakdown = results.hourlyBreakdown;
           $scope.durations = results.durations;
           $scope.days = results.days;
@@ -632,6 +673,9 @@ angular.module('telusLg2App')
           $scope.showOnsiteDailyVisitorData();
           $scope.showOnsiteHourlyVisitorData(0);
           $scope.showOnsiteDurationData();
+          $scope.showOnsiteLoyaltyData();
+
+
         }
       })
     }
@@ -660,6 +704,60 @@ angular.module('telusLg2App')
     }
 
 
+
+    $scope.showOnsiteLoyaltyData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      var options = {
+        width: 1075,
+        height: 550,
+        colors: ['#6ebe44'],
+        chartArea: {left: 50, top: 60, width: '100%'},
+        legend: {position: 'bottom', alignment: 'center'},
+        hAxis: { format:'#'} ,
+        vAxis: { format:'#'}
+      };
+
+      var customers = $scope.topCustomers;
+
+      var loyaltyData = [];
+      var loyaltyItem = ['Number of Visits', 'Customer Count',{role: 'style'}];
+      loyaltyData.push(loyaltyItem);
+
+      var loyaltyCounts = [];
+
+      //console.log("Customers count " + j + ":" + customers.length);
+      var index = 0;
+      if (customers != null) {
+        for (var j = 0; j < customers.length; j++) {
+          //console.log("Loyalty count " + j + ":" + customers[j].numVisits);
+          index = parseInt(customers[j].numVisits);
+          //console.log("index " + index);
+          if (loyaltyCounts[index] === undefined) {
+            loyaltyCounts[index] = 1;
+          } else {
+            loyaltyCounts[index]++;
+          }
+
+
+          //console.log("Loyalty count " + j + ":" + loyaltyCounts[j]);
+
+        }
+        for (var j = 0; j < loyaltyCounts.length; j++) {
+          //console.log("Count " + j + ":" + loyaltyCounts[j]);
+          loyaltyItem = [j,loyaltyCounts[j], '#6ebe44'];
+          loyaltyData.push(loyaltyItem);
+        }
+      }
+
+
+
+      var data = google.visualization.arrayToDataTable(loyaltyData);
+      var onsiteLoyaltyChart = new google.visualization.ColumnChart(document.getElementById('onsite_loyalty_chart_div'));
+      onsiteLoyaltyChart.draw(data, options);
+    }
+
+
     /**
      * Adds a clickable listener to the chart that updates
      * the time breakdown chart on clicking
@@ -667,7 +765,7 @@ angular.module('telusLg2App')
      */
     function selectOnsiteDayHandler(e) {
       var selection = onsiteVisitorChart.getSelection();
-      console.log("Onsite Selection " + selection.length);
+      //console.log("Onsite Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -681,7 +779,7 @@ angular.module('telusLg2App')
     }
 
     var showOnsiteDay = function (day) {
-      console.log("Onsite Day Index:" + day);
+      //console.log("Onsite Day Index:" + day);
 
       $scope.showOnsiteHourlyVisitorData(day);
 
@@ -690,7 +788,7 @@ angular.module('telusLg2App')
     $scope.showOnsiteHourlyVisitorData = function (day) {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
-      console.log("Graphing hourly data for day " + day);
+      //console.log("Graphing hourly data for day " + day);
       var options = {
         width: 1075,
         height: 550,
@@ -716,7 +814,7 @@ angular.module('telusLg2App')
         }
       }
 
-      console.log("HourlyTotals:" + hourlyTotals);
+      //console.log("HourlyTotals:" + hourlyTotals);
 
       var ampm = "am";
       var h = 0;
@@ -769,7 +867,7 @@ angular.module('telusLg2App')
     $scope.getCarrierDataPreGenReport = function (numDays) {
       $scope.currentLocation = LocationResults.getCurrentLocation();
       var xfactor =  $scope.currentLocation.xfactor;
-      console.log("Location Xfactor:" + xfactor);
+      //console.log("Location Xfactor:" + xfactor);
       if(xfactor==null) {
         xfactor = 1.0;
       }
@@ -799,8 +897,8 @@ angular.module('telusLg2App')
             //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
             var visitors = Math.round(results[i].uniqueVisitors * xfactor);
             var newVisitors = Math.round(results[i].newVisitors * xfactor);
-            console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
-            console.log("Carrier Date = " + results[i].date);
+            //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
+            //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
             item = [results[i].date.substring(5), visitors, '#30134F', newVisitors, '#6ebe44'];
 
@@ -889,7 +987,7 @@ angular.module('telusLg2App')
      */
     function selectCarrierDayHandler(e) {
       var selection = visitorchart.getSelection();
-      console.log("Carrier Selection " + selection.length);
+      //console.log("Carrier Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -989,12 +1087,12 @@ angular.module('telusLg2App')
       $scope.tweeterResults;
       var geocoder = new google.maps.Geocoder();
       if ($scope.searchString != null) {
-        console.log("Searching for tweeters at address :" + $scope.searchString);
+        //console.log("Searching for tweeters at address :" + $scope.searchString);
         //console.log("Days :" + $scope.dayrange + " Meters :" + $scope.searchrange + " Limit :" + $scope.limit);
 
         geocoder.geocode({'address': $scope.searchString}, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
-            console.log("status:" + results[0].geometry.location);
+            //console.log("status:" + results[0].geometry.location);
             $scope.marker.coords = {
               latitude: results[0].geometry.location.lat(),
               longitude: results[0].geometry.location.lng()
@@ -1015,7 +1113,7 @@ angular.module('telusLg2App')
             };
 
           } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
+            //console.log('Geocode was not successful for the following reason: ' + status);
           }
         });
         $scope.address = $scope.searchString;

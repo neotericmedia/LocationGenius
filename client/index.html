@@ -15,13 +15,13 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="bower_components/angularjs-datepicker/src/css/angular-datepicker.css" />
+    <link rel="stylesheet" href="bower_components/jqcloud2/dist/jqcloud.min.css">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -35,13 +35,17 @@
     <!-- endbuild -->
     <!--dave-->
     <style>
-       #map-outer {height: auto; border: 2px solid #CCC; margin-bottom: 20px; background-color:#FFF }
+       #map-outer {height: 100%; border: 2px solid #CCC; margin-bottom: 20px; background-color:#FFF }
        #map-canvas { height: 100%;  font-family: 'Roboto', sans-serif;margin-left: 0px;margin-right: 0px;background-color: #ffffff; position: relative;}
        .table-panel { width: 100%; }
        @media all and (max-width: 850px) {
            #map-outer  { height: 100% }
        }
        .angular-google-map-container { position: absolute; top:0px; left:0px; height: 100%; width:100%; font-family: 'Roboto', sans-serif; margin-left: 0px;margin-right: 0px;background-color: #ffffff;}
+    </style>
+
+    <style>
+      #cloud-dynamic { width: 80%; height: 400px; }
     </style>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
@@ -79,7 +83,7 @@
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
       <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -92,8 +96,11 @@
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
     <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+    <script src="bower_components/jqcloud2/dist/jqcloud.min.js"></script>
 
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+
+
 
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
@@ -104,6 +111,7 @@
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
+          <script src="app/main/angular-jqcloud.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/tlg/tlg.service.js"></script>

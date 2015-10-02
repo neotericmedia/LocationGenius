@@ -63,7 +63,7 @@
 
 
 
-<div class="slide" style="background-color:#ccc">
+<div class="slide" style="height:100px;background-color:#ccc">
    <!--///////////////////////////////////////////////////////////////////MAP-->
    <div id="map-canvas">
      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
@@ -349,6 +349,30 @@
                               </div>
                            </div>
                        </div>
+
+                       <div class="panel panel-default">
+                         <div class="panel-body">
+                           <div class="row">
+                             <div class="col-md-4">
+                               <h4>Word cloud</h4>
+
+                             </div>
+
+                           </div>
+                           <div class="row">
+                             <div class="col-md-8 col-md-offset-4" style="margin-left:100px;">
+                               <div id="wordcloud_div">
+                                 <!--<jqcloud words="words" id="cloud-dynamic" auto-resize="true" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>-->
+
+                                 <jqcloud words="words" width="500" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>
+
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+
+
 
 
 
@@ -655,6 +679,18 @@
                            </div>
                       </div>
 
+                     <div class="panel panel-default graphPanel">
+                       <div class="panel-body" >
+                         <h4>Customer Loyalty <span class="locateSub">(Last Week)</span></h4>
+
+
+                         <div class="row">
+                           <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                             <div id="onsite_loyalty_chart_div"></div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
 
 
                       <div class="panel panel-default graphPanel">

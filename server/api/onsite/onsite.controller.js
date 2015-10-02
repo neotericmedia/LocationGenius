@@ -5,6 +5,7 @@ var Onsite = require('./onsite.model');
 var request = require('request');
 
 // Get a onsite report
+//http://192.99.16.178:9100/onsitereport/180?date=2015-04-26
 exports.show = function(req, res) {
   console.log("Date:" + req.query.date + " id:" + req.params.id );
   request({
