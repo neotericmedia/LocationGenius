@@ -77,6 +77,7 @@ angular.module('telusLg2App')
     $scope.setSelectedLocation = function (location) {
       console.log("Setting selected location:" + location.name);
       document.getElementById("contentArea").style.display = "block";
+
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
       console.log("New CurrentLocation:" + $scope.currentLocation);
@@ -1145,4 +1146,3 @@ angular.module('telusLg2App')
       $scope.status.isopen = !$scope.status.isopen;
     };
   })
-
