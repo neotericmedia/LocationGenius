@@ -12,6 +12,7 @@ exports.show = function(req, res) {
   console.log('Getting twitter day report...' + req.query.days + " " + req.query.top);
   request({
     url: 'http://192.99.16.178:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
+    //url: 'http://localhost:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
     method: 'GET',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
