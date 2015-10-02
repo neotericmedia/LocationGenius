@@ -412,7 +412,7 @@ angular.module('telusLg2App')
         //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
         var wc  = results.wordCloud;
         $scope.words = results.wordCloud;
-        //console.log("Tweet Word Cloud" + $scope.words);
+        console.log("Tweet Word Cloud" + $scope.words);
         $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
         $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
         $scope.topTweeters = $scope.tweetReports.topTweeters;
