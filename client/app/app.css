@@ -6,6 +6,9 @@
 775d90
 301050
 30134F
+
+PANTONE 2745 C
+40 58 151
 */
 @font-face {
     font-family: 'Glyphicons Halflings';
@@ -42,7 +45,18 @@
 #tweeters_div thead tr th {
   width: 100%;
 }*/
-
+.uts {
+   display: none;
+}
+.dropdown {
+   margin-bottom: 15px;
+}
+#searchbar {
+   margin: 20px 0px 30px 0px;
+}
+.nav > li.hello-no {
+   display: none;
+}
 ul.boo {
    margin: 12px 0px 0px 0px;
    padding: 0px;
@@ -56,7 +70,7 @@ ul.boo li a {
    color:#6ebe44;
    float: left;
    background-color: #f7f7f7;
-   padding: 10px 15px 10px 15px;
+   padding: 10px 5px 10px 5px;
 }
 ul.boo li a:hover {
    background-color: #6ebe44;
@@ -83,13 +97,22 @@ ul.boo.active li a {
 
 .well li {
    font-weight: bold;
+   line-height: 24px;
 }
-
 .dropdown-menu {
-   left: 45px;
-   width: 280px;
+   width: 100%;
+   margin-left: 0px;
 }
-
+i.fa-map-marker {
+   font-size:1.95em;
+   color:#6ebe44;
+   margin-right:12px;
+   position: absolute;
+   padding: 3px 3px 3px 15px;
+}
+.dropdown-toggle {
+   width: 100%;
+}
 .input-group-addon {
    background-color: #6ebe44;
    color: #fff;
@@ -99,6 +122,10 @@ ul.boo.active li a {
 #dropdownMenu1 {
    width: 225px;
 }
+
+
+
+
 
 #tweeters_div .table > tbody > tr > td {
   border-top: 0px;
@@ -145,10 +172,15 @@ ul.boo.active li a {
   margin-right:7px;
   margin-top:3px;
 }
-.cNew {
+
+.cNewA {
+   float:left;
+   margin-right:20px;
+}
+.cNewB {
   width:15px;
   height:15px;
-  background-color:#775d90;
+  background-color:rgb(40,58,151);
   border-radius:50%;
   float:left;
   margin-right:7px;
@@ -161,6 +193,11 @@ a:hover {
 
 #social-highlights-panel .panel-group {
   margin-bottom: 0px;
+  margin-top: 30px;
+  text-align: center;
+}
+#social-highlights-panel .panel-group ul {
+  text-align: left;
 }
 #social-highlights-panel .panel-heading {
   padding: 0px;
@@ -183,9 +220,11 @@ i.fa-angle-down {
   font-size:2.5em;position:absolute;top:13px;
 }
 
-i.fa {
-  color: #ccc;
+i.fa-angle-right {
+   color: rgb(40,58,151);
+   font-size:1em;
 }
+
 
 .icons {
   max-width:30px;
@@ -193,10 +232,7 @@ i.fa {
 }
 
 
-#miniTab div.ng-isolate-scope .nav {
-  float: right;
-  margin-top: 15px;
-}
+
 
 
 
@@ -284,7 +320,7 @@ p {
 
 
 div.ng-isolate-scope .nav > li > a {
-  padding: 22px 52px;
+  padding: 22px 5px;
 }
 
 #miniTab div.ng-isolate-scope .nav > li > a {
@@ -322,6 +358,7 @@ div.ng-isolate-scope .nav > li > a {
 }
 .uts a i {
   font-size: 1.35em;
+  color: #333;
 }
 .uts a i:hover {
   color: #999
@@ -381,16 +418,15 @@ div.ng-isolate-scope .nav > li > a {
   border-radius: 10px;
   border: none;
   color:#000;
-  font-weight: 500;
+  font-weight: 300;
   background: #f7f7f7;
+  margin-top: 30px;
 }
 .totalBorderA a {
-  color:#ccc;
+  color:#333;
 }
 
-.down {
 
-}
 
 
 
@@ -436,10 +472,12 @@ div.ng-isolate-scope .nav > li > a {
    font-family: 'Roboto', sans-serif;
    font-weight: 100;
    font-size: 2em;
-   color: #ccc;
+   color: #666;
    text-align: center;
    display: block;
    margin-bottom: 50px;
+   padding-left: 20px;
+   padding-right: 20px;
  }
  h4 {
    font-family: 'Roboto', sans-serif;
@@ -452,11 +490,13 @@ div.ng-isolate-scope .nav > li > a {
    font-family: 'Roboto', sans-serif;
    font-weight: 100;
    font-size: 2em;
-   color: #999;
-   margin-top: 0px;
+   color: #333;
+   margin-bottom: 10px;
+   margin-top: 30px;
    margin-right: 30px;
    display: block;
    z-index: 5000;
+   text-align: center;
  }
  .locateSub {
    font-size:15px;
@@ -483,8 +523,8 @@ div.ng-isolate-scope .nav > li > a {
      border: #6ebe44;
  }
  .btn-success:hover {
-     background-color: #30134F;
-     border: #30134F;
+     background-color: rgb(40,58,151);
+     border: rgb(40,58,151);
  }
 
 
@@ -513,11 +553,11 @@ div.ng-isolate-scope .nav > li > a {
     color: #6ebe44;
 }
 a:hover,.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-   color: #30134F;
+   color: rgb(40,58,151);;
 }
 
 p.ng-binding, h2 {
-   color: #30134F;
+   color: rgb(40,58,151);;
 }
 
  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -585,6 +625,12 @@ p.ng-binding, h2 {
      left: 50%;
      transform: translate(-50%);
      opacity: 0.9;
+     margin: 0px;
+     background-color: #fff;
+     padding: 22px 10px 20px 10px;
+     border-radius: 4px;
+     -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .09);
+     box-shadow: 0 2px 2px rgba(0, 0, 0, .09)
   }
   .locationTitle {
      padding-top: 0px;
@@ -595,6 +641,52 @@ p.ng-binding, h2 {
     position: absolute;
     right: 0px;
     top: 0px;
+  }
+  i.fa-map-marker {
+     float:left;
+     position: relative;
+     padding: 0px
+  }
+  .dropdown-toggle {
+     float: left;
+  }
+  .dropdown-menu {
+     width: 90%;
+     margin-left: 45px;
+  }
+  .nav > li.hello-no {
+     display: block;
+  }
+  .dropdown-toggle {
+     width: 85%;
+  }
+  div.ng-isolate-scope .nav > li > a {
+    padding: 22px 52px;
+  }
+  .dropdown {
+     margin-bottom: 0px;
+  }
+  .uts {
+     display: block;
+  }
+  #contentArea {
+     margin-top:60px;margin-bottom:60px;
+  }
+  ul.boo li a {
+    padding: 10px 15px 10px 15px;
+  }
+  #social-highlights-panel .panel-group {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: left;
+  }
+  .subTxt {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #miniTab div.ng-isolate-scope .nav {
+    float: right;
+    margin-top: 15px;
   }
 }
 @media only screen and (min-width: 75em) {
