@@ -292,7 +292,12 @@ angular.module('telusLg2App')
         colors: ['#6ebe44'],
         legend: {position: 'bottom'},
         chartArea: {left: 0, top: 60, width: '100%'},
-        fontSize: 11
+        fontSize: 11,
+        hAxis: {
+          //textPosition: 'none',
+          slantedText: true,
+          slantedTextAngle: 45
+        }
       };
       var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
       var hours = $scope.hourlyData[day];
@@ -305,7 +310,12 @@ angular.module('telusLg2App')
            colors: ['#6ebe44'],
            legend: {position: 'bottom'},
            chartArea: {left: 0, top: 60, width: '100%'},
-           fontSize: 11
+           fontSize: 11,
+           hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+           }
          };
          linechart.draw(hourly, options);
       });
@@ -682,7 +692,7 @@ angular.module('telusLg2App')
             if (dailyReports[i] != null) {
               //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
               var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
-              item = [date, dailyReports[i].total_visit, '#293D95', dailyReports[i].newMac, '#6ebe44'];
+              item = [date, dailyReports[i].total_visit, '#49296A', dailyReports[i].newMac, '#6ebe44'];
               dailyVisitorData.push(item);
             }
           }
@@ -725,7 +735,7 @@ angular.module('telusLg2App')
         //width: {width: '100%'},
         width: document.getElementById("container").clientWidth - 50,
         height: 550,
-        colors: ['#293D95', '#6ebe44'],
+        colors: ['#ffffff', '#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
         //legend: { position: 'bottom'},
         legend: {position: 'none'},
@@ -745,10 +755,15 @@ angular.module('telusLg2App')
          var options = {
            width: {width: '100%'},
            height: 550,
-           colors: ['#293D95', '#6ebe44'],
+           colors: ['#ffffff', '#6ebe44'],
            chartArea: {left: 60, top: 60, width: '100%'},
            legend: {position: 'none'},
            isStacked: true,
+           hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+           }
          };
           onsiteVisitorChart.draw($scope.visitordata, options);
       });
@@ -1006,7 +1021,7 @@ angular.module('telusLg2App')
             //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
             //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
-            item = [results[i].date.substring(5), visitors, '#293D95', newVisitors, '#6ebe44'];
+            item = [results[i].date.substring(5), visitors, '#49296A', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
 
@@ -1071,7 +1086,7 @@ angular.module('telusLg2App')
         //width: 1075,
         width: document.getElementById("container").clientWidth - 50,
         height: 500,
-        colors: ['#293D95', '#6ebe44'],
+        colors: ['#ffffff', '#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
         //legend: { position: 'bottom'},
         legend: {position: 'none'},
@@ -1085,7 +1100,7 @@ angular.module('telusLg2App')
        $(window).resize(function(){
           var options = {
             height: 500,
-            colors: ['#293D95', '#6ebe44'],
+            colors: ['#ffffff', '#6ebe44'],
             chartArea: {left: 60, top: 60, width: '100%'},
             //legend: { position: 'bottom'},
             legend: {position: 'none'},

@@ -7,6 +7,8 @@
 301050
 30134F
 
+purple 49296A
+
 PANTONE 2745 C
 40 58 151
 */
@@ -45,6 +47,9 @@ PANTONE 2745 C
 #tweeters_div thead tr th {
   width: 100%;
 }*/
+#wordcloud {
+   width: 300px;
+}
 .uts {
    display: none;
 }
@@ -71,6 +76,7 @@ ul.boo li a {
    float: left;
    background-color: #f7f7f7;
    padding: 10px 5px 10px 5px;
+   font-size: .75em;
 }
 ul.boo li a:hover {
    background-color: #6ebe44;
@@ -161,6 +167,7 @@ i.fa-map-marker {
 
 .nav-tabs > li > a {
   border: none;
+  font-size: .75em;
 }
 
 .cAll {
@@ -180,7 +187,7 @@ i.fa-map-marker {
 .cNewB {
   width:15px;
   height:15px;
-  background-color:rgb(40,58,151);
+  background-color:#49296A;
   border-radius:50%;
   float:left;
   margin-right:7px;
@@ -221,7 +228,7 @@ i.fa-angle-down {
 }
 
 i.fa-angle-right {
-   color: rgb(40,58,151);
+   color: #49296A;
    font-size:1em;
 }
 
@@ -320,7 +327,7 @@ p {
 
 
 div.ng-isolate-scope .nav > li > a {
-  padding: 22px 5px;
+  padding: 22px 10px;
 }
 
 #miniTab div.ng-isolate-scope .nav > li > a {
@@ -523,8 +530,8 @@ div.ng-isolate-scope .nav > li > a {
      border: #6ebe44;
  }
  .btn-success:hover {
-     background-color: rgb(40,58,151);
-     border: rgb(40,58,151);
+     background-color: #49296A;
+     border: #49296A;
  }
 
 
@@ -553,11 +560,13 @@ div.ng-isolate-scope .nav > li > a {
     color: #6ebe44;
 }
 a:hover,.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-   color: rgb(40,58,151);;
+   /*color: #49296A;*/
+   color: #49296A;
 }
 
 p.ng-binding, h2 {
-   color: rgb(40,58,151);;
+   /*color: #49296A;*/
+   color: #49296A;
 }
 
  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -688,12 +697,25 @@ p.ng-binding, h2 {
     float: right;
     margin-top: 15px;
   }
+  #wordcloud {
+     width: 500px;
+  }
+  .nav-tabs > li > a {
+    font-size: 1em;
+  }
+  ul.boo li a {
+     font-size: 1em;
+  }
 }
 @media only screen and (min-width: 75em) {
   /* 1200 =================================================== */
 }
 @media only screen and (min-width: 87em) {
   /* 1392 =================================================== */
+
+  #wordcloud {
+     width: 600px;
+  }
 
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {

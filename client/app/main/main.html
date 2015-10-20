@@ -406,7 +406,7 @@
                                <div id="wordcloud_div">
                                  <!--<jqcloud words="words" id="cloud-dynamic" auto-resize="true" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>-->
 
-                                 <jqcloud words="words" width="500" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}" style="margin: 0 auto"></jqcloud>
+                                 <jqcloud words="words" id="wordcloud" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}" style="margin: 0 auto"></jqcloud>
 
                                </div>
                              </div>
@@ -626,7 +626,7 @@
 
 
                               <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
 
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
@@ -656,27 +656,26 @@
                                        </div>
                                     </div>
 
-
+                                    <div style="clear: both"></div>
                                 </div>
 
 
 
-                                <div class="col-md-6">
-                                  <div class="row" style="margin-top:43px;">
+                                <div class="col-lg-6">
+                                  <div class="row" style="margin-top:4px;">
 
-                                    <div class="col-md-6">
-                                    </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12 col-md-offset-4">
+
 
                                       <div class="cNewA">
                                         <div class="cNewB"></div>All Visitors
                                       </div>
 
-
                                       <div style="float:left">
                                         <div class="cAll"></div>New Visitors
                                       </div>
+
 
                                     </div>
 
@@ -970,21 +969,19 @@
                                        </div>
                                     </div>
 
-
+                                    <div style="clear: both"></div>
                                 </div>
 
 
 
                                 <div class="col-md-5">
-                                  <div class="row" style="margin-top:43px;">
+                                  <div class="row" style="margin-top:4px;">
 
-                                    <div class="col-md-5">
-                                    </div>
 
-                                    <div class="col-md-7">
+                                    <div class="col-md-12  col-md-offset-4">
 
-                                      <div style="float:left; margin-right:20px;">
-                                        <div class="cNew"></div>All Visitors
+                                      <div class="cNewA">
+                                        <div class="cNewB"></div>All Visitors
                                       </div>
 
 
@@ -992,10 +989,22 @@
                                         <div class="cAll"></div>New Visitors
                                       </div>
 
+                                      <div style="clear: both"></div>
+
                                     </div>
 
                                   </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1115,7 +1124,10 @@
 
   function sliderHeight ()  {
       var wheight = $(window).height() - 500;
-      $(".slide").height(wheight)
+      $(".slide").height(wheight);
+      if ($(window).width() < 800) {
+         var wheight = $(window).height() - 250;
+      }
   }
   $(window).resize(function() {
       $(sliderHeight);
