@@ -676,13 +676,13 @@ p.ng-binding, h2 {
      margin-bottom: 0px;
   }
   .uts {
-     display: block;
+     display: inline;
   }
   #contentArea {
      margin-top:60px;margin-bottom:60px;
   }
   ul.boo li a {
-    padding: 10px 15px 10px 15px;
+    padding: 10px 10px 10px 10px;
   }
   #social-highlights-panel .panel-group {
     margin-bottom: 0px;

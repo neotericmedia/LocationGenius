@@ -1122,15 +1122,8 @@
    $('#searchbar').hide();
    $('#searchbar').fadeIn(800);
 
-   if ($(window).width() < 800) {
-      function sliderHeight ()  {
-         var wheight = $(window).height() - 250;
-         $(".slide").height(wheight);
-      }
-   }
-
   function sliderHeight ()  {
-      var wheight = $(window).height() - 500;
+      var wheight = $(window).height() - 250;
       $(".slide").height(wheight);
   }
   $(window).resize(function() {
