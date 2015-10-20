@@ -1122,12 +1122,16 @@
    $('#searchbar').hide();
    $('#searchbar').fadeIn(800);
 
+   if ($(window).width() < 800) {
+      function sliderHeight ()  {
+         var wheight = $(window).height() - 250;
+         $(".slide").height(wheight);
+      }
+   }
+
   function sliderHeight ()  {
       var wheight = $(window).height() - 500;
       $(".slide").height(wheight);
-      if ($(window).width() < 800) {
-         var wheight = $(window).height() - 250;
-      }
   }
   $(window).resize(function() {
       $(sliderHeight);

@@ -940,7 +940,12 @@ angular.module('telusLg2App')
             height: 550,
             colors: ['#6ebe44'],
             chartArea: {left: 60, top: 60, width: '100%'},
-            legend: {position: 'bottom'}
+            legend: {position: 'bottom'},
+            hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+            }
             //fontSize:9
           };
           linechart.draw(hourly, options);
