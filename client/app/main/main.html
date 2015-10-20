@@ -547,6 +547,7 @@
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                                  <li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>
                                                 </ul>
                                            </div>
 
@@ -1123,7 +1124,7 @@
    $('#searchbar').fadeIn(800);
 
   function sliderHeight ()  {
-      var wheight = $(window).height() - 250;
+      var wheight = $(window).height() - 325;
       $(".slide").height(wheight);
   }
   $(window).resize(function() {

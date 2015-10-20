@@ -642,6 +642,7 @@ angular.module('telusLg2App')
           $scope.averageVisitorsDay = results.averageVisitorsDay;
           $scope.weeklyChange = results.weeklyChange.toFixed(2);
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
+          $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
           $scope.averageVisitDuration = results.averageVisitDuration;
           $scope.mostFrequentCustomer = results.mostFrequentCustomer.mac;
@@ -708,7 +709,7 @@ angular.module('telusLg2App')
 
           var durations = results.durations;
           $scope.durationData = [];
-          var durationitem = ['Minutes', 'Duration of Visit', {role: 'style'}];
+          var durationitem = ['Minutes', 'Duration of Visit (Min)', {role: 'style'}];
           $scope.durationData.push(durationitem);
           for (var i = 0; i < durations.length; i++) {
             durationitem = [i, durations[i], '#6ebe44'];
