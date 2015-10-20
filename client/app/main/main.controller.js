@@ -5,6 +5,9 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
+
+
+
     $scope.words = [
       {text: "Lorem", weight: 13},
       {text: "Ipsum", weight: 10.5},
@@ -63,8 +66,9 @@ angular.module('telusLg2App')
       zoom: 12,
       pan: true,
       //options : {panControl:true, tilt:45},
-      options: {scrollwheel: false, pan: true, panControl: true, tilt: 45, mapTypeId: google.maps.MapTypeId.HYBRID}
+      //options: {scrollwheel: false, pan: true, panControl: true, tilt: 45, mapTypeId: google.maps.MapTypeId.HYBRID}
       //options: {scrollwheel: false,pan: true, panControl:true, tilt:45, mapTypeId: google.maps.MapTypeId.SATELLITE }
+      options: {scrollwheel: false,pan: true, panControl:true, tilt:45}
     };
 
     $scope.marker = {
@@ -113,6 +117,7 @@ angular.module('telusLg2App')
     $scope.setSelectedLocation = function (location) {
       //console.log("Setting selected location:" + location.name);
       document.getElementById("contentArea").style.display = "block";
+
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
       //console.log("New CurrentLocation:" + $scope.currentLocation);
@@ -214,7 +219,7 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       var options = {
-        width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 20, top: 60, width: '100%'},
@@ -225,12 +230,28 @@ angular.module('telusLg2App')
           //textPosition: 'none',
           slantedText: true,
           slantedTextAngle: 45
-        },
-
+        }
       };
 
       chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
       chart.draw($scope.data, options);
+
+      $(window).resize(function(){
+         var options = {
+           height: 550,
+           colors: ['#6ebe44'],
+           chartArea: {left: 20, top: 60, width: '100%'},
+           legend: {position: 'bottom'},
+           format: 'short',
+           fontSize: 11,
+           hAxis: {
+             slantedText: true,
+             slantedTextAngle: 45
+            }
+          };
+         chart.draw($scope.data, options);
+      });
+
       // Every time the table fires the "select" event, it should call your
       // selectSocialHandler() function.
       //console.log("Setting handler...");
@@ -266,18 +287,44 @@ angular.module('telusLg2App')
 
     $scope.showHourlySocialData = function (day) {
       var options = {
-        width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         legend: {position: 'bottom'},
         chartArea: {left: 0, top: 60, width: '100%'},
-        fontSize: 11
+        fontSize: 11,
+        hAxis: {
+          //textPosition: 'none',
+          slantedText: true,
+          slantedTextAngle: 45
+        }
       };
       var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
       var hours = $scope.hourlyData[day];
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
+
+      $(window).resize(function(){
+         var options = {
+           height: 550,
+           colors: ['#6ebe44'],
+           legend: {position: 'bottom'},
+           chartArea: {left: 0, top: 60, width: '100%'},
+           fontSize: 11,
+           hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+           }
+         };
+         linechart.draw(hourly, options);
+      });
+
     }
+
+
+
+
 
 
 
@@ -595,6 +642,7 @@ angular.module('telusLg2App')
           $scope.averageVisitorsDay = results.averageVisitorsDay;
           $scope.weeklyChange = results.weeklyChange.toFixed(2);
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
+          $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
           $scope.averageVisitDuration = results.averageVisitDuration;
           $scope.mostFrequentCustomer = results.mostFrequentCustomer.mac;
@@ -645,7 +693,7 @@ angular.module('telusLg2App')
             if (dailyReports[i] != null) {
               //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
               var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
-              item = [date, dailyReports[i].total_visit, '#30134F', dailyReports[i].newMac, '#6ebe44'];
+              item = [date, dailyReports[i].total_visit, '#49296A', dailyReports[i].newMac, '#6ebe44'];
               dailyVisitorData.push(item);
             }
           }
@@ -661,7 +709,7 @@ angular.module('telusLg2App')
 
           var durations = results.durations;
           $scope.durationData = [];
-          var durationitem = ['Minutes', 'Duration of Visit', {role: 'style'}];
+          var durationitem = ['Minutes', 'Duration of Visit (Min)', {role: 'style'}];
           $scope.durationData.push(durationitem);
           for (var i = 0; i < durations.length; i++) {
             durationitem = [i, durations[i], '#6ebe44'];
@@ -685,21 +733,46 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       var options = {
-        width: 1075,
-        height: 500,
-        colors: ['#30134F', '#6ebe44'],
+        //width: {width: '100%'},
+        width: document.getElementById("container").clientWidth - 50,
+        height: 550,
+        colors: ['#ffffff', '#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
         //legend: { position: 'bottom'},
         legend: {position: 'none'},
         //legend: { position: 'top', maxLines: 3 },
         isStacked: true,
+        hAxis: {
+          //textPosition: 'none',
+          slantedText: true,
+          slantedTextAngle: 45
+        }
       };
 
       onsiteVisitorChart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
       onsiteVisitorChart.draw($scope.visitordata, options);
+
+      $(window).resize(function(){
+         var options = {
+           width: {width: '100%'},
+           height: 550,
+           colors: ['#ffffff', '#6ebe44'],
+           chartArea: {left: 60, top: 60, width: '100%'},
+           legend: {position: 'none'},
+           isStacked: true,
+           hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+           }
+         };
+          onsiteVisitorChart.draw($scope.visitordata, options);
+      });
+
       // Every time the table fires the "select" event, it should call your
       // select Handler() function.
       google.visualization.events.addListener(onsiteVisitorChart, 'select', selectOnsiteDayHandler);
+
     }
 
 
@@ -708,7 +781,8 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       var options = {
-        width: 1075,
+        //width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 50, top: 60, width: '100%'},
@@ -754,6 +828,26 @@ angular.module('telusLg2App')
       var data = google.visualization.arrayToDataTable(loyaltyData);
       var onsiteLoyaltyChart = new google.visualization.ColumnChart(document.getElementById('onsite_loyalty_chart_div'));
       onsiteLoyaltyChart.draw(data, options);
+
+       $(window).resize(function(){
+          onsiteLoyaltyChart.draw(data, options);
+       });
+
+       $(window).resize(function(){
+          var options = {
+            //width: 1075,
+            width: {width: '100%'},
+            height: 550,
+            colors: ['#6ebe44'],
+            chartArea: {left: 50, top: 60, width: '100%'},
+            legend: {position: 'bottom', alignment: 'center'},
+            hAxis: { format:'#'} ,
+            vAxis: { format:'#'}
+          };
+          onsiteLoyaltyChart.draw(data, options);
+       });
+
+
     }
 
 
@@ -789,11 +883,17 @@ angular.module('telusLg2App')
       // Set chart options
       //console.log("Graphing hourly data for day " + day);
       var options = {
-        width: 1075,
+        //width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
-        legend: {position: 'bottom'}
+        legend: {position: 'bottom'},
+        hAxis: {
+         //textPosition: 'none',
+         slantedText: true,
+         slantedTextAngle: 45
+        }
         //fontSize:9
       };
 
@@ -835,6 +935,22 @@ angular.module('telusLg2App')
       var hourly = google.visualization.arrayToDataTable($scope.hourlyVisitorData);
 
       linechart.draw(hourly, options);
+
+       $(window).resize(function(){
+          var options = {
+            height: 550,
+            colors: ['#6ebe44'],
+            chartArea: {left: 60, top: 60, width: '100%'},
+            legend: {position: 'bottom'},
+            hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+            }
+            //fontSize:9
+          };
+          linechart.draw(hourly, options);
+       });
     }
 
 
@@ -843,7 +959,8 @@ angular.module('telusLg2App')
       // Set chart options
       //console.log("Graphing online visitor duration data...");
       var options = {
-        width: 1075,
+        //width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 3, top: 60, width: '100%'},
@@ -854,6 +971,17 @@ angular.module('telusLg2App')
       //console.log("Graphing ..." + $scope.durationData);
       var minutesData = google.visualization.arrayToDataTable($scope.durationData);
       linechart.draw(minutesData, options);
+
+       $(window).resize(function(){
+          var options = {
+            height: 550,
+            colors: ['#6ebe44'],
+            chartArea: {left: 3, top: 60, width: '100%'},
+            legend: {position: 'bottom', alignment: 'center'}
+          };
+          linechart.draw(minutesData, options);
+       });
+
     }
 
 
@@ -899,7 +1027,7 @@ angular.module('telusLg2App')
             //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
             //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
-            item = [results[i].date.substring(5), visitors, '#30134F', newVisitors, '#6ebe44'];
+            item = [results[i].date.substring(5), visitors, '#49296A', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
 
@@ -961,10 +1089,11 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       var options = {
-        width: 1075,
+        //width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 500,
-        colors: ['#30134F', '#6ebe44'],
-        chartArea: {left: 100, top: 60, width: '100%'},
+        colors: ['#ffffff', '#6ebe44'],
+        chartArea: {left: 60, top: 60, width: '100%'},
         //legend: { position: 'bottom'},
         legend: {position: 'none'},
         //legend: { position: 'top', maxLines: 3 },
@@ -973,6 +1102,19 @@ angular.module('telusLg2App')
 
       visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
       visitorchart.draw($scope.carriervisitordata, options);
+
+       $(window).resize(function(){
+          var options = {
+            height: 500,
+            colors: ['#ffffff', '#6ebe44'],
+            chartArea: {left: 60, top: 60, width: '100%'},
+            //legend: { position: 'bottom'},
+            legend: {position: 'none'},
+            //legend: { position: 'top', maxLines: 3 },
+            isStacked: true,
+          };
+          visitorchart.draw($scope.carriervisitordata, options);
+       });
       // Every time the table fires the "select" event, it should call your
       // select Handler() function.
       google.visualization.events.addListener(visitorchart, 'select', selectCarrierDayHandler);
@@ -1018,11 +1160,17 @@ angular.module('telusLg2App')
       // Set chart options
       //console.log("Graphing hourly carrier data...");
       var options = {
-        width: 1075,
+        //width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
-        legend: {position: 'bottom'}
+        legend: {position: 'bottom'},
+        hAxis: {
+         //textPosition: 'none',
+         slantedText: true,
+         slantedTextAngle: 45
+        }
         //fontSize:9
       };
 
@@ -1031,6 +1179,22 @@ angular.module('telusLg2App')
       var hours = $scope.carrierHourlyData[day];
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
+
+       $(window).resize(function(){
+          var options = {
+            height: 550,
+            colors: ['#6ebe44'],
+            chartArea: {left: 60, top: 60, width: '100%'},
+            legend: {position: 'bottom'},
+            hAxis: {
+             //textPosition: 'none',
+             slantedText: true,
+             slantedTextAngle: 45
+            }
+            //fontSize:9
+          };
+          linechart.draw(hourly, options);
+       });
     }
 
 
@@ -1042,7 +1206,7 @@ angular.module('telusLg2App')
       // Set chart options
       //console.log("Graphing carrier visitor dwell time data for day:" + day);
       var options = {
-        width: 1075,
+        width: document.getElementById("container").clientWidth - 50,
         height: 550,
         colors: ['#6ebe44'],
         chartArea: {left: 60, top: 60, width: '100%'},
@@ -1065,9 +1229,21 @@ angular.module('telusLg2App')
         }
         var minutesData = google.visualization.arrayToDataTable($scope.carrierDwellTimeData);
         linechart.draw(minutesData, options);
+
+        $(window).resize(function(){
+           var options = {
+            height: 550,
+            colors: ['#6ebe44'],
+            chartArea: {left: 60, top: 60, width: '100%'},
+            legend: {position: 'bottom', alignment: 'center'}
+           };
+           linechart.draw(minutesData, options);
+        });
+
       } else {
         $scope.averageCarrierVisitDuration = "N/A";
       }
+
 
 
     }
@@ -1243,4 +1419,3 @@ angular.module('telusLg2App')
       $scope.status.isopen = !$scope.status.isopen;
     };
   })
-

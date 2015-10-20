@@ -1,37 +1,54 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container">
-  <div class="row">
+<div class="container" id="container">
+
     <!--///////////////////////////////////////////////////////////////////SEARCH-->
-      <div id="searchbar">
-        <div id="searchpanel" class="panel panel-default" style="margin-bottom:0px">
-            <div class="container">
-                <div class="row panel-body searchControl" style="padding-left:25px;padding-top:25px;padding-bottom:25px">
-
-                    <!--<div class="col-lg-1 searchTitle">
-                        <span class="locationTitle">Subscribed Locations</span>
-                    </div>-->
+        <div id="searchbar">
 
 
 
-                    <div class="dropdown col-lg-3" style="margin:0 auto;">
 
+                     <div class="dropdown col-sm-4">
+                        <i class="fa fa-map-marker"></i>
+                        <button class="btn btn-default dropdown-toggle" type="button">
+                           <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
+                           <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                           <li ng-repeat="location in locations" role="presentation" >
+                              <a ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);selected($index)">{{location.name}}</a>
+                           </li>
+                        </ul>
+                     </div>
+
+
+
+
+                     <div class="col-sm-8">
+                        <form role="search" ng-submit="showTweeters()">
+                           <div class="input-group">
+                              <input type="text" class="form-control searchInput" placeholder="Enter a location" ng-model="searchString">
+                              <span class="input-group-addon searchButton" id="basic-addon2" ng-click="showTweeters()" ><div class="searchtext">Search</div></span>
+                           </div>
+                        </form>
+                     </div>
+
+
+
+
+
+
+                    <!--<div class="dropdown col-lg-3" style="margin:0 auto;">
                            <i class="fa fa-map-marker" style="text-align:right; float:left;font-size:2.25em; color:#6ebe44; margin-right:12px;"></i>
-
                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="float:left;">
-                              <!--Subscribed Locations-->
                               <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
                               <span class="caret"></span>
                            </button>
-
                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="float:left;">
                               <li ng-repeat="location in locations" role="presentation" >
                                  <a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);selected($index)">{{location.name}}</a>
                               </li>
                            </ul>
-
                     </div>
-
-
                     <div class="col-lg-6">
                             <form role="search" ng-submit="showTweeters()">
                                 <div class="input-group">
@@ -39,13 +56,13 @@
                                     <span class="input-group-addon searchButton" id="basic-addon2" ng-click="showTweeters()" ><div class="searchtext">Search</div></span>
                                 </div>
                             </form>
-                    </div>
+                    </div>-->
 
-                </div>
-            </div>
+
+
         </div>
-    </div>
     <!--SEARCH END-->
+
     </div>
 </div>
 
@@ -86,9 +103,41 @@
 
 
 <!--///////////////////////////////////////////////////////////////////CONTENT AREA-->
-<div id="contentArea" class="content" style="margin-top:60px;margin-bottom:60px;">
+
+
+
+
+
+
+
+
+
+
+<div id="contentArea" class="content">
 <div class="container">
   <div class="row">
+
+
+
+
+
+
+
+     <tabs>
+      <pane
+         active="pane.active"
+         heading="{{pane.title}}"
+         ng-repeat="pane in panes"
+      >
+         <div ng-include="pane.content"></div>
+      </pane>
+     </tabs>
+
+
+
+
+
+
         <div class="col-md-12">
           <div class="row ">
            <div class="col-md-10">
@@ -129,19 +178,13 @@
         <div class="col-md-12" >
 
 
-
-
-
-
-
-
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
            <tab>
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social Data</tab-heading>
 
-                 <div class="date" style="position:absolute;">{{dateRange}}</div>
+                 <div class="date">{{dateRange}}</div>
 
                  <div id="miniTab" class="row">
                    <div class="col-md-6"></div>
@@ -179,8 +222,8 @@
                                 <accordion-group>
                                  <accordion-heading>
                                     <div style="display:block;margin-top:14px;">
-                                      <span class="totalBorderA" style="padding-top:11px;">
-                                       <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
+                                      <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
+                                       <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
                                       </span>
                                     </div>
                                  </accordion-heading>
@@ -301,7 +344,6 @@
 
                              <div class="row">
                                  <div class="col-md-9">
-                                   <br>
                                    <h4>Visitors <span class="locateSub">(within 1km)</span></h4>
                                  </div>
                              </div>
@@ -360,11 +402,11 @@
 
                            </div>
                            <div class="row">
-                             <div class="col-md-10  wordcloud" style="margin-left:0px;">
+                             <div class="col-md-12">
                                <div id="wordcloud_div">
                                  <!--<jqcloud words="words" id="cloud-dynamic" auto-resize="true" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>-->
 
-                                 <jqcloud words="words" width="700" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>
+                                 <jqcloud words="words" id="wordcloud" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}" style="margin: 0 auto"></jqcloud>
 
                                </div>
                              </div>
@@ -453,10 +495,9 @@
 
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab>
-               <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
+               <tab-heading onclick="reload()"><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
 
-
-                      <div class="date" style="position:absolute;">{{onsiteWeek}}</div>
+                      <div class="date">{{onsiteWeek}}</div>
 
 
                       <div id="miniTab" class="row">
@@ -495,8 +536,8 @@
 
                                            <accordion-heading>
                                              <div style="display:block;margin-top:14px;">
-                                               <span class="totalBorderA" style="padding-top:11px;">
-                                                 <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
+                                               <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
+                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
                                                </span>
                                              </div>
                                            </accordion-heading>
@@ -506,6 +547,7 @@
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                                  <li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>
                                                 </ul>
                                            </div>
 
@@ -577,7 +619,6 @@
 
                              <div class="row">
                                    <div class="col-md-12">
-                                      <br>
                                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
                                    </div>
 
@@ -586,7 +627,7 @@
 
 
                               <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
 
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
@@ -616,27 +657,26 @@
                                        </div>
                                     </div>
 
-
+                                    <div style="clear: both"></div>
                                 </div>
 
 
 
-                                <div class="col-md-6">
-                                  <div class="row" style="margin-top:43px;">
+                                <div class="col-lg-6">
+                                  <div class="row" style="margin-top:4px;">
 
-                                    <div class="col-md-6">
-                                    </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12 col-md-offset-4">
 
-                                      <div style="float:left; margin-right:20px;">
-                                        <div class="cNew"></div>All Visitors
+
+                                      <div class="cNewA">
+                                        <div class="cNewB"></div>All Visitors
                                       </div>
-
 
                                       <div style="float:left">
                                         <div class="cAll"></div>New Visitors
                                       </div>
+
 
                                     </div>
 
@@ -673,7 +713,7 @@
 
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                      <div id="onsite_timebreakdown_chart_div"></div>
+                                      <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
                                    </div>
                               </div>
                            </div>
@@ -778,7 +818,7 @@
                <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
 
 
-                    <div class="date" style="position:absolute;">{{carrierDate}}</div>
+                    <div class="date">{{carrierDate}}</div>
 
 
 
@@ -808,8 +848,9 @@
 
                                            <accordion-heading>
                                              <div style="display:block;margin-top:14px;">
-                                               <span class="totalBorderA" style="padding-top:11px;">
-                                                 <a href="#"><i class="fa fa-angle-down" style="top:5px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carrier Highlights at a Glance</a>
+                                               <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
+                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Carrier Highlights at a Glance</a>
+
                                                </span>
                                              </div>
                                            </accordion-heading>
@@ -929,21 +970,19 @@
                                        </div>
                                     </div>
 
-
+                                    <div style="clear: both"></div>
                                 </div>
 
 
 
                                 <div class="col-md-5">
-                                  <div class="row" style="margin-top:43px;">
+                                  <div class="row" style="margin-top:4px;">
 
-                                    <div class="col-md-5">
-                                    </div>
 
-                                    <div class="col-md-7">
+                                    <div class="col-md-12  col-md-offset-4">
 
-                                      <div style="float:left; margin-right:20px;">
-                                        <div class="cNew"></div>All Visitors
+                                      <div class="cNewA">
+                                        <div class="cNewB"></div>All Visitors
                                       </div>
 
 
@@ -951,10 +990,22 @@
                                         <div class="cAll"></div>New Visitors
                                       </div>
 
+                                      <div style="clear: both"></div>
+
                                     </div>
 
                                   </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1043,7 +1094,8 @@
 
 <footer class="footer">
  <div class="container">
-     <p style="color: #ccc">&copy; 2015 Telus Hyper-local Analytics</p>
+     <p style="color: #333 ">&copy; 2015 Telus Hyper-local Analytics</p>
+     <p style="color: #333 "><a href="/policy">Privacy Policy</a></p>
  </div>
 </footer>
 
@@ -1067,12 +1119,13 @@
 
 
 
-
-
 <script type='text/javascript'>
+   $('#searchbar').hide();
+   $('#searchbar').fadeIn(800);
+
   function sliderHeight ()  {
-      var wheight = $(window).height() - 300;
-      $(".slide").height(wheight)
+      var wheight = $(window).height() - 325;
+      $(".slide").height(wheight);
   }
   $(window).resize(function() {
       $(sliderHeight);
