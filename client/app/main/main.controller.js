@@ -5,39 +5,11 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var incomeLevelsLabels = ["$0K-$39000K", "$40000K-$59000K", "$60000K-$79000K", "$80000K-$99000K", "$100000K-$124000K", "$125000+"];
+    var ethnicitieLabels = {"AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
-
-
-    $scope.words = [
-      {text: "Lorem", weight: 13},
-      {text: "Ipsum", weight: 10.5},
-      {text: "Dolor", weight: 9.4},
-      {text: "Sit", weight: 8},
-      {text: "Amet", weight: 6.2},
-      {text: "Consectetur", weight: 5},
-      {text: "Adipiscing", weight: 5},
-      {text: "Elit", weight: 5},
-      {text: "Nam et", weight: 5},
-      {text: "Leo", weight: 4},
-      {text: "Sapien", weight: 4},
-      {text: "Pellentesque", weight: 3},
-      {text: "habitant", weight: 3},
-      {text: "morbi", weight: 3},
-      {text: "tristisque", weight: 3},
-      {text: "senectus", weight: 3},
-      {text: "et netus", weight: 3},
-      {text: "et malesuada", weight: 3},
-      {text: "fames", weight: 2},
-      {text: "ac turpis", weight: 2},
-      {text: "egestas", weight: 2},
-      {text: "Aenean", weight: 2},
-      {text: "vestibulum", weight: 2},
-      {text: "elit", weight: 2},
-      {text: "sit amet", weight: 2},
-      {text: "metus", weight: 2},
-      {text: "adipiscing", weight: 2},
-      {text: "ut ultrices", weight: 2}
-    ];
+    $scope.words = [];
     $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
 
     $scope.update = function() {
@@ -57,7 +29,7 @@ angular.module('telusLg2App')
       })
 
 
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
     $scope.hourlyData;
     var chart;
     $scope.searchrange = 1000;
@@ -1106,6 +1078,17 @@ angular.module('telusLg2App')
         console.log("CARO=" + $scope.demographicReport.etCAROCount);
         console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
         console.log("AFRO=" + $scope.demographicReport.etAFROCount);
+        $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity]
+        $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
+
+        //var data = google.visualization.arrayToDataTable([
+        //  ['IncomeElement', 'Density', { role: 'style' }],
+        //  ['Copper', 8.94, '#b87333'],            // RGB value
+        //  ['Silver', 10.49, 'silver'],            // English color name
+        //  ['Gold', 19.30, 'gold'],
+        //  ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+        //]);
+
       }
 
     }
