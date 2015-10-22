@@ -1013,7 +1013,7 @@ angular.module('telusLg2App')
       $scope.report = CarrierPregenReport.query(params);
       $scope.report.$promise.then(function (results) {
 
-          console.log("Results = " +  results);
+          //console.log("Results = " +  results);
           if (results != null) {
             var reports = results.reports;
             if(reports!=null) {
@@ -1023,7 +1023,7 @@ angular.module('telusLg2App')
 
           $scope.carrierUniqueVisitors = 0;
           $scope.carrierAverageVisitorsDay = 0;
-          console.log("Reports = " +  reports);
+          //console.log("Reports = " +  reports);
           // The results come in reverse order
           for (var i = 0; i< reports.length;  i++) {
             //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
@@ -1068,7 +1068,7 @@ angular.module('telusLg2App')
           $scope.demographicReport = results.demographicReport;
           $scope.tiles = results.tiles;
 
-          console.log("Demographic=" + results.demographicReport);
+          //console.log("Demographic=" + results.demographicReport);
           $scope.showDemographicData();
 
           $scope.carrierAverageVisitorsDay = Math.round($scope.carrierUniqueVisitors / reports.length);
