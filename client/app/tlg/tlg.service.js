@@ -82,6 +82,6 @@ angular.module('telusLg2App')
   .service('CarrierPregenReport', function ($resource) {
     //var params = {"locationId": $scope.currentLocation.buildingId, "days":numDays, "endDate":"2014-08-18"};
     return $resource('/api/carrier/:locationId/:days?endDate=:endDate', {}, {
-      query: {method: 'GET', isArray: true},
+      query: {method: 'GET', isArray: false},
     });
   })

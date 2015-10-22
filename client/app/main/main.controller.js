@@ -459,7 +459,7 @@ angular.module('telusLg2App')
         //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
         var wc  = results.wordCloud;
         $scope.words = results.wordCloud;
-        console.log("Tweet Word Cloud" + $scope.words);
+        //console.log("Tweet Word Cloud" + $scope.words);
         $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
         $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
         $scope.topTweeters = $scope.tweetReports.topTweeters;
@@ -1013,24 +1013,28 @@ angular.module('telusLg2App')
       $scope.report = CarrierPregenReport.query(params);
       $scope.report.$promise.then(function (results) {
 
-        if (results != null) {
-          results.reverse();
-          $scope.carrierReports = results;
+          console.log("Results = " +  results);
+          if (results != null) {
+            var reports = results.reports;
+            if(reports!=null) {
+              reports.reverse();
+              $scope.carrierReports = results.reports;
+          }
 
           $scope.carrierUniqueVisitors = 0;
           $scope.carrierAverageVisitorsDay = 0;
+          console.log("Reports = " +  reports);
           // The results come in reverse order
-          for (var i = 0; i<results.length;  i++) {
+          for (var i = 0; i< reports.length;  i++) {
             //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
-            var visitors = Math.round(results[i].uniqueVisitors * xfactor);
-            var newVisitors = Math.round(results[i].newVisitors * xfactor);
+            var visitors = Math.round(reports[i].uniqueVisitors * xfactor);
+            var newVisitors = Math.round(reports[i].newVisitors * xfactor);
             //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
             //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
-            item = [results[i].date.substring(5), visitors, '#49296A', newVisitors, '#6ebe44'];
+            item = [reports[i].date.substring(5), visitors, '#49296A', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
-
 
             /*
              *  Get the hourly data for that day and push it into a separate array
@@ -1048,7 +1052,7 @@ angular.module('telusLg2App')
                   h = h - 12;
                 }
               }
-              var hourlyTotal = Math.round(results[i].hourlyTotals[j] * xfactor);
+              var hourlyTotal = Math.round(reports[i].hourlyTotals[j] * xfactor);
               hourItem = [h + ampm, hourlyTotal, '#6ebe44'];
               //hourItem = [h + ampm, results[i].hourlyTotals[j], '#6ebe44'];
               hourData.push(hourItem);
@@ -1056,16 +1060,24 @@ angular.module('telusLg2App')
             }
             $scope.carrierHourlyData.push(hourData);
 
+          } // end for
 
-          } // end
-          //$scope.carrierReports.reverse();
-          $scope.carrierAverageVisitorsDay = Math.round($scope.carrierUniqueVisitors / results.length);
+
+
+          // demographic totals
+          $scope.demographicReport = results.demographicReport;
+          $scope.tiles = results.tiles;
+
+          console.log("Demographic=" + results.demographicReport);
+          $scope.showDemographicData();
+
+          $scope.carrierAverageVisitorsDay = Math.round($scope.carrierUniqueVisitors / reports.length);
 
           $scope.carriervisitordata = google.visualization.arrayToDataTable(dailyCarrierVisitorData);
           $scope.showCarrierDailyVisitorData();
 
           if ($scope.carrierHourlyData.length > 0) {
-            $scope.showHourlyCarrierVisitorData(results.length - 1);
+            $scope.showHourlyCarrierVisitorData(reports.length - 1);
           }
 
           //$scope.carrierDwellTimeData = [];
@@ -1073,11 +1085,29 @@ angular.module('telusLg2App')
           //$scope.carrierDwellTimeData.push();
 
           //console.log("Graphing: " + results[0].dwellTimes)
-          $scope.showCarrierDwellTimesData(0)
-
+          $scope.showCarrierDwellTimesData(0);
 
         }
       });
+    }
+
+    /**
+     * Displays the demographic information for the carrier data
+     */
+    $scope.showDemographicData = function() {
+
+      if($scope.demographicReport!=null) {
+        console.log("Incomes=" + $scope.demographicReport.incomeCounts);
+        console.log("ABOO=" + $scope.demographicReport.etABOOCount);
+        console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
+        console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
+        console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
+        console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
+        console.log("CARO=" + $scope.demographicReport.etCAROCount);
+        console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
+        console.log("AFRO=" + $scope.demographicReport.etAFROCount);
+      }
+
     }
 
 
