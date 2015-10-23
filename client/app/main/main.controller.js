@@ -1107,7 +1107,7 @@ angular.module('telusLg2App')
         var options = {
           //width: 1075,
           width: document.getElementById("container").clientWidth/2 - 50,
-          height: 400,
+          height: 340,
           colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 120, top: 30, width: '50%'},
           legend: {position: 'none'}
@@ -1165,7 +1165,7 @@ angular.module('telusLg2App')
         var options = {
           //width: 1075,
           width: document.getElementById("container").clientWidth/2 - 50,
-          height: 400,
+          height: 340,
           //colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 20, top: 30, width: '50%'},
           legend: {position: 'none'}
