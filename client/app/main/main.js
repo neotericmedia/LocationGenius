@@ -19,5 +19,10 @@ angular.module('telusLg2App')
        url: '/main2',
        templateUrl: 'app/main/main2.html',
        controller: 'MainCtrl',
-    });
+    })
+    .state('main3', {
+      url: '/main3',
+      templateUrl: 'app/main/main3.html',
+      controller: 'MainCtrl',
+   });
   });
