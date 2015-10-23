@@ -6,8 +6,8 @@ angular.module('telusLg2App')
     var onsiteVisitorChart;
 
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var incomeLevelsLabels = ["$0K-$39000K", "$40000K-$59000K", "$60000K-$79000K", "$80000K-$99000K", "$100000K-$124000K", "$125000+"];
-    var ethnicitieLabels = {"AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
+    var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
+    var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
     $scope.words = [];
     $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
@@ -978,7 +978,7 @@ angular.module('telusLg2App')
 
       var item = ['Day', 'Number of Visitors', {role: 'style'}, 'New Visitors', {role: 'style'}];
       dailyCarrierVisitorData.push(item);
-      //console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
+      console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
 
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays, "endDate": "2014-08-18"};
 
@@ -1063,13 +1063,68 @@ angular.module('telusLg2App')
       });
     }
 
+
+
     /**
      * Displays the demographic information for the carrier data
      */
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
+
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
+
+        $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity];
+        $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
+
+        var totalIncomes = 0;
+        for(var i=0;i<$scope.demographicReport.incomeCounts.length;i++) {
+          totalIncomes+=$scope.demographicReport.incomeCounts[i];
+        }
+
+
+        var incomeData = [];
+        incomeData.push(['Income Level', 'Distribution', {role: 'style'}]);
+
+        var regcolour = 'silver';
+        var maxcolour = 'gold';
+        var colour = regcolour;
+
+        for (var i = 0; i < incomeLevelsLabels.length; i++) {
+          if (i == $scope.demographicReport.largestIncomeIndex) {
+            colour = maxcolour;
+          } else {
+            colour = regcolour;
+          }
+          incomeData.push([incomeLevelsLabels[i], $scope.demographicReport.incomeCounts[i]/totalIncomes, colour]);
+        }
+
+        var data = google.visualization.arrayToDataTable(incomeData);
+        var options = {
+          //width: 1075,
+          width: document.getElementById("container").clientWidth/2 - 50,
+          height: 400,
+          colors: ['#ffffff', '#6ebe44'],
+          chartArea: {left: 120, top: 30, width: '50%'},
+          legend: {position: 'none'}
+        };
+
+        var incomeChart = new google.visualization.BarChart(document.getElementById('demographic_income_chart_div'));
+        incomeChart.draw(data, options);
+
+        $scope.showEthnicData();
+      }
+
+    }
+
+
+
+    /**
+     * Displays the demographic information for the carrier data
+     */
+    $scope.showEthnicData = function() {
+
+      if($scope.demographicReport!=null) {
         console.log("ABOO=" + $scope.demographicReport.etABOOCount);
         console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
         console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
@@ -1078,17 +1133,42 @@ angular.module('telusLg2App')
         console.log("CARO=" + $scope.demographicReport.etCAROCount);
         console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
         console.log("AFRO=" + $scope.demographicReport.etAFROCount);
-        $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity]
-        $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
 
-        //var data = google.visualization.arrayToDataTable([
-        //  ['IncomeElement', 'Density', { role: 'style' }],
-        //  ['Copper', 8.94, '#b87333'],            // RGB value
-        //  ['Silver', 10.49, 'silver'],            // English color name
-        //  ['Gold', 19.30, 'gold'],
-        //  ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
-        //]);
+        var ethnicData = [];
+        ethnicData.push(['Ethnicity', 'Distribution', {role: 'style'}]);
 
+        var ethnicTotal = $scope.demographicReport.etABOOCount +
+                          $scope.demographicReport.etWEUOCount +
+                          $scope.demographicReport.etNEUOCount +
+                          $scope.demographicReport.etEEUOCount +
+                          $scope.demographicReport.etSEUOCount +
+                          $scope.demographicReport.etCAROCount +
+                          $scope.demographicReport.etLAMOCount +
+                          $scope.demographicReport.etAFROCount;
+
+
+        ethnicData.push([ethnicitieLabels['ABOO'], $scope.demographicReport.etABOOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['WEUO'], $scope.demographicReport.etWEUOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['NEUO'], $scope.demographicReport.etNEUOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['EEUO'], $scope.demographicReport.etEEUOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['SEUO'], $scope.demographicReport.etSEUOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['CARO'], $scope.demographicReport.etCAROCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['LAMO'], $scope.demographicReport.etLAMOCount/ethnicTotal, 'silver']);
+        ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount/ethnicTotal, 'silver']);
+
+
+        var data = google.visualization.arrayToDataTable(ethnicData);
+        var options = {
+          //width: 1075,
+          width: document.getElementById("container").clientWidth/2 - 50,
+          height: 400,
+          //colors: ['#ffffff', '#6ebe44'],
+          chartArea: {left: 20, top: 30, width: '50%'},
+          legend: {position: 'none'}
+        };
+
+        var ethnicChart = new google.visualization.PieChart(document.getElementById('demographic_ethnicity_chart_div'));
+        ethnicChart.draw(data, options);
       }
 
     }
@@ -1230,6 +1310,7 @@ angular.module('telusLg2App')
       $scope.carrierDwellTimeData = []
 
       var dwellTimes = $scope.carrierReports[day].dwellTimes;
+      console.log("Dwell times:" + dwellTimes.length);
       //console.log("Dwell times:" + dwellTimes);
 
       $scope.averageCarrierVisitDuration = $scope.carrierReports[day].averageDwellTime;
