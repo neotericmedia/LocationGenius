@@ -1059,6 +1059,8 @@ angular.module('telusLg2App')
           //console.log("Graphing: " + results[0].dwellTimes)
           $scope.showCarrierDwellTimesData(0);
 
+
+
         }
       });
     }
@@ -1071,6 +1073,12 @@ angular.module('telusLg2App')
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
+        console.log("Tiles=" + $scope.tiles.length);
+        Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
+        Demographics.drawMap();
+
+
+
 
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
