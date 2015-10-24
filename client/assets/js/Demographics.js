@@ -11,7 +11,6 @@ Demographics.initialize = function () {
     var mapProp = {
         center: Demographics.toronto2,
         zoom: 14,
-        scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -83,3 +82,4 @@ Demographics.drawMapHelper = function()
     $("#households").text(summaryData.hh_cnt.toString());
     $("#demographicSummary").show();
 }
+

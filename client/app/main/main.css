@@ -1,4 +1,7 @@
-
+.colorbox {
+   width: 20px;
+   height: 20px;
+}
 
 .panel-heading {
    padding: 0px 0px 15px 20px;
