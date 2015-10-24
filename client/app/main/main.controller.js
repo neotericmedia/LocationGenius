@@ -90,6 +90,10 @@ angular.module('telusLg2App')
       //console.log("Setting selected location:" + location.name);
       document.getElementById("contentArea").style.display = "block";
 
+      //load maps
+      //Demographics.initialize();
+      //initMap();
+
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
       //console.log("New CurrentLocation:" + $scope.currentLocation);
@@ -1111,7 +1115,7 @@ angular.module('telusLg2App')
         var options = {
           //width: 1075,
           width: document.getElementById("container").clientWidth/2 - 50,
-          height: 400,
+          height: 340,
           colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 120, top: 30, width: '50%'},
           legend: {position: 'none'}
@@ -1169,7 +1173,7 @@ angular.module('telusLg2App')
         var options = {
           //width: 1075,
           width: document.getElementById("container").clientWidth/2 - 50,
-          height: 400,
+          height: 340,
           //colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 20, top: 30, width: '50%'},
           legend: {position: 'none'}
