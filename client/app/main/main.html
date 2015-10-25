@@ -832,15 +832,44 @@
 
 
 
+
+
+
                       <div id="miniTab" class="row">
-                        <div class="col-md-12">
-                           <tabset type="pills" class="ng-isolate-scope ng-scope">
-                             <tab heading="Last 30 Days" ng-click="getCarrierDataPreGenReport(30)"></tab>
-                             <tab heading="Last 60 Days" ng-click="getCarrierDataPreGenReport(60)"></tab>
-                             <tab heading="Last 90 Days" ng-click="getCarrierDataPreGenReport(90)"></tab>
-                           </tabset>
-                        </div>
-                      </div>
+                       <div class="col-md-6"></div>
+                       <div class="col-md-6 pull-right">
+                          <div class="filters_ct" ng-controller="selectCarrierFilter">
+                              <ul class="boo" ng-repeat="filter in carrierfilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                                 <li>
+                                    <a href="" ng-click="filter.showLast30Days();filter.showLast60Days();filter.showLast90Days();">{{filter.time}}</a>
+                                 </li>
+                              </ul>
+                              <!--<ul class="boo">
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(30)">Last 30 days</a>
+                                 </li>
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(60)">Last 60 days</a>
+                                 </li>
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(90)">Last 90 days</a>
+                                 </li>
+                              </ul>-->
+                          </div>
+                          <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
+                            <tab heading="Last Week" ng-click="showLast7Days()"></tab>
+                            <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
+                            <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
+                            <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
+                            <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
+                        </tabset>-->
+                       </div>
+                     </div>
+
+
+
+
+
 
 
 
