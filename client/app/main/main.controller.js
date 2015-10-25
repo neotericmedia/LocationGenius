@@ -9,12 +9,7 @@ angular.module('telusLg2App')
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
     var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
-
     $scope.words = [];
-    //$scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
-    $scope.colors = ["#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44"];
-
-
 
     $scope.update = function() {
       $scope.words.splice(-5);
@@ -1116,10 +1111,7 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(incomeData);
         var options = {
           //width: 1075,
-
-          //width: document.getElementById("container").clientWidth/2,
-          width: document.getElementById("container").clientWidth/3 - 50,
-
+          width: document.getElementById("container").clientWidth/2,
           height: 340,
           colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 120, top: 30, width: '100%'},
@@ -1240,10 +1232,10 @@ angular.module('telusLg2App')
             6: { color: '#e0cdf4' },
             7: { color: '#ece7ee' }
           },
-          width: document.getElementById("container").clientWidth/1.2,
+          width: document.getElementById("container").clientWidth/2,
           height: 340,
           //colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 0, top: 30, width: '50%'},
+          chartArea: {left: 0, top: 30, width: '100%'},
           legend: {position: 'right',alignment:'center'},
           is3D: true,
         };
