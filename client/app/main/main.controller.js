@@ -1083,8 +1083,8 @@ angular.module('telusLg2App')
       if($scope.demographicReport!=null) {
         console.log("Tiles=" + $scope.tiles.length);
 
-        Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
-        Demographics.drawMap();
+        //Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
+        //Demographics.drawMap();
 
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
@@ -1269,16 +1269,23 @@ angular.module('telusLg2App')
         var map, pointArray, heatmap;
         var mapOptions = {
           zoom: 12,
-          center: new google.maps.LatLng($scope.currentLocation.center.latitude, $scope.currentLocation.center.longitude),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          //center: {latitude: 43.650505, longitude: -79.383989},
+          //center: new google.maps.LatLng($scope.currentLocation.center.latitude, $scope.currentLocation.center.longitude),
+          center: new google.maps.LatLng(43.650505,-79.383989),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          pan: true,
+          //options : {panControl:true, tilt:45},
+          //options: {scrollwheel: false, pan: true, panControl: true, tilt: 45, mapTypeId: google.maps.MapTypeId.HYBRID}
+          //options: {scrollwheel: false,pan: true, panControl:true, tilt:45, mapTypeId: google.maps.MapTypeId.SATELLITE }
+          options: {scrollwheel: false,pan: true, panControl:true, tilt:45}
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 
-        map.center = {
-          latitude: $scope.currentLocation.center.latitude,
-          longitude: $scope.currentLocation.center.longitude
-        };
+        //map.center = {
+        //  latitude: $scope.currentLocation.center.latitude,
+        //  longitude: $scope.currentLocation.center.longitude
+        //};
 
         pointArray = new google.maps.MVCArray(callsForService);
 
