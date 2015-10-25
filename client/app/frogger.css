@@ -1,0 +1,3154 @@
+
+@font-face {
+  font-family: 'telusweb';
+  src: url("//static.telus.com/common/fonts//h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//h65/3600b37f-2bf1-45f3-be3a-03365f16d9cb.woff2") format("woff2"), url("//static.telus.com/common/fonts//h65/60be5c39-863e-40cb-9434-6ebafb62ab2b.woff") format("woff"), url("//static.telus.com/common/fonts//h65/4c6503c9-859b-4d3b-a1d5-2d42e1222415.ttf") format("truetype"), url("//static.telus.com/common/fonts//h65/36c182c6-ef98-4021-9b0d-d63122c2bbf5.svg#36c182c6-ef98-4021-9b0d-d63122c2bbf5") format("svg");
+  font-weight: 800;
+  font-style: normal;
+}
+@import url("//fast.fonts.net/t/1.css?apiType=css&projectid=20d74cc5-7f7c-49a7-80ae-fa2f389c550d");
+/**
+  * Typography
+  * Establishes font sizes for various HTML elements in order to adhere to a visual rhythm.
+  * @import "common/color";
+  * Helvetica Neue web fonts placed in a fonts folder in the right folder
+  */
+/**
+  * @name Headline Font
+  * @state .frg-headline-font-21px
+  * @state .frg-headline-font-23px
+  * @state .frg-headline-font-27px
+  * @state .frg-headline-font-37px
+  * @state .frg-headline-font-34px
+  * @state .frg-headline-font-44px
+  * @state .frg-headline-font-59px
+  * @state .frg-headline-font-71px
+  * @state .frg-headline-font-96px
+  * @markup
+  *   <h1 class="frg-headline-font-21px">Headline</h1>
+  */
+.frg-headline-font-21px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 21px;
+  line-height: 24px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-23px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 23px;
+  line-height: 30px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-27px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 27px;
+  line-height: 30px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-37px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 36px;
+  font-size: 37px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-34px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 34px;
+  line-height: 36px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-44px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 44px;
+  line-height: 42px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-59px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 59px;
+  line-height: 60px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-71px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 71px;
+  line-height: 72px;
+  margin-bottom: 1em;
+}
+
+.frg-headline-font-96px {
+  font-family: "tthinregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 96px;
+  line-height: 96px;
+  margin-bottom: 1em;
+}
+
+/**
+ * @name Body Font
+ * @state .frg-body-font-14px
+ * @state .frg-body-font-17px
+ * @state .frg-body-font-21px
+ * @state .frg-body-font-23px
+ * @state .frg-body-font-27px
+ * @state .frg-body-font-37px
+ * @markup
+ *   <p class="frg-body-font-14px">Body font text</p>
+ */
+.frg-body-font-14px, .frg-input-field, .frg-select-container select {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.frg-body-font-17px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 24px;
+  padding-bottom: 24px;
+}
+
+.frg-body-font-21px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 21px;
+  line-height: 30px;
+}
+
+.frg-body-font-23px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 23px;
+  line-height: 30px;
+}
+
+.frg-body-font-27px {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 27px;
+  line-height: 36px;
+}
+
+.frg-body-font-37px {
+  font-size: 37px;
+  line-height: 48px;
+}
+
+/**
+  * @name Link
+  * @description Styled links
+  * @state .color-purple - $purple-49
+  * @state .color-green - $green-66
+  * @state .color-gray -  $gray-58
+  * @state .color-dark-gray - $gray-66
+  * @state .color-black - black
+  * @state .color-white - white
+  * @state .decoration-default - no underline default, underline on hover
+  * @state .decoration-none - no underline
+  * @state .decoration-underline - underline
+  * @state .decoration-dotted - dotted link
+  * @markup
+  *   <a href='#' class='frg-link color-purple'>This is a link</a>
+  */
+.frg-link {
+  color: #49166d;
+}
+.frg-link:hover {
+  color: #8c68a6;
+}
+.frg-link.color-purple {
+  color: #49166d;
+}
+.frg-link.color-purple:hover {
+  color: #8c68a6;
+}
+.frg-link.color-green {
+  color: #66cc00;
+}
+.frg-link.color-green:hover {
+  color: #8be234;
+}
+.frg-link.color-gray {
+  color: rgba(102, 102, 102, 0.5);
+}
+.frg-link.color-gray:hover {
+  color: #666666;
+}
+.frg-link.color-dark-gray {
+  color: #666666;
+}
+.frg-link.color-dark-gray:hover {
+  color: rgba(102, 102, 102, 0.75);
+}
+.frg-link.color-black {
+  color: #333333;
+}
+.frg-link.color-black:hover {
+  color: #666666;
+}
+.frg-link.color-white {
+  color: white;
+}
+.frg-link.color-white:hover {
+  color: #666666;
+}
+.frg-link.decoration-default {
+  text-decoration: none;
+}
+.frg-link.decoration-default:hover {
+  text-decoration: underline;
+}
+.frg-link.decoration-underline {
+  text-decoration: underline;
+}
+.frg-link.decoration-underline:hover {
+  text-decoration: underline;
+}
+.frg-link.decoration-dotted {
+  text-decoration: none;
+  border-bottom: 1px dotted;
+  padding-bottom: 1px;
+}
+.frg-link.decoration-dotted:hover {
+  text-decoration: none;
+}
+.frg-link.decoration-none {
+  text-decoration: none;
+}
+.frg-link.decoration-none:hover {
+  text-decoration: none;
+}
+
+/**
+  * @name Link with nested icon
+  * @description Style for the has-icon class
+  * @state .decoration-faux-underline - decoration-faux-underline state
+  * @markup
+  * <a href="#" class="has-icon frg-link">
+      <span class="icon-label">This is a link with icon</span>
+      <span class="frg-icon icon-arrow-right-circled"></span>
+    </a>
+  */
+.frg-link.has-icon {
+  text-decoration: none;
+}
+.frg-link.has-icon:hover .icon-label {
+  text-decoration: underline;
+}
+.frg-link.has-icon.decoration-faux-underline:hover .icon-label {
+  text-decoration: none;
+  border-bottom: 1px solid #8c68a6;
+}
+.frg-link.has-icon.decoration-faux-underline.color-purple:hover .icon-label {
+  border-bottom: 1px solid #8c68a6;
+}
+.frg-link.has-icon.decoration-faux-underline.color-green:hover .icon-label {
+  border-bottom: 1px solid #8be234;
+}
+.frg-link.has-icon.decoration-faux-underline.color-gray:hover .icon-label {
+  border-bottom: 1px solid #666666;
+}
+.frg-link.has-icon.decoration-faux-underline.color-dark-gray:hover .icon-label {
+  border-bottom: 1px solid rgba(102, 102, 102, 0.75);
+}
+.frg-link.has-icon.decoration-faux-underline.color-black:hover .icon-label {
+  border-bottom: 1px solid #666666;
+}
+.frg-link.has-icon.decoration-faux-underline.color-white:hover .icon-label {
+  border-bottom: 1px solid #666666;
+}
+
+
+
+/**
+  * @name Buttons
+  * @description Buttons.
+  * @state .color-white
+  * @state .color-purple
+  * @state .color-green
+  * @state .color-dark-gray
+  * @markup
+  * <a href='#' class='frg-button'>Button</a>
+*/
+/**
+  * @name Animated Buttons
+  * @description Animated Buttons. Note: .state-loading will not work on <input> elements.
+  * @state .state-selected.color-green
+  * @state .state-disabled.color-green
+  * @state .state-loading.color-green
+  * @state .button-wide.color-green
+  * @markup
+  * <a href='#' class='frg-button'>Animated Button State</a>
+*/
+@-webkit-keyframes progress {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@-moz-keyframes progress {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.frg-button {
+  font-family: "telusweb", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #8350a7;
+  border: 1px solid #cecece;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(90%, #ffffff), color-stop(90%, #cecece), color-stop(100%, #cecece));
+  background-image: -webkit-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: -moz-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: -o-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-color: white;
+  font-size: 19px;
+  line-height: 19px;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 3px;
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px 14px 20px;
+  /**
+   * @name Icon in button
+   * @markup
+   *   <a href='#' class='frg-button color-green'><span class="frg-icon icon-checkmark"></span> Button</a>
+   */
+}
+.frg-button:hover {
+  cursor: pointer;
+}
+.frg-button:hover, .frg-button:focus, .frg-button.state-selected {
+  color: #8c68a6;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #cecece), color-stop(100%, #cecece));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-color: #cecece;
+  text-decoration: none;
+}
+.frg-button.color-purple {
+  color: white;
+  border: none;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8c68a6), color-stop(90%, #8c68a6), color-stop(90%, #49166d), color-stop(100%, #49166d));
+  background-image: -webkit-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+  background-image: -moz-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+  background-image: -o-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+  background-image: linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+  background-color: #8c68a6;
+}
+.frg-button.color-purple:hover, .frg-button.color-purple:focus, .frg-button.color-purple.state-selected {
+  color: white;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #49166d), color-stop(90%, #49166d), color-stop(90%, #49166d), color-stop(100%, #49166d));
+  background-image: -webkit-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+  background-image: -moz-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+  background-image: -o-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+  background-image: linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+  background-color: #49166d;
+}
+.frg-button.color-green {
+  color: white;
+  border: none;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #57a708), color-stop(90%, #57a708), color-stop(90%, #408000), color-stop(100%, #408000));
+  background-image: -webkit-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+  background-image: -moz-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+  background-image: -o-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+  background-image: linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+  background-color: #57a708;
+}
+.frg-button.color-green:hover, .frg-button.color-green:focus, .frg-button.color-green.state-selected {
+  color: white;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #408000), color-stop(90%, #408000), color-stop(90%, #408000), color-stop(100%, #408000));
+  background-image: -webkit-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+  background-image: -moz-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+  background-image: -o-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+  background-image: linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+  background-color: #408000;
+}
+.frg-button.color-white {
+  color: #8350a7;
+  border: 1px solid #cecece;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(90%, #ffffff), color-stop(90%, #cecece), color-stop(100%, #cecece));
+  background-image: -webkit-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: -moz-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: -o-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-image: linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+  background-color: white;
+}
+.frg-button.color-white:hover, .frg-button.color-white:focus, .frg-button.color-white.state-selected {
+  color: #8c68a6;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #cecece), color-stop(100%, #cecece));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+  background-color: #cecece;
+}
+.frg-button.color-dark-gray {
+  color: white;
+  border: none;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #666666), color-stop(90%, #666666), color-stop(90%, #333333), color-stop(100%, #333333));
+  background-image: -webkit-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+  background-image: -moz-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+  background-image: -o-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+  background-image: linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+  background-color: #666666;
+}
+.frg-button.color-dark-gray:hover, .frg-button.color-dark-gray:focus {
+  color: white;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #333333), color-stop(90%, #333333), color-stop(90%, #333333), color-stop(100%, #333333));
+  background-image: -webkit-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+  background-image: -moz-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+  background-image: -o-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+  background-image: linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+  background-color: #333333;
+}
+.frg-button.state-selected {
+  pointer-events: none;
+}
+.frg-button.button-wide {
+  width: 100%;
+}
+.frg-button.button-wider {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+.frg-button.state-disabled, .frg-button:disabled {
+  pointer-events: none;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-color: #cecece;
+}
+.frg-button.state-disabled:hover, .frg-button:disabled:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-color: #cecece;
+}
+.frg-button.state-loading, .frg-button.state-loading:hover {
+  color: white;
+  position: relative;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-color: #cecece;
+}
+.frg-button.state-loading:after, .frg-button.state-loading:hover:after {
+  -webkit-animation-name: progress;
+  -moz-animation-name: progress;
+  animation-name: progress;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  position: absolute;
+  display: inline-block;
+  content: "";
+  bottom: 0px;
+  left: 0;
+  height: 4px;
+  z-index: 1;
+  width: 0%;
+  background: #888;
+  transition: width 3s;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.frg-button.state-loading:hover, .frg-button.state-loading:hover:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+  background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+  background-color: #cecece;
+}
+.frg-button .frg-icon, .frg-button .frg-select-container:after {
+  font-size: 18px;
+  line-height: 18px;
+  vertical-align: 0%;
+  padding-right: 3px;
+}  
+
+/**
+  * @name Grouped Buttons
+  * @description add class="state-selected" to currently selected button
+  * @markup
+  * <div class="frg-button-group">
+  *     <a href="#" class="frg-button color-purple state-selected">Button 1</a>
+  *     <a href="#" class="frg-button color-purple">Button 2</a>
+  *     <a href="#" class="frg-button color-purple">Button 3</a>
+  *   </div>
+  */
+.frg-button-group {
+  overflow: auto;
+}
+.frg-button-group .frg-button {
+  float: left;
+  border-radius: 0;
+}
+.frg-button-group .frg-button:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.frg-button-group .frg-button:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/**
+  * @name Dividers
+  * @description Applies to <hr> elements
+  * @state .color-light
+  * @markup 
+  *   <hr class='frg-hr color-dark' />
+  */
+.frg-hr {
+  margin: 0;
+  height: 1px;
+  border: none;
+  clear: both;
+}
+.frg-hr.color-dark, .frg-select-container.color-dark select.frg-hr {
+  margin: 0;
+  height: 1px;
+  border: none;
+  clear: both;
+  color: #3d3c3c;
+  background-color: #3d3c3c;
+}
+.frg-hr.color-light, .frg-select-container.color-light select.frg-hr {
+  margin: 0;
+  height: 1px;
+  border: none;
+  clear: both;
+  color: #e2e2e2;
+  background-color: #e2e2e2;
+}
+
+/**
+  * @name Forms
+  * @description From elements
+  * @state .color-dark
+  * @state .highlight-green
+  * @state .highlight-purple
+  * @markup
+  *   <input class='frg-input-field' value='test'/>
+  */
+.frg-input-field, .frg-select-container select {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0 12px;
+  height: 44px;
+  position: relative;
+  top: 0;
+  margin: 2px 0;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-appearance: none;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+.frg-input-field:disabled, .frg-select-container select:disabled {
+  pointer-events: none;
+}
+.frg-input-field.color-light, .frg-select-container select.color-light, .frg-select-container.color-light select {
+  background-color: white;
+  color: #666666;
+  border-color: #e2e2e2;
+}
+.frg-input-field.color-dark, .frg-select-container select.color-dark, .frg-select-container.color-dark select {
+  background-color: #666666;
+  color: #e2e2e2;
+  border-color: #666666;
+}
+.frg-input-field.highlight-green, .frg-input-field.color-light, .frg-select-container select.color-light, .frg-select-container.color-light select, .frg-select-container select.highlight-green {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.frg-input-field.highlight-green:hover, .frg-input-field.color-light:hover, .frg-select-container select.color-light:hover, .frg-select-container.color-light select:hover, .frg-select-container select.highlight-green:hover {
+  border: 1px solid #b2d47e;
+  -webkit-box-shadow: 0 0 1px #b2d47e;
+  -moz-box-shadow: 0 0 1px #b2d47e;
+  box-shadow: 0 0 1px #b2d47e;
+}
+.frg-input-field.highlight-green:focus, .frg-input-field.color-light:focus, .frg-select-container select.color-light:focus, .frg-select-container.color-light select:focus, .frg-select-container select.highlight-green:focus {
+  border: 1px solid #666666;
+  -webkit-box-shadow: 0 0 1px #666666;
+  -moz-box-shadow: 0 0 1px #666666;
+  box-shadow: 0 0 1px #666666;
+}
+.frg-input-field.highlight-purple:hover, .frg-input-field.color-dark:hover, .frg-select-container select.color-dark:hover, .frg-select-container.color-dark select:hover, .frg-select-container select.highlight-purple:hover {
+  border: 1px solid #b196c1;
+  -webkit-box-shadow: 0 0 1px #b196c1;
+  -moz-box-shadow: 0 0 1px #b196c1;
+  box-shadow: 0 0 1px #b196c1;
+}
+.frg-input-field.highlight-purple:focus, .frg-input-field.color-dark:focus, .frg-select-container select.color-dark:focus, .frg-select-container.color-dark select:focus, .frg-select-container select.highlight-purple:focus {
+  border: 1px solid #333333;
+  -webkit-box-shadow: 0 0 1px #333333;
+  -moz-box-shadow: 0 0 1px #333333;
+  box-shadow: 0 0 1px #333333;
+}
+
+/**
+  * @name Styled Select
+  * @description applies to a select wrapped in a div. Set width to 100%
+  * @state .color-dark
+  * @markup
+  * <div class='frg-select-container color-light'>
+  *     <select>
+  *       <option>Option</option>
+  *       <option>Option</option>
+  *     </select>
+  *   </div>
+  */
+.frg-select-container {
+  display: inline-block;
+  font-size: 17px;
+}
+.frg-select-container:after {
+  position: relative;
+  float: right;
+  right: 10px;
+  top: -31px;
+  pointer-events: none;
+}
+.frg-select-container select {
+  padding: 10px 5px 10px 10px;
+  width: 100%;
+  -moz-appearance: none;
+  text-overflow: '';
+}
+.frg-select-container select::-ms-expand {
+  display: none;
+}
+.frg-select-container.color-light:after, .frg-select-container.color-light select.frg-select-container:after {
+  color: #e2e2e2;
+}
+.frg-select-container.color-dark:after, .frg-select-container.color-dark select.frg-select-container:after {
+  color: #e2e2e2;
+}
+
+/**
+  * @name Checkbox
+  * @description Checkbox
+  * @markup
+  *   <div class="frg-checkbox regular">
+  *     <div class="inner">
+  *       <input id="chkbox-option-1" type="checkbox" name="option-1" value="Option 1">
+  *       <div class="icon">
+  *         <span class="frg-icon icon-checkmark" aria-hidden="true"></span>
+  *       </div>
+  *       <label for="chkbox-option-1">TV</label>
+  *     </div>
+  *   </div>
+  */
+/**
+  * @name Checkbox
+  * @description Small Checkbox
+  * @markup
+  *   <div class="frg-checkbox regular small">
+  *     <div class="inner">
+  *       <input id="chkbox-option-2" type="checkbox" name="option-2" value="Option 2">
+  *       <div class="icon">
+  *         <span class="frg-icon icon-checkmark" aria-hidden="true"></span>
+  *       </div>
+  *       <label for="chkbox-option-2">TV</label>
+  *     </div>
+  *   </div>
+  */
+/**
+  * @name Radio Button
+  * @description Radio Button
+  * @markup
+  *   <div class="frg-checkbox regular">
+  *     <div class="inner">
+  *       <input id="radio-option1" type="radio" name="option" value="Option 1">
+  *       <div class="icon"></div>
+  *       <label for="radio-option1">Option 1</label>
+  *     </div>
+  *   </div>
+  */
+/**
+  * @name Radio Button
+  * @description Small Radio Button
+  * @markup
+  *   <div class="frg-checkbox regular small">
+  *     <div class="inner">
+  *       <input id="radio-option-2" type="radio" name="option" value="Option 2">
+  *       <div class="icon"></div>
+  *       <label for="radio-option-2">Option 2</label>
+  *     </div>
+  *   </div>
+  */
+.frg-checkbox.regular {
+  padding-bottom: 10px;
+  font-size: 17px;
+}
+.frg-checkbox.regular:last-child {
+  padding-bottom: 0;
+}
+.frg-checkbox.regular > .inner {
+  position: relative;
+}
+.frg-checkbox.regular input[type="checkbox"],
+.frg-checkbox.regular input[type="radio"],
+.frg-checkbox.regular .icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 31px;
+  height: 31px;
+  line-height: 31px;
+  margin-top: -15px;
+  text-align: center;
+  border: 2px solid #cccccc;
+  background-color: white;
+}
+.frg-checkbox.regular .icon {
+  color: white;
+}
+.frg-checkbox.regular input[type="checkbox"],
+.frg-checkbox.regular input[type="radio"] {
+  opacity: 0;
+  z-index: 1000;
+}
+.frg-checkbox.regular input[type="checkbox"]:focus ~ .icon,
+.frg-checkbox.regular input[type="radio"]:focus ~ .icon {
+  outline: none;
+  border-color: #57a708;
+}
+.frg-checkbox.regular input[type="checkbox"]:checked ~ .icon,
+.frg-checkbox.regular input[type="radio"]:checked ~ .icon {
+  color: #66cc00;
+  outline: none;
+}
+.frg-checkbox.regular input[type="radio"] ~ .icon {
+  -webkit-box-shadow: inset -9px 4px 20px -13px #8f8f8f;
+  -moz-box-shadow: inset -9px 4px 20px -13px #8f8f8f;
+  box-shadow: inset -9px 4px 20px -13px #8f8f8f;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 1px solid #cccccc;
+}
+.frg-checkbox.regular input[type="radio"]:checked ~ .icon {
+  background-image: url(http://telus.com/deals/shop/assets/images/icons/green-radio.png);
+  background-size: cover;
+  border: none;
+}
+.frg-checkbox.regular input[type="radio"]:checked:focus ~ .icon {
+  border: 1px solid #57a708;
+}
+.frg-checkbox.regular label {
+  display: block;
+  padding: 10px 0 10px 45px;
+  text-align: left;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.frg-checkbox.regular label.small {
+  font-size: 14px;
+  line-height: 20px;
+}
+.frg-checkbox.regular.left-label input[type="checkbox"],
+.frg-checkbox.regular.left-label input[type="radio"],
+.frg-checkbox.regular.left-label .icon {
+  left: auto;
+  right: 0;
+}
+.frg-checkbox.regular.left-label label {
+  padding-left: 0;
+  padding-right: 45px;
+}
+.frg-checkbox.regular.small {
+  padding-bottom: 0px;
+}
+.frg-checkbox.regular.small input[type="checkbox"],
+.frg-checkbox.regular.small input[type="radio"],
+.frg-checkbox.regular.small .icon {
+  width: 20px;
+  height: 20px;
+  line-height: 12px;
+  margin-top: -10px;
+}
+.frg-checkbox.regular.small .icon .frg-icon, .frg-checkbox.regular.small .icon .frg-select-container:after {
+  font-size: 12px;
+}
+.frg-checkbox.regular.small input[type="radio"]:checked ~ .icon {
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+.frg-checkbox.regular.small input[type="radio"]:checked:focus ~ .icon {
+  background-size: 18px 18px;
+}
+.frg-checkbox.regular.small label {
+  padding: 9px 0 9px 35px;
+}
+.frg-checkbox.regular.small.left-label label {
+  padding-right: 35px;
+}
+
+/**
+  * @name Lists
+  * @description  apply to an ul or dl element only
+  * Requires:
+  * @import "common/color";
+  * @import "common/typography";
+  * @import "icons/icons" // for menu-like stacked lists
+  * @state .alignment-inline
+  * @state .alignment-stacked
+  * @markup
+  * <ul class='frg-list'>
+  *     <li>element one</li>
+  *     <li>element two</li>
+  *     <li>element three</li>
+  *   </ul>
+  */
+.frg-list.alignment-inline {
+  font-size: 14px;
+  line-height: 24px;
+}
+.frg-list.alignment-inline > li, .frg-list.alignment-inline > dd {
+  font-size: 14px;
+  display: inline-block;
+  padding: 0 5px 0 5px;
+  margin: 0 0 0 -4px;
+  border-right: none;
+}
+.frg-list.alignment-inline > li:first-child, .frg-list.alignment-inline > dd:first-child {
+  padding-left: 0;
+  margin-left: 0;
+}
+.frg-list.alignment-inline > li:last-child, .frg-list.alignment-inline > dd:last-child {
+  padding-right: 0px;
+  border-right: none;
+}
+.frg-list.alignment-stacked {
+  font-size: 14px;
+}
+.frg-list.alignment-stacked li {
+  font-size: 14px;
+  display: block;
+  padding: 0 15px;
+  border-bottom: 1px solid #e2e2e2;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/**
+  Shadows
+  Requires:
+  * @import "common/color";
+  */
+/**
+  * @name Outer shadow
+  * @markup
+  *   <div class='frg-box-shadow'>Testing</div>
+  */
+.frg-box-shadow {
+  -webkit-box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.2);
+  -moz-box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.2);
+  box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.2);
+}
+.frg-box-shadow.state-hover {
+  -webkit-box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.35);
+  -moz-box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.35);
+  box-shadow: 0 0 2px 1px rgba(51, 51, 51, 0.35);
+}
+
+/**
+  * @name Inner shadow
+  * @markup
+  *   <div class='frg-inner-shadow'>Testing</div>
+  */
+.frg-inner-shadow {
+  -webkit-box-shadow: inset 1px 1px 2px 1px rgba(51, 51, 51, 0.2);
+  -moz-box-shadow: inset 1px 1px 2px 1px rgba(51, 51, 51, 0.2);
+  box-shadow: inset 1px 1px 2px 1px rgba(51, 51, 51, 0.2);
+}
+
+/**
+  * @name Drop shadow
+  * @markup
+  *   <div class='frg-drop-shadow'>Testing</div>
+  */
+.frg-drop-shadow {
+  -webkit-box-shadow: 0 4px 4px 2px rgba(51, 51, 51, 0.2);
+  -moz-box-shadow: 0 4px 4px 2px rgba(51, 51, 51, 0.2);
+  box-shadow: 0 4px 4px 2px rgba(51, 51, 51, 0.2);
+}
+
+.frg-no-shadow {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/**
+  * @name Loading Spinner
+  * @description Animated CSS spinner. CSS: _loading-spinner.scss,  TWIG: {% import "macros/loading_spinner.html.twig" as loading_spinner %} {{ loading_spinner.spinner() }}
+  * @markup
+  * <div class='frg-loading-spinner'>
+  *   <svg viewBox="0 0 100 100" width="0" height="0">
+  *     <circle stroke="#66cc00" stroke-width="4" fill="none"
+  *     stroke-linecap="round" stroke-dasharray="89, 200"
+  *     stroke-dashoffset="0" cx="50" cy="50" r="20" />
+  *   </svg>
+  *   <div class="fallback" style="background-image: url('//telus.com/my-account/assets/images/spinner.gif')">
+  *   </div>
+  * </div>
+  */
+.frg-loading-spinner {
+  width: 100px;
+  height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  margin: auto;
+}
+.frg-loading-spinner .fallback {
+  display: none;
+}
+
+.no-smil .frg-loading-spinner svg {
+  display: none;
+}
+
+.no-smil .frg-loading-spinner .fallback {
+  display: block;
+  background-size: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.frg-loading-spinner svg {
+  animation-name: rotate;
+  -webkit-animation-name: rotate;
+  -moz-animation-name: rotate;
+  animation-duration: 1.8s;
+  -webkit-animation-duration: 1.8s;
+  -moz-animation-duration: 1.8s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  height: 100%;
+  width: 100%;
+}
+
+.frg-loading-spinner circle {
+  animation: dash 1.7s ease-in-out infinite 0s, spinner-color 6s ease-in-out infinite -0.75s;
+  -webkit-animation: dash 1.7s ease-in-out infinite 0s, spinner-color 6s ease-in-out infinite -0.75s;
+  -moz-animation: dash 1.7s ease-in-out infinite 0s, spinner-color 6s ease-in-out infinite -0.75s;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@-moz-keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@-webkit-keyframes spinner-color {
+  100%, 0% {
+    stroke: #66cc00;
+  }
+
+  25% {
+    stroke: #66cc00;
+  }
+
+  50% {
+    stroke: #57a708;
+  }
+
+  75% {
+    stroke: #57a708;
+  }
+}
+
+@-moz-keyframes spinner-color {
+  100%, 0% {
+    stroke: #66cc00;
+  }
+
+  25% {
+    stroke: #66cc00;
+  }
+
+  50% {
+    stroke: #57a708;
+  }
+
+  75% {
+    stroke: #57a708;
+  }
+}
+
+@keyframes spinner-color {
+  100%, 0% {
+    stroke: #66cc00;
+  }
+
+  25% {
+    stroke: #66cc00;
+  }
+
+  50% {
+    stroke: #57a708;
+  }
+
+  75% {
+    stroke: #57a708;
+  }
+}
+
+/**
+  * @name Icons
+  * @description Icon font classes to be applied to any element. Do not attempt to apply anything besides vertical-align: baseline. Otherwise you will have a cross-browser headache.
+  * Requires:
+  * - telusdings font to be installed in the fonts directory
+  */
+.frg-icon, .frg-select-container:after {
+  font-family: 'telusdings';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  color: inherit;
+}
+.frg-icon.color-purple, .color-purple.frg-select-container:after {
+  color: #49166d;
+}
+.frg-icon.color-green, .color-green.frg-select-container:after {
+  color: #66cc00;
+}
+.frg-icon.color-gray, .color-gray.frg-select-container:after {
+  color: rgba(102, 102, 102, 0.5);
+}
+.frg-icon.color-dark-gray, .color-dark-gray.frg-select-container:after {
+  color: #666666;
+}
+.frg-icon.color-black, .color-black.frg-select-container:after {
+  color: #333333;
+}
+.frg-icon.color-white, .color-white.frg-select-container:after {
+  color: white;
+}
+.frg-icon.has-fill, .has-fill.frg-select-container:after {
+  white-space: nowrap;
+  position: relative;
+  display: inline-block;
+}
+.frg-icon.has-fill:before {
+  z-index: 100;
+  position: relative;
+}
+.frg-icon.has-fill:after, .has-fill.frg-select-container:after {
+  position: absolute;
+  left: 0;
+  z-index: 99;
+  color: white;
+}
+.frg-icon:before.pad-right {
+  padding-right: 5px;
+}
+.frg-icon:before.pad-left {
+  padding-left: 5px;
+}
+
+.frg-icon, .frg-select-container:after {
+  /**
+    * @name icon
+    * @icon circle-thick-outline
+    * @markup
+    *   <span class='frg-icon icon-circle-thick-outline'></span>
+    */
+  /**
+    * @name icon
+    * @icon circle-solid
+    * @markup
+    *   <span class='frg-icon icon-circle-solid'></span>
+    */
+  /**
+    * @name icon
+    * @icon big-arrow-up
+    * @markup
+    *   <span class='frg-icon icon-big-arrow-up'></span>
+    */
+  /**
+    * @name icon
+    * @icon big-arrow-down
+    * @markup
+    *   <span class='frg-icon icon-big-arrow-down'></span>
+    */
+  /**
+    * @name icon
+    * @icon telus-logo
+    * @markup
+    *   <span class='frg-icon icon-telus-logo'></span>
+    */
+  /**
+    * @name icon
+    * @icon bar-chart
+    * @markup
+    *   <span class='frg-icon icon-bar-chart'></span>
+    */
+  /**
+    * @name icon
+    * @icon picture-frame
+    * @markup
+    *   <span class='frg-icon icon-picture-frame'></span>
+    */
+  /**
+    * @name icon
+    * @icon paper
+    * @markup
+    *   <span class='frg-icon icon-paper'></span>
+    */
+  /**
+    * @name icon
+    * @icon paper-solid
+    * @markup
+    *   <span class='frg-icon icon-paper-solid'></span>
+    */
+  /**
+    * @name icon
+    * @icon folder-solid
+    * @markup
+    *   <span class='frg-icon icon-folder-solid'></span>
+    */
+  /**
+    * @name icon
+    * @icon share
+    * @markup
+    *   <span class='frg-icon icon-share'></span>
+    */
+  /**
+    * @name icon
+    * @icon magnify-glass
+    * @markup
+    *   <span class='frg-icon icon-magnify-glass'></span>
+    */
+  /**
+    * @name icon
+    * @icon warning-inverted
+    * @markup
+    *   <span class='frg-icon icon-warning-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon star-inverted
+    * @markup
+    *   <span class='frg-icon icon-star-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon star
+    * @markup
+    *   <span class='frg-icon icon-star'></span>
+    */
+  /**
+    * @name icon
+    * @icon heart
+    * @markup
+    *   <span class='frg-icon icon-heart'></span>
+    */
+  /**
+    * @name icon
+    * @icon lifesaver
+    * @markup
+    *   <span class='frg-icon icon-lifesaver'></span>
+    */
+  /**
+    * @name icon
+    * @icon hamburger
+    * @markup
+    *   <span class='frg-icon icon-hamburger'></span>
+    */
+  /**
+    * @name icon
+    * @icon grid-square
+    * @markup
+    *   <span class='frg-icon icon-grid-square'></span>
+    */
+  /**
+    * @name icon
+    * @icon grid-dots
+    * @markup
+    *   <span class='frg-icon icon-grid-dots'></span>
+    */
+  /**
+    * @name icon
+    * @icon lightbulb
+    * @markup
+    *   <span class='frg-icon icon-lightbulb'></span>
+    */
+  /**
+    * @name icon
+    * @icon speedometer-inverted
+    * @markup
+    *   <span class='frg-icon icon-speedometer-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon add-remove
+    * @markup
+    *   <span class='frg-icon icon-add-remove'></span>
+    */
+  /**
+    * @name icon
+    * @icon cart
+    * @markup
+    *   <span class='frg-icon icon-cart'></span>
+    */
+  /**
+    * @name icon
+    * @icon twitter
+    * @markup
+    *   <span class='frg-icon icon-twitter'></span>
+    */
+  /**
+    * @name icon
+    * @icon facebook
+    * @markup
+    *   <span class='frg-icon icon-facebook'></span>
+    */
+  /**
+    * @name icon
+    * @icon youtube
+    * @markup
+    *   <span class='frg-icon icon-youtube'></span>
+    */
+  /**
+    * @name icon
+    * @icon google-plus
+    * @markup
+    *   <span class='frg-icon icon-google-plus'></span>
+    */
+  /**
+    * @name icon
+    * @icon trend-down
+    * @markup
+    *   <span class='frg-icon icon-trend-down'></span>
+    */
+  /**
+    * @name icon
+    * @icon play-button-inverted
+    * @markup
+    *   <span class='frg-icon icon-play-button-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon video-inverted
+    * @markup
+    *   <span class='frg-icon icon-video-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon infinity-circled
+    * @markup
+    *   <span class='frg-icon icon-infinity-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon infinity-inverted
+    * @markup
+    *   <span class='frg-icon icon-infinity-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon clock
+    * @markup
+    *   <span class='frg-icon icon-clock'></span>
+    */
+  /**
+    * @name icon
+    * @icon clock-inverted
+    * @markup
+    *   <span class='frg-icon icon-clock-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon smartphone
+    * @markup
+    *   <span class='frg-icon icon-smartphone'></span>
+    */
+  /**
+    * @name icon
+    * @icon tablet
+    * @markup
+    *   <span class='frg-icon icon-tablet'></span>
+    */
+  /**
+    * @name icon
+    * @icon homephone
+    * @markup
+    *   <span class='frg-icon icon-homephone'></span>
+    */
+  /**
+    * @name icon
+    * @icon mouse
+    * @markup
+    *   <span class='frg-icon icon-mouse'></span>
+    */
+  /**
+    * @name icon
+    * @icon pricetag
+    * @markup
+    *   <span class='frg-icon icon-pricetag'></span>
+    */
+  /**
+    * @name icon
+    * @icon paper-notes-solid
+    * @markup
+    *   <span class='frg-icon icon-paper-notes-solid'></span>
+    */
+  /**
+    * @name icon
+    * @icon tv
+    * @markup
+    *   <span class='frg-icon icon-tv'></span>
+    */
+  /**
+    * @name icon
+    * @icon film
+    * @markup
+    *   <span class='frg-icon icon-film'></span>
+    */
+  /**
+    * @name icon
+    * @icon envelope
+    * @markup
+    *   <span class='frg-icon icon-envelope'></span>
+    */
+  /**
+    * @name icon
+    * @icon usb-stick
+    * @markup
+    *   <span class='frg-icon icon-usb-stick'></span>
+    */
+  /**
+    * @name icon
+    * @icon map-marker
+    * @markup
+    *   <span class='frg-icon icon-map-marker'></span>
+    */
+  /**
+    * @name icon
+    * @icon map-marker-inverted
+    * @markup
+    *   <span class='frg-icon icon-map-marker-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon user-profile
+    * @markup
+    *   <span class='frg-icon icon-user-profile'></span>
+    */
+  /**
+    * @name icon
+    * @icon user-profile-circled
+    * @markup
+    *   <span class='frg-icon icon-user-profile-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon user-profile-inverted
+    * @markup
+    *   <span class='frg-icon icon-user-profile-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon users
+    * @markup
+    *   <span class='frg-icon icon-users'></span>
+    */
+  /**
+    * @name icon
+    * @icon users-circled
+    * @markup
+    *   <span class='frg-icon icon-users-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon telus-t-inverted
+    * @markup
+    *   <span class='frg-icon icon-telus-t-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon telus-t-boxed-inverted
+    * @markup
+    *   <span class='frg-icon icon-telus-t-boxed-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon gear
+    * @markup
+    *   <span class='frg-icon icon-gear'></span>
+    */
+  /**
+    * @name icon
+    * @icon gear-circled
+    * @markup
+    *   <span class='frg-icon icon-gear-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon gear-inverted
+    * @markup
+    *   <span class='frg-icon icon-gear-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon padlock
+    * @markup
+    *   <span class='frg-icon icon-padlock'></span>
+    */
+  /**
+    * @name icon
+    * @icon padlock-invereted
+    * @markup
+    *   <span class='frg-icon icon-padlock-invereted'></span>
+    */
+  /**
+    * @name icon
+    * @icon stacked-papers-inverted
+    * @markup
+    *   <span class='frg-icon icon-stacked-papers-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon music-note-inverted
+    * @markup
+    *   <span class='frg-icon icon-music-note-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon smartphone-inverted
+    * @markup
+    *   <span class='frg-icon icon-smartphone-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon tablet-inverted
+    * @markup
+    *   <span class='frg-icon icon-tablet-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon homephone-inverted
+    * @markup
+    *   <span class='frg-icon icon-homephone-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon mouse-inverted
+    * @markup
+    *   <span class='frg-icon icon-mouse-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon pricetag-inverted
+    * @markup
+    *   <span class='frg-icon icon-pricetag-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon paper-inverted
+    * @markup
+    *   <span class='frg-icon icon-paper-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon tv-inverted
+    * @markup
+    *   <span class='frg-icon icon-tv-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon film-clapper-inverted
+    * @markup
+    *   <span class='frg-icon icon-film-clapper-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon envelope-inverted
+    * @markup
+    *   <span class='frg-icon icon-envelope-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon phone-handset-inverted
+    * @markup
+    *   <span class='frg-icon icon-phone-handset-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon usb-stick-inverted
+    * @markup
+    *   <span class='frg-icon icon-usb-stick-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon home
+    * @markup
+    *   <span class='frg-icon icon-home'></span>
+    */
+  /**
+    * @name icon
+    * @icon home-circled
+    * @markup
+    *   <span class='frg-icon icon-home-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon home-inverted
+    * @markup
+    *   <span class='frg-icon icon-home-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon calendar
+    * @markup
+    *   <span class='frg-icon icon-calendar'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-right-inverted
+    * @markup
+    *   <span class='frg-icon icon-arrow-right-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-down-inverted
+    * @markup
+    *   <span class='frg-icon icon-arrow-down-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-left-inverted
+    * @markup
+    *   <span class='frg-icon icon-arrow-left-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-up-inverted
+    * @markup
+    *   <span class='frg-icon icon-arrow-up-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-right-circled
+    * @markup
+    *   <span class='frg-icon icon-arrow-right-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-down-circled
+    * @markup
+    *   <span class='frg-icon icon-arrow-down-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-left-circled
+    * @markup
+    *   <span class='frg-icon icon-arrow-left-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-up-circled
+    * @markup
+    *   <span class='frg-icon icon-arrow-up-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-down
+    * @markup
+    *   <span class='frg-icon icon-arrow-down'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-left
+    * @markup
+    *   <span class='frg-icon icon-arrow-left'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-up
+    * @markup
+    *   <span class='frg-icon icon-arrow-up'></span>
+    */
+  /**
+    * @name icon
+    * @icon arrow-right
+    * @markup
+    *   <span class='frg-icon icon-arrow-right'></span>
+    */
+  /**
+    * @name icon
+    * @icon x
+    * @markup
+    *   <span class='frg-icon icon-x'></span>
+    */
+  /**
+    * @name icon
+    * @icon x-circled
+    * @markup
+    *   <span class='frg-icon icon-x-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon x-inverted
+    * @markup
+    *   <span class='frg-icon icon-x-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon checkmark
+    * @markup
+    *   <span class='frg-icon icon-checkmark'></span>
+    */
+  /**
+    * @name icon
+    * @icon checkmark-circled
+    * @markup
+    *   <span class='frg-icon icon-checkmark-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon checkmark-inverted
+    * @markup
+    *   <span class='frg-icon icon-checkmark-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon infinity
+    * @markup
+    *   <span class='frg-icon icon-infinity'></span>
+    */
+  /**
+    * @name icon
+    * @icon plus
+    * @markup
+    *   <span class='frg-icon icon-plus'></span>
+    */
+  /**
+    * @name icon
+    * @icon plus-circled
+    * @markup
+    *   <span class='frg-icon icon-plus-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon plus-inverted
+    * @markup
+    *   <span class='frg-icon icon-plus-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon minus
+    * @markup
+    *   <span class='frg-icon icon-minus'></span>
+    */
+  /**
+    * @name icon
+    * @icon minus-circled
+    * @markup
+    *   <span class='frg-icon icon-minus-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon minus-inverted
+    * @markup
+    *   <span class='frg-icon icon-minus-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon chat-bubble
+    * @markup
+    *   <span class='frg-icon icon-chat-bubble'></span>
+    */
+  /**
+    * @name icon
+    * @icon chat-dots
+    * @markup
+    *   <span class='frg-icon icon-chat-dots'></span>
+    */
+  /**
+    * @name icon
+    * @icon chat-clock
+    * @markup
+    *   <span class='frg-icon icon-chat-clock'></span>
+    */
+  /**
+    * @name icon
+    * @icon chat-x
+    * @markup
+    *   <span class='frg-icon icon-chat-x'></span>
+    */
+  /**
+    * @name icon
+    * @icon chat-inverted
+    * @markup
+    *   <span class='frg-icon icon-chat-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon sim-card
+    * @markup
+    *   <span class='frg-icon icon-sim-card'></span>
+    */
+  /**
+    * @name icon
+    * @icon calculator
+    * @markup
+    *   <span class='frg-icon icon-calculator'></span>
+    */
+  /**
+    * @name icon
+    * @icon bluetooth-headset
+    * @markup
+    *   <span class='frg-icon icon-bluetooth-headset'></span>
+    */
+  /**
+    * @name icon
+    * @icon outgoing-call
+    * @markup
+    *   <span class='frg-icon icon-outgoing-call'></span>
+    */
+  /**
+    * @name icon
+    * @icon incoming-call
+    * @markup
+    *   <span class='frg-icon icon-incoming-call'></span>
+    */
+  /**
+    * @name icon
+    * @icon caution
+    * @markup
+    *   <span class='frg-icon icon-caution'></span>
+    */
+  /**
+    * @name icon
+    * @icon wifi-inverted
+    * @markup
+    *   <span class='frg-icon icon-wifi-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon wifi
+    * @markup
+    *   <span class='frg-icon icon-wifi'></span>
+    */
+  /**
+    * @name icon
+    * @icon thin-plus-circled
+    * @markup
+    *   <span class='frg-icon icon-thin-plus-circled'></span>
+    */
+  /**
+    * @name icon
+    * @icon info
+    * @markup
+    *   <span class='frg-icon icon-info'></span>
+    */
+  /**
+    * @name icon
+    * @icon info-inverted
+    * @markup
+    *   <span class='frg-icon icon-info-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon trend-up
+    * @markup
+    *   <span class='frg-icon icon-trend-up'></span>
+    */
+  /**
+    * @name icon
+    * @icon globe
+    * @markup
+    *   <span class='frg-icon icon-globe'></span>
+    */
+  /**
+    * @name icon
+    * @icon satellite-inverted
+    * @markup
+    *   <span class='frg-icon icon-satellite-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon card-arrow-left
+    * @markup
+    *   <span class='frg-icon icon-card-arrow-left'></span>
+    */
+  /**
+    * @name icon
+    * @icon card-arrow-right
+    * @markup
+    *   <span class='frg-icon icon-card-arrow-right'></span>
+    */
+  /**
+    * @name icon
+    * @icon calendar-inverted
+    * @markup
+    *   <span class='frg-icon icon-calendar-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon overview-inverted
+    * @markup
+    *   <span class='frg-icon icon-overview-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon telus-circle-inverted
+    * @markup
+    *   <span class='frg-icon icon-telus-circle-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon pulse-inverted
+    * @markup
+    *   <span class='frg-icon icon-pulse-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon mike-mobile
+    * @markup
+    *   <span class='frg-icon icon-mike-mobile'></span>
+    */
+  /**
+    * @name icon
+    * @icon rewards-badge
+    * @markup
+    *   <span class='frg-icon icon-rewards-badge'></span>
+    */
+  /**
+    * @name icon
+    * @icon filter
+    * @markup
+    *   <span class='frg-icon icon-filter'></span>
+    */
+  /**
+    * @name icon
+    * @icon schedule-talk
+    * @markup
+    *   <span class='frg-icon icon-schedule-talk'></span>
+    */
+  /**
+    * @name icon
+    * @icon warning
+    * @markup
+    *   <span class='frg-icon icon-warning'></span>
+    */
+  /**
+    * @name icon
+    * @icon satellite
+    * @markup
+    *   <span class='frg-icon icon-satellite'></span>
+    */
+  /**
+    * @name icon
+    * @icon cart-inverted
+    * @markup
+    *   <span class='frg-icon icon-cart-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon live-chat
+    * @markup
+    *   <span class='frg-icon icon-live-chat'></span>
+    */
+  /**
+    * @name icon
+    * @icon business-connect-inverted
+    * @markup
+    *   <span class='frg-icon icon-business-connect-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon business-connect
+    * @markup
+    *   <span class='frg-icon icon-business-connect'></span>
+    */
+  /**
+    * @name icon
+    * @icon cloud
+    * @markup
+    *   <span class='frg-icon icon-cloud'></span>
+    */
+  /**
+    * @name icon
+    * @icon data
+    * @markup
+    *   <span class='frg-icon icon-data'></span>
+    */
+  /**
+    * @name icon
+    * @icon delivery-truck
+    * @markup
+    *   <span class='frg-icon icon-delivery-truck'></span>
+    */
+  /**
+    * @name icon
+    * @icon protection
+    * @markup
+    *   <span class='frg-icon icon-protection'></span>
+    */
+  /**
+    * @name icon
+    * @icon colour-picker
+    * @markup
+    *   <span class='frg-icon icon-colour-picker'></span>
+    */
+  /**
+    * @name icon
+    * @icon multi-account-inverted
+    * @markup
+    *   <span class='frg-icon icon-multi-account-inverted'></span>
+    */
+  /**
+    * @name icon
+    * @icon accessories
+    * @markup
+    *   <span class='frg-icon icon-accessories'></span>
+    */
+}
+.frg-icon.icon-circle-thick-outline:before {
+  content: "\E001";
+}
+.frg-icon.icon-standalone-circle-thick-outline, .icon-standalone-circle-thick-outline.frg-select-container:after {
+  content: "\E001";
+}
+.frg-icon.icon-circle-solid:before {
+  content: "\E002";
+}
+.frg-icon.icon-standalone-circle-solid, .icon-standalone-circle-solid.frg-select-container:after, .frg-icon.has-fill:after, .has-fill.frg-select-container:after {
+  content: "\E002";
+}
+.frg-icon.icon-big-arrow-up:before {
+  content: "\E005";
+}
+.frg-icon.icon-standalone-big-arrow-up, .icon-standalone-big-arrow-up.frg-select-container:after {
+  content: "\E005";
+}
+.frg-icon.icon-big-arrow-down:before {
+  content: "\E006";
+}
+.frg-icon.icon-standalone-big-arrow-down, .icon-standalone-big-arrow-down.frg-select-container:after {
+  content: "\E006";
+}
+.frg-icon.icon-telus-logo:before {
+  content: "\E009";
+}
+.frg-icon.icon-standalone-telus-logo, .icon-standalone-telus-logo.frg-select-container:after {
+  content: "\E009";
+}
+.frg-icon.icon-bar-chart:before {
+  content: "\E010";
+}
+.frg-icon.icon-standalone-bar-chart, .icon-standalone-bar-chart.frg-select-container:after {
+  content: "\E010";
+}
+.frg-icon.icon-picture-frame:before {
+  content: "\E011";
+}
+.frg-icon.icon-standalone-picture-frame, .icon-standalone-picture-frame.frg-select-container:after {
+  content: "\E011";
+}
+.frg-icon.icon-paper:before {
+  content: "\E012";
+}
+.frg-icon.icon-standalone-paper, .icon-standalone-paper.frg-select-container:after {
+  content: "\E012";
+}
+.frg-icon.icon-paper-solid:before {
+  content: "\E013";
+}
+.frg-icon.icon-standalone-paper-solid, .icon-standalone-paper-solid.frg-select-container:after {
+  content: "\E013";
+}
+.frg-icon.icon-folder-solid:before {
+  content: "\E014";
+}
+.frg-icon.icon-standalone-folder-solid, .icon-standalone-folder-solid.frg-select-container:after {
+  content: "\E014";
+}
+.frg-icon.icon-share:before {
+  content: "\E015";
+}
+.frg-icon.icon-standalone-share, .icon-standalone-share.frg-select-container:after {
+  content: "\E015";
+}
+.frg-icon.icon-magnify-glass:before {
+  content: "\E016";
+}
+.frg-icon.icon-standalone-magnify-glass, .icon-standalone-magnify-glass.frg-select-container:after {
+  content: "\E016";
+}
+.frg-icon.icon-warning-inverted:before {
+  content: "\E018";
+}
+.frg-icon.icon-standalone-warning-inverted, .icon-standalone-warning-inverted.frg-select-container:after {
+  content: "\E018";
+}
+.frg-icon.icon-star-inverted:before {
+  content: "\E019";
+}
+.frg-icon.icon-standalone-star-inverted, .icon-standalone-star-inverted.frg-select-container:after {
+  content: "\E019";
+}
+.frg-icon.icon-star:before {
+  content: "\E020";
+}
+.frg-icon.icon-standalone-star, .icon-standalone-star.frg-select-container:after {
+  content: "\E020";
+}
+.frg-icon.icon-heart:before {
+  content: "\E021";
+}
+.frg-icon.icon-standalone-heart, .icon-standalone-heart.frg-select-container:after {
+  content: "\E021";
+}
+.frg-icon.icon-lifesaver:before {
+  content: "\E022";
+}
+.frg-icon.icon-standalone-lifesaver, .icon-standalone-lifesaver.frg-select-container:after {
+  content: "\E022";
+}
+.frg-icon.icon-hamburger:before {
+  content: "\E024";
+}
+.frg-icon.icon-standalone-hamburger, .icon-standalone-hamburger.frg-select-container:after {
+  content: "\E024";
+}
+.frg-icon.icon-grid-square:before {
+  content: "\E025";
+}
+.frg-icon.icon-standalone-grid-square, .icon-standalone-grid-square.frg-select-container:after {
+  content: "\E025";
+}
+.frg-icon.icon-grid-dots:before {
+  content: "\E026";
+}
+.frg-icon.icon-standalone-grid-dots, .icon-standalone-grid-dots.frg-select-container:after {
+  content: "\E026";
+}
+.frg-icon.icon-lightbulb:before {
+  content: "\E027";
+}
+.frg-icon.icon-standalone-lightbulb, .icon-standalone-lightbulb.frg-select-container:after {
+  content: "\E027";
+}
+.frg-icon.icon-speedometer-inverted:before {
+  content: "\E028";
+}
+.frg-icon.icon-standalone-speedometer-inverted, .icon-standalone-speedometer-inverted.frg-select-container:after {
+  content: "\E028";
+}
+.frg-icon.icon-add-remove:before {
+  content: "\E029";
+}
+.frg-icon.icon-standalone-add-remove, .icon-standalone-add-remove.frg-select-container:after {
+  content: "\E029";
+}
+.frg-icon.icon-cart:before {
+  content: "\E030";
+}
+.frg-icon.icon-standalone-cart, .icon-standalone-cart.frg-select-container:after {
+  content: "\E030";
+}
+.frg-icon.icon-twitter:before {
+  content: "\E031";
+}
+.frg-icon.icon-standalone-twitter, .icon-standalone-twitter.frg-select-container:after {
+  content: "\E031";
+}
+.frg-icon.icon-facebook:before {
+  content: "\E032";
+}
+.frg-icon.icon-standalone-facebook, .icon-standalone-facebook.frg-select-container:after {
+  content: "\E032";
+}
+.frg-icon.icon-youtube:before {
+  content: "\E033";
+}
+.frg-icon.icon-standalone-youtube, .icon-standalone-youtube.frg-select-container:after {
+  content: "\E033";
+}
+.frg-icon.icon-google-plus:before {
+  content: "\E034";
+}
+.frg-icon.icon-standalone-google-plus, .icon-standalone-google-plus.frg-select-container:after {
+  content: "\E034";
+}
+.frg-icon.icon-trend-down:before {
+  content: "\E035";
+}
+.frg-icon.icon-standalone-trend-down, .icon-standalone-trend-down.frg-select-container:after {
+  content: "\E035";
+}
+.frg-icon.icon-play-button-inverted:before {
+  content: "\E036";
+}
+.frg-icon.icon-standalone-play-button-inverted, .icon-standalone-play-button-inverted.frg-select-container:after {
+  content: "\E036";
+}
+.frg-icon.icon-video-inverted:before {
+  content: "\E037";
+}
+.frg-icon.icon-standalone-video-inverted, .icon-standalone-video-inverted.frg-select-container:after {
+  content: "\E037";
+}
+.frg-icon.icon-infinity-circled:before {
+  content: "\E038";
+}
+.frg-icon.icon-standalone-infinity-circled, .icon-standalone-infinity-circled.frg-select-container:after {
+  content: "\E038";
+}
+.frg-icon.icon-infinity-inverted:before {
+  content: "\E039";
+}
+.frg-icon.icon-standalone-infinity-inverted, .icon-standalone-infinity-inverted.frg-select-container:after {
+  content: "\E039";
+}
+.frg-icon.icon-clock:before {
+  content: "\E040";
+}
+.frg-icon.icon-standalone-clock, .icon-standalone-clock.frg-select-container:after {
+  content: "\E040";
+}
+.frg-icon.icon-clock-inverted:before {
+  content: "\E041";
+}
+.frg-icon.icon-standalone-clock-inverted, .icon-standalone-clock-inverted.frg-select-container:after {
+  content: "\E041";
+}
+.frg-icon.icon-smartphone:before {
+  content: "\E042";
+}
+.frg-icon.icon-standalone-smartphone, .icon-standalone-smartphone.frg-select-container:after {
+  content: "\E042";
+}
+.frg-icon.icon-tablet:before {
+  content: "\E043";
+}
+.frg-icon.icon-standalone-tablet, .icon-standalone-tablet.frg-select-container:after {
+  content: "\E043";
+}
+.frg-icon.icon-homephone:before {
+  content: "\E044";
+}
+.frg-icon.icon-standalone-homephone, .icon-standalone-homephone.frg-select-container:after {
+  content: "\E044";
+}
+.frg-icon.icon-mouse:before {
+  content: "\E045";
+}
+.frg-icon.icon-standalone-mouse, .icon-standalone-mouse.frg-select-container:after {
+  content: "\E045";
+}
+.frg-icon.icon-pricetag:before {
+  content: "\E046";
+}
+.frg-icon.icon-standalone-pricetag, .icon-standalone-pricetag.frg-select-container:after {
+  content: "\E046";
+}
+.frg-icon.icon-paper-notes-solid:before {
+  content: "\E047";
+}
+.frg-icon.icon-standalone-paper-notes-solid, .icon-standalone-paper-notes-solid.frg-select-container:after {
+  content: "\E047";
+}
+.frg-icon.icon-tv:before {
+  content: "\E048";
+}
+.frg-icon.icon-standalone-tv, .icon-standalone-tv.frg-select-container:after {
+  content: "\E048";
+}
+.frg-icon.icon-film:before {
+  content: "\E049";
+}
+.frg-icon.icon-standalone-film, .icon-standalone-film.frg-select-container:after {
+  content: "\E049";
+}
+.frg-icon.icon-envelope:before {
+  content: "\E050";
+}
+.frg-icon.icon-standalone-envelope, .icon-standalone-envelope.frg-select-container:after {
+  content: "\E050";
+}
+.frg-icon.icon-usb-stick:before {
+  content: "\E051";
+}
+.frg-icon.icon-standalone-usb-stick, .icon-standalone-usb-stick.frg-select-container:after {
+  content: "\E051";
+}
+.frg-icon.icon-map-marker:before {
+  content: "\E052";
+}
+.frg-icon.icon-standalone-map-marker, .icon-standalone-map-marker.frg-select-container:after {
+  content: "\E052";
+}
+.frg-icon.icon-map-marker-inverted:before {
+  content: "\E053";
+}
+.frg-icon.icon-standalone-map-marker-inverted, .icon-standalone-map-marker-inverted.frg-select-container:after {
+  content: "\E053";
+}
+.frg-icon.icon-user-profile:before {
+  content: "\E055";
+}
+.frg-icon.icon-standalone-user-profile, .icon-standalone-user-profile.frg-select-container:after {
+  content: "\E055";
+}
+.frg-icon.icon-user-profile-circled:before {
+  content: "\E056";
+}
+.frg-icon.icon-standalone-user-profile-circled, .icon-standalone-user-profile-circled.frg-select-container:after {
+  content: "\E056";
+}
+.frg-icon.icon-user-profile-inverted:before {
+  content: "\E057";
+}
+.frg-icon.icon-standalone-user-profile-inverted, .icon-standalone-user-profile-inverted.frg-select-container:after {
+  content: "\E057";
+}
+.frg-icon.icon-users:before {
+  content: "\E059";
+}
+.frg-icon.icon-standalone-users, .icon-standalone-users.frg-select-container:after {
+  content: "\E059";
+}
+.frg-icon.icon-users-circled:before {
+  content: "\E060";
+}
+.frg-icon.icon-standalone-users-circled, .icon-standalone-users-circled.frg-select-container:after {
+  content: "\E060";
+}
+.frg-icon.icon-telus-t-inverted:before {
+  content: "\E062";
+}
+.frg-icon.icon-standalone-telus-t-inverted, .icon-standalone-telus-t-inverted.frg-select-container:after {
+  content: "\E062";
+}
+.frg-icon.icon-telus-t-boxed-inverted:before {
+  content: "\E063";
+}
+.frg-icon.icon-standalone-telus-t-boxed-inverted, .icon-standalone-telus-t-boxed-inverted.frg-select-container:after {
+  content: "\E063";
+}
+.frg-icon.icon-gear:before {
+  content: "\E064";
+}
+.frg-icon.icon-standalone-gear, .icon-standalone-gear.frg-select-container:after {
+  content: "\E064";
+}
+.frg-icon.icon-gear-circled:before {
+  content: "\E065";
+}
+.frg-icon.icon-standalone-gear-circled, .icon-standalone-gear-circled.frg-select-container:after {
+  content: "\E065";
+}
+.frg-icon.icon-gear-inverted:before {
+  content: "\E066";
+}
+.frg-icon.icon-standalone-gear-inverted, .icon-standalone-gear-inverted.frg-select-container:after {
+  content: "\E066";
+}
+.frg-icon.icon-padlock:before {
+  content: "\E068";
+}
+.frg-icon.icon-standalone-padlock, .icon-standalone-padlock.frg-select-container:after {
+  content: "\E068";
+}
+.frg-icon.icon-padlock-invereted:before {
+  content: "\E069";
+}
+.frg-icon.icon-standalone-padlock-invereted, .icon-standalone-padlock-invereted.frg-select-container:after {
+  content: "\E069";
+}
+.frg-icon.icon-stacked-papers-inverted:before {
+  content: "\E071";
+}
+.frg-icon.icon-standalone-stacked-papers-inverted, .icon-standalone-stacked-papers-inverted.frg-select-container:after {
+  content: "\E071";
+}
+.frg-icon.icon-music-note-inverted:before {
+  content: "\E072";
+}
+.frg-icon.icon-standalone-music-note-inverted, .icon-standalone-music-note-inverted.frg-select-container:after {
+  content: "\E072";
+}
+.frg-icon.icon-smartphone-inverted:before {
+  content: "\E073";
+}
+.frg-icon.icon-standalone-smartphone-inverted, .icon-standalone-smartphone-inverted.frg-select-container:after {
+  content: "\E073";
+}
+.frg-icon.icon-tablet-inverted:before {
+  content: "\E074";
+}
+.frg-icon.icon-standalone-tablet-inverted, .icon-standalone-tablet-inverted.frg-select-container:after {
+  content: "\E074";
+}
+.frg-icon.icon-homephone-inverted:before {
+  content: "\E075";
+}
+.frg-icon.icon-standalone-homephone-inverted, .icon-standalone-homephone-inverted.frg-select-container:after {
+  content: "\E075";
+}
+.frg-icon.icon-mouse-inverted:before {
+  content: "\E076";
+}
+.frg-icon.icon-standalone-mouse-inverted, .icon-standalone-mouse-inverted.frg-select-container:after {
+  content: "\E076";
+}
+.frg-icon.icon-pricetag-inverted:before {
+  content: "\E077";
+}
+.frg-icon.icon-standalone-pricetag-inverted, .icon-standalone-pricetag-inverted.frg-select-container:after {
+  content: "\E077";
+}
+.frg-icon.icon-paper-inverted:before {
+  content: "\E078";
+}
+.frg-icon.icon-standalone-paper-inverted, .icon-standalone-paper-inverted.frg-select-container:after {
+  content: "\E078";
+}
+.frg-icon.icon-tv-inverted:before {
+  content: "\E079";
+}
+.frg-icon.icon-standalone-tv-inverted, .icon-standalone-tv-inverted.frg-select-container:after {
+  content: "\E079";
+}
+.frg-icon.icon-film-clapper-inverted:before {
+  content: "\E080";
+}
+.frg-icon.icon-standalone-film-clapper-inverted, .icon-standalone-film-clapper-inverted.frg-select-container:after {
+  content: "\E080";
+}
+.frg-icon.icon-envelope-inverted:before {
+  content: "\E081";
+}
+.frg-icon.icon-standalone-envelope-inverted, .icon-standalone-envelope-inverted.frg-select-container:after {
+  content: "\E081";
+}
+.frg-icon.icon-phone-handset-inverted:before {
+  content: "\E082";
+}
+.frg-icon.icon-standalone-phone-handset-inverted, .icon-standalone-phone-handset-inverted.frg-select-container:after {
+  content: "\E082";
+}
+.frg-icon.icon-usb-stick-inverted:before {
+  content: "\E083";
+}
+.frg-icon.icon-standalone-usb-stick-inverted, .icon-standalone-usb-stick-inverted.frg-select-container:after {
+  content: "\E083";
+}
+.frg-icon.icon-home:before {
+  content: "\E084";
+}
+.frg-icon.icon-standalone-home, .icon-standalone-home.frg-select-container:after {
+  content: "\E084";
+}
+.frg-icon.icon-home-circled:before {
+  content: "\E085";
+}
+.frg-icon.icon-standalone-home-circled, .icon-standalone-home-circled.frg-select-container:after {
+  content: "\E085";
+}
+.frg-icon.icon-home-inverted:before {
+  content: "\E086";
+}
+.frg-icon.icon-standalone-home-inverted, .icon-standalone-home-inverted.frg-select-container:after {
+  content: "\E086";
+}
+.frg-icon.icon-calendar:before {
+  content: "\E088";
+}
+.frg-icon.icon-standalone-calendar, .icon-standalone-calendar.frg-select-container:after {
+  content: "\E088";
+}
+.frg-icon.icon-arrow-right-inverted:before {
+  content: "\E091";
+}
+.frg-icon.icon-standalone-arrow-right-inverted, .icon-standalone-arrow-right-inverted.frg-select-container:after {
+  content: "\E091";
+}
+.frg-icon.icon-arrow-down-inverted:before {
+  content: "\E092";
+}
+.frg-icon.icon-standalone-arrow-down-inverted, .icon-standalone-arrow-down-inverted.frg-select-container:after {
+  content: "\E092";
+}
+.frg-icon.icon-arrow-left-inverted:before {
+  content: "\E093";
+}
+.frg-icon.icon-standalone-arrow-left-inverted, .icon-standalone-arrow-left-inverted.frg-select-container:after {
+  content: "\E093";
+}
+.frg-icon.icon-arrow-up-inverted:before {
+  content: "\E094";
+}
+.frg-icon.icon-standalone-arrow-up-inverted, .icon-standalone-arrow-up-inverted.frg-select-container:after {
+  content: "\E094";
+}
+.frg-icon.icon-arrow-right-circled:before {
+  content: "\E095";
+}
+.frg-icon.icon-standalone-arrow-right-circled, .icon-standalone-arrow-right-circled.frg-select-container:after {
+  content: "\E095";
+}
+.frg-icon.icon-arrow-down-circled:before {
+  content: "\E096";
+}
+.frg-icon.icon-standalone-arrow-down-circled, .icon-standalone-arrow-down-circled.frg-select-container:after {
+  content: "\E096";
+}
+.frg-icon.icon-arrow-left-circled:before {
+  content: "\E097";
+}
+.frg-icon.icon-standalone-arrow-left-circled, .icon-standalone-arrow-left-circled.frg-select-container:after {
+  content: "\E097";
+}
+.frg-icon.icon-arrow-up-circled:before {
+  content: "\E098";
+}
+.frg-icon.icon-standalone-arrow-up-circled, .icon-standalone-arrow-up-circled.frg-select-container:after {
+  content: "\E098";
+}
+.frg-icon.icon-arrow-down:before {
+  content: "\E099";
+}
+.frg-icon.icon-standalone-arrow-down, .frg-select-container:after {
+  content: "\E099";
+}
+.frg-icon.icon-arrow-left:before {
+  content: "\E100";
+}
+.frg-icon.icon-standalone-arrow-left, .icon-standalone-arrow-left.frg-select-container:after {
+  content: "\E100";
+}
+.frg-icon.icon-arrow-up:before {
+  content: "\E101";
+}
+.frg-icon.icon-standalone-arrow-up, .icon-standalone-arrow-up.frg-select-container:after {
+  content: "\E101";
+}
+.frg-icon.icon-arrow-right:before {
+  content: "\E102";
+}
+.frg-icon.icon-standalone-arrow-right, .icon-standalone-arrow-right.frg-select-container:after {
+  content: "\E102";
+}
+.frg-icon.icon-x:before {
+  content: "\E104";
+}
+.frg-icon.icon-standalone-x, .icon-standalone-x.frg-select-container:after {
+  content: "\E104";
+}
+.frg-icon.icon-x-circled:before {
+  content: "\E105";
+}
+.frg-icon.icon-standalone-x-circled, .icon-standalone-x-circled.frg-select-container:after {
+  content: "\E105";
+}
+.frg-icon.icon-x-inverted:before {
+  content: "\E106";
+}
+.frg-icon.icon-standalone-x-inverted, .icon-standalone-x-inverted.frg-select-container:after {
+  content: "\E106";
+}
+.frg-icon.icon-checkmark:before {
+  content: "\E108";
+}
+.frg-icon.icon-standalone-checkmark, .icon-standalone-checkmark.frg-select-container:after {
+  content: "\E108";
+}
+.frg-icon.icon-checkmark-circled:before {
+  content: "\E109";
+}
+.frg-icon.icon-standalone-checkmark-circled, .icon-standalone-checkmark-circled.frg-select-container:after {
+  content: "\E109";
+}
+.frg-icon.icon-checkmark-inverted:before {
+  content: "\E110";
+}
+.frg-icon.icon-standalone-checkmark-inverted, .icon-standalone-checkmark-inverted.frg-select-container:after {
+  content: "\E110";
+}
+.frg-icon.icon-infinity:before {
+  content: "\E111";
+}
+.frg-icon.icon-standalone-infinity, .icon-standalone-infinity.frg-select-container:after {
+  content: "\E111";
+}
+.frg-icon.icon-plus:before {
+  content: "\E112";
+}
+.frg-icon.icon-standalone-plus, .icon-standalone-plus.frg-select-container:after {
+  content: "\E112";
+}
+.frg-icon.icon-plus-circled:before {
+  content: "\E113";
+}
+.frg-icon.icon-standalone-plus-circled, .icon-standalone-plus-circled.frg-select-container:after {
+  content: "\E113";
+}
+.frg-icon.icon-plus-inverted:before {
+  content: "\E114";
+}
+.frg-icon.icon-standalone-plus-inverted, .icon-standalone-plus-inverted.frg-select-container:after {
+  content: "\E114";
+}
+.frg-icon.icon-minus:before {
+  content: "\E115";
+}
+.frg-icon.icon-standalone-minus, .icon-standalone-minus.frg-select-container:after {
+  content: "\E115";
+}
+.frg-icon.icon-minus-circled:before {
+  content: "\E116";
+}
+.frg-icon.icon-standalone-minus-circled, .icon-standalone-minus-circled.frg-select-container:after {
+  content: "\E116";
+}
+.frg-icon.icon-minus-inverted:before {
+  content: "\E117";
+}
+.frg-icon.icon-standalone-minus-inverted, .icon-standalone-minus-inverted.frg-select-container:after {
+  content: "\E117";
+}
+.frg-icon.icon-chat-bubble:before {
+  content: "\E119";
+}
+.frg-icon.icon-standalone-chat-bubble, .icon-standalone-chat-bubble.frg-select-container:after {
+  content: "\E119";
+}
+.frg-icon.icon-chat-dots:before {
+  content: "\E120";
+}
+.frg-icon.icon-standalone-chat-dots, .icon-standalone-chat-dots.frg-select-container:after {
+  content: "\E120";
+}
+.frg-icon.icon-chat-clock:before {
+  content: "\E121";
+}
+.frg-icon.icon-standalone-chat-clock, .icon-standalone-chat-clock.frg-select-container:after {
+  content: "\E121";
+}
+.frg-icon.icon-chat-x:before {
+  content: "\E122";
+}
+.frg-icon.icon-standalone-chat-x, .icon-standalone-chat-x.frg-select-container:after {
+  content: "\E122";
+}
+.frg-icon.icon-chat-inverted:before {
+  content: "\E123";
+}
+.frg-icon.icon-standalone-chat-inverted, .icon-standalone-chat-inverted.frg-select-container:after {
+  content: "\E123";
+}
+.frg-icon.icon-sim-card:before {
+  content: "\E125";
+}
+.frg-icon.icon-standalone-sim-card, .icon-standalone-sim-card.frg-select-container:after {
+  content: "\E125";
+}
+.frg-icon.icon-calculator:before {
+  content: "\E126";
+}
+.frg-icon.icon-standalone-calculator, .icon-standalone-calculator.frg-select-container:after {
+  content: "\E126";
+}
+.frg-icon.icon-bluetooth-headset:before {
+  content: "\E127";
+}
+.frg-icon.icon-standalone-bluetooth-headset, .icon-standalone-bluetooth-headset.frg-select-container:after {
+  content: "\E127";
+}
+.frg-icon.icon-outgoing-call:before {
+  content: "\E129";
+}
+.frg-icon.icon-standalone-outgoing-call, .icon-standalone-outgoing-call.frg-select-container:after {
+  content: "\E129";
+}
+.frg-icon.icon-incoming-call:before {
+  content: "\E130";
+}
+.frg-icon.icon-standalone-incoming-call, .icon-standalone-incoming-call.frg-select-container:after {
+  content: "\E130";
+}
+.frg-icon.icon-caution:before {
+  content: "\E131";
+}
+.frg-icon.icon-standalone-caution, .icon-standalone-caution.frg-select-container:after {
+  content: "\E131";
+}
+.frg-icon.icon-wifi-inverted:before {
+  content: "\E132";
+}
+.frg-icon.icon-standalone-wifi-inverted, .icon-standalone-wifi-inverted.frg-select-container:after {
+  content: "\E132";
+}
+.frg-icon.icon-wifi:before {
+  content: "\E133";
+}
+.frg-icon.icon-standalone-wifi, .icon-standalone-wifi.frg-select-container:after {
+  content: "\E133";
+}
+.frg-icon.icon-thin-plus-circled:before {
+  content: "\E135";
+}
+.frg-icon.icon-standalone-thin-plus-circled, .icon-standalone-thin-plus-circled.frg-select-container:after {
+  content: "\E135";
+}
+.frg-icon.icon-info:before {
+  content: "\E136";
+}
+.frg-icon.icon-standalone-info, .icon-standalone-info.frg-select-container:after {
+  content: "\E136";
+}
+.frg-icon.icon-info-inverted:before {
+  content: "\E136";
+}
+.frg-icon.icon-standalone-info-inverted, .icon-standalone-info-inverted.frg-select-container:after {
+  content: "\E136";
+}
+.frg-icon.icon-trend-up:before {
+  content: "\E138";
+}
+.frg-icon.icon-standalone-trend-up, .icon-standalone-trend-up.frg-select-container:after {
+  content: "\E138";
+}
+.frg-icon.icon-globe:before {
+  content: "\E140";
+}
+.frg-icon.icon-standalone-globe, .icon-standalone-globe.frg-select-container:after {
+  content: "\E140";
+}
+.frg-icon.icon-satellite-inverted:before {
+  content: "\E142";
+}
+.frg-icon.icon-standalone-satellite-inverted, .icon-standalone-satellite-inverted.frg-select-container:after {
+  content: "\E142";
+}
+.frg-icon.icon-card-arrow-left:before {
+  content: "\E144";
+}
+.frg-icon.icon-standalone-card-arrow-left, .icon-standalone-card-arrow-left.frg-select-container:after {
+  content: "\E144";
+}
+.frg-icon.icon-card-arrow-right:before {
+  content: "\E145";
+}
+.frg-icon.icon-standalone-card-arrow-right, .icon-standalone-card-arrow-right.frg-select-container:after {
+  content: "\E145";
+}
+.frg-icon.icon-calendar-inverted:before {
+  content: "\E146";
+}
+.frg-icon.icon-standalone-calendar-inverted, .icon-standalone-calendar-inverted.frg-select-container:after {
+  content: "\E146";
+}
+.frg-icon.icon-overview-inverted:before {
+  content: "\E147";
+}
+.frg-icon.icon-standalone-overview-inverted, .icon-standalone-overview-inverted.frg-select-container:after {
+  content: "\E147";
+}
+.frg-icon.icon-telus-circle-inverted:before {
+  content: "\E148";
+}
+.frg-icon.icon-standalone-telus-circle-inverted, .icon-standalone-telus-circle-inverted.frg-select-container:after {
+  content: "\E148";
+}
+.frg-icon.icon-pulse-inverted:before {
+  content: "\E149";
+}
+.frg-icon.icon-standalone-pulse-inverted, .icon-standalone-pulse-inverted.frg-select-container:after {
+  content: "\E149";
+}
+.frg-icon.icon-mike-mobile:before {
+  content: "\E150";
+}
+.frg-icon.icon-standalone-mike-mobile, .icon-standalone-mike-mobile.frg-select-container:after {
+  content: "\E150";
+}
+.frg-icon.icon-rewards-badge:before {
+  content: "\E151";
+}
+.frg-icon.icon-standalone-rewards-badge, .icon-standalone-rewards-badge.frg-select-container:after {
+  content: "\E151";
+}
+.frg-icon.icon-filter:before {
+  content: "\E152";
+}
+.frg-icon.icon-standalone-filter, .icon-standalone-filter.frg-select-container:after {
+  content: "\E152";
+}
+.frg-icon.icon-schedule-talk:before {
+  content: "\E153";
+}
+.frg-icon.icon-standalone-schedule-talk, .icon-standalone-schedule-talk.frg-select-container:after {
+  content: "\E153";
+}
+.frg-icon.icon-warning:before {
+  content: "\E154";
+}
+.frg-icon.icon-standalone-warning, .icon-standalone-warning.frg-select-container:after {
+  content: "\E154";
+}
+.frg-icon.icon-satellite:before {
+  content: "\E155";
+}
+.frg-icon.icon-standalone-satellite, .icon-standalone-satellite.frg-select-container:after {
+  content: "\E155";
+}
+.frg-icon.icon-cart-inverted:before {
+  content: "\E156";
+}
+.frg-icon.icon-standalone-cart-inverted, .icon-standalone-cart-inverted.frg-select-container:after {
+  content: "\E156";
+}
+.frg-icon.icon-live-chat:before {
+  content: "\E157";
+}
+.frg-icon.icon-standalone-live-chat, .icon-standalone-live-chat.frg-select-container:after {
+  content: "\E157";
+}
+.frg-icon.icon-business-connect-inverted:before {
+  content: "\E158";
+}
+.frg-icon.icon-standalone-business-connect-inverted, .icon-standalone-business-connect-inverted.frg-select-container:after {
+  content: "\E158";
+}
+.frg-icon.icon-business-connect:before {
+  content: "\E159";
+}
+.frg-icon.icon-standalone-business-connect, .icon-standalone-business-connect.frg-select-container:after {
+  content: "\E159";
+}
+.frg-icon.icon-cloud:before {
+  content: "\E160";
+}
+.frg-icon.icon-standalone-cloud, .icon-standalone-cloud.frg-select-container:after {
+  content: "\E160";
+}
+.frg-icon.icon-data:before {
+  content: "\E161";
+}
+.frg-icon.icon-standalone-data, .icon-standalone-data.frg-select-container:after {
+  content: "\E161";
+}
+.frg-icon.icon-delivery-truck:before {
+  content: "\E162";
+}
+.frg-icon.icon-standalone-delivery-truck, .icon-standalone-delivery-truck.frg-select-container:after {
+  content: "\E162";
+}
+.frg-icon.icon-protection:before {
+  content: "\E163";
+}
+.frg-icon.icon-standalone-protection, .icon-standalone-protection.frg-select-container:after {
+  content: "\E163";
+}
+.frg-icon.icon-colour-picker:before {
+  content: "\E164";
+}
+.frg-icon.icon-standalone-colour-picker, .icon-standalone-colour-picker.frg-select-container:after {
+  content: "\E164";
+}
+.frg-icon.icon-multi-account-inverted:before {
+  content: "\E165";
+}
+.frg-icon.icon-standalone-multi-account-inverted, .icon-standalone-multi-account-inverted.frg-select-container:after {
+  content: "\E165";
+}
+.frg-icon.icon-accessories:before {
+  content: "\E166";
+}
+.frg-icon.icon-standalone-accessories, .icon-standalone-accessories.frg-select-container:after {
+  content: "\E166";
+}
+
+
+
+/*@font-face {
+  font-family: 'tultralightregular';
+  src: url("//static.telus.com/common/fonts//41774233-b9da-44be-b252-6a7b612fb1c7.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//41774233-b9da-44be-b252-6a7b612fb1c7.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//4bff1fbb-b4bf-4d95-9c47-efcb14384e36.woff") format("woff"), url("//static.telus.com/common/fonts//7f1f2a7d-3837-4c93-b373-f03c5da3f9a1.ttf") format("truetype"), url("//static.telus.com/common/fonts//d9f2752a-8d82-4cf1-b82f-109c1105be7f.svg#d9f2752a-8d82-4cf1-b82f-109c1105be7f") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tultralightregular';
+  src: url("//static.telus.com/common/fonts//56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//50d35bbc-dfd4-48f1-af16-cf058f69421d.woff") format("woff"), url("//static.telus.com/common/fonts//278bef59-6be1-4800-b5ac-1f769ab47430.ttf") format("truetype"), url("//static.telus.com/common/fonts//2e309b1b-08b8-477f-bc9e-7067cf0af0b3.svg#2e309b1b-08b8-477f-bc9e-7067cf0af0b3") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}*/
+
+@font-face {
+  font-family: 'tthinregular';
+  src: url("//static.telus.com/common/fonts//56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//50d35bbc-dfd4-48f1-af16-cf058f69421d.woff") format("woff"), url("//static.telus.com/common/fonts//278bef59-6be1-4800-b5ac-1f769ab47430.ttf") format("truetype"), url("//static.telus.com/common/fonts//2e309b1b-08b8-477f-bc9e-7067cf0af0b3.svg#2e309b1b-08b8-477f-bc9e-7067cf0af0b3") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tthinregular';
+  src: url("//static.telus.com/common/fonts//ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//530dee22-e3c1-4e9f-bf62-c31d510d9656.woff") format("woff"), url("//static.telus.com/common/fonts//688ab72b-4deb-4e15-a088-89166978d469.ttf") format("truetype"), url("//static.telus.com/common/fonts//7816f72f-f47e-4715-8cd7-960e3723846a.svg#7816f72f-f47e-4715-8cd7-960e3723846a") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tlightregular';
+  src: url("//static.telus.com/common/fonts//ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//530dee22-e3c1-4e9f-bf62-c31d510d9656.woff") format("woff"), url("//static.telus.com/common/fonts//688ab72b-4deb-4e15-a088-89166978d469.ttf") format("truetype"), url("//static.telus.com/common/fonts//7816f72f-f47e-4715-8cd7-960e3723846a.svg#7816f72f-f47e-4715-8cd7-960e3723846a") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tlightregular';
+  src: url("//static.telus.com/common/fonts//b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//bcf54343-d033-41ee-bbd7-2b77df3fe7ba.woff") format("woff"), url("//static.telus.com/common/fonts//b0ffdcf0-26da-47fd-8485-20e4a40d4b7d.ttf") format("truetype"), url("//static.telus.com/common/fonts//da09f1f1-062a-45af-86e1-2bbdb3dd94f9.svg#da09f1f1-062a-45af-86e1-2bbdb3dd94f9") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tromanregular';
+  src: url("//static.telus.com/common/fonts//b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//bcf54343-d033-41ee-bbd7-2b77df3fe7ba.woff") format("woff"), url("//static.telus.com/common/fonts//b0ffdcf0-26da-47fd-8485-20e4a40d4b7d.ttf") format("truetype"), url("//static.telus.com/common/fonts//da09f1f1-062a-45af-86e1-2bbdb3dd94f9.svg#da09f1f1-062a-45af-86e1-2bbdb3dd94f9") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tromanregular';
+  src: url("//static.telus.com/common/fonts//07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//60be5c39-863e-40cb-9434-6ebafb62ab2b.woff") format("woff"), url("//static.telus.com/common/fonts//4c6503c9-859b-4d3b-a1d5-2d42e1222415.ttf") format("truetype"), url("//static.telus.com/common/fonts//36c182c6-ef98-4021-9b0d-d63122c2bbf5.svg#36c182c6-ef98-4021-9b0d-d63122c2bbf5") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'telusdings';
+  src: url("//static.telus.com/common/fonts//telusdings-regular-webfont.eot?v=21");
+  src: url("//static.telus.com/common/fonts//telusdings-regular-webfont.eot?v=21#iefix") format("embedded-opentype"), url("//static.telus.com/common/fonts//telusdings-regular-webfont.woff2?v=21") format("woff2"), url("//static.telus.com/common/fonts//telusdings-regular-webfont.woff?v=21") format("woff"), url("//static.telus.com/common/fonts//telusdings-regular-webfont.ttf?v=21") format("truetype"), url("//static.telus.com/common/fonts//telusdings-regular-webfont.svg?v=21#telusdingsregular") format("svg");
+}
+
+body, html {
+  font-family: "tlightregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #595859;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  background: #fff;
+}
+
+.pln:first-of-type {
+  margin-left: -171px;
+}
+
+
+.sg-styleguide {
+  overflow: hidden;
+}
+
+.menu-open .sg-styleguide {
+  visibility: hidden;
+}
+
+
+
+.sg-colors {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.sg-colors th {
+  font-weight: bold;
+  background: #f3f3f3;
+  padding: 10px 5px;
+}
+
+.sg-colors th,
+.sg-colors td {
+  border: 1px solid #e2e2e2;
+}
+
+.sg-colors td {
+  font-family: monospace;
+  padding: 5px;
+}
+
+.sg-color-ex {
+  width: 100%;
+  height: 50px;
+  display: inline-block;
+}
+
+.sg-block-header {
+  background: #3d3c3c;
+  color: white;
+  padding: 8px 15px;
+  font-size: 22px;
+  margin-top: 40px;
+}
+
+.sg-info {
+  background: #f3f3f3;
+}
+
+.sg-info-description {
+  padding: 15px;
+}
+
+.sg-info-states {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.sg-state {
+  padding-bottom: 5px;
+}
+
+.sg-state span {
+  font-weight: bold;
+}
+
+.sg-example-wrapper {
+  border: 1px solid #e2e2e2;
+  border-bottom: 0;
+}
+
+.sg-example, .sg-state-example-outer, .sg-icon {
+  padding: 15px;
+  border-bottom: 1px solid #e2e2e2;
+  position: relative;
+}
+
+.sg-icon {
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+}
+
+.sg-state-example-name, .sg-icon-name {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 7px;
+  font-size: 13px;
+  font-weight: bold;
+  background: #e2e2e2;
+}
+
+.sg-markup {
+  padding: 20px 10px;
+  font-family: monospace;
+  color: #333;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  background-color: #f6fbf1;
+  line-height: 18px;
+}
+
+.frg-icon {
+  font-size: 22px;
+}
+
+.frg-link {
+  font-size: 17px;
+}
+
+.frg-link.has-icon .frg-icon {
+  font-size: 17px;
+}
+
+pre.prettyprint {
+  padding: 0;
+}
+
+.frg-select-container {
+  width: 300px;
+}
+
+.pln { color: #000 }
+@media screen { 
+    .str { color: #080 }
+    .kwd { color: #008 }
+    .com { color: #800 }
+    .typ { color: #606 }
+    .lit { color: #066 }
+    .pun,
+    .opn,
+    .clo { color: #660 }
+    .tag { color: #008 }
+    .atn { color: #606 }
+    .atv { color: #080 }
+    .dec,
+    .var { color: #606 }
+    .fun { color: red }
+}
+@media print,projection { 
+    .str { color: #060 }
+    .kwd {
+        color: #006;
+        font-weight: bold;
+    }
+    .com {
+        color: #600;
+        font-style: italic;
+    }
+    .typ {
+        color: #404;
+        font-weight: bold;
+    }
+    .lit { color: #044 }
+    .pun,
+    .opn,
+    .clo { color: #440 }
+    .tag {
+        color: #006;
+        font-weight: bold;
+    }
+    .atn { color: #404 }
+    .atv { color: #060 }
+}
+pre.prettyprint { padding: 2px; }
+ol.linenums {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: none }
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 { background: #eee }
