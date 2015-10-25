@@ -1126,6 +1126,7 @@ angular.module('telusLg2App')
         incomeChart.draw(data, options);
 
         $scope.showHeatMapData();
+        $scope.showVisitorMapData();
         $scope.showEthnicData();
       }
 
@@ -1139,14 +1140,6 @@ angular.module('telusLg2App')
     $scope.showEthnicData = function() {
 
       if($scope.demographicReport!=null) {
-        //console.log("ABOO=" + $scope.demographicReport.etABOOCount);
-        //console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
-        //console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
-        //console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
-        //console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
-        //console.log("CARO=" + $scope.demographicReport.etCAROCount);
-        //console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
-        //console.log("AFRO=" + $scope.demographicReport.etAFROCount);
 
         var ethnicData = [];
         ethnicData.push(['Ethnicity', 'Distribution', {role: 'style'}]);
@@ -1214,15 +1207,6 @@ angular.module('telusLg2App')
           ethnicData.push(['Other', otherTotal, 'silver']);
         }
 
-        //ethnicData.push([ethnicitieLabels['ABOO'], $scope.demographicReport.etABOOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['WEUO'], $scope.demographicReport.etWEUOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['NEUO'], $scope.demographicReport.etNEUOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['EEUO'], $scope.demographicReport.etEEUOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['SEUO'], $scope.demographicReport.etSEUOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['CARO'], $scope.demographicReport.etCAROCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['LAMO'], $scope.demographicReport.etLAMOCount/ethnicTotal, 'silver']);
-        //ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount/ethnicTotal, 'silver']);
-
 
         var data = google.visualization.arrayToDataTable(ethnicData);
         var options = {
@@ -1251,8 +1235,6 @@ angular.module('telusLg2App')
           //console.log("Tile=" + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
           callsForService.push(new google.maps.LatLng($scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon));
         }
-
-
 
         var map, pointArray, heatmap;
         var mapOptions = {
@@ -1284,6 +1266,161 @@ angular.module('telusLg2App')
         heatmap.setMap(map);
 
       }
+
+    }
+
+
+    /**
+     * Displays the demographic information for the carrier data
+     */
+    $scope.showVisitorMapData = function() {
+      if($scope.tiles!=null) {
+        console.log("Visitor Tiles=" + $scope.tiles.length);
+
+        var infoWindow1 = "<table><tr>";
+        var infoWindow2 = "</tr></<table>";
+        var info = "";
+        var visitorData = [];
+        visitorData.push(['Lat', 'Long', 'Demographics','Marker']);
+        for (var i = 0;i < $scope.tiles.length;i++){
+          info = createInfoWindow($scope.tiles[i]);
+          //console.log( "Info:" + info);
+          if($scope.tiles[i].sampleSize>=4) {
+            visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'pink']);
+          } else if($scope.tiles[i].sampleSize >2 ){
+            visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'blue']);
+          } else {
+            visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'green']);
+          }
+        }
+
+
+        var data = google.visualization.arrayToDataTable(visitorData);
+        var url = 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+
+        var options = {
+          width: document.getElementById("container").clientWidth / 1.2,
+          height: 340,
+          zoomLevel: 10,
+          //center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
+          mapType: 'normal',
+          showTip: true,
+          icons: {
+            blue: {
+              normal:   url + 'Map-Marker-Ball-Azure-icon.png',
+              selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+            },
+            green: {
+              normal:   url + 'Map-Marker-Push-Pin-1-Chartreuse-icon.png',
+              selected: url + 'Map-Marker-Push-Pin-1-Right-Chartreuse-icon.png'
+            },
+            pink: {
+              normal:   url + 'Map-Marker-Ball-Pink-icon.png',
+              selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+            }
+          }
+        };
+
+
+      //  //var options = {showTip: true};
+
+        var map = new google.visualization.Map(document.getElementById('visitor_div'));
+        map.pan = true;
+        map.center = {
+          latitude: $scope.currentLocation.center.latitude,
+          longitude: $scope.currentLocation.center.longitude
+        };
+        map.draw(data, options);
+
+      }
+
+    }
+
+
+    function createInfoWindow(tile) {
+      var htmlStart = "<html><body>";
+      var htmlEnd = "</body></html>";
+
+      var tableStart = "<table style='border: 1px solid black;'>";
+      var tableEnd = "</table>";
+      var rowStart = "<tr style='border: 1px solid black;'>";
+      var rowEnd = "</tr>";
+      var sampleSize = "<b>Sample Size:  </b>" + tile.sampleSize + "</br>";
+      var houseHoldSize = "<b>Households in sample area:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
+      var income = "<b>Average Income in sample area:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      var ethnicTitle  = "<b>Ethnicity breakdown in sample area:</b></br>";
+
+      var tableHeadings = "<tr style='border: 1px solid black;'>" +
+        "<th style='border: 1px solid black;padding: 5px;'>ABO</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>AFR</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>CAR</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>EEU</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>LAM</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>NEU</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>SEU</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>WEU</th>" +
+        "</tr>";
+
+
+
+      console.log("ABOO=" + $scope.demographicReport.etABOOCount);
+      console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
+      console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
+      console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
+      console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
+      console.log("CARO=" + $scope.demographicReport.etCAROCount);
+      console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
+      console.log("AFRO=" + $scope.demographicReport.etAFROCount);
+
+
+      var aboCount = $scope.demographicReport.etABOOCount;
+      var weuCount =  $scope.demographicReport.etWEUOCount;
+      var neuCount =  $scope.demographicReport.etNEUOCount;
+      var eeuCount =  $scope.demographicReport.etEEUOCount;
+      var seuCount =  $scope.demographicReport.etSEUOCount;
+      var caroCount =  $scope.demographicReport.etCAROCount;
+      var lamoCount =  $scope.demographicReport.etLAMOCount;
+      var afroCount =  $scope.demographicReport.etAFROCount;
+
+      var ethnicTotal = parseInt(aboCount) +
+                        parseInt(weuCount) +
+                        parseInt(neuCount) +
+                        parseInt(eeuCount) +
+                        parseInt(seuCount) +
+                        parseInt(caroCount) +
+                        parseInt(lamoCount) +
+                        parseInt(afroCount);
+
+
+      console.log( "Ethnic Total =" + ethnicTotal);
+
+
+      var abo = "<td style='border: 1px solid black;padding: 5px;'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var afr = "<td style='border: 1px solid black;padding: 5px;'>" + (afroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var car = "<td style='border: 1px solid black;padding: 5px;'>" + (caroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var eeu = "<td style='border: 1px solid black;padding: 5px;'>" + (eeuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var lam = "<td style='border: 1px solid black;padding: 5px;'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var neu = "<td style='border: 1px solid black;padding: 5px;'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var seu = "<td style='border: 1px solid black;padding: 5px;'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var weu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (weuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+
+      var info = htmlStart + sampleSize + houseHoldSize + income + ethnicTitle +
+          tableStart +
+          tableHeadings +
+          rowStart +
+          abo +
+          afr +
+          car +
+          eeu +
+          lam +
+          neu +
+          seu +
+          weu +
+          rowEnd +
+          tableEnd +
+          htmlEnd;
+
+      return info;
 
     }
 
