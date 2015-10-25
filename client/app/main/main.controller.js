@@ -1116,11 +1116,10 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(incomeData);
         var options = {
           //width: 1075,
-<<<<<<< HEAD
-          width: document.getElementById("container").clientWidth/2,
-=======
+
+          //width: document.getElementById("container").clientWidth/2,
           width: document.getElementById("container").clientWidth/3 - 50,
->>>>>>> 6fbda4711286317e43202716cd3e5b4ad2747f68
+
           height: 340,
           colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 120, top: 30, width: '100%'},
@@ -1231,13 +1230,6 @@ angular.module('telusLg2App')
 
         var data = google.visualization.arrayToDataTable(ethnicData);
         var options = {
-          //width: 1075,
-<<<<<<< HEAD
-          width: document.getElementById("container").clientWidth/2,
-          height: 340,
-          //colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 20, top: 30, width: '100%'},
-          legend: {position: 'none'},
           slices: {
             0: { color: '#f9f1ff' },
             1: { color: '#49166d' },
@@ -1247,15 +1239,13 @@ angular.module('telusLg2App')
             5: { color: '#c8bbd0' },
             6: { color: '#e0cdf4' },
             7: { color: '#ece7ee' }
-          }
-=======
+          },
           width: document.getElementById("container").clientWidth/1.2,
           height: 340,
           //colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 0, top: 30, width: '50%'},
           legend: {position: 'right',alignment:'center'},
           is3D: true,
->>>>>>> 6fbda4711286317e43202716cd3e5b4ad2747f68
         };
         var ethnicChart = new google.visualization.PieChart(document.getElementById('demographic_ethnicity_chart_div'));
         ethnicChart.draw(data, options);
