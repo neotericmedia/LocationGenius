@@ -9,9 +9,12 @@ angular.module('telusLg2App')
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
     var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
+
     $scope.words = [];
     //$scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
     $scope.colors = ["#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44","#6ebe44"];
+
+
 
     $scope.update = function() {
       $scope.words.splice(-5);
@@ -1064,6 +1067,8 @@ angular.module('telusLg2App')
           //console.log("Graphing: " + results[0].dwellTimes)
           $scope.showCarrierDwellTimesData(0);
 
+
+
         }
       });
     }
@@ -1076,6 +1081,10 @@ angular.module('telusLg2App')
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
+        console.log("Tiles=" + $scope.tiles.length);
+
+        Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
+        Demographics.drawMap();
 
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
@@ -1107,7 +1116,11 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(incomeData);
         var options = {
           //width: 1075,
+<<<<<<< HEAD
           width: document.getElementById("container").clientWidth/2,
+=======
+          width: document.getElementById("container").clientWidth/3 - 50,
+>>>>>>> 6fbda4711286317e43202716cd3e5b4ad2747f68
           height: 340,
           colors: ['#ffffff', '#6ebe44'],
           chartArea: {left: 120, top: 30, width: '100%'},
@@ -1117,6 +1130,7 @@ angular.module('telusLg2App')
         var incomeChart = new google.visualization.BarChart(document.getElementById('demographic_income_chart_div'));
         incomeChart.draw(data, options);
 
+        $scope.showHeatMapData();
         $scope.showEthnicData();
       }
 
@@ -1130,14 +1144,14 @@ angular.module('telusLg2App')
     $scope.showEthnicData = function() {
 
       if($scope.demographicReport!=null) {
-        console.log("ABOO=" + $scope.demographicReport.etABOOCount);
-        console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
-        console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
-        console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
-        console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
-        console.log("CARO=" + $scope.demographicReport.etCAROCount);
-        console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
-        console.log("AFRO=" + $scope.demographicReport.etAFROCount);
+        //console.log("ABOO=" + $scope.demographicReport.etABOOCount);
+        //console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
+        //console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
+        //console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
+        //console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
+        //console.log("CARO=" + $scope.demographicReport.etCAROCount);
+        //console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
+        //console.log("AFRO=" + $scope.demographicReport.etAFROCount);
 
         var ethnicData = [];
         ethnicData.push(['Ethnicity', 'Distribution', {role: 'style'}]);
@@ -1151,20 +1165,74 @@ angular.module('telusLg2App')
                           $scope.demographicReport.etLAMOCount +
                           $scope.demographicReport.etAFROCount;
 
+        var otherTotal = 0.0;
 
-        ethnicData.push([ethnicitieLabels['ABOO'], $scope.demographicReport.etABOOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['WEUO'], $scope.demographicReport.etWEUOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['NEUO'], $scope.demographicReport.etNEUOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['EEUO'], $scope.demographicReport.etEEUOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['SEUO'], $scope.demographicReport.etSEUOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['CARO'], $scope.demographicReport.etCAROCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['LAMO'], $scope.demographicReport.etLAMOCount/ethnicTotal, 'silver']);
-        ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount/ethnicTotal, 'silver']);
+        if($scope.demographicReport.etABOOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etABOOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['ABOO'], $scope.demographicReport.etABOOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etWEUOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etWEUOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['WEUO'], $scope.demographicReport.etWEUOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etNEUOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etNEUOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['NEUO'], $scope.demographicReport.etNEUOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etEEUOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etEEUOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['EEUO'], $scope.demographicReport.etEEUOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etSEUOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etSEUOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['SEUO'], $scope.demographicReport.etSEUOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etCAROCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etCAROCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['CARO'], $scope.demographicReport.etCAROCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etLAMOCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etLAMOCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['LAMO'], $scope.demographicReport.etLAMOCount, 'silver']);
+        }
+
+        if($scope.demographicReport.etAFROCount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etAFROCount;
+        } else {
+          ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount, 'silver']);
+        }
+
+        if(otherTotal > 0) {
+          ethnicData.push(['Other', otherTotal, 'silver']);
+        }
+
+        //ethnicData.push([ethnicitieLabels['ABOO'], $scope.demographicReport.etABOOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['WEUO'], $scope.demographicReport.etWEUOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['NEUO'], $scope.demographicReport.etNEUOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['EEUO'], $scope.demographicReport.etEEUOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['SEUO'], $scope.demographicReport.etSEUOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['CARO'], $scope.demographicReport.etCAROCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['LAMO'], $scope.demographicReport.etLAMOCount/ethnicTotal, 'silver']);
+        //ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount/ethnicTotal, 'silver']);
 
 
         var data = google.visualization.arrayToDataTable(ethnicData);
         var options = {
           //width: 1075,
+<<<<<<< HEAD
           width: document.getElementById("container").clientWidth/2,
           height: 340,
           //colors: ['#ffffff', '#6ebe44'],
@@ -1180,12 +1248,62 @@ angular.module('telusLg2App')
             6: { color: '#e0cdf4' },
             7: { color: '#ece7ee' }
           }
+=======
+          width: document.getElementById("container").clientWidth/1.2,
+          height: 340,
+          //colors: ['#ffffff', '#6ebe44'],
+          chartArea: {left: 0, top: 30, width: '50%'},
+          legend: {position: 'right',alignment:'center'},
+          is3D: true,
+>>>>>>> 6fbda4711286317e43202716cd3e5b4ad2747f68
         };
         var ethnicChart = new google.visualization.PieChart(document.getElementById('demographic_ethnicity_chart_div'));
         ethnicChart.draw(data, options);
       }
 
     }
+
+
+    $scope.showHeatMapData = function() {
+      if($scope.tiles!=null) {
+        console.log("Tiles=" + $scope.tiles.length);
+        var callsForService = [];
+
+        for (var i = 0; i < $scope.tiles.length; i++) {
+          //console.log("Tile=" + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
+          callsForService.push(new google.maps.LatLng($scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon));
+        }
+
+
+
+        var map, pointArray, heatmap;
+        var mapOptions = {
+          zoom: 12,
+          center: new google.maps.LatLng($scope.currentLocation.center.latitude, $scope.currentLocation.center.longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+        map.center = {
+          latitude: $scope.currentLocation.center.latitude,
+          longitude: $scope.currentLocation.center.longitude
+        };
+
+        pointArray = new google.maps.MVCArray(callsForService);
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: pointArray
+        });
+
+        heatmap.setMap(map);
+
+      }
+
+    }
+
+
+
 
 
     /**

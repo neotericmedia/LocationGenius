@@ -890,47 +890,47 @@
 
 
 
-                          <div class="col-md-3" style="text-align:right;">
-                               <br>
-                               <!--<div ng-controller="DropdownCtrl">
+                          <!--<div class="col-md-3" style="text-align:right;">-->
+                               <!--<br>-->
+                               <!--&lt;!&ndash;<div ng-controller="DropdownCtrl">-->
 
-                                   <span dropdown on-toggle="toggled(open)">
+                                   <!--<span dropdown on-toggle="toggled(open)">-->
 
-                                     <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
+                                     <!--<span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>-->
 
-                                     <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
+                                     <!--<div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">-->
 
-                                          <div ng-controller="DatepickerDemoCtrl">
-                                                <div class="row">
-                                                  <div class="col-md-12">
-                                                      <p class="input-group">
-                                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                        <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                        </span>
-                                                      </p>
-                                                  </div>
-                                                </div>
+                                          <!--<div ng-controller="DatepickerDemoCtrl">-->
+                                                <!--<div class="row">-->
+                                                  <!--<div class="col-md-12">-->
+                                                      <!--<p class="input-group">-->
+                                                        <!--<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />-->
+                                                        <!--<span class="input-group-btn">-->
+                                                          <!--<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                                                        <!--</span>-->
+                                                      <!--</p>-->
+                                                  <!--</div>-->
+                                                <!--</div>-->
 
 
-                                                <div class="row">
-                                                  <div class="col-md-12">
-                                                      <p class="input-group">
-                                                        <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                        <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                        </span>
-                                                      </p>
-                                                  </div>
-                                                </div>
-                                          </div>
+                                                <!--<div class="row">-->
+                                                  <!--<div class="col-md-12">-->
+                                                      <!--<p class="input-group">-->
+                                                        <!--<input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />-->
+                                                        <!--<span class="input-group-btn">-->
+                                                          <!--<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                                                        <!--</span>-->
+                                                      <!--</p>-->
+                                                  <!--</div>-->
+                                                <!--</div>-->
+                                          <!--</div>-->
 
-                                     </div>
+                                     <!--</div>-->
 
-                                   </span>
+                                   <!--</span>-->
 
-                               </div>-->
-                            </div>
+                               <!--</div>&ndash;&gt;-->
+                            <!--</div>-->
                      </div>
 
 
@@ -1011,16 +1011,6 @@
 
                                   </div>
                                 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1153,44 +1143,46 @@
                             <tab onclick="initMap();">
                                <tab-heading>Heat</tab-heading>
                                   <div id="map" style="height: 380px; width: 100%;"></div>
-                                  <script>
-                                  var map, pointarray, heatmap;
-                                  var callsForService = [
-                                  new google.maps.LatLng(48.46566664567044, -81.33333333333333),
-                                  new google.maps.LatLng(43.16871979915595, -79.27336276674025),
-                                  new google.maps.LatLng(43.72886953235371, -79.79151336767231),
-                                  new google.maps.LatLng(44.58039610909648, -79.86509688496443),
-                                  new google.maps.LatLng(43.713122351099145, -79.60448859455482),
-                                  new google.maps.LatLng(45.53090496801073, -73.5814625979758),
-                                  new google.maps.LatLng(43.78061027076154, -79.26109884719156),
-                                  new google.maps.LatLng(43.623138458215976, -79.57076281579593),
-                                  new google.maps.LatLng(43.195714967020905, -79.56156487613441),
-                                  new google.maps.LatLng(44.23620771881832, -76.5094432180525),
-                                  new google.maps.LatLng(45.47241543763667, -73.54341374324633),
-                                  new google.maps.LatLng(45.512908189434086, -73.55926743271694),
-                                  new google.maps.LatLng(45.47241543763667, -73.60999923902291),
-                                  new google.maps.LatLng(42.31944281973526, -82.93760028525584)
-                                  ];
-                                  function initMap() {
-                                     var mapOptions = {
-                                         zoom: 6,
-                                         center: new google.maps.LatLng(43.710, -79.4),
-                                         mapTypeId: google.maps.MapTypeId.ROADMAP
-                                     };
-                                     map = new google.maps.Map(document.getElementById('map'),
-                                         mapOptions);
+                                  <!--<script>-->
+                                  <!--var map, pointarray, heatmap;-->
+                                  <!--var callsForService = [];-->
+                                  <!--var callsForService = {{callsForService}};-->
 
-                                     pointArray = new google.maps.MVCArray(callsForService);
+<!--//                                  new google.maps.LatLng(48.46566664567044, -81.33333333333333),-->
+<!--//                                  new google.maps.LatLng(43.16871979915595, -79.27336276674025),-->
+<!--//                                  new google.maps.LatLng(43.72886953235371, -79.79151336767231),-->
+<!--//                                  new google.maps.LatLng(44.58039610909648, -79.86509688496443),-->
+<!--//                                  new google.maps.LatLng(43.713122351099145, -79.60448859455482),-->
+<!--//                                  new google.maps.LatLng(45.53090496801073, -73.5814625979758),-->
+<!--//                                  new google.maps.LatLng(43.78061027076154, -79.26109884719156),-->
+<!--//                                  new google.maps.LatLng(43.623138458215976, -79.57076281579593),-->
+<!--//                                  new google.maps.LatLng(43.195714967020905, -79.56156487613441),-->
+<!--//                                  new google.maps.LatLng(44.23620771881832, -76.5094432180525),-->
+<!--//                                  new google.maps.LatLng(45.47241543763667, -73.54341374324633),-->
+<!--//                                  new google.maps.LatLng(45.512908189434086, -73.55926743271694),-->
+<!--//                                  new google.maps.LatLng(45.47241543763667, -73.60999923902291),-->
+<!--//                                  new google.maps.LatLng(42.31944281973526, -82.93760028525584)-->
+<!--//                                  ];-->
+                                  <!--function initMap() {-->
+                                     <!--var mapOptions = {-->
+                                         <!--zoom: 6,-->
+                                         <!--center: new google.maps.LatLng(43.710, -79.4),-->
+                                         <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+                                     <!--};-->
+                                     <!--map = new google.maps.Map(document.getElementById('map'),-->
+                                         <!--mapOptions);-->
 
-                                     heatmap = new google.maps.visualization.HeatmapLayer({
-                                         data: pointArray
-                                     });
+                                     <!--pointArray = new google.maps.MVCArray(callsForService);-->
 
-                                     heatmap.setMap(map);
+                                     <!--heatmap = new google.maps.visualization.HeatmapLayer({-->
+                                         <!--data: pointArray-->
+                                     <!--});-->
 
-                                  }
-                                  initMap();
-                                  </script>
+                                     <!--heatmap.setMap(map);-->
+
+                                  <!--}-->
+                                  <!--initMap();-->
+                                  <!--</script>-->
                             </tab>
                          </tabset>
                       </div>
