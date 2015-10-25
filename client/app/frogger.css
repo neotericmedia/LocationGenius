@@ -1,0 +1,219 @@
+
+@font-face {
+  font-family: 'telusweb';
+  src: url("//static.telus.com/common/fonts//h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix");
+  src: url("//static.telus.com/common/fonts//h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix") format("eot"), url("//static.telus.com/common/fonts//h65/3600b37f-2bf1-45f3-be3a-03365f16d9cb.woff2") format("woff2"), url("//static.telus.com/common/fonts//h65/60be5c39-863e-40cb-9434-6ebafb62ab2b.woff") format("woff"), url("//static.telus.com/common/fonts//h65/4c6503c9-859b-4d3b-a1d5-2d42e1222415.ttf") format("truetype"), url("//static.telus.com/common/fonts//h65/36c182c6-ef98-4021-9b0d-d63122c2bbf5.svg#36c182c6-ef98-4021-9b0d-d63122c2bbf5") format("svg");
+  font-weight: 800;
+  font-style: normal;
+}
+@import url("//fast.fonts.net/t/1.css?apiType=css&projectid=20d74cc5-7f7c-49a7-80ae-fa2f389c550d");
+/**
+  * Typography
+  * Establishes font sizes for various HTML elements in order to adhere to a visual rhythm.
+  * @import "common/color";
+  * Helvetica Neue web fonts placed in a fonts folder in the right folder
+  */
+/**
+  * @name Headline Font
+  * @state .frg-headline-font-21px
+  * @state .frg-headline-font-23px
+  * @state .frg-headline-font-27px
+  * @state .frg-headline-font-37px
+  * @state .frg-headline-font-34px
+  * @state .frg-headline-font-44px
+  * @state .frg-headline-font-59px
+  * @state .frg-headline-font-71px
+  * @state .frg-headline-font-96px
+  * @markup
+  *   <h1 class="frg-headline-font-21px">Headline</h1>
+  */
+
+
+
+  .frg-button {
+    font-family: "telusweb", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #8350a7;
+    border: 1px solid #cecece;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(90%, #ffffff), color-stop(90%, #cecece), color-stop(100%, #cecece));
+    background-image: -webkit-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: -moz-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: -o-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-color: white;
+    font-size: 19px;
+    line-height: 19px;
+    text-align: center;
+    font-weight: 800;
+    border-radius: 3px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px 14px 20px;
+    /**
+     * @name Icon in button
+     * @markup
+     *   <a href='#' class='frg-button color-green'><span class="frg-icon icon-checkmark"></span> Button</a>
+     */
+  }
+  .frg-button:hover {
+    cursor: pointer;
+  }
+  .frg-button:hover, .frg-button:focus, .frg-button.state-selected {
+    color: #8c68a6;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #cecece), color-stop(100%, #cecece));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-color: #cecece;
+    text-decoration: none;
+  }
+  .frg-button.color-purple {
+    color: white;
+    border: none;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8c68a6), color-stop(90%, #8c68a6), color-stop(90%, #49166d), color-stop(100%, #49166d));
+    background-image: -webkit-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+    background-image: -moz-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+    background-image: -o-linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+    background-image: linear-gradient(#8c68a6 0%, #8c68a6 90%, #49166d 90%, #49166d);
+    background-color: #8c68a6;
+  }
+  .frg-button.color-purple:hover, .frg-button.color-purple:focus, .frg-button.color-purple.state-selected {
+    color: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #49166d), color-stop(90%, #49166d), color-stop(90%, #49166d), color-stop(100%, #49166d));
+    background-image: -webkit-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+    background-image: -moz-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+    background-image: -o-linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+    background-image: linear-gradient(#49166d 0%, #49166d 90%, #49166d 90%, #49166d);
+    background-color: #49166d;
+  }
+  .frg-button.color-green {
+    color: white;
+    border: none;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #57a708), color-stop(90%, #57a708), color-stop(90%, #408000), color-stop(100%, #408000));
+    background-image: -webkit-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+    background-image: -moz-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+    background-image: -o-linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+    background-image: linear-gradient(#57a708 0%, #57a708 90%, #408000 90%, #408000);
+    background-color: #57a708;
+  }
+  .frg-button.color-green:hover, .frg-button.color-green:focus, .frg-button.color-green.state-selected {
+    color: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #408000), color-stop(90%, #408000), color-stop(90%, #408000), color-stop(100%, #408000));
+    background-image: -webkit-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+    background-image: -moz-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+    background-image: -o-linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+    background-image: linear-gradient(#408000 0%, #408000 90%, #408000 90%, #408000);
+    background-color: #408000;
+  }
+  .frg-button.color-white {
+    color: #8350a7;
+    border: 1px solid #cecece;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(90%, #ffffff), color-stop(90%, #cecece), color-stop(100%, #cecece));
+    background-image: -webkit-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: -moz-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: -o-linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-image: linear-gradient(#ffffff 0%, #ffffff 90%, #cecece 90%, #cecece);
+    background-color: white;
+  }
+  .frg-button.color-white:hover, .frg-button.color-white:focus, .frg-button.color-white.state-selected {
+    color: #8c68a6;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #cecece), color-stop(100%, #cecece));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #cecece 90%, #cecece);
+    background-color: #cecece;
+  }
+  .frg-button.color-dark-gray {
+    color: white;
+    border: none;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #666666), color-stop(90%, #666666), color-stop(90%, #333333), color-stop(100%, #333333));
+    background-image: -webkit-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+    background-image: -moz-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+    background-image: -o-linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+    background-image: linear-gradient(#666666 0%, #666666 90%, #333333 90%, #333333);
+    background-color: #666666;
+  }
+  .frg-button.color-dark-gray:hover, .frg-button.color-dark-gray:focus {
+    color: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #333333), color-stop(90%, #333333), color-stop(90%, #333333), color-stop(100%, #333333));
+    background-image: -webkit-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+    background-image: -moz-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+    background-image: -o-linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+    background-image: linear-gradient(#333333 0%, #333333 90%, #333333 90%, #333333);
+    background-color: #333333;
+  }
+  .frg-button.state-selected {
+    pointer-events: none;
+  }
+  .frg-button.button-wide {
+    width: 100%;
+  }
+  .frg-button.button-wider {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  .frg-button.state-disabled, .frg-button:disabled {
+    pointer-events: none;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-color: #cecece;
+  }
+  .frg-button.state-disabled:hover, .frg-button:disabled:hover {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-color: #cecece;
+  }
+  .frg-button.state-loading, .frg-button.state-loading:hover {
+    color: white;
+    position: relative;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-color: #cecece;
+  }
+  .frg-button.state-loading:after, .frg-button.state-loading:hover:after {
+    -webkit-animation-name: progress;
+    -moz-animation-name: progress;
+    animation-name: progress;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    position: absolute;
+    display: inline-block;
+    content: "";
+    bottom: 0px;
+    left: 0;
+    height: 4px;
+    z-index: 1;
+    width: 0%;
+    background: #888;
+    transition: width 3s;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  .frg-button.state-loading:hover, .frg-button.state-loading:hover:hover {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(90%, #cecece), color-stop(90%, #a9a9a9), color-stop(100%, #a9a9a9));
+    background-image: -webkit-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -moz-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: -o-linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-image: linear-gradient(#cecece 0%, #cecece 90%, #a9a9a9 90%, #a9a9a9);
+    background-color: #cecece;
+  }
+  .frg-button .frg-icon, .frg-button .frg-select-container:after {
+    font-size: 18px;
+    line-height: 18px;
+    vertical-align: 0%;
+    padding-right: 3px;
+  }

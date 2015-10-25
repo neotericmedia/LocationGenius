@@ -155,9 +155,8 @@
 
 
               <span class="uts">
-                <span><a href="javascript:window.print()"><i class="fa fa-print"></i></a></span>
-                <span><a href="mailto:?subject=Checkout These Locations Stats!"><i class="fa fa-envelope"></i></a></span>
-                <span><a href="javascript:saveIt()"><i class="fa fa-save"></i></a></span>
+                <span><a onclick="print();"><i class="fa fa-print"></i><i class="fa fa-plus" style="padding-left:10px;padding-right:10px;font-size:.75em;color:#ccc"></i><i class="fa fa-save"></i></a></span>
+                <!--<span><a onclick="saveAs();"><i class="fa fa-envelope"></i></a></span>-->
               </span>
 
 
@@ -224,20 +223,21 @@
 
 
                  <div class="row">
-                       <div class="col-md-9">
+                       <div class="col-md-6">
                           <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
-                                <accordion-group>
+                                <accordion-group is-open="true" >
                                  <accordion-heading>
-                                    <div style="display:block;margin-top:14px;">
+                                    <h4 style="font-size:20px; margin-bottom:0px;">Social Highlights at a Glance</h4>
+                                    <!--<div style="display:block;margin-top:14px;">
                                       <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                        <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
                                       </span>
-                                    </div>
+                                    </div>-->
                                  </accordion-heading>
 
-                                 <div class="well well-lg highlightsPanel">
+                                 <div class="well well-lg highlightsPanel" style="margin-top:0px">
                                        <ul style="margin-bottom:0px;">
                                           <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions | number}}</span> interactions <span class="hLight">{{dateRange}}</span></li>
                                           <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | number}}</span></li>
@@ -390,7 +390,7 @@
                                        <h4>Time Breakdown</h4>
                                    </div>
                                    <div class="col-md-4 col-md-offset-8 ">
-                                       <span class="date"> {{dailyReportDate | capitalize}} </span>
+                                       <span class="date2"> {{dailyReportDate | capitalize}} </span>
                                    </div>
                               </div>
                               <div class="row">
@@ -533,7 +533,7 @@
 
 
                       <div class="row">
-                          <div class="col-md-9">
+                          <div class="col-md-6">
 
                                 <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
 
@@ -541,22 +541,23 @@
 
                                        <accordion close-others="oneAtATime">
 
-                                         <accordion-group>
 
-                                           <accordion-heading>
-                                             <div style="display:block;margin-top:14px;">
+                                         <accordion-group is-open="true" >
+                                          <accordion-heading>
+                                             <h4 style="font-size:20px; margin-bottom:0px;">On-Site Highlights at a Glance</h4>
+                                             <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</a>
+                                                <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
                                                </span>
-                                             </div>
-                                           </accordion-heading>
+                                             </div>-->
+                                          </accordion-heading>
 
-                                           <div class="well well-lg highlightsPanel">
+                                          <div class="well well-lg highlightsPanel" style="margin-top:0px">
                                                 <ul style="margin-bottom:0px;">
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                                   <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
-                                                  <li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>
+                                                  <!--<li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>-->
                                                 </ul>
                                            </div>
 
@@ -831,21 +832,50 @@
 
 
 
+
+
+
                       <div id="miniTab" class="row">
-                        <div class="col-md-12">
-                           <tabset type="pills" class="ng-isolate-scope ng-scope">
-                             <tab heading="Last 30 Days" ng-click="getCarrierDataPreGenReport(30)"></tab>
-                             <tab heading="Last 60 Days" ng-click="getCarrierDataPreGenReport(60)"></tab>
-                             <tab heading="Last 90 Days" ng-click="getCarrierDataPreGenReport(90)"></tab>
-                           </tabset>
-                        </div>
-                      </div>
+                       <div class="col-md-6"></div>
+                       <div class="col-md-6 pull-right">
+                          <div class="filters_ct" ng-controller="selectCarrierFilter">
+                              <ul class="boo" ng-repeat="filter in carrierfilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                                 <li>
+                                    <a href="" ng-click="filter.showLast30Days();filter.showLast60Days();filter.showLast90Days();">{{filter.time}}</a>
+                                 </li>
+                              </ul>
+                              <!--<ul class="boo">
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(30)">Last 30 days</a>
+                                 </li>
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(60)">Last 60 days</a>
+                                 </li>
+                                 <li>
+                                    <a href="" ng-click="getCarrierDataPreGenReport(90)">Last 90 days</a>
+                                 </li>
+                              </ul>-->
+                          </div>
+                          <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
+                            <tab heading="Last Week" ng-click="showLast7Days()"></tab>
+                            <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
+                            <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
+                            <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
+                            <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
+                        </tabset>-->
+                       </div>
+                     </div>
+
+
+
+
+
 
 
 
 
                       <div class="row">
-                          <div class="col-md-9">
+                          <div class="col-md-6">
 
                                 <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
 
@@ -853,18 +883,22 @@
 
                                        <accordion close-others="oneAtATime">
 
-                                         <accordion-group>
 
-                                           <accordion-heading>
-                                             <div style="display:block;margin-top:14px;">
+
+
+
+                                         <accordion-group is-open="true" >
+                                          <accordion-heading>
+                                             <h4 style="font-size:20px; margin-bottom:0px;">Carrier Highlights at a Glance</h4>
+                                             <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Carrier Highlights at a Glance</a>
-
+                                                <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
                                                </span>
-                                             </div>
-                                           </accordion-heading>
+                                             </div>-->
+                                          </accordion-heading>
 
-                                           <div class="well well-lg highlightsPanel">
+                                          <div class="well well-lg highlightsPanel" style="margin-top:0px">
+
                                                 <ul style="margin-bottom:0px;">
                                                   <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
@@ -1069,7 +1103,7 @@
 
                          <div class="row">
 
-                           <div class="col-md-6" style="margin-left:0px;">
+                           <div class="col-md-6" id="col-md-6" style="margin-left:0px;">
                               <div class="totals" style="margin-bottom:40px;margin-top:10px;">
                                  <span class="totalBorderB" style="margin-bottom:10px;">
                                   <span class="visitorsA">{{mostPopularIncomeLevel}}</span>
@@ -1079,7 +1113,7 @@
                               <div id="demographic_income_chart_div" style="margin-top:10px;"></div>
                            </div>
 
-                           <div class="col-md-6" style="margin-left:0px;">
+                           <div class="col-md-6" id="col-md-6" style="margin-left:0px;">
                               <div class="totals" style="margin-bottom:40px;margin-top:10px;">
                                  <span class="totalBorderB" style="margin-bottom:10px;">
                                   <span class="visitorsA">{{mostPopularEthnicity}}</span>
@@ -1177,7 +1211,7 @@
 
 <footer class="footer">
  <div class="container">
-     <p style="color: #333 ">&copy; 2015 Telus Hyper-local Analytics</p>
+     <p style="color: #333 ">&copy; 2015 TELUS</p>
      <p style="color: #333 "><a href="/policy">Privacy Policy</a></p>
  </div>
 </footer>
@@ -1208,7 +1242,7 @@
    $('#searchbar').fadeIn(800);
 
   function sliderHeight ()  {
-      var wheight = $(window).height() - 325;
+      var wheight = $(window).height() - 425;
       $(".slide").height(wheight);
   }
   $(window).resize(function() {

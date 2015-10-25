@@ -5,15 +5,12 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
+
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
     var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
-
     $scope.words = [];
-    $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
-
-
 
     $scope.update = function() {
       $scope.words.splice(-5);
@@ -270,7 +267,7 @@ angular.module('telusLg2App')
         height: 550,
         colors: ['#6ebe44'],
         legend: {position: 'bottom'},
-        chartArea: {left: 0, top: 60, width: '100%'},
+        chartArea: {left: 20, top: 60, width: '100%'},
         fontSize: 11,
         hAxis: {
           //textPosition: 'none',
@@ -326,6 +323,39 @@ angular.module('telusLg2App')
             $scope.getOnsiteDataPreGenReportB();
          }
        }
+      ];
+      $scope.selectedOnsiteIndex = 0;
+      $scope.selectOnsite = function (i) {
+        $scope.selectedOnsiteIndex = i;
+      };
+    }
+
+
+
+
+    $scope.selectCarrierFilter = function () {
+      $scope.carrierfilters = [
+        {
+          filterId: 1,
+          time: 'Last 30 Days',
+          showNetworkLast30Days: function () {
+             $scope.getSocialDayReport(30);
+          }
+      },
+      {
+         filterId: 1,
+         time: 'Last 60 Days',
+         showNetworkLast60Days: function () {
+            $scope.getSocialDayReport(60);
+         }
+      },
+      {
+         filterId: 1,
+         time: 'Last 90 Days',
+         showNetworkLast90Days: function () {
+            $scope.getSocialDayReport(90);
+         }
+      }
       ];
       $scope.selectedOnsiteIndex = 0;
       $scope.selectOnsite = function (i) {
@@ -672,7 +702,7 @@ angular.module('telusLg2App')
             if (dailyReports[i] != null) {
               //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
               var date = dailyReports[i].dayOfWeek + ", " + dailyReports[i].day;
-              item = [date, dailyReports[i].total_visit, '#49296A', dailyReports[i].newMac, '#6ebe44'];
+              item = [date, dailyReports[i].total_visit, '#49166d', dailyReports[i].newMac, '#6ebe44'];
               dailyVisitorData.push(item);
             }
           }
@@ -1011,7 +1041,7 @@ angular.module('telusLg2App')
             //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
             //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
-            item = [reports[i].date.substring(5), visitors, '#49296A', newVisitors, '#6ebe44'];
+            item = [reports[i].date.substring(5), visitors, '#49166d', newVisitors, '#6ebe44'];
 
             dailyCarrierVisitorData.push(item);
 
@@ -1099,8 +1129,8 @@ angular.module('telusLg2App')
         var incomeData = [];
         incomeData.push(['Income Level', 'Distribution', {role: 'style'}]);
 
-        var regcolour = 'silver';
-        var maxcolour = 'gold';
+        var regcolour = '#49166d';
+        var maxcolour = '#6ebe44';
         var colour = regcolour;
 
         for (var i = 0; i < incomeLevelsLabels.length; i++) {
@@ -1115,10 +1145,10 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(incomeData);
         var options = {
           //width: 1075,
-          width: document.getElementById("container").clientWidth/3 - 50,
+          width: document.getElementById("container").clientWidth/2,
           height: 340,
           colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 120, top: 30, width: '50%'},
+          chartArea: {left: 120, top: 30, width: '100%'},
           legend: {position: 'none'}
         };
 
@@ -1210,15 +1240,23 @@ angular.module('telusLg2App')
 
         var data = google.visualization.arrayToDataTable(ethnicData);
         var options = {
-          //width: 1075,
-          width: document.getElementById("container").clientWidth/1.2,
+          slices: {
+            0: { color: '#f9f1ff' },
+            1: { color: '#49166d' },
+            2: { color: '#b196c1' },
+            3: { color: '#8c68a6' },
+            4: { color: '#c8bbd0' },
+            5: { color: '#c8bbd0' },
+            6: { color: '#e0cdf4' },
+            7: { color: '#ece7ee' }
+          },
+          width: document.getElementById("container").clientWidth/2,
           height: 340,
           //colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 0, top: 30, width: '50%'},
+          chartArea: {left: 0, top: 30, width: '100%'},
           legend: {position: 'right',alignment:'center'},
           is3D: true,
         };
-
         var ethnicChart = new google.visualization.PieChart(document.getElementById('demographic_ethnicity_chart_div'));
         ethnicChart.draw(data, options);
       }
@@ -1671,7 +1709,7 @@ angular.module('telusLg2App')
     $scope.oneAtATime = true;
     $scope.status = {
       isFirstOpen: true,
-      isFirstDisabled: false
+      isFirstDisabled: true
     };
   })
 
@@ -1754,7 +1792,7 @@ angular.module('telusLg2App')
     ];
 
     $scope.status = {
-      isopen: false
+      isopen: true
     };
 
     $scope.toggled = function (open) {

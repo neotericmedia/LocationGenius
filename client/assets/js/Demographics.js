@@ -28,6 +28,7 @@ Demographics.initialize = function (i18nDict) {
     var mapProp = {
         center: Demographics.toronto2,
         zoom: 14,
+        scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
   console.log("Getting map id...")
@@ -45,15 +46,8 @@ Demographics.initialize = function (i18nDict) {
             $("#GlobalWaitSpinner").hide();
         }
     });
-    $.jqext.resize.add("map", function () {
-        var w = $(window).width() * .80;
-        var h = w * (9 / 16);
-        $("#googleMap").width(w);
-        $("#googleMap").height(h);
-        console.log("w: " + w);
-        google.maps.event.trigger(Demographics.map, "resize");
-    });
-    $.jqext.resize.resizedone();
+
+
 }   // initialize
 Demographics.ready = function ()
 {
@@ -122,4 +116,3 @@ Demographics.drawMapHelper = function()
     $("#households").text(summaryData.hh_cnt.toString());
     $("#demographicSummary").show();
 }
-
