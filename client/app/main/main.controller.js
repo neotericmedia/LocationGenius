@@ -1085,9 +1085,6 @@ angular.module('telusLg2App')
         Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
         Demographics.drawMap();
 
-
-
-
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
         $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity];
@@ -1128,6 +1125,7 @@ angular.module('telusLg2App')
         var incomeChart = new google.visualization.BarChart(document.getElementById('demographic_income_chart_div'));
         incomeChart.draw(data, options);
 
+        $scope.showHeatMapData();
         $scope.showEthnicData();
       }
 
@@ -1242,6 +1240,48 @@ angular.module('telusLg2App')
       }
 
     }
+
+
+    $scope.showHeatMapData = function() {
+      if($scope.tiles!=null) {
+        console.log("Tiles=" + $scope.tiles.length);
+        var callsForService = [];
+
+        for (var i = 0; i < $scope.tiles.length; i++) {
+          //console.log("Tile=" + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
+          callsForService.push(new google.maps.LatLng($scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon));
+        }
+
+
+
+        var map, pointArray, heatmap;
+        var mapOptions = {
+          zoom: 12,
+          center: new google.maps.LatLng($scope.currentLocation.center.latitude, $scope.currentLocation.center.longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+        map.center = {
+          latitude: $scope.currentLocation.center.latitude,
+          longitude: $scope.currentLocation.center.longitude
+        };
+
+        pointArray = new google.maps.MVCArray(callsForService);
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: pointArray
+        });
+
+        heatmap.setMap(map);
+
+      }
+
+    }
+
+
+
 
 
     /**
