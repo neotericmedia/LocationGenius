@@ -23,6 +23,57 @@ Tile.Init = function (map)
 {
     Tile.map = map;
 }
+Tile.ConvertFromMicroserviceFormatToInternalFormat = function(tiles)
+{
+    function incomeSlot(val)
+    {
+        if (val < 40000) return (0);
+        if (val < 50000) return (1);
+        if (val < 60000) return (2);
+        if (val < 70000) return (3);
+        if (val < 80000) return (4);
+        if (val < 90000) return (5);
+        if (val < 100000) return (6);
+        return (7);
+    }
+    var Tiles = {};
+    for(var i=0; i<tiles.length;i++)
+    {
+        var tile = tiles[i];
+        var lat = tile.geoFence.points[3].lat;
+        var lng = tile.geoFence.points[3].lon;
+        var tileObj = Tile.ConvertLatLngToTileInfo("H", 2, [lat, lng]);
+        if(Tiles.hasOwnProperty(tileObj.tileid) == false)
+        {
+            var d = tile.demographic.reports[0];
+            var eth = {
+                ABO: d["ET_ABOO"],
+                AFR: d["ET_AFRO"],
+                CAR: d["ET_CARO"],
+                EEU: d["ET_EEUO"],
+                LAM: d["ET_LAMO"],
+                NEU: d["ET_NEUO"],
+                WEU: d["ET_WEUO"]
+            }
+            tileObj.sample_size = tile.sampleSize;
+            tileObj.demog = {};
+            tileObj.demog.households = d["HH_TOT"];
+            tileObj.demog.hh_income = [0, 0, 0, 0, 0, 0, 0, 0];
+            tileObj.demog.hh_income[incomeSlot(d["IN_MHH"])] = d["IN_MHH"];
+            tileObj.demog.eth = eth;
+            Tiles[tileObj.tileid] = tileObj;
+        }
+        else {
+            Tiles[tileObj.tileid].sample_size += tile.sampleSize
+        }
+    }
+    var arr = [];
+    for (var tileid in Tiles)
+    {
+        arr.push(Tiles[tileid]);
+    }
+    return (arr);
+}
 Tile.CreateLatLngRectFromCenter = function(latlng, distanceInMeters)
 {
     var lat = latlng.lat();
@@ -322,6 +373,7 @@ Tile.CreateScatterMap = function (map, displayRect, zoomedTiles, zoom, cb)
             max_samples = sample;
         }
     }
+    var template = $("#Main_Demographics_MouseOverTemplate").html();
     for (var i = 0; i < zoomedTiles.length; i++)
     {
         var tile = zoomedTiles[i];
@@ -336,7 +388,16 @@ Tile.CreateScatterMap = function (map, displayRect, zoomedTiles, zoom, cb)
             mapBounds.extend(ne);
         }
         var preparedTile = Tile.prepareTileForCharting(tile, false);
-        var mouseOverHtml = Tile.MakeMouseoverHtml("mouseover", 200, preparedTile);
+        var mouseOverHtml = $.jqext.str.FormatUsingTemplate(template,
+            {
+                lat: preparedTile.topleft[0].toFixed(5),
+                lng: preparedTile.topleft[1].toFixed(5),
+                samplesize: preparedTile.sample_size,
+                hh_cnt: preparedTile.hh_cnt,
+                income_chart: Tile.MakeChart("mouseover", 200, preparedTile.income_chart),
+                eth_chart: Tile.MakeChart("mouseover", 200, preparedTile.eth_chart)
+            }
+        );
         var tile_color = Tile.TileColor(tile.sample_size, max_samples);
         Tile.MakeTile(map, zoom, preparedTile, strokeColor = tile_color, fillColor = tile_color, mouseOverHtml);
     }
