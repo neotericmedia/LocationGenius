@@ -1112,8 +1112,6 @@ angular.module('telusLg2App')
       if($scope.demographicReport!=null) {
         console.log("Tiles=" + $scope.tiles.length);
 
-        //Demographics.coalescedTilesWithDemographics = Tile.ConvertFromMicroserviceFormatToInternalFormat($scope.tiles);
-        //Demographics.drawMap();
 
         console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
@@ -1315,8 +1313,6 @@ angular.module('telusLg2App')
       if($scope.tiles!=null) {
         console.log("Visitor Tiles=" + $scope.tiles.length);
 
-        var infoWindow1 = "<table><tr>";
-        var infoWindow2 = "</tr></<table>";
         var info = "";
         var visitorData = [];
         visitorData.push(['Lat', 'Long', 'Demographics','Marker']);
@@ -1337,7 +1333,7 @@ angular.module('telusLg2App')
         var url = 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
 
         var options = {
-          width: document.getElementById("container").clientWidth / 1.2,
+          width: document.getElementById("container").clientWidth,
           height: 340,
           zoomLevel: 10,
           //center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
@@ -1383,10 +1379,10 @@ angular.module('telusLg2App')
       var tableEnd = "</table>";
       var rowStart = "<tr style='border: 1px solid black;'>";
       var rowEnd = "</tr>";
-      var sampleSize = "<b>Sample Size:  </b>" + tile.sampleSize + "</br>";
-      var houseHoldSize = "<b>Households in sample area:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
-      var income = "<b>Average Income in sample area:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
-      var ethnicTitle  = "<b>Ethnicity breakdown in sample area:</b></br>";
+      var sampleSize = "<b>Visitors:  </b>" + tile.sampleSize + "</br>";
+      var houseHoldSize = "<b>Households:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
+      var income = "<b>Average Income:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      var ethnicTitle  = "<b>Ethnicity breakdown:</b></br>";
 
       var tableHeadings = "<tr style='border: 1px solid black;'>" +
         "<th style='border: 1px solid black;padding: 5px;'>ABO</th>" +
@@ -1399,16 +1395,6 @@ angular.module('telusLg2App')
         "<th style='border: 1px solid black;padding: 5px;'>WEU</th>" +
         "</tr>";
 
-
-
-      console.log("ABOO=" + $scope.demographicReport.etABOOCount);
-      console.log("WEUO=" + $scope.demographicReport.etWEUOCount);
-      console.log("NEUO=" + $scope.demographicReport.etNEUOCount);
-      console.log("EEUO=" + $scope.demographicReport.etEEUOCount);
-      console.log("SEUO=" + $scope.demographicReport.etSEUOCount);
-      console.log("CARO=" + $scope.demographicReport.etCAROCount);
-      console.log("LAMO=" + $scope.demographicReport.etLAMOCount);
-      console.log("AFRO=" + $scope.demographicReport.etAFROCount);
 
 
       var aboCount = $scope.demographicReport.etABOOCount;
@@ -1428,9 +1414,6 @@ angular.module('telusLg2App')
                         parseInt(caroCount) +
                         parseInt(lamoCount) +
                         parseInt(afroCount);
-
-
-      console.log( "Ethnic Total =" + ethnicTotal);
 
 
       var abo = "<td style='border: 1px solid black;padding: 5px;'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
