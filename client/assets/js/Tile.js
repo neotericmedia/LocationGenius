@@ -175,7 +175,7 @@ Tile.ConvertBoundsToNESW = function(bounds)
 Tile.VerifySize = function(txt, tile)
 {
     // return;
-    var bounds = tile.bounds;   
+    var bounds = tile.bounds;
     var tl = bounds.getNorthEast();
     var tl_lat = tl.lat();
     var tl_lng = tl.lng();
@@ -388,16 +388,17 @@ Tile.CreateScatterMap = function (map, displayRect, zoomedTiles, zoom, cb)
             mapBounds.extend(ne);
         }
         var preparedTile = Tile.prepareTileForCharting(tile, false);
-        var mouseOverHtml = $.jqext.str.FormatUsingTemplate(template,
-            {
-                lat: preparedTile.topleft[0].toFixed(5),
-                lng: preparedTile.topleft[1].toFixed(5),
-                samplesize: preparedTile.sample_size,
-                hh_cnt: preparedTile.hh_cnt,
-                income_chart: Tile.MakeChart("mouseover", 200, preparedTile.income_chart),
-                eth_chart: Tile.MakeChart("mouseover", 200, preparedTile.eth_chart)
-            }
-        );
+        //var mouseOverHtml = $.jqext.str.FormatUsingTemplate(template,
+        //    {
+        //        lat: preparedTile.topleft[0].toFixed(5),
+        //        lng: preparedTile.topleft[1].toFixed(5),
+        //        samplesize: preparedTile.sample_size,
+        //        hh_cnt: preparedTile.hh_cnt,
+        //        income_chart: Tile.MakeChart("mouseover", 200, preparedTile.income_chart),
+        //        eth_chart: Tile.MakeChart("mouseover", 200, preparedTile.eth_chart)
+        //    }
+        //);
+      var mouseOverHtml = "";
         var tile_color = Tile.TileColor(tile.sample_size, max_samples);
         Tile.MakeTile(map, zoom, preparedTile, strokeColor = tile_color, fillColor = tile_color, mouseOverHtml);
     }
@@ -411,7 +412,7 @@ Tile.CreateSummaryData = function(zoomedTiles)
     var summary_hh_cnt = 0;
     var eth = {};
     var income = [0,0,0,0,0,0,0,0];
-    
+
     for (var i = 0; i < zoomedTiles.length; i++)
     {
         var tile = zoomedTiles[i];

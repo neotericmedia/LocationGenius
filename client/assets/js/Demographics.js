@@ -91,28 +91,29 @@ Demographics.drawMapHelper = function()
     var zoom = parseFloat($("#Main_Demographics_zoom").val());
     var zoomedObjs = Tile.CreateZoomedTileObjects("H", zoom, Demographics.coalescedTilesWithDemographics);
     var tiles = Tile.CreateScatterMap(Demographics.map, Demographics.displayRect, zoomedObjs, zoom);
-    var summaryData = Tile.CreateSummaryData(tiles);
-    var preparedData = Tile.prepareTileForCharting(summaryData, false);
+    return;
+    //var summaryData = Tile.CreateSummaryData(tiles);
+    //var preparedData = Tile.prepareTileForCharting(summaryData, false);
+    //
+    //var eth_summary = Tile.MakeChart("ethsummary", 400, preparedData.eth_chart);
+    //$("#ethSummary").html(eth_summary);
+    //var title = "Ethnic breakdown";
+    //if (Demographics.i18nDict.hasOwnProperty("Ethnic_breakdown"))
+    //{
+    //    title = Demographics.i18nDict["Ethnic_breakdown"];
+    //}
+    //Tile.CreateGoogleChart("ethSummaryGoogle", title, preparedData.eth_chart);
 
-    var eth_summary = Tile.MakeChart("ethsummary", 400, preparedData.eth_chart);
-    $("#ethSummary").html(eth_summary);
-    var title = "Ethnic breakdown";
-    if (Demographics.i18nDict.hasOwnProperty("Ethnic_breakdown"))
-    {
-        title = Demographics.i18nDict["Ethnic_breakdown"];
-    }
-    Tile.CreateGoogleChart("ethSummaryGoogle", title, preparedData.eth_chart);
-
-    var inc_summary = Tile.MakeChart("ethsummary", 400, preparedData.income_chart);
-    $("#incSummary").html(inc_summary);
-    var title = "Income breakdown";
-    if (Demographics.i18nDict.hasOwnProperty("Income_breakdown")) {
-        title = Demographics.i18nDict["Income_breakdown"];
-    }
-    Tile.CreateGoogleChart("incSummaryGoogle", title, preparedData.income_chart);
-
-    $("#tile_count").text(tiles.length.toString());
-    $("#sampleSize").text(summaryData.sample_size.toString());
-    $("#households").text(summaryData.hh_cnt.toString());
-    $("#demographicSummary").show();
+    //var inc_summary = Tile.MakeChart("ethsummary", 400, preparedData.income_chart);
+    //$("#incSummary").html(inc_summary);
+    //var title = "Income breakdown";
+    //if (Demographics.i18nDict.hasOwnProperty("Income_breakdown")) {
+    //    title = Demographics.i18nDict["Income_breakdown"];
+    //}
+    ////Tile.CreateGoogleChart("incSummaryGoogle", title, preparedData.income_chart);
+    //
+    //$("#tile_count").text(tiles.length.toString());
+    //$("#sampleSize").text(summaryData.sample_size.toString());
+    //$("#households").text(summaryData.hh_cnt.toString());
+    //$("#demographicSummary").show();
 }
