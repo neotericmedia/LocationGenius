@@ -1156,6 +1156,18 @@ angular.module('telusLg2App')
         $scope.showHeatMapData();
         $scope.showVisitorMapData();
         $scope.showEthnicData();
+
+        $(window).resize(function(){
+          var options = {
+            //width: 1075,
+            height: 340,
+            colors: ['#ffffff', '#6ebe44'],
+            chartArea: {left: 120, top: 30, width: '100%'},
+            legend: {position: 'none'}
+          };
+           incomeChart.draw(data, options);
+        });
+
       }
 
     }
@@ -1239,7 +1251,7 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(ethnicData);
         var options = {
           slices: {
-            0: { color: '#f9f1ff' },
+            0: { color: '#6ebe44' },
             1: { color: '#49166d' },
             2: { color: '#b196c1' },
             3: { color: '#8c68a6' },
@@ -1334,7 +1346,7 @@ angular.module('telusLg2App')
 
         var options = {
           width: document.getElementById("container").clientWidth,
-          height: 340,
+          height: 500,
           zoomLevel: 10,
           //center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
           mapType: 'normal',
@@ -1357,7 +1369,6 @@ angular.module('telusLg2App')
 
 
       //  //var options = {showTip: true};
-
         var map = new google.visualization.Map(document.getElementById('visitor_div'));
         map.pan = true;
         map.center = {

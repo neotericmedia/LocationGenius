@@ -310,9 +310,9 @@
                                    <div class="col-md-4">
                                        <h4>Time Breakdown</h4>
                                    </div>
-                                   <div class="col-md-4 col-md-offset-8 ">
+                                   <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
-                                   </div>
+                                   </div>-->
                               </div>
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
@@ -761,7 +761,6 @@
                                           </accordion-heading>
 
                                           <div class="well well-lg highlightsPanel" style="margin-top:0px">
-
                                                 <ul style="margin-bottom:0px;">
                                                   <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
@@ -955,13 +954,29 @@
 
                             <tab ng-click="showHeatMapData()">
                                <tab-heading>Heat Map</tab-heading>
-                                  <div id="map" style="height: 380px; width: 100%;"></div>
+                                  <div id="map" style="height: 500px; width: 100%;"></div>
+                                  <div class="col-md-12">
+                                    <div class="cNewA">
+                                      <div class="cNewB"></div>All Visitors
+                                    </div>
+                                    <div style="float:left">
+                                      <div class="cAll"></div>New Visitors
+                                    </div>
+                                  </div>
                             </tab>
 
 
                            <tab ng-click="showVisitorMapData()">
-                             <tab-heading>Tiles</tab-heading>
-                             <div id="visitor_div" style="height: 380px; width: 100%;"></div>
+                               <tab-heading>Tiles</tab-heading>
+                               <div id="visitor_div" style="height: 500px; width: 100%;"></div>
+                               <div class="col-md-12">
+                                 <div class="cNewA">
+                                   <div class="cNewB"></div>All Visitors
+                                 </div>
+                                 <div style="float:left">
+                                   <div class="cAll"></div>New Visitors
+                                 </div>
+                               </div>
                            </tab>
 
 
