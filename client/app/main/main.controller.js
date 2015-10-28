@@ -1141,14 +1141,27 @@ angular.module('telusLg2App')
         }
 
         var data = google.visualization.arrayToDataTable(incomeData);
-        var options = {
-          //width: 1075,
-          width: document.getElementById("container").clientWidth/2,
-          height: 340,
-          colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 120, top: 30, width: '100%'},
-          legend: {position: 'none'}
-        };
+
+        if (window.innerWidth < 984) {
+          var options = {
+            //width: 1075,
+            width: document.getElementById("container").clientWidth,
+            height: 340,
+            colors: ['#ffffff', '#6ebe44'],
+            chartArea: {left: 120, top: 30, width: '100%'},
+            legend: {position: 'none'}
+          };
+        }
+        else {
+          var options = {
+            //width: 1075,
+            width: document.getElementById("container").clientWidth/2,
+            height: 340,
+            colors: ['#ffffff', '#6ebe44'],
+            chartArea: {left: 120, top: 30, width: '100%'},
+            legend: {position: 'none'}
+          };
+        }
 
         var incomeChart = new google.visualization.BarChart(document.getElementById('demographic_income_chart_div'));
         incomeChart.draw(data, options);
@@ -1247,28 +1260,71 @@ angular.module('telusLg2App')
           ethnicData.push(['Other', otherTotal, 'silver']);
         }
 
-
         var data = google.visualization.arrayToDataTable(ethnicData);
-        var options = {
-          slices: {
-            0: { color: '#6ebe44' },
-            1: { color: '#49166d' },
-            2: { color: '#b196c1' },
-            3: { color: '#8c68a6' },
-            4: { color: '#c8bbd0' },
-            5: { color: '#c8bbd0' },
-            6: { color: '#e0cdf4' },
-            7: { color: '#ece7ee' }
-          },
-          width: document.getElementById("container").clientWidth/2,
-          height: 340,
-          //colors: ['#ffffff', '#6ebe44'],
-          chartArea: {left: 0, top: 30, width: '100%'},
-          legend: {position: 'right',alignment:'center'},
-          is3D: true,
-        };
+
+        if (window.innerWidth < 984) {
+          var options = {
+            slices: {
+              0: { color: '#6ebe44' },
+              1: { color: '#49166d' },
+              2: { color: '#b196c1' },
+              3: { color: '#8c68a6' },
+              4: { color: '#c8bbd0' },
+              5: { color: '#c8bbd0' },
+              6: { color: '#e0cdf4' },
+              7: { color: '#ece7ee' }
+            },
+            width: document.getElementById("container").clientWidth,
+            height: 340,
+            //colors: ['#ffffff', '#6ebe44'],
+            chartArea: {left: 0, top: 30, width: '100%'},
+            legend: {position: 'right',alignment:'center'},
+            is3D: true,
+          };
+        }
+        else {
+          var options = {
+            slices: {
+              0: { color: '#6ebe44' },
+              1: { color: '#49166d' },
+              2: { color: '#b196c1' },
+              3: { color: '#8c68a6' },
+              4: { color: '#c8bbd0' },
+              5: { color: '#c8bbd0' },
+              6: { color: '#e0cdf4' },
+              7: { color: '#ece7ee' }
+            },
+            width: document.getElementById("container").clientWidth/2,
+            height: 340,
+            chartArea: {left: 0, top: 30, width: '100%'},
+            legend: {position: 'right',alignment:'center'},
+            is3D: true,
+          };
+        }
+
         var ethnicChart = new google.visualization.PieChart(document.getElementById('demographic_ethnicity_chart_div'));
         ethnicChart.draw(data, options);
+
+        $(window).resize(function(){
+          var options = {
+            slices: {
+              0: { color: '#6ebe44' },
+              1: { color: '#49166d' },
+              2: { color: '#b196c1' },
+              3: { color: '#8c68a6' },
+              4: { color: '#c8bbd0' },
+              5: { color: '#c8bbd0' },
+              6: { color: '#e0cdf4' },
+              7: { color: '#ece7ee' }
+            },
+            height: 340,
+            chartArea: {left: 0, top: 30, width: '100%'},
+            legend: {position: 'right',alignment:'center'},
+            is3D: true,
+          };
+          ethnicChart.draw(data, options);
+        });
+
       }
 
     }
@@ -1286,7 +1342,7 @@ angular.module('telusLg2App')
 
         var map, pointArray, heatmap;
         var mapOptions = {
-          zoom: 12,
+          zoom: 10,
           //center: {latitude: 43.650505, longitude: -79.383989},
           //center: new google.maps.LatLng($scope.currentLocation.center.latitude, $scope.currentLocation.center.longitude),
           center: new google.maps.LatLng(43.650505,-79.383989),
@@ -1342,27 +1398,29 @@ angular.module('telusLg2App')
 
 
         var data = google.visualization.arrayToDataTable(visitorData);
-        var url = 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+        //var url = 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+        var url = 'assets/images/';
 
         var options = {
           width: document.getElementById("container").clientWidth,
           height: 500,
-          zoomLevel: 10,
-          //center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
+          zoomLevel: 8,
+          center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
+          //center: {latitude: 43.650505, longitude: -78.383989},
           mapType: 'normal',
           showTip: true,
           icons: {
             blue: {
-              normal:   url + 'Map-Marker-Ball-Azure-icon.png',
-              selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+              normal:   url + 'green_tile.png',
+              selected: url + 'green_tile.png'
             },
             green: {
-              normal:   url + 'Map-Marker-Push-Pin-1-Chartreuse-icon.png',
-              selected: url + 'Map-Marker-Push-Pin-1-Right-Chartreuse-icon.png'
+              normal:   url + 'green_tile.png',
+              selected: url + 'green_tile.png'
             },
             pink: {
-              normal:   url + 'Map-Marker-Ball-Pink-icon.png',
-              selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+              normal:   url + 'purple_tile.png',
+              selected: url + 'purple_tile.png'
             }
           }
         };
@@ -1372,8 +1430,8 @@ angular.module('telusLg2App')
         var map = new google.visualization.Map(document.getElementById('visitor_div'));
         map.pan = true;
         map.center = {
-          latitude: $scope.currentLocation.center.latitude,
-          longitude: $scope.currentLocation.center.longitude
+          latitude: 43.650505,
+          longitude: -79.383989
         };
         map.draw(data, options);
 

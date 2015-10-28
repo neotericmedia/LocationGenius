@@ -10,7 +10,7 @@
                      <div class="dropdown col-sm-4">
                         <i class="fa fa-map-marker"></i>
                         <button class="btn btn-default dropdown-toggle" type="button">
-                           <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
+                           <input type="text" placeholder="Subscribed Locations" readonly="true" ng-model="searchStringName" class="mainInput" style="border:none; text-align:center;">
                            <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -697,10 +697,10 @@
 
 
 
-
                       <div id="miniTab" class="row">
-                       <div class="col-md-6"></div>
-                       <div class="col-md-6 pull-right">
+                       <div class="col-md-4"></div>
+                       <div class="col-md-4"></div>
+                       <div class="col-md-4 tst">
                           <div class="filters_ct" ng-controller="selectCarrierFilter">
                               <ul class="boo" ng-repeat="filter in carrierfilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                                  <li>
@@ -955,9 +955,9 @@
                             <tab ng-click="showHeatMapData()">
                                <tab-heading>Heat Map</tab-heading>
                                   <div id="map" style="height: 500px; width: 100%;"></div>
-                                  <div class="col-md-12" style="margin-top: 20px">
+                                  <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
                                     <div class="cNewA">
-                                      <div class="cNewB" style="color:red"></div>Numbers Here
+                                      <div class="cNewB" style="background-color:red"></div>Numbers Here
                                     </div>
                                     <div style="float:left">
                                       <div class="cAll"></div>Numbers Here
@@ -969,9 +969,9 @@
                            <tab ng-click="showVisitorMapData()">
                                <tab-heading>Tiles</tab-heading>
                                <div id="visitor_div" style="height: 500px; width: 100%;"></div>
-                               <div class="col-md-12" style="margin-top: 20px">
+                               <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
                                  <div class="cNewA">
-                                   <div class="cNewB" style="color:red"></div>Numbers Here
+                                   <div class="cNewB"></div>Numbers Here
                                  </div>
                                  <div style="float:left">
                                    <div class="cAll"></div>Numbers Here
