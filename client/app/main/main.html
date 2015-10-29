@@ -10,7 +10,7 @@
                      <div class="dropdown col-sm-4">
                         <i class="fa fa-map-marker"></i>
                         <button class="btn btn-default dropdown-toggle" type="button">
-                           <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
+                           <input type="text" placeholder="Subscribed Locations" readonly="true" ng-model="searchStringName" class="mainInput" style="border:none; text-align:center;">
                            <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -188,7 +188,7 @@
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-           <tab>
+           <tab ng-click="showDailySocialData();showHourlySocialData()">
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social Data</tab-heading>
 
@@ -310,9 +310,9 @@
                                    <div class="col-md-4">
                                        <h4>Time Breakdown</h4>
                                    </div>
-                                   <div class="col-md-4 col-md-offset-8 ">
+                                   <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
-                                   </div>
+                                   </div>-->
                               </div>
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
@@ -366,7 +366,7 @@
 
 
            <!--////////////////////////////////////ON-SITE DATA-->
-           <tab  >
+           <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData()">
                <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
 
                       <div class="date">{{onsiteWeek}}</div>
@@ -687,7 +687,8 @@
 
 
            <!--////////////////////////////////////CARRIER DATA-->
-           <tab ng-click="showHeatMapData()" >
+           <tab ng-click="showHeatMapData();showCarrierDailyVisitorData()" >
+
                <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
 
 
@@ -697,10 +698,10 @@
 
 
 
-
                       <div id="miniTab" class="row">
-                       <div class="col-md-6"></div>
-                       <div class="col-md-6 pull-right">
+                       <div class="col-md-4"></div>
+                       <div class="col-md-4"></div>
+                       <div class="col-md-4 tst">
                           <div class="filters_ct" ng-controller="selectCarrierFilter">
                               <ul class="boo" ng-repeat="filter in carrierfilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                                  <li>
@@ -761,7 +762,6 @@
                                           </accordion-heading>
 
                                           <div class="well well-lg highlightsPanel" style="margin-top:0px">
-
                                                 <ul style="margin-bottom:0px;">
                                                   <li>Most Visitors in a Week: <span class="hLight">{{carrierUniqueVisitors}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
@@ -955,13 +955,29 @@
 
                             <tab ng-click="showHeatMapData()">
                                <tab-heading>Heat Map</tab-heading>
-                                  <div id="map" style="height: 380px; width: 100%;"></div>
+                                  <div id="map" style="height: 500px; width: 100%;"></div>
+                                  <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
+                                    <div class="cNewA">
+                                      <div class="cNewB" style="background-color:red"></div>Numbers Here
+                                    </div>
+                                    <div style="float:left">
+                                      <div class="cAll"></div>Numbers Here
+                                    </div>
+                                  </div>
                             </tab>
 
 
                            <tab ng-click="showVisitorMapData()">
-                             <tab-heading>Tiles</tab-heading>
-                             <div id="visitor_div" style="height: 380px; width: 100%;"></div>
+                               <tab-heading>Tiles</tab-heading>
+                               <div id="visitor_div" style="height: 500px; width: 100%;"></div>
+                               <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
+                                 <div class="cNewA">
+                                   <div class="cNewB"></div>Numbers Here
+                                 </div>
+                                 <div style="float:left">
+                                   <div class="cAll"></div>Numbers Here
+                                 </div>
+                               </div>
                            </tab>
 
 
