@@ -191,6 +191,11 @@ angular.module('telusLg2App')
     }
 
 
+
+
+
+
+
     $scope.showDailySocialData = function () {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
@@ -211,6 +216,7 @@ angular.module('telusLg2App')
 
       chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
       chart.draw($scope.data, options);
+
 
       $(window).resize(function(){
          var options = {
@@ -249,6 +255,9 @@ angular.module('telusLg2App')
         $scope.$apply();
       }
     }
+
+
+
 
 
     var showDay = function (day) {
@@ -1404,23 +1413,23 @@ angular.module('telusLg2App')
         var options = {
           width: document.getElementById("container").clientWidth,
           height: 500,
-          zoomLevel: 8,
-          center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
-          //center: {latitude: 43.650505, longitude: -78.383989},
+          zoomLevel: 10,
+          //center: {latitude: $scope.currentLocation.center.latitude, longitude: $scope.currentLocation.center.longitude},
+          center: {latitude: 43.650505, longitude: -78.383989},
           mapType: 'normal',
           showTip: true,
           icons: {
             blue: {
-              normal:   url + 'green_tile.png',
-              selected: url + 'green_tile.png'
+              normal:   url + 'purple-pin.png',
+              selected: url + 'purple-pin.png'
             },
             green: {
-              normal:   url + 'green_tile.png',
-              selected: url + 'green_tile.png'
+              normal:   url + 'green-pin.png',
+              selected: url + 'green-pin.png'
             },
             pink: {
-              normal:   url + 'purple_tile.png',
-              selected: url + 'purple_tile.png'
+              normal:   url + 'purple-pin.png',
+              selected: url + 'purple-pin.png'
             }
           }
         };

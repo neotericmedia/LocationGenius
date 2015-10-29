@@ -188,7 +188,7 @@
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-           <tab>
+           <tab ng-click="showDailySocialData();showHourlySocialData()">
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social Data</tab-heading>
 
@@ -366,7 +366,7 @@
 
 
            <!--////////////////////////////////////ON-SITE DATA-->
-           <tab  >
+           <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData()">
                <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
 
                       <div class="date">{{onsiteWeek}}</div>
@@ -687,7 +687,8 @@
 
 
            <!--////////////////////////////////////CARRIER DATA-->
-           <tab ng-click="showHeatMapData()" >
+           <tab ng-click="showHeatMapData();showCarrierDailyVisitorData()" >
+
                <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
 
 
