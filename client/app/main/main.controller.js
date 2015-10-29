@@ -1318,7 +1318,7 @@ angular.module('telusLg2App')
         visitorData.push(['Lat', 'Long', 'Demographics','Marker']);
         for (var i = 0;i < $scope.tiles.length;i++){
           info = createInfoWindow($scope.tiles[i]);
-          //console.log( "Info:" + info);
+          //console.log( "Tile #:" + $scope.tiles[i].tileNumber);
           if($scope.tiles[i].sampleSize>=4) {
             visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'pink']);
           } else if($scope.tiles[i].sampleSize >2 ){
@@ -1345,8 +1345,8 @@ angular.module('telusLg2App')
               selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
             },
             green: {
-              normal:   url + 'Map-Marker-Push-Pin-1-Chartreuse-icon.png',
-              selected: url + 'Map-Marker-Push-Pin-1-Right-Chartreuse-icon.png'
+              normal:   url + 'Map-Marker-Ball-Chartreuse-icon.png',
+              selected: url + 'Map-Marker-Ball-Right-Chartreuse-icon.png'
             },
             pink: {
               normal:   url + 'Map-Marker-Ball-Pink-icon.png',
