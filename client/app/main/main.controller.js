@@ -225,7 +225,8 @@ angular.module('telusLg2App')
            legend: {
              position: 'bottom',
              textStyle: { fontName: 'telusweb', fontSize: 12 }
-           },           format: 'short',
+           },
+           format: 'short',
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            hAxis: {
@@ -259,8 +260,6 @@ angular.module('telusLg2App')
            }
          };
       }
-
-
 
 
       chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
@@ -918,7 +917,7 @@ angular.module('telusLg2App')
           position: 'bottom',
           textStyle: { fontName: 'telusweb', fontSize: 12 }
         },
-        hAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+        hAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
         vAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
         fontSize: 11,
         tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1019,8 +1018,6 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       //console.log("Graphing hourly data for day " + day);
-
-
       if (window.innerWidth < 984) {
          var options = {
            width: document.getElementById("container").clientWidth - 50,
@@ -1122,23 +1119,6 @@ angular.module('telusLg2App')
 
 
 
-    var options = {
-     width: document.getElementById("container").clientWidth - 50,
-     height: 550,
-     colors: ['#6ebe44'],
-     chartArea: {left: 60, top: 60, width: '90%'},
-     legend: {
-         position: 'bottom',
-         textStyle: { fontName: 'telusweb', fontSize: 12 }
-     },
-     tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-     fontSize: 11,
-     hAxis: {
-      slantedText: true,
-      slantedTextAngle: 45,
-      textStyle: { fontName: 'telusweb', fontSize: 12 }
-     }
-    };
 
 
     $scope.showOnsiteDurationData = function () {
@@ -1365,9 +1345,9 @@ angular.module('telusLg2App')
             hAxis: {
              textStyle: { fontName: 'telusweb', fontSize: 12 }
             },
-             yAxis: {
+            yAxis: {
              textStyle: { fontName: 'telusweb', fontSize: 12 }
-             }
+            }
           };
         }
 
@@ -1471,7 +1451,6 @@ angular.module('telusLg2App')
         var data = google.visualization.arrayToDataTable(ethnicData);
 
         if (window.innerWidth < 984) {
-
           var options = {
             slices: {
               0: { color: '#6ebe44' },
@@ -1486,7 +1465,6 @@ angular.module('telusLg2App')
             width: document.getElementById("container").clientWidth,
             height: 340,
             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            slices: {0: {offset: 0.2}},
             chartArea: {left: 0, top: 30, width: '100%'},
             legend: {
                 position: 'bottom',
@@ -1516,7 +1494,6 @@ angular.module('telusLg2App')
             width: document.getElementById("container").clientWidth/2,
             height: 340,
             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            pieSliceTextStyle: {'color': '#000', 'fontSize': 15},
             chartArea: {left: 0, top: 30, width: '100%'},
             legend: {
                 position: 'bottom',
