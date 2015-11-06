@@ -1670,8 +1670,17 @@ angular.module('telusLg2App')
       var rowStart = "<tr style='border: 1px solid black;'>";
       var rowEnd = "</tr>";
       var sampleSize = "<b>Visitors:  </b>" + tile.sampleSize + "</br>";
-      var houseHoldSize = "<b>Households:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
-      var income = "<b>Average Income:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      if(tile.demographic.reports[0] != null && tile.demographic.reports[0]["HH_TOT"] != null) {
+        var houseHoldSize = "<b>Households:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
+      } else {
+        var houseHoldSize = "<b>Households:  </b>" + "N/A" + "</br>";
+      }
+
+      if(tile.demographic.reports[0] != null && tile.demographic.reports[0]["IN_MHH"] != null) {
+        var income = "<b>Average Income:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      } else {
+        var income = "<b>Average Income:  </b>" + "N/A" + "</br>";
+      }
       var ethnicTitle  = "<b>Ethnicity breakdown:</b></br>";
 
       var tableHeadings = "<tr style='border: 1px solid black;'>" +
@@ -1930,8 +1939,6 @@ angular.module('telusLg2App')
       $scope.carrierDwellTimeData = []
 
       var dwellTimes = $scope.carrierReports[day].dwellTimes;
-      console.log("Dwell times:" + dwellTimes.length);
-      //console.log("Dwell times:" + dwellTimes);
 
       $scope.averageCarrierVisitDuration = $scope.carrierReports[day].averageDwellTime;
       var dwellTimeItem = ['Minutes', 'Number of Durations of Length x', {role: 'style'}];
