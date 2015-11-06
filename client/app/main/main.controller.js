@@ -1342,10 +1342,11 @@ angular.module('telusLg2App')
     $scope.showHeatMapData = function() {
       if($scope.tiles!=null) {
         console.log("Tiles=" + $scope.tiles.length);
+
         var callsForService = [];
 
         for (var i = 0; i < $scope.tiles.length; i++) {
-          //console.log("Tile=" + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
+          console.log("Tiles # = " + $scope.tiles[i].tileNumber + " " + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
           callsForService.push(new google.maps.LatLng($scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon));
         }
 
@@ -1394,6 +1395,7 @@ angular.module('telusLg2App')
         var visitorData = [];
         visitorData.push(['Lat', 'Long', 'Demographics','Marker']);
         for (var i = 0;i < $scope.tiles.length;i++){
+
           info = createInfoWindow($scope.tiles[i]);
           //console.log( "Info:" + info);
           if($scope.tiles[i].sampleSize>=4) {
@@ -1403,6 +1405,7 @@ angular.module('telusLg2App')
           } else {
             visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'green']);
           }
+
         }
 
 
@@ -1458,8 +1461,19 @@ angular.module('telusLg2App')
       var rowStart = "<tr style='border: 1px solid black;'>";
       var rowEnd = "</tr>";
       var sampleSize = "<b>Visitors:  </b>" + tile.sampleSize + "</br>";
-      var houseHoldSize = "<b>Households:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
-      var income = "<b>Average Income:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      if(tile.demographic.reports[0] != null && tile.demographic.reports[0]["HH_TOT"] != null) {
+        var houseHoldSize = "<b>Households:  </b>" + tile.demographic.reports[0]["HH_TOT"] + "</br>";
+      } else {
+        var houseHoldSize = "<b>Households:  </b>" + "N/A" + "</br>";
+      }
+
+      if(tile.demographic.reports[0] != null && tile.demographic.reports[0]["IN_MHH"] != null) {
+        var income = "<b>Average Income:  </b>" + tile.demographic.reports[0]["IN_MHH"] + "</br>";
+      } else {
+        var income = "<b>Average Income:  </b>" + "N/A" + "</br>";
+      }
+
+
       var ethnicTitle  = "<b>Ethnicity breakdown:</b></br>";
 
       var tableHeadings = "<tr style='border: 1px solid black;'>" +
