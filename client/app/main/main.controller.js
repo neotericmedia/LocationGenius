@@ -1605,7 +1605,8 @@ angular.module('telusLg2App')
         var info = "";
         var visitorData = [];
         visitorData.push(['Lat', 'Long', 'Demographics','Marker']);
-        for (var i = 0;i < $scope.tiles.length;i++){
+        var size = Math.min($scope.tiles.length,200); // cut it off at 200 max
+        for (var i = 0;i < size;i++){
           info = createInfoWindow($scope.tiles[i]);
           //console.log( "Info:" + info);
           if($scope.tiles[i].sampleSize>=4) {
