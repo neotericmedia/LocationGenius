@@ -51,7 +51,12 @@ PANTONE 2745 C
 
 
 /* fonts */
-
+.legend {
+   display: block;
+   clear: both;
+   padding-top: 20px;
+   width: 230px;
+}
 div.jqcloud {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -210,11 +215,18 @@ i.fa-map-marker {
 
 
 
-.up .fa-angle-up {
+.up .fa-angle-up{
    font-size: 2.5em;
    position: absolute;
    top: -4px;
+   right: 5px;
  }
+.down .fa-angle-down {
+    font-size: 2.5em;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+  }
 
  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
    border-top-left-radius: 10px;
@@ -473,7 +485,20 @@ div.ng-isolate-scope .nav > li > a {
   border-radius: 7px;
   display: block;
   float: left;
+  position: relative;
 }
+.down {
+  background-color: red;
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 5px 0 5px 10px;
+  border-radius: 7px;
+  display: block;
+  float: left;
+  position: relative;
+}
+
 .totals {
   display: block;
   height: 35px;
@@ -690,6 +715,9 @@ p.ng-binding, h2 {
 }
 @media only screen and (min-width: 40em) {
   /* 640 =================================================== */
+  .legend {
+     width: 130px;
+  }
 }
 @media only screen and (min-width: 45em) {
   /* 720 =================================================== */
@@ -706,6 +734,12 @@ p.ng-binding, h2 {
 }
 @media only screen and (min-width: 61.5em) {
   /* 984 =================================================== */
+  .legend {
+     float:right;
+     display:inline;
+     clear: none;
+     padding-top: 4px;
+  }
   ul.boo li {
      display: block;
      background-color: #f7f7f7;
@@ -822,6 +856,9 @@ p.ng-binding, h2 {
 
   #wordcloud {
      width: 600px;
+  }
+  .legend {
+     width: 230px;
   }
 
 }

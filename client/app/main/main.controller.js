@@ -352,7 +352,7 @@ angular.module('telusLg2App')
            colors: ['#6ebe44'],
            legend: {
              position: 'bottom',
-             textStyle: { fontName: 'telusweb', fontSize: 16 }
+             textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
            chartArea: {left: 20, top: 60, width: '95%'},
            fontSize: 11,
@@ -780,7 +780,7 @@ angular.module('telusLg2App')
             $scope.changeImage = "up";
           }
           if ($scope.weeklyChange < 0) {
-            $scope.changeIma = "glyphicon glyphicon-chevron-down";
+            $scope.changeImage = "down";
           }
 
 
