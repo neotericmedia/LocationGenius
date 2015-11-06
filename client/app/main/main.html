@@ -1,5 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container" id="container">
+<div class="container" id="container"><div id="top"></div>
 
     <!--///////////////////////////////////////////////////////////////////SEARCH-->
         <div id="searchbar">
@@ -33,30 +33,6 @@
                      </div>
 
 
-
-
-
-
-                    <!--<div class="dropdown col-lg-3" style="margin:0 auto;">
-                           <i class="fa fa-map-marker" style="text-align:right; float:left;font-size:2.25em; color:#6ebe44; margin-right:12px;"></i>
-                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="float:left;">
-                              <input type="text" placeholder="Subscribed Locations" ng-model="searchStringName" style="border:none; text-align:center">
-                              <span class="caret"></span>
-                           </button>
-                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="float:left;">
-                              <li ng-repeat="location in locations" role="presentation" >
-                                 <a role="menuitem" tabindex="-1" data-target="#" ng-click="setSelectedLocation(location);setOnsiteDataPreGenReport(location);selected($index)">{{location.name}}</a>
-                              </li>
-                           </ul>
-                    </div>
-                    <div class="col-lg-6">
-                            <form role="search" ng-submit="showTweeters()">
-                                <div class="input-group">
-                                    <input type="text" class="form-control searchInput" aria-describedby="basic-addon2" placeholder="Enter a location" ng-model="searchString">
-                                    <span class="input-group-addon searchButton" id="basic-addon2" ng-click="showTweeters()" ><div class="searchtext">Search</div></span>
-                                </div>
-                            </form>
-                    </div>-->
 
 
 
@@ -155,7 +131,13 @@
 
 
               <span class="uts">
-                <span><a onclick="print();"><i class="fa fa-print"></i><i class="fa fa-plus" style="padding-left:10px;padding-right:10px;font-size:.75em;color:#ccc"></i><i class="fa fa-save"></i></a></span>
+                <span>
+                  <a onclick="print();">
+                  <i class="fa fa-print"></i>
+                  <!--<i class="fa fa-plus" style="padding-left:10px;padding-right:10px;font-size:.75em;color:#ccc"></i>
+                  <i class="fa fa-save"></i>-->
+                  </a>
+                </span>
                 <!--<span><a onclick="saveAs();"><i class="fa fa-envelope"></i></a></span>-->
               </span>
 
@@ -195,9 +177,8 @@
                  <div class="date">{{dateRange}}</div>
 
                  <div id="miniTab" class="row">
-                   <div class="col-md-6"></div>
-                   <div class="col-md-6">
-                      <div class="filters_ct" ng-controller="selectFilter">
+                   <div class="col-md-12">
+                      <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
                           <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                              <li>
                                 <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
@@ -229,7 +210,7 @@
                              <accordion close-others="oneAtATime">
                                 <accordion-group is-open="true" >
                                  <accordion-heading>
-                                    <h4 style="font-size:20px; margin-bottom:0px;">Social Highlights at a Glance</h4>
+                                    <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Social Highlights at a Glance</h4>
                                     <!--<div style="display:block;margin-top:14px;">
                                       <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                        <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
@@ -287,7 +268,7 @@
                                   <div class="totals">
                                     <span class="totalBorderB">
                                       <span class="visitorsA">{{totalInteractions | number}}</span>
-                                    </span>&nbsp;&nbsp;&nbsp;Total Interactions
+                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Interactions</span>
                                   </div>
 
                                    <div id="barchart_div"></div>
@@ -373,9 +354,8 @@
 
 
                       <div id="miniTab" class="row">
-                       <div class="col-md-6"></div>
-                       <div class="col-md-6">
-                          <div class="filters_ct" ng-controller="selectFilter">
+                       <div class="col-md-12">
+                          <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
                               <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                                  <li>
                                     <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
@@ -407,7 +387,7 @@
 
                                          <accordion-group is-open="true" >
                                           <accordion-heading>
-                                             <h4 style="font-size:20px; margin-bottom:0px;">On-Site Highlights at a Glance</h4>
+                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef">On-Site Highlights at a Glance</h4>
                                              <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
@@ -438,44 +418,6 @@
 
                           <div class="col-md-3" style="text-align:right;">
                                <br>
-                               <!--<div ng-controller="DropdownCtrl">
-
-                                   <span dropdown on-toggle="toggled(open)">
-
-                                     <span class="totalBorderB" style="padding-top:7px;"><a href="#" href id="simple-dropdown" dropdown-toggle><i class="fa fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom Date</a></span>
-
-                                     <div class="dropdown-menu" aria-labelledby="simple-dropdown" style="padding:15px;">
-
-                                          <div ng-controller="DatepickerDemoCtrl">
-                                                <div class="row">
-                                                  <div class="col-md-12">
-                                                      <p class="input-group">
-                                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                        <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                        </span>
-                                                      </p>
-                                                  </div>
-                                                </div>
-
-
-                                                <div class="row">
-                                                  <div class="col-md-12">
-                                                      <p class="input-group">
-                                                        <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                        <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                        </span>
-                                                      </p>
-                                                  </div>
-                                                </div>
-                                          </div>
-
-                                     </div>
-
-                                   </span>
-
-                               </div>-->
                             </div>
                      </div>
 
@@ -492,6 +434,7 @@
 
                              <div class="row">
                                    <div class="col-md-12">
+                                      <br>
                                       <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
                                    </div>
 
@@ -500,13 +443,13 @@
 
 
                               <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-8">
 
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="totalBorderB">
                                            <span class="visitorsA">{{onsiteVisitorsWeek | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;Total Visitors
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Total Visitors</span>
                                        </div>
                                     </div>
 
@@ -516,9 +459,8 @@
                                          <span class="{{changeImage}}" style="padding-right:30px;">
                                            <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
-                                         </span>
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
-                                       <div style="margin-top:-3px; font-size:.75em">Compared to previous week</div>
                                     </div>
 
 
@@ -526,7 +468,7 @@
                                        <div class="totals">
                                          <span class="totalBorderB">
                                            <span class="visitorsA">{{averageVisitorsDay | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;Average Visitors/Day
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
                                        </div>
                                     </div>
 
@@ -535,7 +477,7 @@
 
 
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                   <div class="row" style="margin-top:4px;">
 
 
@@ -546,7 +488,7 @@
                                         <div class="cNewB"></div>All Visitors
                                       </div>
 
-                                      <div style="float:left">
+                                      <div class="cNewC">
                                         <div class="cAll"></div>New Visitors
                                       </div>
 
@@ -581,7 +523,7 @@
                               <div class="totals">
                                 <span class="totalBorderB">
                                   <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
-                                </span>&nbsp;&nbsp;&nbsp;Busiest Hour (average)
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Busiest Hour (average)</span>
                               </div>
 
                               <div class="row">
@@ -613,7 +555,7 @@
                               <div class="totals">
                                 <span class="totalBorderB">
                                   <span class="visitorsA">{{averageVisitDuration}} MIN</span>
-                                </span>&nbsp;&nbsp;&nbsp;Average Visit Duration
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration</span>
                               </div>
 
                               <div class="row">
@@ -623,42 +565,6 @@
                               </div>
                            </div>
                       </div>
-
-                      <!--<div class="panel panel-default graphPanel">-->
-                           <!--<div class="panel-body" >-->
-                              <!--<h4>Top Visitors <span class="locateSub">(Last Week)</span></h4>-->
-                              <!--<div id="visitors_div">-->
-
-                                   <!--<div class="table-responsive tweetTable">-->
-                                      <!--&lt;!&ndash; Table &ndash;&gt;-->
-                                      <!--<table class="table-striped table table-panel">-->
-                                          <!--<thead >-->
-                                          <!--<tr>-->
-                                             <!--<th>Customer</th>-->
-                                             <!--<th>Postal Code</th>-->
-                                             <!--<th>No. of Visits</th>-->
-                                          <!--</tr>-->
-                                          <!--</thead>-->
-
-                                          <!--<div >-->
-                                             <!--<div >-->
-                                                   <!--<tr ng-repeat="visitor in topCustomers track by $index">-->
-                                                       <!--<td class="customer">{{visitor.mac}}</td>-->
-                                                       <!--<td>{{visitor.postalCode}}</td>-->
-                                                       <!--<td>{{visitor.numVisits}}</td>-->
-                                                   <!--</tr>-->
-                                             <!--</div>-->
-
-                                          <!--</div>-->
-
-                                      <!--</table>-->
-
-                                   <!--</div>-->
-                              <!--</div>-->
-                           <!--</div>-->
-                      <!--</div>-->
-
-
            </tab>
            <!--END ON-SITE TAB-->
 
@@ -687,7 +593,7 @@
 
 
            <!--////////////////////////////////////CARRIER DATA-->
-           <tab ng-click="showHeatMapData();showCarrierDailyVisitorData()" >
+           <tab ng-click="showHeatMapData();showCarrierDailyVisitorData();showEthnicData()" >
 
                <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
 
@@ -695,14 +601,9 @@
                     <div class="date">{{carrierDate}}</div>
 
 
-
-
-
                       <div id="miniTab" class="row">
-                       <div class="col-md-4"></div>
-                       <div class="col-md-4"></div>
-                       <div class="col-md-4 tst">
-                          <div class="filters_ct" ng-controller="selectCarrierFilter">
+                       <div class="col-md-12 tst">
+                          <div id="crumbsSM" class="filters_ct" ng-controller="selectCarrierFilter">
                               <ul class="boo" ng-repeat="filter in carrierfilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                                  <li>
                                     <a href="" ng-click="filter.showLast30Days();filter.showLast60Days();filter.showLast90Days();">{{filter.time}}</a>
@@ -753,7 +654,7 @@
 
                                          <accordion-group is-open="true" >
                                           <accordion-heading>
-                                             <h4 style="font-size:20px; margin-bottom:0px;">Carrier Highlights at a Glance</h4>
+                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Carrier Highlights at a Glance</h4>
                                              <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
@@ -806,15 +707,16 @@
 
 
                               <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-8">
 
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="totalBorderB">
                                            <span class="visitorsA">{{carrierUniqueVisitors|number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;Total Visitors
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Total Visitors</span>
                                        </div>
                                     </div>
+
 
 
                                     <div style="float:left; margin-right:20px;">
@@ -822,9 +724,8 @@
                                          <span class="{{changeImage}}" style="padding-right:30px;">
                                            <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
-                                         </span>
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
-                                       <div style="margin-top:-3px; font-size:.75em">Compared to previous week</div>
                                     </div>
 
 
@@ -832,7 +733,7 @@
                                        <div class="totals">
                                          <span class="totalBorderB">
                                            <span class="visitorsA">{{carrierAverageVisitorsDay | number}}</span>
-                                         </span>&nbsp;&nbsp;Average Visitors/Day
+                                         </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
                                        </div>
                                     </div>
 
@@ -841,7 +742,7 @@
 
 
 
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                   <div class="row" style="margin-top:4px;">
 
 
@@ -851,10 +752,10 @@
                                         <div class="cNewB"></div>All Visitors
                                       </div>
 
-
-                                      <div style="float:left">
+                                      <div class="cNewC" style="float:left">
                                         <div class="cAll"></div>New Visitors
                                       </div>
+
 
                                       <div style="clear: both"></div>
 
@@ -869,7 +770,7 @@
 
 
 
-                               <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                               <div class="col-md-12">
                                   <div id="carrier_visitors_barchart_div"></div>
                                </div>
                            </div>
@@ -888,7 +789,7 @@
                               <div class="totals">
                                 <span class="totalBorderB">
                                   <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
-                                </span>&nbsp;&nbsp;&nbsp;Busiest Hour (average)
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Busiest Hour (average)</span>
                               </div>
 
                               <div class="row">
@@ -902,13 +803,13 @@
 
 
                       <div class="panel panel-default graphPanel">
-                           <div class="panel-body" >
+                           <div class="panel-body">
                               <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
                                   <span class="visitorsA">{{averageCarrierVisitDuration}} MIN</span>
-                                </span>&nbsp;&nbsp;&nbsp;Average Visit Duration
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration</span>
                               </div>
 
                               <div class="row">
@@ -931,7 +832,7 @@
                                  <span class="totalBorderB" style="margin-bottom:10px;">
                                   <span class="visitorsA">{{mostPopularIncomeLevel}}</span>
                                  </span>
-                                 <div style="margin-top:10px;margin-bottom:40px;">Most Popular Income Level</div>
+                                 <div style="margin-top:10px;margin-bottom:40px;">&nbsp;&nbsp;<span style="line-height:35px">Most Popular Income Level</span></div>
                               </div>
                               <div id="demographic_income_chart_div" style="margin-top:10px;"></div>
                            </div>
@@ -941,7 +842,7 @@
                                  <span class="totalBorderB" style="margin-bottom:10px;">
                                   <span class="visitorsA">{{mostPopularEthnicity}}</span>
                                  </span>
-                                 <div style="margin-top:10px;margin-bottom:40px;">Most Popular Ethnic Group</div>
+                                 <div style="margin-top:10px;margin-bottom:40px;">&nbsp;&nbsp;<span style="line-height:35px">Most Popular Ethnic Group</span></div>
                               </div>
                               <div id="demographic_ethnicity_chart_div"></div>
                            </div>
@@ -1001,7 +902,7 @@
 
 
 
-     </div>
+     </div><a href="#top" class="pull-right"><i class="fa fa-arrow-circle-o-up"></i> Top</a>
      </div>
   </div>
 
@@ -1040,7 +941,7 @@
 <script type='text/javascript'>
 
    $('#searchbar').hide();
-   $('#searchbar').fadeIn(800);
+   $('#searchbar').fadeIn(1500);
 
   function sliderHeight ()  {
       var wheight = $(window).height() - 425;
