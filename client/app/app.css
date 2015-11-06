@@ -769,6 +769,9 @@ p.ng-binding, h2 {
   ul.boo li a {
      font-size: 1em;
   }
+  .tst {
+    float: right;
+  }
 }
 @media only screen and (min-width: 75em) {
   /* 1200 =================================================== */
