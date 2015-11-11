@@ -279,7 +279,7 @@ angular.module('telusLg2App')
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            hAxis: {
-             slantedText: false,
+             slantedText: true,
              slantedTextAngle: 45,
              textStyle: { fontName: 'telusweb', fontSize: 12 }
             }
@@ -385,7 +385,7 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            hAxis: {
              //textPosition: 'none',
-             slantedText: false,
+             slantedText: true,
              slantedTextAngle: 45,
              textStyle: { fontName: 'telusweb', fontSize: 12 }
            }
