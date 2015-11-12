@@ -266,8 +266,6 @@ angular.module('telusLg2App')
       chart.draw($scope.data, options);
 
 
-
-
       if (window.innerWidth < 984) {
         $(window).resize(function(){
            var options = {
@@ -402,26 +400,50 @@ angular.module('telusLg2App')
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
 
-      $(window).resize(function(){
-         var options = {
-           height: 550,
-           colors: ['#6ebe44'],
-           legend: {
-             position: 'bottom',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-           },
-           chartArea: {left: 0, top: 60, width: '100%'},
-           fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           hAxis: {
-             //textPosition: 'none',
-             slantedText: false,
-             slantedTextAngle: 45,
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-           }
-         };
-         linechart.draw(hourly, options);
-      });
+      if (window.innerWidth < 984) {
+        $(window).resize(function(){
+           var options = {
+             height: 350,
+             colors: ['#6ebe44'],
+             legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             chartArea: {left: 0, top: 60, width: '100%'},
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               //textPosition: 'none',
+               slantedText: true,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+           };
+           linechart.draw(hourly, options);
+        });
+      }
+      else {
+        $(window).resize(function(){
+           var options = {
+             height: 550,
+             colors: ['#6ebe44'],
+             legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             chartArea: {left: 0, top: 60, width: '100%'},
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               //textPosition: 'none',
+               slantedText: false,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+           };
+           linechart.draw(hourly, options);
+        });
+      }
 
     }
 
@@ -907,24 +929,50 @@ angular.module('telusLg2App')
       onsiteVisitorChart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
       onsiteVisitorChart.draw($scope.visitordata, options);
 
-      $(window).resize(function(){
-         var options = {
-           width: {width: '100%'},
-           height: 550,
-           colors: ['#ffffff', '#6ebe44'],
-           chartArea: {left: 60, top: 60, width: '94%'},
-           legend: {position: 'none'},
-           isStacked: false,
-           fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           hAxis: {
-             slantedText: false,
-             slantedTextAngle: 45,
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-           }
-         };
-          onsiteVisitorChart.draw($scope.visitordata, options);
-      });
+
+      if (window.innerWidth < 984) {
+        $(window).resize(function(){
+           var options = {
+             width: {width: '100%'},
+             height: 350,
+             colors: ['#ffffff', '#6ebe44'],
+             chartArea: {left: 60, top: 60, width: '94%'},
+             legend: {position: 'none'},
+             isStacked: true,
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               slantedText: false,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+           };
+            onsiteVisitorChart.draw($scope.visitordata, options);
+        });
+      }
+      else {
+        $(window).resize(function(){
+           var options = {
+             width: {width: '100%'},
+             height: 550,
+             colors: ['#ffffff', '#6ebe44'],
+             chartArea: {left: 60, top: 60, width: '94%'},
+             legend: {position: 'none'},
+             isStacked: false,
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               slantedText: false,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+           };
+            onsiteVisitorChart.draw($scope.visitordata, options);
+        });
+      }
+
+
+
 
       // Every time the table fires the "select" event, it should call your
       // select Handler() function.
@@ -995,23 +1043,47 @@ angular.module('telusLg2App')
           onsiteLoyaltyChart.draw(data, options);
        });
 
-       $(window).resize(function(){
-          var options = {
-            //width: 1075,
-            width: {width: '100%'},
-            height: 550,
-            colors: ['#6ebe44'],
-            chartArea: {left: 50, top: 60, width: '94%'},
-            legend: {
-             position: 'bottom',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            hAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-            vAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-          };
-          onsiteLoyaltyChart.draw(data, options);
-       });
+
+       if (window.innerWidth < 984) {
+         $(window).resize(function(){
+            var options = {
+              //width: 1075,
+              width: {width: '100%'},
+              height: 350,
+              colors: ['#6ebe44'],
+              chartArea: {left: 50, top: 60, width: '94%'},
+              legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              hAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+            };
+            onsiteLoyaltyChart.draw(data, options);
+         });
+       }
+       else {
+         $(window).resize(function(){
+            var options = {
+              //width: 1075,
+              width: {width: '100%'},
+              height: 550,
+              colors: ['#6ebe44'],
+              chartArea: {left: 50, top: 60, width: '94%'},
+              legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              hAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: { format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+            };
+            onsiteLoyaltyChart.draw(data, options);
+         });
+       }
+
+
 
 
     }
@@ -1126,25 +1198,52 @@ angular.module('telusLg2App')
 
       linechart.draw(hourly, options);
 
-       $(window).resize(function(){
-          var options = {
-            height: 550,
-            colors: ['#6ebe44'],
-            chartArea: {left: 60, top: 60, width: '100%'},
-            legend: {
-              position: 'bottom',
-              textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            fontSize: 11,
-            hAxis: {
-             slantedText: true,
-             slantedTextAngle: 45,
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            }
-          };
-          linechart.draw(hourly, options);
-       });
+
+       if (window.innerWidth < 984) {
+         $(window).resize(function(){
+            var options = {
+              height: 350,
+              colors: ['#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                position: 'bottom',
+                textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              fontSize: 11,
+              hAxis: {
+               slantedText: true,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+            linechart.draw(hourly, options);
+         });
+       }
+       else {
+         $(window).resize(function(){
+            var options = {
+              height: 550,
+              colors: ['#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                position: 'bottom',
+                textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              fontSize: 11,
+              hAxis: {
+               slantedText: false,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+            linechart.draw(hourly, options);
+         });
+       }
+
+
+
     }
 
 
@@ -1177,23 +1276,49 @@ angular.module('telusLg2App')
       var minutesData = google.visualization.arrayToDataTable($scope.durationData);
       linechart.draw(minutesData, options);
 
-       $(window).resize(function(){
-          var options = {
-            height: 550,
-            colors: ['#6ebe44'],
-            chartArea: {left: 3, top: 60, width: '100%'},
-            legend: {
-                position: 'bottom',
-                textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            fontSize: 11,
-            hAxis: {
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-          };
-          linechart.draw(minutesData, options);
-       });
+
+
+      if (window.innerWidth < 984) {
+        $(window).resize(function(){
+           var options = {
+             height: 350,
+             colors: ['#6ebe44'],
+             chartArea: {left: 3, top: 60, width: '100%'},
+             legend: {
+                 position: 'bottom',
+                 textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             fontSize: 11,
+             hAxis: {
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+           };
+           linechart.draw(minutesData, options);
+        });
+      }
+      else {
+        $(window).resize(function(){
+           var options = {
+             height: 550,
+             colors: ['#6ebe44'],
+             chartArea: {left: 3, top: 60, width: '100%'},
+             legend: {
+                 position: 'bottom',
+                 textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             fontSize: 11,
+             hAxis: {
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+           };
+           linechart.draw(minutesData, options);
+        });
+      }
+
+
+
 
     }
 
@@ -1349,7 +1474,7 @@ angular.module('telusLg2App')
         if (window.innerWidth < 984) {
           var options = {
             //width: 1075,
-            width: document.getElementById("container").clientWidth,
+            width: document.getElementById("container").clientWidth - 60,
             height: 340,
             colors: ['#ffffff', '#6ebe44'],
             chartArea: {left: 120, top: 30, width: '100%'},
@@ -1492,7 +1617,7 @@ angular.module('telusLg2App')
               6: { color: '#e0cdf4' },
               7: { color: '#ece7ee' }
             },
-            width: document.getElementById("container").clientWidth,
+            width: document.getElementById("container").clientWidth - 60,
             height: 340,
             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
             chartArea: {left: 0, top: 30, width: '100%'},
@@ -1786,43 +1911,87 @@ angular.module('telusLg2App')
       //console.log("Graphing carrier visitors data" );
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
-      var options = {
-        //width: 1075,
-        width: document.getElementById("container").clientWidth - 50,
-        height: 500,
-        colors: ['#ffffff', '#6ebe44'],
-        chartArea: {left: 60, top: 60, width: '100%'},
-        legend: {
-            position: 'none',
-        },
-        tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-        isStacked: false,
-        fontSize: 11,
-        hAxis: {
-         textStyle: { fontName: 'telusweb', fontSize: 12 }
-        }
-      };
+      if (window.innerWidth < 984) {
+        var options = {
+          //width: 1075,
+          width: document.getElementById("container").clientWidth - 50,
+          height: 300,
+          colors: ['#ffffff', '#6ebe44'],
+          chartArea: {left: 60, top: 60, width: '100%'},
+          legend: {
+              position: 'none',
+          },
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          isStacked: false,
+          fontSize: 11,
+          hAxis: {
+           textStyle: { fontName: 'telusweb', fontSize: 12 }
+          }
+        };
+      }
+      else {
+        var options = {
+          //width: 1075,
+          width: document.getElementById("container").clientWidth - 50,
+          height: 500,
+          colors: ['#ffffff', '#6ebe44'],
+          chartArea: {left: 60, top: 60, width: '100%'},
+          legend: {
+              position: 'none',
+          },
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          isStacked: false,
+          fontSize: 11,
+          hAxis: {
+           textStyle: { fontName: 'telusweb', fontSize: 12 }
+          }
+        };
+      }
 
       visitorchart = new google.visualization.ColumnChart(document.getElementById('carrier_visitors_barchart_div'));
       visitorchart.draw($scope.carriervisitordata, options);
 
-       $(window).resize(function(){
-          var options = {
-            height: 500,
-            colors: ['#ffffff', '#6ebe44'],
-            chartArea: {left: 60, top: 60, width: '100%'},
-            legend: {
-                position: 'none',
-            },
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            isStacked: true,
-            fontSize: 11,
-            hAxis: {
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            }
-          };
-          visitorchart.draw($scope.carriervisitordata, options);
-       });
+       if (window.innerWidth < 984) {
+         $(window).resize(function(){
+            var options = {
+              height: 300,
+              colors: ['#ffffff', '#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                  position: 'none',
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              isStacked: true,
+              fontSize: 11,
+              hAxis: {
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+            visitorchart.draw($scope.carriervisitordata, options);
+         });
+       }
+       else {
+         $(window).resize(function(){
+            var options = {
+              height: 500,
+              colors: ['#ffffff', '#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                  position: 'none',
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              isStacked: true,
+              fontSize: 11,
+              hAxis: {
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+            visitorchart.draw($scope.carriervisitordata, options);
+         });
+       }
+
+
+
       // Every time the table fires the "select" event, it should call your
       // select Handler() function.
       google.visualization.events.addListener(visitorchart, 'select', selectCarrierDayHandler);
@@ -1871,7 +2040,7 @@ angular.module('telusLg2App')
          var options = {
            //width: 1075,
            width: document.getElementById("container").clientWidth - 50,
-           height: 550,
+           height: 350,
            colors: ['#6ebe44'],
            chartArea: {left: 60, top: 60, width: '90%'},
            legend: {
@@ -1919,27 +2088,56 @@ angular.module('telusLg2App')
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
 
-       $(window).resize(function(){
-          var options = {
-            height: 550,
-            colors: ['#6ebe44'],
-            chartArea: {left: 60, top: 60, width: '100%'},
-            legend: {
-                position: 'bottom',
-                textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            fontSize: 11,
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            hAxis: {
-             //textPosition: 'none',
-             slantedText: true,
-             slantedTextAngle: 45,
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            }
-            //fontSize:9
-          };
-          linechart.draw(hourly, options);
-       });
+
+      if (window.innerWidth < 984) {
+        $(window).resize(function(){
+           var options = {
+             height: 350,
+             colors: ['#6ebe44'],
+             chartArea: {left: 60, top: 60, width: '100%'},
+             legend: {
+                 position: 'bottom',
+                 textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+              //textPosition: 'none',
+              slantedText: true,
+              slantedTextAngle: 45,
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+             //fontSize:9
+           };
+           linechart.draw(hourly, options);
+        });
+      }
+      else {
+        $(window).resize(function(){
+           var options = {
+             height: 550,
+             colors: ['#6ebe44'],
+             chartArea: {left: 60, top: 60, width: '100%'},
+             legend: {
+                 position: 'bottom',
+                 textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+              //textPosition: 'none',
+              slantedText: false,
+              slantedTextAngle: 45,
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+             }
+             //fontSize:9
+           };
+           linechart.draw(hourly, options);
+        });
+      }
+
+
+
     }
 
 
@@ -1950,21 +2148,42 @@ angular.module('telusLg2App')
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       //console.log("Graphing carrier visitor dwell time data for day:" + day);
-      var options = {
-        width: document.getElementById("container").clientWidth - 50,
-        height: 550,
-        colors: ['#6ebe44'],
-        chartArea: {left: 60, top: 60, width: '100%'},
-        legend: {
-            position: 'bottom',
-            textStyle: { fontName: 'telusweb', fontSize: 12 }
-        },
-        fontSize: 11,
-        tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-        hAxis: {
-         textStyle: { fontName: 'telusweb', fontSize: 12 }
-        }
-      };
+
+      if (window.innerWidth < 984) {
+        var options = {
+          width: document.getElementById("container").clientWidth - 50,
+          height: 350,
+          colors: ['#6ebe44'],
+          chartArea: {left: 60, top: 60, width: '100%'},
+          legend: {
+              position: 'bottom',
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+          },
+          fontSize: 11,
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          hAxis: {
+           textStyle: { fontName: 'telusweb', fontSize: 12 }
+          }
+        };
+      }
+      else {
+        var options = {
+          width: document.getElementById("container").clientWidth - 50,
+          height: 550,
+          colors: ['#6ebe44'],
+          chartArea: {left: 60, top: 60, width: '100%'},
+          legend: {
+              position: 'bottom',
+              textStyle: { fontName: 'telusweb', fontSize: 12 }
+          },
+          fontSize: 11,
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          hAxis: {
+           textStyle: { fontName: 'telusweb', fontSize: 12 }
+          }
+        };
+      }
+
 
       var linechart = new google.visualization.AreaChart(document.getElementById('carrier_visitor_chart_div'));
       $scope.carrierDwellTimeData = []
@@ -1982,22 +2201,47 @@ angular.module('telusLg2App')
         var minutesData = google.visualization.arrayToDataTable($scope.carrierDwellTimeData);
         linechart.draw(minutesData, options);
 
-        $(window).resize(function(){
-           var options = {
-            height: 550,
-            colors: ['#6ebe44'],
-            chartArea: {left: 60, top: 60, width: '100%'},
-            legend: {
-                position: 'bottom',
-                textStyle: { fontName: 'telusweb', fontSize: 12 }
-            },
-            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-            hAxis: {
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            }
-           };
-           linechart.draw(minutesData, options);
-        });
+
+        if (window.innerWidth < 984) {
+          $(window).resize(function(){
+             var options = {
+              height: 350,
+              colors: ['#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                  position: 'bottom',
+                  textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              hAxis: {
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+             };
+             linechart.draw(minutesData, options);
+          });
+        }
+        else {
+          $(window).resize(function(){
+             var options = {
+              height: 550,
+              colors: ['#6ebe44'],
+              chartArea: {left: 60, top: 60, width: '100%'},
+              legend: {
+                  position: 'bottom',
+                  textStyle: { fontName: 'telusweb', fontSize: 12 }
+              },
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+              hAxis: {
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+             };
+             linechart.draw(minutesData, options);
+          });
+        }
+
+
+
+
 
       } else {
         $scope.averageCarrierVisitDuration = "N/A";
