@@ -12,7 +12,7 @@ exports.show = function(req, res) {
   request({
     url: 'http://192.99.16.178:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=3000',
     //url: 'http://192.99.16.178:8100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=3000' ,
-    //url: 'http://localhost:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18',
+    //url: 'http://localhost:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=100',
     method: 'GET',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
