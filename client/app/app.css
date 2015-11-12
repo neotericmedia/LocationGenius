@@ -51,7 +51,12 @@ PANTONE 2745 C
 
 
 /* fonts */
-
+.legend {
+   display: block;
+   clear: both;
+   padding-top: 20px;
+   width: 230px;
+}
 div.jqcloud {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -84,13 +89,13 @@ div.jqcloud a:hover { color: #0cf; }
 div.jqcloud span.w10 { color: #0cf; }
 div.jqcloud span.w9 { color: #0cf; }
 div.jqcloud span.w8 { color: #0cf; }
-div.jqcloud span.w7 { color: #8be234; }
-div.jqcloud span.w6 { color: #66cc00; }
-div.jqcloud span.w5 { color: #58a809; }
+div.jqcloud span.w1 { color: #b2d47e; }
+div.jqcloud span.w2 { color: #8be234; }
+div.jqcloud span.w3 { color: #58a809; }
 div.jqcloud span.w4 { color: #57a708; }
-div.jqcloud span.w3 { color: #408000; }
-div.jqcloud span.w2 { color: #4c9702; }
-div.jqcloud span.w1 { color: #386f00; }
+div.jqcloud span.w5 { color: #408000; }
+div.jqcloud span.w6 { color: #4c9702; }
+div.jqcloud span.w7 { color: #386f00; }
 /* layout */
 
 div.jqcloud {
@@ -117,6 +122,7 @@ div.jqcloud span { padding: 0; }
 #searchbar {
    margin: 20px 0px 30px 0px;
 }
+
 .nav > li.hello-no {
    display: none;
 }
@@ -128,18 +134,20 @@ ul.boo li {
    list-style: none;
    margin: 0px;
    padding: 0px;
+   float: left;
+   padding: 0px 5px 0px 5px;
 }
 ul.boo li a {
    color:#6ebe44;
-   float: left;
-   background-color: #f7f7f7;
-   padding: 10px 5px 10px 5px;
+   background-color: transparent;
    font-size: .75em;
 }
 ul.boo li a:hover {
-   background-color: #6ebe44;
-   color: #fff;
-   border-radius: 2em;
+   text-decoration: underline;
+}
+ul.boo:first-child li {
+   border-top-left-radius: 2em;
+   border-bottom-left-radius: 2em;
 }
 ul.boo:first-child li a {
    border-top-left-radius: 2em;
@@ -149,12 +157,13 @@ ul.boo:last-child li a {
    border-top-right-radius: 2em;
    border-bottom-right-radius: 2em;
 }
-ul.boo.active li a {
-   color:#fff;
-   background-color: #6ebe44;
-   border-radius: 2em;
+ul.boo:last-child li {
+   border-top-right-radius: 2em;
+   border-bottom-right-radius: 2em;
 }
-
+ul.boo.active li a, ul.boo li a:hover {
+   text-decoration: underline;
+}
 
 
 
@@ -206,11 +215,18 @@ i.fa-map-marker {
 
 
 
-.up .fa-angle-up {
+.up .fa-angle-up{
    font-size: 2.5em;
    position: absolute;
-   top: -8px;
+   top: -4px;
+   right: 5px;
  }
+.down .fa-angle-down {
+    font-size: 2.5em;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+  }
 
  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
    border-top-left-radius: 10px;
@@ -226,6 +242,7 @@ i.fa-map-marker {
 .nav-tabs > li > a {
   border: none;
   font-size: .75em;
+  font-weight: 300;
 }
 
 .cAll {
@@ -236,11 +253,16 @@ i.fa-map-marker {
   float:left;
   margin-right:7px;
   margin-top:3px;
+  font-weight: 300;
 }
 
 .cNewA {
    float:left;
    margin-right:20px;
+   font-weight: 300;
+}
+.cNewC {
+   font-weight: 300;
 }
 .cNewB {
   width:15px;
@@ -250,6 +272,7 @@ i.fa-map-marker {
   float:left;
   margin-right:7px;
   margin-top:3px;
+  font-weight: 300;
 }
 
 a:hover {
@@ -458,25 +481,44 @@ div.ng-isolate-scope .nav > li > a {
   width: auto;
   height: auto;
   color: #fff;
-  padding: 7px 9px 7px 10px;
-  border-radius: 10px;
+  padding: 5px 0 5px 10px;
+  border-radius: 7px;
+  display: block;
+  float: left;
+  position: relative;
 }
+.down {
+  background-color: red;
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 5px 0 5px 10px;
+  border-radius: 7px;
+  display: block;
+  float: left;
+  position: relative;
+}
+
 .totals {
   display: block;
   height: 35px;
   margin-top: 0px;
+  font-weight: 300;
 }
 .totalBorderB {
-  width: auto;
+  min-width: 80px;
+  text-align: center;
   height: auto;
   color: #fff;
-  padding: 7px 9px 7px 10px;
-  border-radius: 10px;
+  padding: 5px 0 5px 0;
+  border-radius: 7px;
   border: 1px solid #ccc;
   color:#ccc;
+  display: block;
+  float: left;
 }
 .totalBorderA {
-  width: auto;
+  width: 100px;
   height: auto;
   color: #fff;
   padding: 20px 15px 10px 15px;
@@ -524,19 +566,19 @@ div.ng-isolate-scope .nav > li > a {
      padding-left: 0px;
      margin: 0;
      overflow-x: hidden;
-     font-family: 'Lato', sans-serif;
+     font-family: "telusweb", "Helvetica Neue", Helvetica, Arial, sans-serif;
      font-weight: 400;
  }
  h1 {
    font-family: 'Roboto', sans-serif;
    font-weight: 100;
-   font-size: 4em;
+   font-size: 2.5em;
    color: #6ebe44;
  }
  .subTxt {
    font-family: 'Roboto', sans-serif;
    font-weight: 100;
-   font-size: 2em;
+   font-size: 1.5em;
    color: #666;
    text-align: center;
    display: block;
@@ -546,10 +588,13 @@ div.ng-isolate-scope .nav > li > a {
  }
  h4 {
    font-family: 'Roboto', sans-serif;
-   font-weight: 100;
+   font-weight: 200;
    font-size: 2.75em;
    color: #6ebe44;
-   margin-top: 0px;
+   margin-top: 30px;
+ }
+ h4.beef {
+   font-weight: 300;
  }
  .date,.date2 {
    font-family: 'Roboto', sans-serif;
@@ -557,13 +602,14 @@ div.ng-isolate-scope .nav > li > a {
    font-size: 2em;
    color: #333;
    margin-bottom: 10px;
-   margin-top: 30px;
+   margin-top: 15px;
    margin-right: 30px;
    display: block;
    z-index: 5000;
    text-align: center;
  }
  .locateSub {
+   font-family: "telusweb", "Helvetica Neue", Helvetica, Arial, sans-serif;
    font-size:15px;
    color: #999;
  }
@@ -580,8 +626,8 @@ div.ng-isolate-scope .nav > li > a {
 
 .navbar {
    margin-bottom: 0px;
+   font-weight: 300;
 }
-
 
  .btn-success {
      background-color: #6ebe44;
@@ -605,6 +651,7 @@ div.ng-isolate-scope .nav > li > a {
 .visitorsA {
    font-size:16px;
    color:#6ebe44;
+   padding: 0 10px 0 10px;
 }
 .visitorsB {
    font-size:16px;
@@ -668,6 +715,9 @@ p.ng-binding, h2 {
 }
 @media only screen and (min-width: 40em) {
   /* 640 =================================================== */
+  .legend {
+     width: 130px;
+  }
 }
 @media only screen and (min-width: 45em) {
   /* 720 =================================================== */
@@ -684,6 +734,40 @@ p.ng-binding, h2 {
 }
 @media only screen and (min-width: 61.5em) {
   /* 984 =================================================== */
+  h1 {
+    font-size: 4em;
+  }
+  h4 {
+    margin-top: 0px;
+  }
+  .subTxt {
+    font-size: 2em;
+  }
+  .legend {
+     float:right;
+     display:inline;
+     clear: none;
+     padding-top: 4px;
+  }
+  ul.boo li {
+     display: block;
+     background-color: #f7f7f7;
+     padding: 10px 5px 10px 5px;
+  }
+  ul.boo.active li a, ul.boo li a:hover {
+     color:#fff;
+     background-color: #6ebe44;
+     border-radius: 2em;
+     text-decoration: none;
+  }
+  #crumbs {
+     float: right;
+     width: 600px
+  }
+  #crumbsSM {
+     float: right;
+     width: 400px
+  }
   #searchbar {
      z-index: 5000;
      position:absolute;
@@ -697,7 +781,7 @@ p.ng-binding, h2 {
      padding: 22px 10px 20px 10px;
      border-radius: 4px;
      -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .09);
-     box-shadow: 0 2px 2px rgba(0, 0, 0, .09)
+     box-shadow: 0 2px 2px rgba(0, 0, 0, .09);
   }
   .locationTitle {
      padding-top: 0px;
@@ -781,6 +865,9 @@ p.ng-binding, h2 {
 
   #wordcloud {
      width: 600px;
+  }
+  .legend {
+     width: 230px;
   }
 
 }
