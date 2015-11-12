@@ -266,26 +266,56 @@ angular.module('telusLg2App')
       chart.draw($scope.data, options);
 
 
-      $(window).resize(function(){
-         var options = {
-           height: 550,
-           colors: ['#6ebe44'],
-           chartArea: {left: 20, top: 60, width: '100%'},
-           legend: {
-             position: 'bottom',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-           },
-           format: 'short',
-           fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           hAxis: {
-             slantedText: false,
-             slantedTextAngle: 45,
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
-            }
-          };
-         chart.draw($scope.data, options);
-      });
+
+
+      if (window.innerWidth < 984) {
+        $(window).resize(function(){
+           var options = {
+             height: 350,
+             colors: ['#6ebe44'],
+             chartArea: {left: 20, top: 60, width: '100%'},
+             legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             format: 'short',
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               slantedText: true,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+           chart.draw($scope.data, options);
+        });
+      }
+      else {
+        $(window).resize(function(){
+           var options = {
+             height: 550,
+             colors: ['#6ebe44'],
+             chartArea: {left: 20, top: 60, width: '100%'},
+             legend: {
+               position: 'bottom',
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+             },
+             format: 'short',
+             fontSize: 11,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             hAxis: {
+               slantedText: false,
+               slantedTextAngle: 45,
+               textStyle: { fontName: 'telusweb', fontSize: 12 }
+              }
+            };
+           chart.draw($scope.data, options);
+        });
+      }
+
+
+
+
 
       // Every time the table fires the "select" event, it should call your
       // selectSocialHandler() function.
