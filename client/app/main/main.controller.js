@@ -794,7 +794,12 @@ angular.module('telusLg2App')
       $scope.report.$promise.then(function (results) {
         //console.log("Onsite Report Results:" + results.totalVisits);
         if (results != null) {
-          $scope.onsiteVisitorsWeek = results.totalVisits.toLocaleString();
+          if(results.totalVisits!=null) {
+            $scope.onsiteVisitorsWeek = results.totalVisits.toLocaleString();
+          } else {
+            $scope.onsiteVisitorsWeek = "N/A";
+          }
+
           //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
           $scope.averageVisitorsDay = results.averageVisitorsDay;
@@ -1344,7 +1349,7 @@ angular.module('telusLg2App')
 
       var item = ['Day', 'Number of Visitors', {role: 'style'}, 'New Visitors', {role: 'style'}];
       dailyCarrierVisitorData.push(item);
-      console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
+      //console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
 
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays, "endDate": "2014-08-18"};
 
@@ -1730,7 +1735,7 @@ angular.module('telusLg2App')
 
     $scope.showHeatMapData = function() {
       if($scope.tiles!=null) {
-        console.log("Tiles=" + $scope.tiles.length);
+        //console.log("Tiles=" + $scope.tiles.length);
         var callsForService = [];
 
         for (var i = 0; i < $scope.tiles.length; i++) {
@@ -1777,7 +1782,7 @@ angular.module('telusLg2App')
      */
     $scope.showVisitorMapData = function() {
       if($scope.tiles!=null) {
-        console.log("Visitor Tiles=" + $scope.tiles.length);
+        //console.log("Visitor Tiles=" + $scope.tiles.length);
 
         var info = "";
         var visitorData = [];
