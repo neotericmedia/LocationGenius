@@ -8,7 +8,7 @@ angular.module('telusLg2App')
 
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
-    var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
+    var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African", "ASIA":"Asian", "SASIA":"South Asian","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
     $scope.words = [];
 
@@ -794,7 +794,7 @@ angular.module('telusLg2App')
       $scope.report.$promise.then(function (results) {
         //console.log("Onsite Report Results:" + results.totalVisits);
         if (results != null) {
-          $scope.onsiteVisitorsWeek = results.totalVisits.toString().toLocaleString();
+          $scope.onsiteVisitorsWeek = results.totalVisits.toLocaleString();
           //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
           $scope.averageVisitorsDay = results.averageVisitorsDay;
@@ -1547,6 +1547,8 @@ angular.module('telusLg2App')
                           $scope.demographicReport.etSEUOCount +
                           $scope.demographicReport.etCAROCount +
                           $scope.demographicReport.etLAMOCount +
+                          $scope.demographicReport.etASIACount +
+                          $scope.demographicReport.etSACount +
                           $scope.demographicReport.etAFROCount;
 
         var otherTotal = 0.0;
@@ -1599,6 +1601,20 @@ angular.module('telusLg2App')
           ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount, 'silver']);
         }
 
+        if($scope.demographicReport.etASIACount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etASIACount;
+        } else {
+          ethnicData.push([ethnicitieLabels['ASIA'], $scope.demographicReport.etASIACount, 'silver']);
+        }
+
+        if($scope.demographicReport.etSACount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etSACount;
+        } else {
+          ethnicData.push([ethnicitieLabels['SASIA'], $scope.demographicReport.etSACount, 'silver']);
+        }
+
+
+
         if(otherTotal > 0) {
           ethnicData.push(['Other', otherTotal, 'silver']);
         }
@@ -1615,7 +1631,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             width: document.getElementById("container").clientWidth - 60,
             height: 340,
@@ -1644,7 +1662,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             width: document.getElementById("container").clientWidth/2,
             height: 340,
@@ -1681,7 +1701,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             height: 340,
             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
@@ -1842,10 +1864,12 @@ angular.module('telusLg2App')
       var tableHeadings = "<tr style='border: 1px solid black;'>" +
         "<th style='border: 1px solid black;padding: 5px;'>ABO</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>AFR</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>ASIA</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>CAR</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>EEU</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>LAM</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>NEU</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>SA</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>SEU</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>WEU</th>" +
         "</tr>";
@@ -1860,6 +1884,11 @@ angular.module('telusLg2App')
       var caroCount =  $scope.demographicReport.etCAROCount;
       var lamoCount =  $scope.demographicReport.etLAMOCount;
       var afroCount =  $scope.demographicReport.etAFROCount;
+      var asiaCount =  $scope.demographicReport.etASIACount;
+      var saCount =  $scope.demographicReport.etSACount;
+
+
+
 
       var ethnicTotal = parseInt(aboCount) +
                         parseInt(weuCount) +
@@ -1868,7 +1897,10 @@ angular.module('telusLg2App')
                         parseInt(seuCount) +
                         parseInt(caroCount) +
                         parseInt(lamoCount) +
+                        parseInt(asiaCount) +
+                        parseInt(saCount) +
                         parseInt(afroCount);
+
 
 
       var abo = "<td style='border: 1px solid black;padding: 5px;'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
@@ -1878,6 +1910,8 @@ angular.module('telusLg2App')
       var lam = "<td style='border: 1px solid black;padding: 5px;'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
       var neu = "<td style='border: 1px solid black;padding: 5px;'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
       var seu = "<td style='border: 1px solid black;padding: 5px;'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var asa = "<td style='border: 1px solid black;padding: 5px;'>" + (asiaCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var sa = "<td style='border: 1px solid black;padding: 5px;'>" + (saCount/ethnicTotal*100).toPrecision(2) + "</td>";
       var weu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (weuCount/ethnicTotal*100).toPrecision(2) + "</td>";
 
       var info = htmlStart + sampleSize + houseHoldSize + income + ethnicTitle +
@@ -1886,10 +1920,12 @@ angular.module('telusLg2App')
           rowStart +
           abo +
           afr +
+          asa +
           car +
           eeu +
           lam +
           neu +
+          sa +
           seu +
           weu +
           rowEnd +
