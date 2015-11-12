@@ -328,13 +328,13 @@ angular.module('telusLg2App')
       if (window.innerWidth < 984) {
          var options = {
            width: document.getElementById("container").clientWidth - 50,
-           height: 550,
+           height: 350,
            colors: ['#6ebe44'],
            legend: {
              position: 'bottom',
              textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
-           chartArea: {left: 20, top: 60, width: '95%'},
+           chartArea: {left: 40, top: 60, width: '95%'},
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            hAxis: {
@@ -385,7 +385,7 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            hAxis: {
              //textPosition: 'none',
-             slantedText: true,
+             slantedText: false,
              slantedTextAngle: 45,
              textStyle: { fontName: 'telusweb', fontSize: 12 }
            }
