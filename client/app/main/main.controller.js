@@ -1439,10 +1439,8 @@ angular.module('telusLg2App')
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
-        console.log("Tiles=" + $scope.tiles.length);
-
-
-        console.log("Incomes=" + $scope.demographicReport.incomeCounts);
+        //console.log("Tiles=" + $scope.tiles.length);
+        //console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
         $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity];
         $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
@@ -1466,7 +1464,9 @@ angular.module('telusLg2App')
           } else {
             colour = regcolour;
           }
-          incomeData.push([incomeLevelsLabels[i], $scope.demographicReport.incomeCounts[i]/totalIncomes, colour]);
+          var value = parseFloat(($scope.demographicReport.incomeCounts[i]/totalIncomes).toPrecision(2));
+
+          incomeData.push([incomeLevelsLabels[i], value, colour]);
         }
 
         var data = google.visualization.arrayToDataTable(incomeData);
