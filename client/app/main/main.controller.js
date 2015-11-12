@@ -803,7 +803,13 @@ angular.module('telusLg2App')
           //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
           $scope.averageVisitorsDay = results.averageVisitorsDay;
-          $scope.weeklyChange = results.weeklyChange.toFixed(2);
+          if(results.weeklyChange!=null) {
+            $scope.weeklyChange = results.weeklyChange.toFixed(2);
+          } else {
+            $scope.weeklyChange = "N/A";
+          }
+
+
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
