@@ -1875,43 +1875,79 @@ angular.module('telusLg2App')
         "</tr>";
 
 
-
-      var aboCount = $scope.demographicReport.etABOOCount;
-      var weuCount =  $scope.demographicReport.etWEUOCount;
-      var neuCount =  $scope.demographicReport.etNEUOCount;
-      var eeuCount =  $scope.demographicReport.etEEUOCount;
-      var seuCount =  $scope.demographicReport.etSEUOCount;
-      var caroCount =  $scope.demographicReport.etCAROCount;
-      var lamoCount =  $scope.demographicReport.etLAMOCount;
-      var afroCount =  $scope.demographicReport.etAFROCount;
-      var asiaCount =  $scope.demographicReport.etASIACount;
-      var saCount =  $scope.demographicReport.etSACount;
-
+      var aboCount =  tile.demographic.reports[0]["ET_ABOO"];
+      var weuCount =  tile.demographic.reports[0]["ET_WEUO"];
+      var neuCount =  tile.demographic.reports[0]["ET_NEUO"];
+      var eeuCount =  tile.demographic.reports[0]["ET_EEUO"];
+      var seuCount =  tile.demographic.reports[0]["ET_SEUO"];
+      var caroCount = tile.demographic.reports[0]["ET_CARO"];
+      var lamoCount = tile.demographic.reports[0]["ET_LAMO"];
+      var afroCount = tile.demographic.reports[0]["ET_AFRO"];
+      var asiaCount = tile.demographic.reports[0]["ET_ASIAO"];
+      var saCount  =  tile.demographic.reports[0]["ET_SA"];
 
 
+      var ethnicTotal = 0;
+      if(aboCount!=null) {
+        ethnicTotal += parseInt(aboCount);
+      } else {
+        aboCount = 0;
+      }
+      if(weuCount!=null) {
+        ethnicTotal += parseInt(weuCount);
+      } else {
+        weuCount = 0;
+      }
+      if(neuCount!=null) {
+        ethnicTotal += parseInt(neuCount);
+      }  else {
+        neuCount = 0;
+      }
+      if(eeuCount!=null) {
+        ethnicTotal += parseInt(eeuCount);
+      } else {
+        eeuCount = 0;
+      }
+      if(seuCount!=null) {
+        ethnicTotal += parseInt(seuCount);
+      } else {
+        seuCount = 0;
+      }
+      if(caroCount!=null) {
+        ethnicTotal += parseInt(caroCount);
+      } else {
+        caroCount = 0;
+      }
+      if(lamoCount!=null) {
+        ethnicTotal += parseInt(lamoCount);
+      } else {
+        lamoCount = 0;
+      }
+      if(afroCount!=null) {
+        ethnicTotal += parseInt(afroCount);
+      } else {
+        afroCount = 0;
+      }
+      if(asiaCount!=null) {
+        ethnicTotal += parseInt(asiaCount);
+      } else {
+        asiaCount = 0;
+      }
+      if(saCount!=null) {
+        ethnicTotal += parseInt(saCount);
+      }  else {
+        saCount = 0;
+      }
 
-      var ethnicTotal = parseInt(aboCount) +
-                        parseInt(weuCount) +
-                        parseInt(neuCount) +
-                        parseInt(eeuCount) +
-                        parseInt(seuCount) +
-                        parseInt(caroCount) +
-                        parseInt(lamoCount) +
-                        parseInt(asiaCount) +
-                        parseInt(saCount) +
-                        parseInt(afroCount);
-
-
-
-      var abo = "<td style='border: 1px solid black;padding: 5px;'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var afr = "<td style='border: 1px solid black;padding: 5px;'>" + (afroCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var car = "<td style='border: 1px solid black;padding: 5px;'>" + (caroCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var eeu = "<td style='border: 1px solid black;padding: 5px;'>" + (eeuCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var lam = "<td style='border: 1px solid black;padding: 5px;'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var neu = "<td style='border: 1px solid black;padding: 5px;'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var seu = "<td style='border: 1px solid black;padding: 5px;'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var asa = "<td style='border: 1px solid black;padding: 5px;'>" + (asiaCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var sa = "<td style='border: 1px solid black;padding: 5px;'>" + (saCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var abo = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var afr = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (afroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var car = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (caroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var eeu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (eeuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var lam = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var neu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var seu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var asa = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (asiaCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var sa = "<td style='border: 1px solid black;padding: 5px;align-content: center'>"  + (saCount/ethnicTotal*100).toPrecision(2) + "</td>";
       var weu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (weuCount/ethnicTotal*100).toPrecision(2) + "</td>";
 
       var info = htmlStart + sampleSize + houseHoldSize + income + ethnicTitle +
