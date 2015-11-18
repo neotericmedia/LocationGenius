@@ -8,7 +8,7 @@ angular.module('telusLg2App')
 
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
-    var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
+    var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African", "ASIA":"Asian", "SASIA":"South Asian","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
 
     $scope.words = [];
 
@@ -794,11 +794,22 @@ angular.module('telusLg2App')
       $scope.report.$promise.then(function (results) {
         //console.log("Onsite Report Results:" + results.totalVisits);
         if (results != null) {
-          $scope.onsiteVisitorsWeek = results.totalVisits.toString().toLocaleString();
+          if(results.totalVisits!=null) {
+            $scope.onsiteVisitorsWeek = results.totalVisits.toLocaleString();
+          } else {
+            $scope.onsiteVisitorsWeek = "N/A";
+          }
+
           //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
           $scope.averageVisitorsDay = results.averageVisitorsDay;
-          $scope.weeklyChange = results.weeklyChange.toFixed(2);
+          if(results.weeklyChange!=null) {
+            $scope.weeklyChange = results.weeklyChange.toFixed(2);
+          } else {
+            $scope.weeklyChange = "N/A";
+          }
+
+
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
@@ -1344,7 +1355,7 @@ angular.module('telusLg2App')
 
       var item = ['Day', 'Number of Visitors', {role: 'style'}, 'New Visitors', {role: 'style'}];
       dailyCarrierVisitorData.push(item);
-      console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
+      //console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
 
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays, "endDate": "2014-08-18"};
 
@@ -1439,10 +1450,8 @@ angular.module('telusLg2App')
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
-        console.log("Tiles=" + $scope.tiles.length);
-
-
-        console.log("Incomes=" + $scope.demographicReport.incomeCounts);
+        //console.log("Tiles=" + $scope.tiles.length);
+        //console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
         $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity];
         $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
@@ -1466,7 +1475,9 @@ angular.module('telusLg2App')
           } else {
             colour = regcolour;
           }
-          incomeData.push([incomeLevelsLabels[i], $scope.demographicReport.incomeCounts[i]/totalIncomes, colour]);
+          var value = parseFloat(($scope.demographicReport.incomeCounts[i]/totalIncomes).toPrecision(2));
+
+          incomeData.push([incomeLevelsLabels[i], value, colour]);
         }
 
         var data = google.visualization.arrayToDataTable(incomeData);
@@ -1547,6 +1558,8 @@ angular.module('telusLg2App')
                           $scope.demographicReport.etSEUOCount +
                           $scope.demographicReport.etCAROCount +
                           $scope.demographicReport.etLAMOCount +
+                          $scope.demographicReport.etASIACount +
+                          $scope.demographicReport.etSACount +
                           $scope.demographicReport.etAFROCount;
 
         var otherTotal = 0.0;
@@ -1599,6 +1612,20 @@ angular.module('telusLg2App')
           ethnicData.push([ethnicitieLabels['AFRO'], $scope.demographicReport.etAFROCount, 'silver']);
         }
 
+        if($scope.demographicReport.etASIACount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etASIACount;
+        } else {
+          ethnicData.push([ethnicitieLabels['ASIA'], $scope.demographicReport.etASIACount, 'silver']);
+        }
+
+        if($scope.demographicReport.etSACount/ethnicTotal < 0.1) {
+          otherTotal += $scope.demographicReport.etSACount;
+        } else {
+          ethnicData.push([ethnicitieLabels['SASIA'], $scope.demographicReport.etSACount, 'silver']);
+        }
+
+
+
         if(otherTotal > 0) {
           ethnicData.push(['Other', otherTotal, 'silver']);
         }
@@ -1615,7 +1642,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             width: document.getElementById("container").clientWidth - 60,
             height: 340,
@@ -1644,7 +1673,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             width: document.getElementById("container").clientWidth/2,
             height: 340,
@@ -1681,7 +1712,9 @@ angular.module('telusLg2App')
               4: { color: '#c8bbd0' },
               5: { color: '#c8bbd0' },
               6: { color: '#e0cdf4' },
-              7: { color: '#ece7ee' }
+              7: { color: '#ece7ee' },
+              8: { color: '#efcdf4' },
+              9: { color: '#fce7ee' }
             },
             height: 340,
             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
@@ -1708,7 +1741,7 @@ angular.module('telusLg2App')
 
     $scope.showHeatMapData = function() {
       if($scope.tiles!=null) {
-        console.log("Tiles=" + $scope.tiles.length);
+        //console.log("Tiles=" + $scope.tiles.length);
         var callsForService = [];
 
         for (var i = 0; i < $scope.tiles.length; i++) {
@@ -1755,7 +1788,7 @@ angular.module('telusLg2App')
      */
     $scope.showVisitorMapData = function() {
       if($scope.tiles!=null) {
-        console.log("Visitor Tiles=" + $scope.tiles.length);
+        //console.log("Visitor Tiles=" + $scope.tiles.length);
 
         var info = "";
         var visitorData = [];
@@ -1842,42 +1875,90 @@ angular.module('telusLg2App')
       var tableHeadings = "<tr style='border: 1px solid black;'>" +
         "<th style='border: 1px solid black;padding: 5px;'>ABO</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>AFR</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>ASIA</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>CAR</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>EEU</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>LAM</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>NEU</th>" +
+        "<th style='border: 1px solid black;padding: 5px;'>SA</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>SEU</th>" +
         "<th style='border: 1px solid black;padding: 5px;'>WEU</th>" +
         "</tr>";
 
 
-
-      var aboCount = $scope.demographicReport.etABOOCount;
-      var weuCount =  $scope.demographicReport.etWEUOCount;
-      var neuCount =  $scope.demographicReport.etNEUOCount;
-      var eeuCount =  $scope.demographicReport.etEEUOCount;
-      var seuCount =  $scope.demographicReport.etSEUOCount;
-      var caroCount =  $scope.demographicReport.etCAROCount;
-      var lamoCount =  $scope.demographicReport.etLAMOCount;
-      var afroCount =  $scope.demographicReport.etAFROCount;
-
-      var ethnicTotal = parseInt(aboCount) +
-                        parseInt(weuCount) +
-                        parseInt(neuCount) +
-                        parseInt(eeuCount) +
-                        parseInt(seuCount) +
-                        parseInt(caroCount) +
-                        parseInt(lamoCount) +
-                        parseInt(afroCount);
+      var aboCount =  tile.demographic.reports[0]["ET_ABOO"];
+      var weuCount =  tile.demographic.reports[0]["ET_WEUO"];
+      var neuCount =  tile.demographic.reports[0]["ET_NEUO"];
+      var eeuCount =  tile.demographic.reports[0]["ET_EEUO"];
+      var seuCount =  tile.demographic.reports[0]["ET_SEUO"];
+      var caroCount = tile.demographic.reports[0]["ET_CARO"];
+      var lamoCount = tile.demographic.reports[0]["ET_LAMO"];
+      var afroCount = tile.demographic.reports[0]["ET_AFRO"];
+      var asiaCount = tile.demographic.reports[0]["ET_ASIAO"];
+      var saCount  =  tile.demographic.reports[0]["ET_SA"];
 
 
-      var abo = "<td style='border: 1px solid black;padding: 5px;'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var afr = "<td style='border: 1px solid black;padding: 5px;'>" + (afroCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var car = "<td style='border: 1px solid black;padding: 5px;'>" + (caroCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var eeu = "<td style='border: 1px solid black;padding: 5px;'>" + (eeuCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var lam = "<td style='border: 1px solid black;padding: 5px;'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var neu = "<td style='border: 1px solid black;padding: 5px;'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
-      var seu = "<td style='border: 1px solid black;padding: 5px;'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var ethnicTotal = 0;
+      if(aboCount!=null) {
+        ethnicTotal += parseInt(aboCount);
+      } else {
+        aboCount = 0;
+      }
+      if(weuCount!=null) {
+        ethnicTotal += parseInt(weuCount);
+      } else {
+        weuCount = 0;
+      }
+      if(neuCount!=null) {
+        ethnicTotal += parseInt(neuCount);
+      }  else {
+        neuCount = 0;
+      }
+      if(eeuCount!=null) {
+        ethnicTotal += parseInt(eeuCount);
+      } else {
+        eeuCount = 0;
+      }
+      if(seuCount!=null) {
+        ethnicTotal += parseInt(seuCount);
+      } else {
+        seuCount = 0;
+      }
+      if(caroCount!=null) {
+        ethnicTotal += parseInt(caroCount);
+      } else {
+        caroCount = 0;
+      }
+      if(lamoCount!=null) {
+        ethnicTotal += parseInt(lamoCount);
+      } else {
+        lamoCount = 0;
+      }
+      if(afroCount!=null) {
+        ethnicTotal += parseInt(afroCount);
+      } else {
+        afroCount = 0;
+      }
+      if(asiaCount!=null) {
+        ethnicTotal += parseInt(asiaCount);
+      } else {
+        asiaCount = 0;
+      }
+      if(saCount!=null) {
+        ethnicTotal += parseInt(saCount);
+      }  else {
+        saCount = 0;
+      }
+
+      var abo = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (aboCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var afr = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (afroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var car = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (caroCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var eeu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (eeuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var lam = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (lamoCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var neu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (neuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var seu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (seuCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var asa = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (asiaCount/ethnicTotal*100).toPrecision(2) + "</td>";
+      var sa = "<td style='border: 1px solid black;padding: 5px;align-content: center'>"  + (saCount/ethnicTotal*100).toPrecision(2) + "</td>";
       var weu = "<td style='border: 1px solid black;padding: 5px;align-content: center'>" + (weuCount/ethnicTotal*100).toPrecision(2) + "</td>";
 
       var info = htmlStart + sampleSize + houseHoldSize + income + ethnicTitle +
@@ -1886,10 +1967,12 @@ angular.module('telusLg2App')
           rowStart +
           abo +
           afr +
+          asa +
           car +
           eeu +
           lam +
           neu +
+          sa +
           seu +
           weu +
           rowEnd +
