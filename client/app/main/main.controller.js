@@ -133,8 +133,8 @@ angular.module('telusLg2App')
     $scope.addLocationToMap = function () {
       //console.log("Showing selected location...");
       $scope.marker.coords = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
 
       $scope.marker.options = {
@@ -143,8 +143,8 @@ angular.module('telusLg2App')
       $scope.circles[0].radius = $scope.searchrange;
       $scope.map.pan = true;
       $scope.map.center = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
 
 
@@ -152,8 +152,8 @@ angular.module('telusLg2App')
       //console.log("Setting map Location lng:" + $scope.currentLocation.center.longitude);
 
       $scope.circles[0].center = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
 
 
@@ -188,8 +188,8 @@ angular.module('telusLg2App')
       //console.log("Showing selected location..." + $scope.currentLocation.center.latitude);
       //$scope.addLocationToMap();
       $scope.marker.coords = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
 
       $scope.marker.options = {
@@ -198,12 +198,12 @@ angular.module('telusLg2App')
       $scope.circles[0].radius = $scope.searchrange;
       $scope.map.pan = true;
       $scope.map.center = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
       $scope.circles[0].center = {
-        latitude: $scope.currentLocation.center.latitude,
-        longitude: $scope.currentLocation.center.longitude
+        latitude: $scope.currentLocation.center.lat,
+        longitude: $scope.currentLocation.center.lon
       };
     }
 

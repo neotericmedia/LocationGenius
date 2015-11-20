@@ -9,6 +9,7 @@ var request = require('request');
 // Get list of locationss
 exports.index = function(req, res) {
    request({
+       //url: 'http://10.117.192.55:9100/user/lgweb/location',
        url: 'http://192.99.16.178:9100/user/lgweb/location',
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',
@@ -46,6 +47,7 @@ exports.show = function(req, res) {
   //});
   console.log("Getting location:" + req.params.userid);
   request({
+    //url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
     method: 'GET',
     headers: {
@@ -80,6 +82,7 @@ exports.create = function(req, res) {
   request({
     //url: 'http://localhost:9100/user/' + req.params.user + '/location',
     url: 'http://192.99.16.178:9100/user/' + req.params.user + '/location',
+    //url: 'http://10.117.192.55:9100/user/' + req.params.user + '/location',
     method: 'POST',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
@@ -103,6 +106,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   console.log("Updating location:" + JSON.stringify(req.body));
   request({
+    //url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
     //url: 'http://localhost:9100/user/' + req.params.userid + '/location/' + req.params.id,
     method: 'PUT',
@@ -127,6 +131,7 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   console.log("Deleting location:" + req.params.id);
   request({
+    //url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
     //url: 'http://localhost:9100/user/' + req.params.userid + '/location/' + req.params.id,
     method: 'DELETE',
