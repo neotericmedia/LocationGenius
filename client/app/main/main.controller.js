@@ -266,11 +266,14 @@ angular.module('telusLg2App')
       chart.draw($scope.data, options);
 
 
+
+
       if (window.innerWidth < 984) {
         $(window).resize(function(){
            var options = {
              height: 350,
              colors: ['#6ebe44'],
+
              chartArea: {left: 20, top: 60, width: '100%'},
              legend: {
                position: 'none',
@@ -414,6 +417,7 @@ angular.module('telusLg2App')
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
              hAxis: {
                //textPosition: 'none',
+
                slantedText: true,
                slantedTextAngle: 45,
                textStyle: { fontName: 'telusweb', fontSize: 12 }
@@ -650,10 +654,11 @@ angular.module('telusLg2App')
             date = dailyReports[i].day.split(" ")[1];
             date = date.substr(date.indexOf('-') + 1);
             // For just a week, we can put the full day name on the graph, otherwise use the shorter date
-            if (numDays <= 7) {
+            if (numDays > 7) {
               day = day.toLowerCase();
               day = day.charAt(0).toUpperCase() + day.substr(1);
             } else {
+              date = parseInt("M/d/yy");
               day = date;
             }
 
