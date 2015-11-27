@@ -10,7 +10,7 @@ var request = require('request');
 exports.show = function(req, res) {
   console.log('Getting carrier report...' + req.query.endDate);
   request({
-    url: 'http://192.99.16.178:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=3000',
+    url: 'http://10.117.192.55:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=3000',
     //url: 'http://192.99.16.178:8100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=3000' ,
     //url: 'http://localhost:9100/carrier/' + req.params.id + '/' + req.params.days + '?endDate=2014-08-18&top=100',
     method: 'GET',

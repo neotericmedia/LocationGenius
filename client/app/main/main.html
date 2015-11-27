@@ -170,9 +170,10 @@
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-           <tab ng-click="showDailySocialData();showHourlySocialData()">
+           <tab ng-click="showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading><img alt="Social" src="assets/images/social.png" class="icons" />Social Data</tab-heading>
+              <tab-heading>Your Social Data</tab-heading>
 
                  <div class="date">{{dateRange}}</div>
 
@@ -181,7 +182,7 @@
                       <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
                           <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                              <li>
-                                <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
+                                <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();">{{filter.time}}</a>
                              </li>
                           </ul>
                       </div>
@@ -220,9 +221,9 @@
 
                                  <div class="well well-lg highlightsPanel" style="margin-top:0px">
                                        <ul style="margin-bottom:0px;">
-                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions | number}}</span> interactions <span class="hLight">{{dateRange}}</span></li>
-                                          <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | number}}</span></li>
-                                          <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date}}</span></li>
+                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
+                                          <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | date:'h:mma'}}</span></li>
+                                          <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
                                           <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
 
                                        </ul>
@@ -252,7 +253,7 @@
 
                              <div class="row">
                                  <div class="col-md-9">
-                                   <h4>Visitors <span class="locateSub">(within 1km)</span></h4>
+                                   <h4>Visitors <span class="locateSub">{{dateRange}}</span></h4>
                                  </div>
                              </div>
 
@@ -265,7 +266,7 @@
                                   <div class="totals">
                                     <span class="totalBorderB">
                                       <span class="visitorsA">{{totalInteractions | number}}</span>
-                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Interactions</span>
+                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Engagements</span>
                                   </div>
 
                                    <div id="barchart_div"></div>
@@ -286,7 +287,7 @@
                            <div class="panel-body">
                               <div class="row">
                                    <div class="col-md-4">
-                                       <h4>Time Breakdown</h4>
+                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dateRange}}</span></h4>
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
@@ -300,7 +301,7 @@
                            </div>
                        </div>
 
-                       <div class="panel panel-default">
+                       <!--<div class="panel panel-default">
                          <div class="panel-body">
                            <div class="row">
                              <div class="col-md-4">
@@ -312,7 +313,6 @@
                            <div class="row">
                              <div class="col-md-12">
                                <div id="wordcloud_div">
-                                 <!--<jqcloud words="words" id="cloud-dynamic" auto-resize="true" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud>-->
 
                                  <jqcloud words="words" id="wordcloud" height="350"  delay="1" steps="7" font-size="{from:0.09, to:0.04}" style="margin: 0 auto"></jqcloud>
 
@@ -320,7 +320,7 @@
                              </div>
                            </div>
                          </div>
-                       </div>
+                       </div>-->
 
 
 
@@ -344,11 +344,11 @@
 
 
            <!--////////////////////////////////////ON-SITE DATA-->
-           <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData()">
-               <tab-heading><img alt="Sensor" src="assets/images/network.png" class="icons" />Sensor Data</tab-heading>
+           <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+
+               <tab-heading>Your Location</tab-heading>
 
                       <div class="date">{{onsiteWeek}}</div>
-
 
                       <div id="miniTab" class="row">
                        <div class="col-md-12">
@@ -396,7 +396,7 @@
                                                 <ul style="margin-bottom:0px;">
                                                   <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                                   <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
-                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}}</span></li>
+                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}} Minutes</span></li>
                                                   <!--<li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>-->
                                                 </ul>
                                            </div>
@@ -432,7 +432,7 @@
                              <div class="row">
                                    <div class="col-md-12">
                                       <br>
-                                      <h4>Visitors <span class="locateSub">(Last Week)</span></h4>
+                                      <h4>Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
                                    </div>
 
                              </div>
@@ -509,7 +509,7 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
+                              <h4>Hourly Breakdown <span class="locateSub">{{onsiteWeek}}</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
@@ -527,7 +527,7 @@
 
                      <div class="panel panel-default graphPanel">
                        <div class="panel-body" >
-                         <h4>Customer Loyalty <span class="locateSub">(Last Week)</span></h4>
+                         <h4>Repeat Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
 
 
                          <div class="row">
@@ -584,9 +584,10 @@
 
 
            <!--////////////////////////////////////CARRIER DATA-->
-           <tab ng-click="showHeatMapData();showCarrierDailyVisitorData();showEthnicData()" >
+           <!--<tab ng-click="showHeatMapData();showEthnicData();showCarrierDailyVisitorData();showDemographicData();getOnsiteDataPreGenReport();showLast7Days();showHourlyCarrierVisitorData();" >-->
+           <tab ng-click="showHeatMapData();showEthnicData();showCarrierDailyVisitorData();showLast7Days();" >
 
-               <tab-heading><img alt="Network" src="assets/images/cell.png" class="icons" /> Network Data</tab-heading>
+               <tab-heading>Your Neighbourhood</tab-heading>
 
 
                     <div class="date">{{carrierDate}}</div>

@@ -70,6 +70,7 @@ angular.module('telusLg2App')
     //api/onsite/180?date=2015-04-26
     //console.log("Getting /api/onsite/");
     return $resource('/api/onsite/:buildingId?date=:dt', {}, {
+    //return $resource('/components/data/sensorReport-old.json', {}, {
       query: {
         method: 'GET',
         isArray: false
