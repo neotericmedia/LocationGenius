@@ -266,11 +266,14 @@ angular.module('telusLg2App')
       chart.draw($scope.data, options);
 
 
+
+
       if (window.innerWidth < 984) {
         $(window).resize(function(){
            var options = {
              height: 350,
              colors: ['#6ebe44'],
+
              chartArea: {left: 20, top: 60, width: '100%'},
              legend: {
                position: 'none',
@@ -414,6 +417,7 @@ angular.module('telusLg2App')
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
              hAxis: {
                //textPosition: 'none',
+
                slantedText: true,
                slantedTextAngle: 45,
                textStyle: { fontName: 'telusweb', fontSize: 12 }
@@ -650,7 +654,7 @@ angular.module('telusLg2App')
             date = dailyReports[i].day.split(" ")[1];
             date = date.substr(date.indexOf('-') + 1);
             // For just a week, we can put the full day name on the graph, otherwise use the shorter date
-            if (numDays <= 7) {
+            if (numDays > 7) {
               day = day.toLowerCase();
               day = day.charAt(0).toUpperCase() + day.substr(1);
             } else {
@@ -2474,6 +2478,7 @@ angular.module('telusLg2App')
             return $scope.events[i].status;
           }
         }
+
       }
 
       return '';
@@ -2501,4 +2506,12 @@ angular.module('telusLg2App')
       $event.stopPropagation();
       $scope.status.isopen = !$scope.status.isopen;
     };
+  })
+
+  .controller('FilterController', function ($scope, $filter) {
+    var date = new Date();
+    $scope.ddMMyyyy = $filter('date')(new Date(), 'dd/MM/yyyy');
+    $scope.ddMMMMyyyy = $filter('date')(new Date(), 'dd, MMMM yyyy');
+    $scope.HHmmss = $filter('date')(new Date(), 'HH:mm:ss'); //24 hour
+    $scope.hhmmsstt = $filter('date')(new Date(), 'hh:mm a');  //12hour
   })
