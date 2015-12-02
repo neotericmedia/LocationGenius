@@ -9,8 +9,11 @@ var request = require('request');
 exports.show = function(req, res) {
   console.log("Date:" + req.query.date + " id:" + req.params.id );
   request({
+
     url: 'http://10.117.192.55:9111/multidays/108/2?endDate=2015-11-28',
     //url: 'http://kiteware.com/sensorReport2.json',
+    //url: 'http://10.117.192.55:9100/onsitereport/' + req.params.id + '?date=' + req.query.date,
+
     method: 'GET',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='

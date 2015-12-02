@@ -238,7 +238,7 @@ angular.module('telusLg2App')
            width: document.getElementById("container").clientWidth - 50,
            height: 550,
            colors: ['#6ebe44'],
-           chartArea: {left: 50, top: 60, width: '100%'},
+           chartArea: {left: 30, top: 60, width: '100%'},
            legend: {
              position: 'none',
              textStyle: { fontName: 'telusweb', fontSize: 12 }

@@ -11,7 +11,7 @@ exports.show = function(req, res) {
 
   console.log('Getting tweeters...' + req.query.days + " " + req.query.top + " " + req.query.meters + " " + req.query.address);
   request({
-    url: 'http://192.99.16.178:9100/twitter/tweeters?days=' + req.query.days + '&top=' + req.query.top+ '&meters=' + req.query.meters + '&address=' + req.query.address,
+    url: 'http://10.117.192.55:9100/twitter/tweeters?days=' + req.query.days + '&top=' + req.query.top+ '&meters=' + req.query.meters + '&address=' + req.query.address,
     method: 'GET',
     headers: {
       'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
