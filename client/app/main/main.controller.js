@@ -2510,3 +2510,11 @@ angular.module('telusLg2App')
       $scope.status.isopen = !$scope.status.isopen;
     };
   })
+
+  .controller('MyController', function ($scope, $filter) {
+    var date = new Date();
+    $scope.ddMMyyyy = $filter('date')(new Date(), 'dd/MM/yyyy');
+    $scope.ddMMMMyyyy = $filter('date')(new Date(), 'dd, MMMM yyyy');
+    $scope.HHmmss = $filter('date')(new Date(), 'HH:mm:ss'); //24 hour
+    $scope.hhmmsstt = $filter('date')(new Date(), 'hh:mm a');  //12hour
+  })

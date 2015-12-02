@@ -219,15 +219,16 @@
                                     </div>-->
                                  </accordion-heading>
 
-                                 <div class="well well-lg highlightsPanel" style="margin-top:0px">
-                                       <ul style="margin-bottom:0px;">
-                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
-                                          <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour | date:'h:mma'}}</span></li>
-                                          <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
-                                          <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
+                                  <div ng-controller="MyController" class="well well-lg highlightsPanel" style="margin-top:0px">
+                                    <ul style="margin-bottom:0px;">
+                                      <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
+                                      <li>Highest Tweeted Hour: <span class="hLight" ng-bind = "hhmmsstt">{{highestTweetedHour }}</span></li>
+                                      <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
+                                      <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
 
-                                       </ul>
-                                 </div>
+                                    </ul>
+                                  </div>
+
 
                                 </accordion-group>
                              </accordion>
@@ -276,6 +277,7 @@
 
                           </div>
                        </div>
+
 
 
 
