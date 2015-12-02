@@ -2482,6 +2482,7 @@ angular.module('telusLg2App')
             return $scope.events[i].status;
           }
         }
+
       }
 
       return '';
@@ -2511,7 +2512,7 @@ angular.module('telusLg2App')
     };
   })
 
-  .controller('MyController', function ($scope, $filter) {
+  .controller('FilterController', function ($scope, $filter) {
     var date = new Date();
     $scope.ddMMyyyy = $filter('date')(new Date(), 'dd/MM/yyyy');
     $scope.ddMMMMyyyy = $filter('date')(new Date(), 'dd, MMMM yyyy');
