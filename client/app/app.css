@@ -58,7 +58,7 @@ PANTONE 2745 C
    width: 230px;
 }
 div.jqcloud {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-weight: 300;
   font-size: 10pt;
   color: #6ebe44;
@@ -570,13 +570,13 @@ div.ng-isolate-scope .nav > li > a {
      font-weight: 400;
  }
  h1 {
-   font-family: 'Roboto', sans-serif;
+   font-family: 'helvetica', sans-serif;
    font-weight: 100;
    font-size: 2.5em;
    color: #6ebe44;
  }
  .subTxt {
-   font-family: 'Roboto', sans-serif;
+   font-family: 'helvetica', sans-serif;
    font-weight: 100;
    font-size: 1.5em;
    color: #666;
@@ -587,7 +587,7 @@ div.ng-isolate-scope .nav > li > a {
    padding-right: 20px;
  }
  h4 {
-   font-family: 'Roboto', sans-serif;
+   font-family: 'helvetica', sans-serif;
    font-weight: 200;
    font-size: 2.75em;
    color: #6ebe44;
@@ -597,7 +597,7 @@ div.ng-isolate-scope .nav > li > a {
    font-weight: 300;
  }
  .date,.date2 {
-   font-family: 'Roboto', sans-serif;
+   font-family: 'helvetica', sans-serif;
    font-weight: 100;
    font-size: 2em;
    color: #333;
@@ -762,7 +762,7 @@ p.ng-binding, h2 {
   }
   #crumbs {
      float: right;
-     width: 600px
+     width: 400px
   }
   #crumbsSM {
      float: right;

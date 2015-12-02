@@ -68,8 +68,10 @@ angular.module('telusLg2App')
 
   .service('OnsitePregenReport', function ($resource) {
     //api/onsite/180?date=2015-04-26
+    //108/3?endDate=2015-11-27
     //console.log("Getting /api/onsite/");
-    return $resource('/api/onsite/:buildingId?date=:dt', {}, {
+    return $resource('/api/onsite/108?date=2015-11-27', {}, {
+    //return $resource('/data/sensorReport2.json', {}, {
       query: {
         method: 'GET',
         isArray: false
