@@ -658,7 +658,6 @@ angular.module('telusLg2App')
               day = day.toLowerCase();
               day = day.charAt(0).toUpperCase() + day.substr(1);
             } else {
-              date = parseInt("M/d/yy");
               day = date;
             }
 
