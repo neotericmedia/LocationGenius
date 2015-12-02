@@ -219,14 +219,7 @@
                                     </div>-->
                                  </accordion-heading>
 
-<<<<<<< HEAD
-                                 <div class="well well-lg highlightsPanel" style="margin-top:0px">
-                                       <ul style="margin-bottom:0px;">
-                                          <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
-                                          <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour}}</span></li>
-                                          <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
-                                          <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
-=======
+
                                   <div ng-controller="FilterController" class="well well-lg highlightsPanel" style="margin-top:0px">
                                     <ul style="margin-bottom:0px;">
                                       <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
@@ -236,7 +229,6 @@
 
                                     </ul>
                                   </div>
->>>>>>> 44e9976732da59a69667a8844af14ba62d26fc91
 
 
                                 </accordion-group>
@@ -263,11 +255,9 @@
 
                              <div class="row">
                                  <div class="col-md-9">
-<<<<<<< HEAD
+
                                    <h4>Engagements <span class="locateSub">{{dateRange}}</span></h4>
-=======
-                                   <h4>Visitors <span class="locateSub">{{dateRange}}</span></h4>
->>>>>>> 44e9976732da59a69667a8844af14ba62d26fc91
+
                                  </div>
                              </div>
 
@@ -302,11 +292,8 @@
                        <div class="panel panel-default">
                            <div class="panel-body">
                               <div class="row">
-<<<<<<< HEAD
+
                                    <div class="col-md-9">
-=======
-                                   <div class="col-md-4">
->>>>>>> 44e9976732da59a69667a8844af14ba62d26fc91
                                        <h4>Hourly Breakdown <span class="locateSub">Average for {{dateRange}}</span></h4>
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
@@ -365,11 +352,6 @@
 
            <!--////////////////////////////////////ON-SITE DATA-->
            <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
-<<<<<<< HEAD
-=======
-
-               <tab-heading>Your Location</tab-heading>
->>>>>>> 44e9976732da59a69667a8844af14ba62d26fc91
 
                <tab-heading>Your Location</tab-heading>
 
@@ -479,7 +461,7 @@
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                           <span class="visitorsB">{{weekChange}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
                                          </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
@@ -741,7 +723,7 @@
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weeklyChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                           <span class="visitorsB">{{weekChange}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
                                          </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
