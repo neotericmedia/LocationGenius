@@ -477,7 +477,7 @@
 
                                     <div class="legend">
                                        <div class="cNewA">
-                                          <div class="cNewB"></div>All Visitors
+                                          <div class="cNewB"></div>Existing Visitors
                                        </div>
                                        <div class="cNewC">
                                           <div class="cAll"></div>New Visitors
@@ -597,7 +597,7 @@
                <tab-heading>Your Neighbourhood</tab-heading>
 
 
-                    <div class="date">{{carrierDate}}</div>
+                    <div class="date">{{onsiteWeek}}</div>
 
 
                       <div id="miniTab" class="row">
@@ -772,7 +772,7 @@
                       <!-- This is the Household demographics section -->
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Time Breakdown <span class="locateSub">(Last Week)</span></h4>
+                              <h4>Time Breakdown  <span class="locateSub">{{onsiteWeek}}</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
@@ -792,7 +792,7 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body">
-                              <h4>Visit Duration <span class="locateSub">(Last Week)</span></h4>
+                              <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
@@ -811,7 +811,7 @@
 
                       <div class="panel panel-default graphPanel">
                        <div class="panel-body" >
-                         <h4>Visitor Demographics</h4>
+                         <h4>Visitor Demographics  <span class="locateSub">{{onsiteWeek}}</span></h4>
 
                          <div class="row">
 
@@ -841,17 +841,18 @@
 
                       <div class="col-md-12" >
                          <tabset justified="false">
+                           <h4>Maps <span class="locateSub">{{onsiteWeek}}</span></h4>
 
                             <tab ng-click="showHeatMapData()">
-                               <tab-heading>Heat Map</tab-heading>
+                               <tab-heading>Heat</tab-heading>
                                   <div id="map" style="height: 500px; width: 100%;"></div>
                                   <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
-                                    <div class="cNewA">
+                                    <!--<div class="cNewA">
                                       <div class="cNewB" style="background-color:red"></div>Numbers Here
                                     </div>
                                     <div style="float:left">
                                       <div class="cAll"></div>Numbers Here
-                                    </div>
+                                    </div>-->
                                   </div>
                             </tab>
 
@@ -860,13 +861,13 @@
                                <tab-heading>Tiles</tab-heading>
                                <div id="visitor_div" style="height: 500px; width: 100%;"></div>
                                <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
-                                 <div class="cNewA">
+                                 <!--<div class="cNewA">
                                    <div class="cNewB"></div>Numbers Here
                                  </div>
                                  <div style="float:left">
                                    <div class="cAll"></div>Numbers Here
                                  </div>
-                               </div>
+                               </div>-->
                            </tab>
 
 

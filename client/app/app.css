@@ -716,7 +716,7 @@ p.ng-binding, h2 {
 @media only screen and (min-width: 40em) {
   /* 640 =================================================== */
   .legend {
-     width: 130px;
+     width: 150px;
   }
 }
 @media only screen and (min-width: 45em) {
