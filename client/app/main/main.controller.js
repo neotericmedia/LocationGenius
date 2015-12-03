@@ -1057,10 +1057,7 @@ angular.module('telusLg2App')
         height: 450,
         colors: ['#6ebe44'],
         chartArea: {left: 100, top: 60, width: '94%'},
-        legend: {
-          position: 'none',
-          textStyle: { fontName: 'telusweb', fontSize: 12 }
-        },
+        legend: {position: 'none'},
         hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
         vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
         fontSize: 11,
@@ -1118,10 +1115,7 @@ angular.module('telusLg2App')
               height: 350,
               colors: ['#6ebe44'],
               chartArea: {left: 50, top: 60, width: '94%'},
-              legend: {
-               position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
-              },
+              legend: {position: 'none'},
               hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1137,10 +1131,7 @@ angular.module('telusLg2App')
               height: 450,
               colors: ['#6ebe44'],
               chartArea: {left: 100, top: 60, width: '94%'},
-              legend: {
-               position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
-              },
+              legend: {position: 'none'},
               hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1207,7 +1198,7 @@ angular.module('telusLg2App')
            width: document.getElementById("container").clientWidth - 50,
            height: 450,
            colors: ['#6ebe44'],
-           chartArea: {left: 100, top: 60, width: '90%'},
+           chartArea: {left: 100, top: 60, width: '88%'},
            legend: {
               position: 'none',
               textStyle: { fontName: 'telusweb', fontSize: 12 }
@@ -1264,7 +1255,7 @@ angular.module('telusLg2App')
             var options = {
               height: 350,
               colors: ['#6ebe44'],
-              chartArea: {left: 60, top: 60, width: '100%'},
+              chartArea: {left: 60, top: 60, width: '90%'},
               legend: {
                 position: 'none',
                 textStyle: { fontName: 'telusweb', fontSize: 12 }
@@ -1282,7 +1273,7 @@ angular.module('telusLg2App')
             var options = {
               height: 450,
               colors: ['#6ebe44'],
-              chartArea: {left: 100, top: 60, width: '100%'},
+              chartArea: {left: 100, top: 60, width: '88%'},
               legend: {
                 position: 'none',
                 textStyle: { fontName: 'telusweb', fontSize: 12 }
