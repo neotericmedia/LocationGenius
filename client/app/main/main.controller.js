@@ -325,6 +325,84 @@ angular.module('telusLg2App')
 
 
 
+    $scope.showWordData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      if (window.innerWidth < 984) {
+        var options = {
+          width: document.getElementById("container").clientWidth - 50,
+          height: 350,
+          colors: ['#6ebe44'],
+          chartArea: {left: 140, top: 60, width: '100%'},
+          legend: {
+            position: 'none',
+            textStyle: { fontName: 'telusweb', fontSize: 12 }
+          },
+          format: 'short',
+          fontSize: 11,
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          vAxis: {title: "Word", format:'#',textStyle: { fontName: 'telusweb', fontSize: 24 }} ,
+          hAxis: {title: "Frequency", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
+        };
+      }
+      else {
+        var options = {
+          width: document.getElementById("container").clientWidth - 50,
+          height: 550,
+          colors: ['#6ebe44'],
+          chartArea: {left: 140, top: 60, width: '100%'},
+          legend: {
+            position: 'none',
+            textStyle: { fontName: 'telusweb', fontSize: 12 }
+          },
+          format: 'short',
+          fontSize: 11,
+          tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+          vAxis: {title: "Word", format:'#',textStyle: { fontName: 'telusweb', fontSize: 24 }} ,
+          hAxis: {title: "Frequency", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
+        };
+      }
+
+
+
+
+      // Items are what goes into the graph data.  The first one describes the data
+      var item = ['Word', 'Number of Mentions', {role: 'style'}];
+      var wordData = [];
+      wordData.push(item);
+      var word;
+      console.log( "Number of words=" + $scope.words.length);
+      for(var i=0; i< $scope.words.length;i++ ) {
+        if(i==20) {
+          break;
+        }
+        word = $scope.words[i];
+        //console.log( "Word=" + word.text + " Freq=" + word.weight);
+        item = [word.text, parseInt(word.weight), '#6ebe44'];
+        wordData.push(item)
+      }
+
+      var wordgraphdata = google.visualization.arrayToDataTable(wordData);
+
+      var wordchart = new google.visualization.BarChart(document.getElementById('wordbarchart_div'));
+      wordchart.draw(wordgraphdata, options);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     var showDay = function (day) {
       //console.log("Day Index:" + day);
@@ -694,6 +772,8 @@ angular.module('telusLg2App')
         TweeterResults.setTweeters($scope.topTweeters);
         $scope.tweeterResults   = $scope.topTweeters;
 
+        $scope.showWordData();
+
       })
     }
 
@@ -872,6 +952,8 @@ angular.module('telusLg2App')
         }
       })
     }
+
+
 
 
 
