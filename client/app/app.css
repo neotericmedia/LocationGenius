@@ -876,6 +876,14 @@ p.ng-binding, h2 {
 }
 
 @media print {
+
+  body{
+    float: none !important;
+    page-break-inside:auto !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+  }
+
   #searchbar {
     display:none !important;
   }
@@ -897,6 +905,7 @@ p.ng-binding, h2 {
   }
 
   h3 {
+    page-break-after: always !important;
     margin-bottom: 26% !important;
   }
 
