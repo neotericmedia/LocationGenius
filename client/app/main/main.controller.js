@@ -836,14 +836,21 @@ angular.module('telusLg2App')
       //new aug 19
       var buildingId = $scope.currentLocation.buildingId;
 
-      if (buildingId === "188" || buildingId === "189" || buildingId === "122") {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
-      }
-      else if (buildingId === "190") {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-08-01"};
+      // if (buildingId === "188" || buildingId === "189" || buildingId === "122") {
+      //   var params = {"buildingId": $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
+      // }
+      // else if (buildingId === "190") {
+      //   var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-08-01"};
+      // }
+      // else {
+      //   var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-04-26"};
+      // }
+
+      if (buildingId === "148" || buildingId === "100") {
+        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-12-2"};
       }
       else {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-04-26"};
+        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-11-28"};
       }
 
 
