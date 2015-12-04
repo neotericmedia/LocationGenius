@@ -296,7 +296,7 @@
                            <div class="panel-body">
                               <div class="row">
                                    <div class="col-md-9">
-                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
+                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</span></h4>
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
@@ -359,8 +359,8 @@
 
                       <div id="miniTab" class="row">
                        <div class="col-md-12">
-                          <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
-                              <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                          <div id="crumbs" class="filters_ct" ng-controller="selectOnsiteFilter">
+                              <ul class="boo" ng-repeat="filter in onsitefilters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
                                  <li>
                                     <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
                                  </li>
@@ -519,7 +519,7 @@
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
                               <!--<h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>-->
-                              <h4>Hourly Breakdown <span class="locateSub">Average for the week of {{onsiteWeek | capitalize}}</span></h4>
+                              <h4>Hourly Breakdown <span class="locateSub">Average for the last seven days {{onsiteWeek | capitalize}}</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
