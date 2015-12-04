@@ -896,7 +896,7 @@ p.ng-binding, h2 {
   }
 
   h1 {
-    margin-top: -45%; !important;
+    margin-top: -10%; !important;
     font-size: 5em;
   }
 
@@ -915,7 +915,7 @@ p.ng-binding, h2 {
   }
 
   h4 {
-    margin-top: 5px;
+    margin-top: 5%;
   }
   h5{
     margin-bottom: 20px;
