@@ -170,7 +170,7 @@
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-           <tab ng-click="showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+           <tab ng-click="selected($index);showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading>Your Social Media</tab-heading>
@@ -347,7 +347,7 @@
 
 
            <!--////////////////////////////////////ON-SITE DATA-->
-           <tab ng-click="showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+           <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
                <tab-heading>Your Location</tab-heading>
 
@@ -571,6 +571,15 @@
 
 
 
+
+
+
+
+
+
+
+
+          
 
 
 

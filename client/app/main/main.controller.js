@@ -646,151 +646,151 @@ angular.module('telusLg2App')
      * for the specified number of days.
      * @param numDays
      */
-    $scope.getSocialDayReport = function (numDays) {
-      $scope.currentLocation = LocationResults.getCurrentLocation();
-      //console.log("Getting social day reports for Location:" + $scope.currentLocation);
-
-      // Get the Twitter daily report
-      $scope.tweetReports;
-      //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
-      var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
-      $scope.results = TweetReports.query(params);
-
-      $scope.results.$promise.then(function (results) {
-        //console.log("Social Report Results:" + results);
-        $scope.tweetReports = results;
-        //console.log("Tweet Reports:" + $scope.tweetReports);
-        LocationResults.setTweetReports($scope.tweetReports);
-        $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
-        $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
-        //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
-        var wc  = results.wordCloud;
-        $scope.words = results.wordCloud;
-        //console.log("Tweet Word Cloud" + $scope.words);
-        $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
-        $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
-        $scope.topTweeters = $scope.tweetReports.topTweeters;
-        //console.log("Top Tweeters:" + $scope.topTweeters);
-        $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
-        $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
-
-
-        $scope.hourlyData = [];  // HourlyData contains the hourly totals for each day
-        var hourData = [];
-        var hourItem = [];
-        var dailyData = [];
-        var day;
-        var date;
-        // Items are what goes into the graph data.  The first one describes the data
-        var item = ['Day', 'Number of Interactions', {role: 'style'}];
-        dailyData.push(item);
-
-        var dailyReports = $scope.tweetReports.dailyReports;
-        $scope.numberOfdailyReports = dailyReports.length;
-
-        /*
-         * Parse each daily report. We get the total tweets for each day
-         * as well as the hourly tweets.  This creates data for the top two tabs.
-         */
-        for (var i = 0; i < dailyReports.length; i++) {
-          if (dailyReports[i] != null) {
-            //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
-
-            //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
-            //var day = dailyReports[i].day;
-
-            //day = dailyReports[i].day.split(" ")[0];
-            //date = dailyReports[i].day.split(" ")[1];
-
-         //   day = dailyReports[i].day.split(" ")[0];
-         //   date = dailyReports[i].day.split(" ")[1];
-         //   date = date.substr(date.indexOf('-') + 1);
-
-           //// For just a week, we can put the full day name on the graph, otherwise use the shorter date
-           //if (numDays > 7) {
-           //  day = day.toLowerCase();
-           //  day = day.charAt(0).toUpperCase() + day.substr(1);
-           //} else {
-           //  day = date;
-           //}
-
-           // Push one days data into the graph data.
-
-
-           var formattedDate = formatDate(dailyReports[i].day);
-           console.log("Date=" + formattedDate);
-           item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
-           dailyData.push(item);
-
-
-            // For just a week, we can put the full day name on the graph, otherwise use the shorter date
-            if (numDays > 7) {
-              day = day.toLowerCase();
-              day = day.charAt(0).toUpperCase() + day.substr(1);
-            } else {
-              day = date;
-            }
-
-
-            /*
-             *  Get the hourly data for that day and push it into a separate array
-             *  We push an array of 24 hourly totals, for each day in the report.
-             */
-            hourData = [];
-            hourItem = [];
-            hourItem = ['Time', 'Number of Interactions', {role: 'style'}];
-            hourData.push(hourItem);
-            var ampm = "am";
-            var h = 0;
-            for (var j = 0; j < 24; j++) {
-              if (j > 11) {
-                ampm = "pm";
-                if (h >= 13) {
-                  h = h - 12;
-                }
-              }
-              hourItem = [h + ampm, dailyReports[i].hourly[j], '#6ebe44'];
-              hourData.push(hourItem);
-              h++;
-            }
-            $scope.hourlyData.push(hourData);
-          }
-
-        }
-        $scope.dayIndex = 0;
-
-        // This is the date that goes with time breakdown
-        if ($scope.tweetReports.dailyReports[0] != null) {
-          $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
-          formattedDate = $scope.dailyReportDate;
-        }
-
-
-        // DailyData is the array for graphing total interactions per day
-        // If there is only one, there is no data, it is just the headers.
-        if (dailyData.length > 1) {
-          //console.log("Daily data:" + dailyData);
-          $scope.data = google.visualization.arrayToDataTable(dailyData);
-          $scope.showDailySocialData();
-        }
-
-        if ($scope.hourlyData.length > 0) {
-          //console.log("Hourly data:" + $scope.hourlyData);
-          $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
-          $scope.showHourlySocialData(0);
-        }
-
-
-        $scope.searchString = $scope.currentLocation.address;
-        $scope.searchStringName = $scope.currentLocation.name;
-        $scope.dayrange = numDays;
-        TweeterResults.setTweeters($scope.topTweeters);
-        $scope.tweeterResults   = $scope.topTweeters;
-
-        $scope.showWordData();
-
-      })
-    }
+   //  $scope.getSocialDayReport = function (numDays) {
+   //    $scope.currentLocation = LocationResults.getCurrentLocation();
+   //    //console.log("Getting social day reports for Location:" + $scope.currentLocation);
+    //
+   //    // Get the Twitter daily report
+   //    $scope.tweetReports;
+   //    //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
+   //    var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
+   //    $scope.results = TweetReports.query(params);
+    //
+   //    $scope.results.$promise.then(function (results) {
+   //      //console.log("Social Report Results:" + results);
+   //      $scope.tweetReports = results;
+   //      //console.log("Tweet Reports:" + $scope.tweetReports);
+   //      LocationResults.setTweetReports($scope.tweetReports);
+   //      $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
+   //      $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
+   //      //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
+   //      var wc  = results.wordCloud;
+   //      $scope.words = results.wordCloud;
+   //      //console.log("Tweet Word Cloud" + $scope.words);
+   //      $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
+   //      $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
+   //      $scope.topTweeters = $scope.tweetReports.topTweeters;
+   //      //console.log("Top Tweeters:" + $scope.topTweeters);
+   //      $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
+   //      $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
+    //
+    //
+   //      $scope.hourlyData = [];  // HourlyData contains the hourly totals for each day
+   //      var hourData = [];
+   //      var hourItem = [];
+   //      var dailyData = [];
+   //      var day;
+   //      var date;
+   //      // Items are what goes into the graph data.  The first one describes the data
+   //      var item = ['Day', 'Number of Interactions', {role: 'style'}];
+   //      dailyData.push(item);
+    //
+   //      var dailyReports = $scope.tweetReports.dailyReports;
+   //      $scope.numberOfdailyReports = dailyReports.length;
+    //
+   //      /*
+   //       * Parse each daily report. We get the total tweets for each day
+   //       * as well as the hourly tweets.  This creates data for the top two tabs.
+   //       */
+   //      for (var i = 0; i < dailyReports.length; i++) {
+   //        if (dailyReports[i] != null) {
+   //          //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
+    //
+   //          //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
+   //          //var day = dailyReports[i].day;
+    //
+   //          //day = dailyReports[i].day.split(" ")[0];
+   //          //date = dailyReports[i].day.split(" ")[1];
+    //
+   //       //   day = dailyReports[i].day.split(" ")[0];
+   //       //   date = dailyReports[i].day.split(" ")[1];
+   //       //   date = date.substr(date.indexOf('-') + 1);
+    //
+   //         //// For just a week, we can put the full day name on the graph, otherwise use the shorter date
+   //         //if (numDays > 7) {
+   //         //  day = day.toLowerCase();
+   //         //  day = day.charAt(0).toUpperCase() + day.substr(1);
+   //         //} else {
+   //         //  day = date;
+   //         //}
+    //
+   //         // Push one days data into the graph data.
+    //
+    //
+   //         var formattedDate = formatDate(dailyReports[i].day);
+   //         console.log("Date=" + formattedDate);
+   //         item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
+   //         dailyData.push(item);
+    //
+    //
+   //          // For just a week, we can put the full day name on the graph, otherwise use the shorter date
+   //          if (numDays > 7) {
+   //            day = day.toLowerCase();
+   //            day = day.charAt(0).toUpperCase() + day.substr(1);
+   //          } else {
+   //            day = date;
+   //          }
+    //
+    //
+   //          /*
+   //           *  Get the hourly data for that day and push it into a separate array
+   //           *  We push an array of 24 hourly totals, for each day in the report.
+   //           */
+   //          hourData = [];
+   //          hourItem = [];
+   //          hourItem = ['Time', 'Number of Interactions', {role: 'style'}];
+   //          hourData.push(hourItem);
+   //          var ampm = "am";
+   //          var h = 0;
+   //          for (var j = 0; j < 24; j++) {
+   //            if (j > 11) {
+   //              ampm = "pm";
+   //              if (h >= 13) {
+   //                h = h - 12;
+   //              }
+   //            }
+   //            hourItem = [h + ampm, dailyReports[i].hourly[j], '#6ebe44'];
+   //            hourData.push(hourItem);
+   //            h++;
+   //          }
+   //          $scope.hourlyData.push(hourData);
+   //        }
+    //
+   //      }
+   //      $scope.dayIndex = 0;
+    //
+   //      // This is the date that goes with time breakdown
+   //      if ($scope.tweetReports.dailyReports[0] != null) {
+   //        $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+   //        formattedDate = $scope.dailyReportDate;
+   //      }
+    //
+    //
+   //      // DailyData is the array for graphing total interactions per day
+   //      // If there is only one, there is no data, it is just the headers.
+   //      if (dailyData.length > 1) {
+   //        //console.log("Daily data:" + dailyData);
+   //        $scope.data = google.visualization.arrayToDataTable(dailyData);
+   //        $scope.showDailySocialData();
+   //      }
+    //
+   //      if ($scope.hourlyData.length > 0) {
+   //        //console.log("Hourly data:" + $scope.hourlyData);
+   //        $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
+   //        $scope.showHourlySocialData(0);
+   //      }
+    //
+    //
+   //      $scope.searchString = $scope.currentLocation.address;
+   //      $scope.searchStringName = $scope.currentLocation.name;
+   //      $scope.dayrange = numDays;
+   //      TweeterResults.setTweeters($scope.topTweeters);
+   //      $scope.tweeterResults   = $scope.topTweeters;
+    //
+   //      $scope.showWordData();
+    //
+   //    })
+   //  }
 
 
     //formatting social bar chart dates..
@@ -803,6 +803,148 @@ angular.module('telusLg2App')
          var formattedDate = months[res[1]] + " " + res[2] + ", " + res[0];
          return formattedDate;
       }
+
+
+
+
+
+
+
+      $scope.getSocialDayReport = function (numDays) {
+           $scope.currentLocation = LocationResults.getCurrentLocation();
+           //console.log("Getting social day reports for Location:" + $scope.currentLocation);
+
+           // Get the Twitter daily report
+           $scope.tweetReports;
+           //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
+           var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
+           $scope.results = TweetReports.query(params);
+
+           $scope.results.$promise.then(function (results) {
+             //console.log("Social Report Results:" + results);
+             $scope.tweetReports = results;
+             //console.log("Tweet Reports:" + $scope.tweetReports);
+             LocationResults.setTweetReports($scope.tweetReports);
+             $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
+             $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
+             //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
+             var wc  = results.wordCloud;
+             $scope.words = results.wordCloud;
+             //console.log("Tweet Word Cloud" + $scope.words);
+             $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
+             $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
+             $scope.topTweeters = $scope.tweetReports.topTweeters;
+             //console.log("Top Tweeters:" + $scope.topTweeters);
+             $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
+             $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
+
+
+             $scope.hourlyData = [];  // HourlyData contains the hourly totals for each day
+             var hourData = [];
+             var hourItem = [];
+             var dailyData = [];
+             var day;
+             var date;
+             // Items are what goes into the graph data.  The first one describes the data
+             var item = ['Day', 'Number of Interactions', {role: 'style'}];
+             dailyData.push(item);
+
+             var dailyReports = $scope.tweetReports.dailyReports;
+             $scope.numberOfdailyReports = dailyReports.length;
+
+             /*
+              * Parse each daily report. We get the total tweets for each day
+              * as well as the hourly tweets.  This creates data for the top two tabs.
+              */
+             for (var i = 0; i < dailyReports.length; i++) {
+               if (dailyReports[i] != null) {
+                 //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
+                 day = dailyReports[i].day.split(" ")[0];
+                 date = dailyReports[i].day.split(" ")[1];
+                 date = date.substr(date.indexOf('-') + 1);
+                 // For just a week, we can put the full day name on the graph, otherwise use the shorter date
+                 if (numDays <= 7) {
+                   day = day.toLowerCase();
+                   day = day.charAt(0).toUpperCase() + day.substr(1);
+                 } else {
+                   day = date;
+                 }
+
+                 // Push one days data into the graph data.
+                 //item = [day, dailyReports[i].tweets, '#6ebe44'];
+                 //dailyData.push(item);
+
+
+                 var formattedDate = formatDate(dailyReports[i].day);
+                 console.log("Date=" + formattedDate);
+                 item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
+                 dailyData.push(item);
+
+
+
+                 /*
+                  *  Get the hourly data for that day and push it into a separate array
+                  *  We push an array of 24 hourly totals, for each day in the report.
+                  */
+                 hourData = [];
+                 hourItem = [];
+                 hourItem = ['Time', 'Number of Interactions', {role: 'style'}];
+                 hourData.push(hourItem);
+                 var ampm = "am";
+                 var h = 0;
+                 for (var j = 0; j < 24; j++) {
+                   if (j > 11) {
+                     ampm = "pm";
+                     if (h >= 13) {
+                       h = h - 12;
+                     }
+                   }
+                   hourItem = [h + ampm, dailyReports[i].hourly[j], '#6ebe44'];
+                   hourData.push(hourItem);
+                   h++;
+                 }
+                 $scope.hourlyData.push(hourData);
+               }
+
+             }
+             $scope.dayIndex = 0;
+
+             // This is the date that goes with time breakdown
+             if ($scope.tweetReports.dailyReports[0] != null) {
+               $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+             }
+
+
+             // DailyData is the array for graphing total interactions per day
+             // If there is only one, there is no data, it is just the headers.
+             if (dailyData.length > 1) {
+               //console.log("Daily data:" + dailyData);
+               $scope.data = google.visualization.arrayToDataTable(dailyData);
+               $scope.showDailySocialData();
+             }
+
+             if ($scope.hourlyData.length > 0) {
+               //console.log("Hourly data:" + $scope.hourlyData);
+               $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
+               $scope.showHourlySocialData(0);
+             }
+
+
+             $scope.searchString = $scope.currentLocation.address;
+             $scope.searchStringName = $scope.currentLocation.name;
+             $scope.dayrange = numDays;
+             TweeterResults.setTweeters($scope.topTweeters);
+             $scope.tweeterResults   = $scope.topTweeters;
+
+
+             $scope.showWordData();
+
+
+           })
+         }
+
+
+
 
 
 
