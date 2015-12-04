@@ -695,11 +695,31 @@ angular.module('telusLg2App')
             //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
 
             //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
-            //var date = dailyReports[i].day;
+            //var day = dailyReports[i].day;
 
-            day = dailyReports[i].day.split(" ")[0];
-            date = dailyReports[i].day.split(" ")[1];
-            date = date.substr(date.indexOf('-') + 1);
+            //day = dailyReports[i].day.split(" ")[0];
+            //date = dailyReports[i].day.split(" ")[1];
+
+         //   day = dailyReports[i].day.split(" ")[0];
+         //   date = dailyReports[i].day.split(" ")[1];
+         //   date = date.substr(date.indexOf('-') + 1);
+
+           //// For just a week, we can put the full day name on the graph, otherwise use the shorter date
+           //if (numDays > 7) {
+           //  day = day.toLowerCase();
+           //  day = day.charAt(0).toUpperCase() + day.substr(1);
+           //} else {
+           //  day = date;
+           //}
+
+           // Push one days data into the graph data.
+
+
+           var formattedDate = formatDate(dailyReports[i].day);
+           console.log("Date=" + formattedDate);
+           item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
+           dailyData.push(item);
+
 
             // For just a week, we can put the full day name on the graph, otherwise use the shorter date
             if (numDays > 7) {
@@ -708,14 +728,6 @@ angular.module('telusLg2App')
             } else {
               day = date;
             }
-
-            // Push one days data into the graph data.
-            var d = new Date(day);
-            //console.log("Date=" + d);
-            var res = d.toDateString().split(" ");
-            var formattedDate=  res[1] + " " + res[2] + "," + res[3]
-            item = [formattedDate, dailyReports[i].tweets, '#6ebe44'];
-            dailyData.push(item);
 
 
             /*
@@ -776,6 +788,19 @@ angular.module('telusLg2App')
 
       })
     }
+
+
+    //formatting social bar chart dates..
+    function formatDate(date) {
+         var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+         console.log("Formatting Date=" + date);
+         var res = date.split(" ");
+         var d = res[1];
+         res = d.split("-");
+         var formattedDate = months[res[1]] + " " + res[2] + "," + res[0];
+         return formattedDate;
+      }
+
 
 
     function getFormattedDataRange(range) {
@@ -1077,9 +1102,9 @@ angular.module('telusLg2App')
       var onsiteLoyaltyChart = new google.visualization.ColumnChart(document.getElementById('onsite_loyalty_chart_div'));
       onsiteLoyaltyChart.draw(data, options);
 
-       $(window).resize(function(){
-          onsiteLoyaltyChart.draw(data, options);
-       });
+      //  $(window).resize(function(){
+      //     onsiteLoyaltyChart.draw(data, options);
+      //  });
 
 
        if (window.innerWidth < 984) {
@@ -1091,6 +1116,7 @@ angular.module('telusLg2App')
               colors: ['#6ebe44'],
               chartArea: {left: 50, top: 60, width: '94%'},
               legend: {position: 'none'},
+              fontSize: 11,
               hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1107,6 +1133,7 @@ angular.module('telusLg2App')
               colors: ['#6ebe44'],
               chartArea: {left: 100, top: 60, width: '94%'},
               legend: {position: 'none'},
+              fontSize: 11,
               hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
