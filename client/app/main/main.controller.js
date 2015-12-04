@@ -825,10 +825,12 @@ angular.module('telusLg2App')
 
       //console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
 
+
       var dateobj = new Date();
       var month = dateobj.getMonth() + 1;
       var day = dateobj.getDate();
       var year = dateobj.getFullYear();
+
 
       var dateString = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + day).slice(-2);
 
