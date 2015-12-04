@@ -797,7 +797,7 @@ angular.module('telusLg2App')
          var res = date.split(" ");
          var d = res[1];
          res = d.split("-");
-         var formattedDate = months[res[1]] + " " + res[2] + "," + res[0];
+         var formattedDate = months[res[1]] + " " + res[2] + ", " + res[0];
          return formattedDate;
       }
 
@@ -869,7 +869,7 @@ angular.module('telusLg2App')
         //console.log("Onsite Report Results:" + results.totalVisits);
         if (results != null) {
           if(results.totalVisits!=null) {
-            $scope.onsiteVisitorsWeek = results.totalVisits.toLocaleString();
+            $scope.onsiteVisitorsWeek = results.totalVisits;
           } else {
             $scope.onsiteVisitorsWeek = "N/A";
           }
