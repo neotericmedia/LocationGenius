@@ -292,7 +292,7 @@
                            <div class="panel-body">
                               <div class="row">
                                    <div class="col-md-9">
-                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dateRange}}</span></h4>
+                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
@@ -514,7 +514,8 @@
 
                       <div class="panel panel-default graphPanel">
                            <div class="panel-body" >
-                              <h4>Hourly Breakdown <span class="locateSub">{{onsiteWeek}}</span></h4>
+                              <!--<h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>-->
+                              <h4>Hourly Breakdown <span class="locateSub">Average for the week of {{onsiteWeek | capitalize}}</span></h4>
 
                               <div class="totals">
                                 <span class="totalBorderB">
@@ -588,7 +589,7 @@
 
 
 
-          
+
 
 
           </tabset>

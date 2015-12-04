@@ -404,14 +404,16 @@ angular.module('telusLg2App')
 
 
 
-    var showDay = function (day) {
+
+
+   var showDay = function (day) {
       //console.log("Day Index:" + day);
       $scope.dayIndex = day;
       if ($scope.tweetReports.dailyReports[$scope.dayIndex] != null) {
-        $scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
-        $scope.showHourlySocialData($scope.dayIndex);
+         $scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
+         $scope.showHourlySocialData($scope.dayIndex);
       }
-    }
+   }
 
 
     $scope.showHourlySocialData = function (day) {
@@ -760,6 +762,7 @@ angular.module('telusLg2App')
         // This is the date that goes with time breakdown
         if ($scope.tweetReports.dailyReports[0] != null) {
           $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+          formattedDate = $scope.dailyReportDate;
         }
 
 
