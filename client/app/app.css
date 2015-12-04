@@ -506,7 +506,7 @@ div.ng-isolate-scope .nav > li > a {
   font-weight: 300;
 }
 .totalBorderB {
-  min-width: 80px;
+  min-width: 100px;
   text-align: center;
   height: auto;
   color: #fff;
