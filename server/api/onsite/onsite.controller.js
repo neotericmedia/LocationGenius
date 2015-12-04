@@ -28,7 +28,7 @@ exports.show = function(req, res) {
     if(error) {
       console.log(error);
     } else {
-      console.log("Onsite Response:" + response + " Output:" + body);
+      //console.log("Onsite Response:" + response + " Output:" + body);
       res.send(body)
     }
 

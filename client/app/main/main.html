@@ -173,7 +173,7 @@
            <tab ng-click="showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading>Your Social Data</tab-heading>
+              <tab-heading>Your Social Media</tab-heading>
 
                  <div class="date">{{dateRange}}</div>
 
@@ -457,7 +457,7 @@
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weekChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                           <span class="visitorsB">{{weekChange | number:1}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
                                          </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
@@ -719,7 +719,7 @@
                                     <div style="float:left; margin-right:20px;">
                                        <div class="totals">
                                          <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weekChange}}%&nbsp;&nbsp;&nbsp;</span>
+                                           <span class="visitorsB">{{weekChange | number:1}}%&nbsp;&nbsp;&nbsp;</span>
                                            <span id="changeIcon" class="{{changeIcon}}"></span>
                                          </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
                                        </div>
@@ -845,12 +845,12 @@
                                <tab-heading>Heat</tab-heading>
                                   <div id="map" style="height: 500px; width: 100%;"></div>
                                   <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
-                                    <!--<div class="cNewA">
-                                      <div class="cNewB" style="background-color:red"></div>Numbers Here
+                                    <div class="cNewA">
+                                      <!-- <div class="cNewB" style="background-color:red"></div>Numbers Here -->
                                     </div>
                                     <div style="float:left">
-                                      <div class="cAll"></div>Numbers Here
-                                    </div>-->
+                                      <!-- <div class="cAll"></div>Numbers Here -->
+                                    </div>
                                   </div>
                             </tab>
 
@@ -859,13 +859,13 @@
                                <tab-heading>Tiles</tab-heading>
                                <div id="visitor_div" style="height: 500px; width: 100%;"></div>
                                <div class="col-md-12" style="margin-top: 20px; margin-bottom: 30px; overflow: hidden">
-                                 <!--<div class="cNewA">
-                                   <div class="cNewB"></div>Numbers Here
+                                 <div class="cNewA">
+                                   <!--<div class="cNewB"></div>Numbers Here-->
                                  </div>
                                  <div style="float:left">
-                                   <div class="cAll"></div>Numbers Here
+                                   <!-- <div class="cAll"></div>Numbers Here -->
                                  </div>
-                               </div>-->
+                               </div>
                            </tab>
 
 
