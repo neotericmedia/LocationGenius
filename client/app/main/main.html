@@ -59,10 +59,12 @@
 <div class="slide" style="height:100px;background-color:#ccc">
    <!--///////////////////////////////////////////////////////////////////MAP-->
    <div id="map-canvas">
+     <h6>
      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
          <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
          <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control"></ui-gmap-circle>
      </ui-gmap-google-map>
+     </h6>
    </div>
    <!--MAP END-->
 </div>
@@ -210,7 +212,8 @@
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
                                 <accordion-group is-open="true" >
-                                 <accordion-heading>
+                                 <h5>
+                                  <accordion-heading>
                                     <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Social Highlights at a Glance</h4>
                                     <!--<div style="display:block;margin-top:14px;">
                                       <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
@@ -222,6 +225,7 @@
 
 
                                   <div ng-controller="FilterController" class="well well-lg highlightsPanel" style="margin-top:0px">
+
                                     <ul style="margin-bottom:0px;">
                                       <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
                                       <li>Highest Tweeted Hour: <span class="hLight" ng-bind = "hhmmsstt">{{highestTweetedHour }}</span></li>
@@ -300,7 +304,7 @@
                               </div>
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                       <div id="linechart_div"></div>
+                                      <h5> <div id="linechart_div"></div></h5>
                                    </div>
                               </div>
                            </div>
@@ -314,12 +318,12 @@
                          <div class="panel-body">
                            <div class="row">
                              <div class="col-md-9">
-                               <h4>Top 20 Mentions in your Area</h4>
+                               <h4 class="top20mentions">Top 20 Mentions in your Area</h4>
                              </div>
                            </div>
                            <div class="row">
                                <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                   <div id="wordbarchart_div"></div>
+                                  <h5> <div id="wordbarchart_div"></div></h5>
                                </div>
                            </div>
                          </div>
@@ -579,7 +583,7 @@
 
 
 
-          
+
 
 
 
