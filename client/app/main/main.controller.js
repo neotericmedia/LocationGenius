@@ -835,19 +835,6 @@ angular.module('telusLg2App')
       console.log("Date: " + dateString);
       var params = {"buildingId": $scope.currentLocation.buildingId, "dt": dateString};
 
-      //new aug 19
-      var buildingId = $scope.currentLocation.buildingId;
-
-      if (buildingId === "188" || buildingId === "189" || buildingId === "122") {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": year + "-" + month + "-" + day};
-      }
-      else if (buildingId === "190") {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-08-01"};
-      }
-      else {
-        var params = {"buildingId": $scope.currentLocation.buildingId, "dt": "2015-04-26"};
-      }
-
 
       //console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
       $scope.report = OnsitePregenReport.query(params);
