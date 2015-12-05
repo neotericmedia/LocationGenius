@@ -1031,6 +1031,7 @@ angular.module('telusLg2App')
 
           //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
+
           $scope.averageVisitorsDay = results.averageVisitorsDay;
           if(results.weekChange!=null) {
             $scope.weekChange = results.weekChange;
@@ -1054,7 +1055,10 @@ angular.module('telusLg2App')
           $scope.hourlyBreakdown = results.hourlyBreakdown;
           $scope.durations = results.durations;
           $scope.days = results.days;
-
+          $scope.hourlyBreakDownDate = "N/A";
+          if($scope.days.length>0) {
+            $scope.hourlyBreakDownDate = $scope.days[0].day;
+          }
           var busyHour = $scope.busiestHour;
           $scope.mostVisitedHour;
           if (busyHour == 12) {
@@ -1325,7 +1329,7 @@ angular.module('telusLg2App')
 
     var showOnsiteDay = function (day) {
       //console.log("Onsite Day Index:" + day);
-
+      $scope.hourlyBreakDownDate = $scope.days[day].day;
       $scope.showOnsiteHourlyVisitorData(day);
 
     }
