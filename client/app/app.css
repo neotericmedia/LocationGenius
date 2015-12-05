@@ -476,6 +476,22 @@ div.ng-isolate-scope .nav > li > a {
 
 
 
+
+
+.up2 {
+  background-color: black;
+  width: auto;
+  height: auto;
+  color: #fff;
+  padding: 5px 0 5px 10px;
+  border-radius: 7px;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+
+
 .up {
   background-color: #6ebe44;
   width: auto;
@@ -651,7 +667,7 @@ div.ng-isolate-scope .nav > li > a {
 .visitorsA {
    font-size:16px;
    color:#6ebe44;
-   padding: 0 10px 0 10px;
+   padding: 0 0px 0 0px;
 }
 .visitorsB {
    font-size:16px;
