@@ -410,7 +410,10 @@ angular.module('telusLg2App')
       //console.log("Day Index:" + day);
       $scope.dayIndex = day;
       if ($scope.tweetReports.dailyReports[$scope.dayIndex] != null) {
-         $scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
+         //$scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
+
+         $scope.dailyReportDate = formatDate($scope.tweetReports.dailyReports[$scope.dayIndex].day);
+
          $scope.showHourlySocialData($scope.dayIndex);
       }
    }
@@ -509,18 +512,25 @@ angular.module('telusLg2App')
       $scope.onsitefilters = [
         {
           filterId: 1,
-          time: 'Last Weeks',
+          time: 'Last 7 Days',
           showOnsiteLast7Days: function () {
             $scope.getOnsiteDataPreGenReportA();
           }
        },
        {
          filterId: 1,
-         time: 'Last 4 Weeks',
-         showOnsiteLast4Weeks: function () {
+         time: 'Last 14 Days',
+         showOnsiteLast7Days: function () {
             $scope.getOnsiteDataPreGenReportB();
          }
-       }
+      },
+      {
+        filterId: 1,
+        time: 'Last 28 Days',
+        showOnsiteLast7Days: function () {
+           $scope.getOnsiteDataPreGenReportB();
+        }
+      }
       ];
       $scope.selectedOnsiteIndex = 0;
       $scope.selectOnsite = function (i) {
@@ -911,7 +921,7 @@ angular.module('telusLg2App')
 
              // This is the date that goes with time breakdown
              if ($scope.tweetReports.dailyReports[0] != null) {
-               $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+               $scope.dailyReportDate = formatDate($scope.tweetReports.dailyReports[0].day);
              }
 
 
@@ -2665,6 +2675,15 @@ angular.module('telusLg2App')
       return '';
     };
   })
+
+
+
+
+
+
+
+
+
 
 
   .controller('DropdownCtrl', function ($scope, $log) {
