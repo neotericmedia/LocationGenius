@@ -371,7 +371,7 @@ angular.module('telusLg2App')
       var wordData = [];
       wordData.push(item);
       var word;
-      console.log( "Number of words=" + $scope.words.length);
+      //console.log( "Number of words=" + $scope.words.length);
       for(var i=0; i< $scope.words.length;i++ ) {
         if(i==20) {
           break;
@@ -806,7 +806,7 @@ angular.module('telusLg2App')
     //formatting social bar chart dates..
     function formatDate(date) {
          var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-         console.log("Formatting Date=" + date);
+
          var res = date.split(" ");
          var d = res[1];
          res = d.split("-");
@@ -886,7 +886,7 @@ angular.module('telusLg2App')
 
 
                  var formattedDate = formatDate(dailyReports[i].day);
-                 console.log("Date=" + formattedDate);
+                 //console.log("Date=" + formattedDate);
                  item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
                  dailyData.push(item);
 
@@ -1041,7 +1041,7 @@ angular.module('telusLg2App')
             $scope.weekChange = "N/A";
           }
 
-          $scope.dailyOnsiteDate = results.days[0].day;
+
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
@@ -1341,11 +1341,8 @@ angular.module('telusLg2App')
     }
 
     var showOnsiteDay = function (day) {
-      //console.log("Onsite Day Index:" + day);
       $scope.hourlyBreakDownDate = $scope.days[day].day;
       $scope.showOnsiteHourlyVisitorData(day);
-
-
     }
 
     $scope.showOnsiteHourlyVisitorData = function (day) {
@@ -1478,14 +1475,11 @@ angular.module('telusLg2App')
       var durationitem = ['Minutes', 'Number of Visitors in Range', {role: 'style'}];
       durationData.push(durationitem);
 
-      console.log("Number of dwellTimes=" + $scope.durations.length)
       for (var i = 0; i < $scope.durations.length; i++) {
 
         if(i<=5) {
-          console.log("Dwell Time Bucket" + dwellTimeBuckets[i] + " value=" + $scope.durations[i])
           durationitem = [dwellTimeBuckets[i], $scope.durations[i], '#6ebe44'];
         }else {
-          console.log("Other value=" + $scope.durations[i])
           otherTotal += $scope.durations[i];
         }
         durationData.push(durationitem);
