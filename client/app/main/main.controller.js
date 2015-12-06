@@ -1236,8 +1236,8 @@ angular.module('telusLg2App')
         colors: ['#6ebe44'],
         chartArea: {left: 100, top: 60, width: '94%'},
         legend: {position: 'none'},
-        hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-        vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+        hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+        vAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
         fontSize: 11,
         tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
       };
@@ -1267,7 +1267,7 @@ angular.module('telusLg2App')
           //console.log("Loyalty count " + j + ":" + loyaltyCounts[j]);
 
         }
-        for (var j = 0; j < loyaltyCounts.length; j++) {
+        for (var j = 1; j < loyaltyCounts.length; j++) {
           //console.log("Count " + j + ":" + loyaltyCounts[j]);
           loyaltyItem = [j,loyaltyCounts[j], '#6ebe44'];
           loyaltyData.push(loyaltyItem);
