@@ -5,7 +5,6 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
-
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
     var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African", "ASIA":"Asian", "SASIA":"South Asian","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
@@ -102,6 +101,7 @@ angular.module('telusLg2App')
      *  When a new location is selected, generate the reports and add a marker on the map
      *************************************************************************************/
     $scope.setSelectedLocation = function (location) {
+
       //console.log("Setting selected location:" + location.name);
       //document.getElementById("contentArea").style.display = "block";
       $('#contentArea').hide();
@@ -120,6 +120,7 @@ angular.module('telusLg2App')
       //this tells function getReport to function showLast7Days which gets getSocialDayReport. getSocialDayReport tells tweetReports based on location. magic happens in this function.
       $scope.showLast7Days(7);      // Initially we get the last 7 days of data
       $scope.addLocationToMap();
+
     }
 
 
@@ -155,7 +156,6 @@ angular.module('telusLg2App')
         latitude: $scope.currentLocation.center.lat,
         longitude: $scope.currentLocation.center.lon
       };
-
 
     }
 
@@ -824,6 +824,8 @@ angular.module('telusLg2App')
            $scope.currentLocation = LocationResults.getCurrentLocation();
            //console.log("Getting social day reports for Location:" + $scope.currentLocation);
 
+           $scope.loading = true;
+
            // Get the Twitter daily report
            $scope.tweetReports;
            //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
@@ -831,6 +833,8 @@ angular.module('telusLg2App')
            $scope.results = TweetReports.query(params);
 
            $scope.results.$promise.then(function (results) {
+
+
              //console.log("Social Report Results:" + results);
              $scope.tweetReports = results;
              //console.log("Tweet Reports:" + $scope.tweetReports);
@@ -914,6 +918,7 @@ angular.module('telusLg2App')
                    h++;
                  }
                  $scope.hourlyData.push(hourData);
+                 $scope.loading = false;
                }
 
              }
@@ -2692,7 +2697,21 @@ angular.module('telusLg2App')
 
 
 
-
+  .directive('loading', function () {
+      return {
+        restrict: 'E',
+        replace:true,
+        template: '<div class="loading"><img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif" width="20" height="20" />LOADING...</div>',
+        link: function (scope, element, attr) {
+              scope.$watch('loading', function (val) {
+                  if (val)
+                      $(element).show();
+                  else
+                      $(element).hide();
+              });
+        }
+      }
+  })
 
 
 

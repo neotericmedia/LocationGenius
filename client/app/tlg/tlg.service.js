@@ -66,6 +66,8 @@ angular.module('telusLg2App')
   })
 
 
+
+
   .service('OnsitePregenReport', function ($resource) {
     //api/onsite/180?date=2015-04-26
     //108/3?endDate=2015-11-27
