@@ -526,7 +526,7 @@ angular.module('telusLg2App')
       },
       {
         filterId: 1,
-        time: 'Last 28 Days',
+        time: 'Last 21 Days',
         showOnsiteLast7Days: function () {
            $scope.getOnsiteDataPreGenReportB();
         }
@@ -1033,13 +1033,15 @@ angular.module('telusLg2App')
           $scope.onsiteWeek = results.weekName;
 
           $scope.averageVisitorsDay = results.averageVisitorsDay;
+
+
           if(results.weekChange!=null) {
             $scope.weekChange = results.weekChange;
           } else {
             $scope.weekChange = "N/A";
           }
 
-
+          $scope.dailyOnsiteDate = results.days[0].day;
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
@@ -1108,6 +1110,11 @@ angular.module('telusLg2App')
           //var hourlyTotals = results.hourlyBreakdown;
           $scope.onsiteHourlyTotals = results.hourlyData;
 
+          // This is the date that goes with time breakdown
+         //  if ($scope.tweetReports.dailyReports[0] != null) {
+         //    $scope.dailyReportDate = formatDate($scope.tweetReports.dailyReports[0].day);
+         //  }
+
           $scope.durations = results.durations;
 
           $scope.visitordata = google.visualization.arrayToDataTable(dailyVisitorData);
@@ -1152,7 +1159,14 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
            hAxis: {title: "Date", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Visitors", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           vAxis: {
+             title: "Number of Visitors",
+             format:'#',
+             slantedText: false,
+             slantedTextAngle: 45,
+             textStyle: {fontName: 'telusweb', fontSize: 12 },
+             //gridlines: { count: 20 }
+          },
          };
       }
 
@@ -1300,11 +1314,10 @@ angular.module('telusLg2App')
             onsiteLoyaltyChart.draw(data, options);
          });
        }
-
-
-
-
     }
+
+
+
 
 
     /**
@@ -1331,6 +1344,7 @@ angular.module('telusLg2App')
       //console.log("Onsite Day Index:" + day);
       $scope.hourlyBreakDownDate = $scope.days[day].day;
       $scope.showOnsiteHourlyVisitorData(day);
+
 
     }
 
