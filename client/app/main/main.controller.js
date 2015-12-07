@@ -1124,6 +1124,14 @@ angular.module('telusLg2App')
           }
 
 
+          if ($scope.weekChange == 0) {
+            $scope.changeImage = "nute";
+          }
+          if ($scope.weekChange == 0) {
+            $scope.changeIcon = "fa fa-minus";
+          }
+
+
           if ($scope.weekChange > 0) {
             $scope.changeImage = "up";
           }
