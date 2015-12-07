@@ -956,6 +956,7 @@ p.ng-binding, h2 {
   h6 {
     display: none !important;
     float: none!important;
+    margin: 1px!important;
   }
 
 
