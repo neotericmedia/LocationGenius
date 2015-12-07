@@ -230,11 +230,15 @@ i.fa-map-marker {
 
 
 
-.up .fa-angle-up{
-   font-size: 2.5em;
+
+.up:after,.down:after {
+   content:  " % ";
+}
+.fa-minus {
+   font-size: 1em;
    position: absolute;
-   top: -4px;
-   right: 5px;
+   top: 9px;
+   right: 10px;
  }
 .down .fa-angle-down {
     font-size: 2.5em;
@@ -242,6 +246,14 @@ i.fa-map-marker {
     top: -2px;
     right: 5px;
   }
+.up .fa-angle-up {
+   font-size: 2.5em;
+   position: absolute;
+   top: -2px;
+   right: 5px;
+ }
+
+
 
  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
    border-top-left-radius: 10px;
@@ -493,16 +505,21 @@ div.ng-isolate-scope .nav > li > a {
 
 
 
-.up2 {
-  background-color: black;
-  width: auto;
-  height: auto;
-  color: #fff;
-  padding: 5px 0 5px 10px;
-  border-radius: 7px;
-  display: block;
-  float: left;
-  position: relative;
+
+
+.nute {
+   background: #ccc;
+   width: auto;
+   height: auto;
+   color: #fff;
+   padding: 5px 0 5px 10px;
+   border-radius: 7px;
+   display: block;
+   float: left;
+   position: relative;
+}
+.nute .eq:after {
+   content:  " = ";
 }
 
 
@@ -956,6 +973,7 @@ p.ng-binding, h2 {
   h6 {
     display: none !important;
     float: none!important;
+    margin: 1px!important;
   }
 
 
