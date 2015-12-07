@@ -5,6 +5,10 @@ angular.module('telusLg2App')
     var visitorchart;
     var onsiteVisitorChart;
 
+
+
+
+
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
     var ethnicitieLabels = {"ABOO":"Aboriginal", "AFRO":"African", "ASIA":"Asian", "SASIA":"South Asian","CARO":"Carribean","EEUO":"Eastern European","LAMO":"Latin American","NEUO":"Northern European","SEUO":"Southern European","WEUO":"Western European"};
@@ -1206,7 +1210,8 @@ angular.module('telusLg2App')
            },
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
          };
       }
       else {
@@ -1220,12 +1225,8 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {
-             title: "Number of Visitors",
-             format:'#',
-             textStyle: {fontName: 'telusweb', fontSize: 12 },
-             //gridlines: { count: 20 }
-          },
+           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+
          };
       }
 
@@ -1249,7 +1250,8 @@ angular.module('telusLg2App')
               trigger: 'selection'
              },
              hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-             vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
             onsiteVisitorChart.draw($scope.visitordata, options);
         });
@@ -1266,7 +1268,8 @@ angular.module('telusLg2App')
              fontSize: 11,
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
              hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-             vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
             onsiteVisitorChart.draw($scope.visitordata, options);
         });

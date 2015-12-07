@@ -391,9 +391,9 @@
                                        <accordion close-others="oneAtATime">
 
 
-                                         <accordion-group is-open="true" >
+                                         <accordion-group is-open="status.open">
                                           <accordion-heading>
-                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef">On-Site Highlights at a Glance</h4>
+                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
                                              <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
@@ -411,6 +411,11 @@
                                            </div>
 
                                          </accordion-group>
+
+
+
+
+
 
                                        </accordion>
 
@@ -493,11 +498,11 @@
 
 
 
-                                 <div class="row">
+                                 <!--<div class="row">
                                     <div class="col-lg-12">
                                        <div style="padding: 15px 0px 0px 18px; color: #999; font-size: .85em">&#42;Daily selections for both New and Existing Visitors, represents the same Hourly Breakdown; details following this chart.</div>
                                     </div>
-                                 </div>
+                                 </div>-->
 
 
 
