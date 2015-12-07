@@ -1301,7 +1301,7 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
            hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           vAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
       else {
@@ -1316,7 +1316,6 @@ angular.module('telusLg2App')
            isStacked: true,
            hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {
-             minValue: 0, gridlines:{ color:'transparent' },
              title: "Number of Visitors",
              format:'#',
              slantedText: false,
@@ -1394,7 +1393,7 @@ angular.module('telusLg2App')
               legend: {position: 'none'},
               fontSize: 11,
               hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
@@ -1411,7 +1410,7 @@ angular.module('telusLg2App')
               legend: {position: 'none'},
               fontSize: 11,
               hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
