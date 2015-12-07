@@ -1236,7 +1236,7 @@ angular.module('telusLg2App')
         colors: ['#6ebe44'],
         chartArea: {left: 100, top: 60, width: '94%'},
         legend: {position: 'none'},
-        hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+        hAxis: {minValue: 1, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
         vAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
         fontSize: 11,
         tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1484,14 +1484,15 @@ angular.module('telusLg2App')
 
         if(i<=5) {
           durationitem = [dwellTimeBuckets[i], $scope.durations[i], '#6ebe44'];
+          durationData.push(durationitem);
         }else {
           otherTotal += $scope.durations[i];
         }
-        durationData.push(durationitem);
       }
 
       if(otherTotal>0) {
         durationitem = ["180+", otherTotal, '#6ebe44'];
+        //console.log("Adding 180+ " + otherTotal);
         durationData.push(durationitem);
       }
 
