@@ -1211,7 +1211,7 @@ angular.module('telusLg2App')
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
-           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
          };
       }
       else {
@@ -1225,7 +1225,7 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
 
          };
       }
@@ -1251,7 +1251,7 @@ angular.module('telusLg2App')
              },
              hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
-             vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
             onsiteVisitorChart.draw($scope.visitordata, options);
         });
@@ -1269,7 +1269,7 @@ angular.module('telusLg2App')
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
              hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
-             vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
             onsiteVisitorChart.draw($scope.visitordata, options);
         });
@@ -1300,8 +1300,8 @@ angular.module('telusLg2App')
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
-           hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
       else {
@@ -1314,8 +1314,9 @@ angular.module('telusLg2App')
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            isStacked: true,
-           hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {
+             minValue: 0, gridlines:{ color:'transparent' },
              title: "Number of Visitors",
              format:'#',
              slantedText: false,
@@ -1392,8 +1393,8 @@ angular.module('telusLg2App')
               chartArea: {left: 50, top: 60, width: '94%'},
               legend: {position: 'none'},
               fontSize: 11,
-              hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
@@ -1409,8 +1410,8 @@ angular.module('telusLg2App')
               chartArea: {left: 100, top: 60, width: '94%'},
               legend: {position: 'none'},
               fontSize: 11,
-              hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
@@ -1583,10 +1584,10 @@ angular.module('telusLg2App')
 
         if(i<=5) {
           durationitem = [dwellTimeBuckets[i], $scope.durations[i], '#6ebe44'];
+          durationData.push(durationitem);
         }else {
           otherTotal += $scope.durations[i];
         }
-        durationData.push(durationitem);
       }
 
       if(otherTotal>0) {

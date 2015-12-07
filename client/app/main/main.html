@@ -211,15 +211,9 @@
                           <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
-                                <accordion-group is-open="true" >
-                                 <h5>
-                                  <accordion-heading>
-                                    <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Social Highlights at a Glance</h4>
-                                    <!--<div style="display:block;margin-top:14px;">
-                                      <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                       <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
-                                      </span>
-                                    </div>-->
+                                <accordion-group is-open="status.isFirstOpen" >
+                                 <accordion-heading>
+                                        <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</h4>
                                  </accordion-heading>
 
 
@@ -391,9 +385,9 @@
                                        <accordion close-others="oneAtATime">
 
 
-                                         <accordion-group is-open="status.open">
+                                         <accordion-group is-open="status.isFirstOpen" >
                                           <accordion-heading>
-                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
+                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
                                              <!--<div style="display:block;margin-top:14px;">
                                                <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                                 <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
