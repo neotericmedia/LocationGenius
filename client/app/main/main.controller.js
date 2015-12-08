@@ -1223,7 +1223,7 @@ angular.module('telusLg2App')
            legend: {position: 'none'},
            fontSize: 11,
            tooltip: {textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           focusTarget: 'category',
+           //focusTarget: 'category',
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
