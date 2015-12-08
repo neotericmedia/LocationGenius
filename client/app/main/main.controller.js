@@ -1222,13 +1222,31 @@ angular.module('telusLg2App')
            chartArea: {left: 100, top: 60, width: '94%'},
            legend: {position: 'none'},
            fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+           tooltip: {textStyle: { fontName: 'telusweb', fontSize: 12 } },
+           focusTarget: 'category',
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
 
          };
       }
+
+
+         // Create and draw the visualization.
+         // new google.visualization.ColumnChart(document.getElementById('custom_html_content_div')).draw(dataTable, options);
+         // }
+
+         // function createCustomHTMLContent(flagURL, totalGold, totalSilver, totalBronze) {
+         // return '<div style="padding:5px 5px 5px 5px;">' +
+         //     '<img src="' + flagURL + '" style="width:75px;height:50px"><br/>' +
+         //     '<table class="medals_layout">' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Gold_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalGold + '</b></td>' + '</tr>' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Silver_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalSilver + '</b></td>' + '</tr>' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Bronze_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalBronze + '</b></td>' + '</tr>' + '</table>' + '</div>';
+         // }
 
 
       onsiteVisitorChart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
