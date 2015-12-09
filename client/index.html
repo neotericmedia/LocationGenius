@@ -23,7 +23,6 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-      <link rel="stylesheet" href="bower_components/jqcloud2/dist/jqcloud.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -47,9 +46,7 @@
        .angular-google-map-container { position: absolute; top:0px; left:0px; height: 100%; width:100%; font-family: 'Roboto', sans-serif; margin-left: 0px;margin-right: 0px;background-color: #ffffff;}
     </style>
 
-    <style>
-      #cloud-dynamic { width: 80%; height: 400px; }
-    </style>
+
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -88,24 +85,16 @@
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
       <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
-      <script src="bower_components/json3/lib/json3.js"></script>
-      <script src="bower_components/jqcloud2/dist/jqcloud.js"></script>
-      <script src="bower_components/angular-jqcloud/angular-jqcloud.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
     <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
-    <script src="bower_components/jqcloud2/dist/jqcloud.min.js"></script>
-
-    <script src="assets/js/Tile.js"></script>
-    <script src="assets/js/Demographics.js"></script>
-    <script src="assets/js/jqext.js"></script>
 
 
         <!-- build:js({.tmp,client}) app/app.js -->
@@ -117,7 +106,6 @@
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
-          <script src="app/main/angular-jqcloud.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/tlg/tlg.service.js"></script>

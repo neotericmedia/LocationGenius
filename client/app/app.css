@@ -49,7 +49,22 @@ PANTONE 2745 C
   width: 100%;
 }*/
 
-
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -75px;
+  width: 130px;
+  text-align: center;
+  height: auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 10000;
+  background: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
 /* fonts */
 .legend {
    display: block;
@@ -215,11 +230,15 @@ i.fa-map-marker {
 
 
 
-.up .fa-angle-up{
-   font-size: 2.5em;
+
+.up:after,.down:after {
+   content:  " % ";
+}
+.fa-minus {
+   font-size: 1em;
    position: absolute;
-   top: -4px;
-   right: 5px;
+   top: 9px;
+   right: 10px;
  }
 .down .fa-angle-down {
     font-size: 2.5em;
@@ -227,6 +246,14 @@ i.fa-map-marker {
     top: -2px;
     right: 5px;
   }
+.up .fa-angle-up {
+   font-size: 2.5em;
+   position: absolute;
+   top: -2px;
+   right: 5px;
+ }
+
+
 
  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
    border-top-left-radius: 10px;
@@ -476,6 +503,27 @@ div.ng-isolate-scope .nav > li > a {
 
 
 
+
+
+
+
+.nute {
+   background: #ccc;
+   width: auto;
+   height: auto;
+   color: #fff;
+   padding: 5px 0 5px 10px;
+   border-radius: 7px;
+   display: block;
+   float: left;
+   position: relative;
+}
+.nute .eq:after {
+   content:  " = ";
+}
+
+
+
 .up {
   background-color: #6ebe44;
   width: auto;
@@ -542,7 +590,7 @@ div.ng-isolate-scope .nav > li > a {
     color: #fff;
 }
 .glyphicon-chevron-down {
-    color: red;
+    color: #49166d;
 }
 
 
@@ -651,7 +699,7 @@ div.ng-isolate-scope .nav > li > a {
 .visitorsA {
    font-size:16px;
    color:#6ebe44;
-   padding: 0 10px 0 10px;
+   padding: 0 0px 0 0px;
 }
 .visitorsB {
    font-size:16px;
