@@ -1355,7 +1355,7 @@ angular.module('telusLg2App')
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
-           hAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {title: "Number of Minutes", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
@@ -1372,7 +1372,7 @@ angular.module('telusLg2App')
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
-           hAxis: {title: "Number of Visitors", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {title: "Number of Minutes", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
            fontSize: 11,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
