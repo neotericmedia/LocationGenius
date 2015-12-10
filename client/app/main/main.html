@@ -104,6 +104,7 @@
 
 <div id="contentArea" class="content">
 <div class="container">
+  <a href="javascript:demoFromHTML()" class="button">Save as page PDF</a>
   <div class="row">
 
 
@@ -211,21 +212,21 @@
                           <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
-<<<<<<< HEAD
+
                                 <accordion-group is-open="true" >
 
                                   <accordion-heading>
                                     <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Social Highlights at a Glance</h4>
-                                    <!--<div style="display:block;margin-top:14px;">
+                                    <div style="display:block;margin-top:14px;">
                                       <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
                                        <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
                                       </span>
-                                    </div>-->
-=======
+                                    </div>
+
                                 <accordion-group is-open="status.isFirstOpen" >
                                  <accordion-heading>
                                         <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</h4>
->>>>>>> master
+
                                  </accordion-heading>
 
 
@@ -526,10 +527,10 @@
 
 
 
-                               <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                 <h3>
+                               <div class="col-md-11 col-md-offset-1" style="margin-left:0;">
+
                                    <div id="onsite_visitors_barchart_div"></div>
-                                   </h3>
+
                                </div>
                            </div>
                       </div>
@@ -561,7 +562,7 @@
 
                      <div class="panel panel-default graphPanel">
                        <div class="panel-body" >
-                         <h4>Repeat Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
+                         <h4 id="repeatvisitors">Repeat Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
 
 
                          <div class="row">
