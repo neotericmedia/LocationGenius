@@ -18,9 +18,7 @@ exports.index = function(req, res) {
        }
    }, function(error, response, body){
        if(error) {
-           console.log(error);
        } else {
-           //console.log(body);
            res.send(body)
        }
    });
@@ -40,12 +38,6 @@ exports.index = function(req, res) {
 //@RequestMapping(value = "/{uid}/location/{id}", method= RequestMethod.GET)
 //http://192.99.16.178:9101/user/lgweb/location/180
 exports.show = function(req, res) {
-  //Locations.findById(req.params.id, function (err, locations) {
-  //  if(err) { return handleError(res, err); }
-  //  if(!locations) { return res.send(404); }
-  //  return res.json(locations);
-  //});
-  console.log("Getting location:" + req.params.userid);
   request({
     url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     //url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
@@ -55,9 +47,7 @@ exports.show = function(req, res) {
     }
   }, function(error, response, body){
     if(error) {
-      console.log(error);
     } else {
-      //console.log(body);
       res.send(body)
     }
   });
@@ -78,7 +68,6 @@ exports.show = function(req, res) {
 //  "uid": "lgweb"
 //}
 exports.create = function(req, res) {
-  console.log("Adding location:" + JSON.stringify(req.body));
   request({
     //url: 'http://localhost:9100/user/' + req.params.user + '/location',
     //url: 'http://192.99.16.178:9100/user/' + req.params.user + '/location',
@@ -91,9 +80,7 @@ exports.create = function(req, res) {
     json: true
   }, function(error, response, body){
     if(error) {
-      console.log("Error:" + error);
     } else {
-      //console.log("Response:" + JSON.stringify(body));
       res.send(body)
     }
   });
@@ -104,7 +91,6 @@ exports.create = function(req, res) {
 //@RequestMapping(value = "/{uid}/location/{id}", method= RequestMethod.PUT)
 //http://localhost:9000/api/locations/lgweb/101
 exports.update = function(req, res) {
-  console.log("Updating location:" + JSON.stringify(req.body));
   request({
     url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     //url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
@@ -117,9 +103,7 @@ exports.update = function(req, res) {
     json: true
   }, function(error, response, body){
     if(error) {
-      console.log("Error:" + error);
     } else {
-      //console.log("Response:" + JSON.stringify(body));
       res.send(body)
     }
   });
@@ -129,7 +113,6 @@ exports.update = function(req, res) {
 // Deletes a locations from the DB.
 //@RequestMapping(value = "/{uid}/location/{id}", method= RequestMethod.DELETE)
 exports.destroy = function(req, res) {
-  console.log("Deleting location:" + req.params.id);
   request({
     url: 'http://10.117.192.55:9100/user/' + req.params.userid + '/location/' + req.params.id,
     //url: 'http://192.99.16.178:9100/user/' + req.params.userid + '/location/' + req.params.id,
@@ -140,9 +123,7 @@ exports.destroy = function(req, res) {
     }
   }, function(error, response, body){
     if(error) {
-      console.log(error);
     } else {
-      //console.log(body);
       res.send(body)
     }
   });

@@ -1,4 +1,4 @@
-
+le
 /**
  * Bootstrap Fonts
  */
@@ -854,6 +854,10 @@ p.ng-binding, h2 {
   .dropdown-toggle {
      float: left;
   }
+  .slide {height:100px;
+    background-color:#ccc
+  }
+
   .dropdown-menu {
      width: 90%;
      margin-left: 45px;
@@ -925,14 +929,22 @@ p.ng-binding, h2 {
 
 @media print {
 
-  body{
+  body {
     float: none !important;
     page-break-inside:auto !important;
     overflow-x:visible !important;
     overflow-y:visible !important;
+    margin-left: 0 !important;
+    top: 130px;
+    width: 800px;
   }
 
+
   #searchbar {
+    display:none !important;
+  }
+
+  #map-canvas {
     display:none !important;
   }
   #banner {
@@ -943,37 +955,97 @@ p.ng-binding, h2 {
     display:none !important;
   }
 
+  .subTxt {
+    margin-top: 18px; !important;
+    font-size: 1.5em;
+    /*top: 10px; */
+    position: relative;
+
+  }
+
+  .slide {height:0;
+    display: none;
+  }
+
+
   h1 {
-    margin-top: -10%; !important;
-    font-size: 5em;
+    /*margin-top: -16%; !important; */
+    font-size: 4em;
+    top: 30px;
+    position: relative;
+
+  }
+
+  .contentArea {
+    position: relative;
+    top: 0;
   }
 
   tab-heading {
     font-size: 1.5em !important;
+    top: 25%;
+    position:center !important;
   }
 
-  h3 {
-   /* page-break-after: always !important; /*for barchart and line*/
-    margin-bottom: 26% !important;
+  .barchart_div {
+
+    margin-left: 0 !important;
+    /*!*page-break-after: always !important; !*for barchart and line*!
+    margin-bottom: 26% !important;*/
+  }
+
+  .linechart_div {
+    page-break-before: avoid !important;
+    margin-left: -5% !important;
+    margin-bottom: 20%
+
+  }
+
+  .wordbarchart_div{
+
+    page-break-before: avoid !important;
+  }
+
+  .engage {
+    page-break-before: always !important;
   }
 
   h2 {
-    page-break-before: always !important; /*for top 20 */
+    page-break-after: always !important; /*for top 20 */
     margin-bottom: 1px !important;
   }
 
   h4 {
-    margin-top: 5%;
+    float:none !important;
   }
   h5{
-    margin-bottom: 20px;
+    page-break-before: avoid !important;
+    margin-bottom: 5% !Important;
   }
+  .top20mentions {
+    margin-top:10% !important;
+    page-break-before: always !important;
+  }
+
+   /* page-break-inside: avoid !important;
+    page-break-after:avoid !important;*/
+  }
+  body:not(:-moz-handler-blocked).top20mentions {
+    page-break-before: always !important;
+  }
+
+  @-moz-document url-prefix {
+    .top20mentions {
+      page-break-before: always !important;
+    }
+  }
+
 
 
   h6 {
     display: none !important;
     float: none!important;
-    margin: 1px!important;
+
   }
 
 
@@ -986,7 +1058,7 @@ p.ng-binding, h2 {
     display:none;
   }
   .gmnoprint div {
-    background:none !important;
+    display:none !important;
   }
 
-}
+
