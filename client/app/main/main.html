@@ -104,7 +104,6 @@
 
 <div id="contentArea" class="content">
 <div class="container">
-  <a href="javascript:demoFromHTML()" class="button">Save as page PDF</a>
   <div class="row">
 
 
@@ -173,7 +172,244 @@
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-           <tab ng-click="selected($index);showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+
+             <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
+
+               <tab-heading>Your Location</tab-heading>
+
+               <div class="date">{{onsiteWeek}}</div>
+
+               <div id="miniTab" class="row">
+                 <div class="col-md-12">
+                   <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
+                     <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
+                       <li>
+                         <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
+                       </li>
+                     </ul>
+                   </div>
+                   <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
+                     <tab heading="Last Week" ng-click="showLast7Days()"></tab>
+                     <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
+                     <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
+                     <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
+                     <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
+                  </tabset>-->
+                 </div>
+               </div>
+
+
+
+
+               <div class="row">
+                 <div class="col-md-6">
+
+                   <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
+
+                     <div ng-controller="AccordionDemoCtrl">
+
+                       <accordion close-others="oneAtATime">
+
+
+                         <accordion-group is-open="status.isFirstOpen" >
+                           <accordion-heading>
+                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
+                             <!--<div style="display:block;margin-top:14px;">
+                               <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
+                                <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
+                               </span>
+                             </div>-->
+                           </accordion-heading>
+
+                           <div class="well well-lg highlightsPanel" style="margin-top:0px">
+                             <ul style="margin-bottom:0px;">
+                               <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+                               <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                               <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}} Minutes</span></li>
+                               <!--<li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>-->
+                             </ul>
+                           </div>
+
+                         </accordion-group>
+
+
+
+
+
+
+                       </accordion>
+
+                     </div>
+
+                   </div>
+                 </div>
+
+
+
+
+                 <div class="col-md-3" style="text-align:right;">
+                   <br>
+                 </div>
+               </div>
+
+
+
+
+
+
+
+
+               <div class="panel panel-default graphPanel">
+                 <div class="panel-body" >
+
+
+                   <div class="row">
+                     <div class="col-md-12">
+                       <br>
+                       <h4>Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
+                     </div>
+                   </div>
+
+
+
+                   <div class="row">
+                     <div class="col-lg-12">
+
+                       <div style="float:left; margin-right:20px;">
+                         <div class="totals">
+                                         <span class="totalBorderB">
+                                           <span class="visitorsA">{{onsiteVisitorsWeek | number}}</span>
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Total Visitors</span>
+                         </div>
+                       </div>
+
+
+                       <div style="float:left; margin-right:20px;">
+                         <div class="totals">
+                                         <span class="{{changeImage}}" style="padding-right:30px;">
+                                           <span class="visitorsB">{{weekChange | number:1}}</span>
+                                           <span id="changeIcon" class="{{changeIcon}}"></span>
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
+                         </div>
+                       </div>
+
+
+                       <div style="float:left">
+                         <div class="totals">
+                                         <span class="totalBorderB">
+                                           <span class="visitorsA">{{averageVisitorsDay | number}}</span>
+                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
+                         </div>
+                       </div>
+
+
+                       <div class="legend">
+                         <div class="cNewA">
+                           <div class="cNewB"></div>Existing Visitors
+                         </div>
+                         <div class="cNewC">
+                           <div class="cAll"></div>New Visitors
+                         </div>
+                       </div>
+
+
+                       <div style="clear: both"></div>
+                     </div>
+
+
+
+                     <!--<div class="row">
+                        <div class="col-lg-12">
+                           <div style="padding: 15px 0px 0px 18px; color: #999; font-size: .85em">&#42;Daily selections for both New and Existing Visitors, represents the same Hourly Breakdown; details following this chart.</div>
+                        </div>
+                     </div>-->
+
+
+
+
+
+
+
+
+
+                   </div>
+
+
+
+                   <div class="col-md-11 col-md-offset-1" style="margin-left:0;">
+
+                     <div id="onsite_visitors_barchart_div"></div>
+
+                   </div>
+                 </div>
+               </div>
+
+
+
+
+
+
+
+               <div class="panel panel-default graphPanel">
+                 <div class="panel-body" >
+
+                   <h4>Hourly Breakdown <span class="locateSub">Average for {{hourlyBreakDownDate}}</span></h4>
+
+                   <div class="totals">
+                                <span class="totalBorderB" style="width: 130px">
+                                  <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Busiest Hour (average)</span>
+                   </div>
+
+                   <div class="row">
+                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                       <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="panel panel-default graphPanel">
+                 <div class="panel-body" >
+                   <h4 id="repeatvisitors">Repeat Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
+
+
+                   <div class="row">
+                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                       <div id="onsite_loyalty_chart_div"></div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+
+               <div class="panel panel-default graphPanel">
+                 <div class="panel-body" >
+                   <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span></h4>
+
+                   <div class="totals">
+                                <span class="totalBorderB">
+                                  <span class="visitorsA">{{averageVisitDuration}} MIN</span>
+                               </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration</span>
+                   </div>
+
+                   <div class="row">
+                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                       <div id="onsite_visitor_chart_div"></div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </tab>
+
+
+
+
+             <!--END ON-SITE TAB-->
+
+
+
+             <tab ng-click="selected($index);showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
               <tab-heading>Your Social Media</tab-heading>
@@ -234,7 +470,7 @@
                                   <div ng-controller="FilterController" class="well well-lg highlightsPanel" style="margin-top:0px">
 
                                     <ul style="margin-bottom:0px;">
-                                      <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
+                                      <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> social media activity from <span class="hLight">{{dateRange}}</span></li>
                                       <li>Highest Tweeted Hour: <span class="hLight" ng-bind = "hhmmsstt">{{highestTweetedHour }}</span></li>
                                       <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
                                       <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
@@ -267,7 +503,7 @@
 
                              <div class="row">
                                  <div class="col-md-9">
-                                   <h4 class="engage">Engagements <span class="locateSub">{{dateRange}}</span></h4>
+                                   <h4 class="engage">Social Media Activity <span class="locateSub">{{dateRange}}</span></h4>
                                  </div>
                              </div>
 
@@ -280,7 +516,7 @@
                                   <div class="totals">
                                     <span class="totalBorderB">
                                       <span class="visitorsA">{{totalInteractions}}</span>
-                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Engagements</span>
+                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Social Media Activity</span>
                                   </div>
                                   <h3>
                                    <div id="barchart_div"></div>
@@ -364,276 +600,6 @@
 
 
            <!--////////////////////////////////////ON-SITE DATA-->
-           <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
-
-               <tab-heading>Your Location</tab-heading>
-
-                      <div class="date">{{onsiteWeek}}</div>
-
-                      <div id="miniTab" class="row">
-                       <div class="col-md-12">
-                          <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
-                              <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
-                                 <li>
-                                    <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
-                                 </li>
-                              </ul>
-                          </div>
-                          <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
-                            <tab heading="Last Week" ng-click="showLast7Days()"></tab>
-                            <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
-                            <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                            <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
-                            <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
-                         </tabset>-->
-                       </div>
-                     </div>
-
-
-
-
-                      <div class="row">
-                          <div class="col-md-6">
-
-                                <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
-
-                                    <div ng-controller="AccordionDemoCtrl">
-
-                                       <accordion close-others="oneAtATime">
-
-
-                                         <accordion-group is-open="status.isFirstOpen" >
-                                          <accordion-heading>
-                                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
-                                             <!--<div style="display:block;margin-top:14px;">
-                                               <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                                <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
-                                               </span>
-                                             </div>-->
-                                          </accordion-heading>
-
-                                          <div class="well well-lg highlightsPanel" style="margin-top:0px">
-                                                <ul style="margin-bottom:0px;">
-                                                  <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
-                                                  <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
-                                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}} Minutes</span></li>
-                                                  <!--<li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>-->
-                                                </ul>
-                                           </div>
-
-                                         </accordion-group>
-
-
-
-
-
-
-                                       </accordion>
-
-                                    </div>
-
-                                </div>
-                          </div>
-
-
-
-
-                          <div class="col-md-3" style="text-align:right;">
-                               <br>
-                            </div>
-                     </div>
-
-
-
-
-
-
-
-
-                      <div class="panel panel-default graphPanel">
-                           <div class="panel-body" >
-
-
-                             <div class="row">
-                                   <div class="col-md-12">
-                                      <br>
-                                      <h4>Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
-                                   </div>
-                             </div>
-
-
-
-                              <div class="row">
-                                <div class="col-lg-12">
-
-                                    <div style="float:left; margin-right:20px;">
-                                       <div class="totals">
-                                         <span class="totalBorderB">
-                                           <span class="visitorsA">{{onsiteVisitorsWeek | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Total Visitors</span>
-                                       </div>
-                                    </div>
-
-
-                                    <div style="float:left; margin-right:20px;">
-                                       <div class="totals">
-                                         <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weekChange | number:1}}</span>
-                                           <span id="changeIcon" class="{{changeIcon}}"></span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
-                                       </div>
-                                    </div>
-
-
-                                    <div style="float:left">
-                                       <div class="totals">
-                                         <span class="totalBorderB">
-                                           <span class="visitorsA">{{averageVisitorsDay | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
-                                       </div>
-                                    </div>
-
-
-                                    <div class="legend">
-                                       <div class="cNewA">
-                                          <div class="cNewB"></div>Existing Visitors
-                                       </div>
-                                       <div class="cNewC">
-                                          <div class="cAll"></div>New Visitors
-                                       </div>
-                                    </div>
-
-
-                                    <div style="clear: both"></div>
-                                </div>
-
-
-
-                                 <!--<div class="row">
-                                    <div class="col-lg-12">
-                                       <div style="padding: 15px 0px 0px 18px; color: #999; font-size: .85em">&#42;Daily selections for both New and Existing Visitors, represents the same Hourly Breakdown; details following this chart.</div>
-                                    </div>
-                                 </div>-->
-
-
-
-
-
-
-
-
-
-                              </div>
-
-
-
-                               <div class="col-md-11 col-md-offset-1" style="margin-left:0;">
-
-                                   <div id="onsite_visitors_barchart_div"></div>
-
-                               </div>
-                           </div>
-                      </div>
-
-
-
-
-
-
-
-                      <div class="panel panel-default graphPanel">
-                           <div class="panel-body" >
-
-                              <h4>Hourly Breakdown <span class="locateSub">Average for {{hourlyBreakDownDate}}</span></h4>
-
-                              <div class="totals">
-                                <span class="totalBorderB" style="width: 130px">
-                                  <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
-                               </span>&nbsp;&nbsp;<span style="line-height:35px">Busiest Hour (average)</span>
-                              </div>
-
-                              <div class="row">
-                                   <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                      <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
-                                   </div>
-                              </div>
-                           </div>
-                      </div>
-
-                     <div class="panel panel-default graphPanel">
-                       <div class="panel-body" >
-                         <h4 id="repeatvisitors">Repeat Visitors <span class="locateSub">{{onsiteWeek}}</span></h4>
-
-
-                         <div class="row">
-                           <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                             <div id="onsite_loyalty_chart_div"></div>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-
-
-                      <div class="panel panel-default graphPanel">
-                           <div class="panel-body" >
-                              <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span></h4>
-
-                              <div class="totals">
-                                <span class="totalBorderB">
-                                  <span class="visitorsA">{{averageVisitDuration}} MIN</span>
-                               </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration</span>
-                              </div>
-
-                              <div class="row">
-                                   <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                      <div id="onsite_visitor_chart_div"></div>
-                                   </div>
-                              </div>
-                           </div>
-                      </div>
-           </tab>
-
-
-
-
-           <!--END ON-SITE TAB-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </tabset>
         </div>
         <!--TABS END-->
