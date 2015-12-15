@@ -1675,8 +1675,8 @@ angular.module('telusLg2App')
                  textStyle: { fontName: 'telusweb', fontSize: 12 }
              },
              fontSize: 15,
-             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 30 }},
-             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 30 }},
+             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
            };
            linechart.draw(minutesData, options);
@@ -1693,8 +1693,8 @@ angular.module('telusLg2App')
                  textStyle: { fontName: 'telusweb', fontSize: 12 }
              },
              fontSize: 15,
-             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 30 }},
-             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 30 }},
+             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
            };
            linechart.draw(minutesData, options);
