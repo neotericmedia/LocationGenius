@@ -175,7 +175,7 @@
 
              <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
-               <tab-heading>Your Location</tab-heading>
+               <tab-heading>Location View</tab-heading>
 
                <div class="date">{{onsiteWeek}}</div>
 
@@ -226,7 +226,7 @@
                                <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
                                <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
                                <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration}} Minutes</span></li>
-                               <!--<li>Top Visitor by Postal Code: Customer <span class="hLight">{{mostFrequentCustomer}}</span>, postal code <span class="hLight">{{onsiteMostPostalCode}}</span></li>-->
+                               <li>Average Busiest hour <span class="hLight">{{busiestHourDay}} {{mostVisitedHour}}</span></li>
                              </ul>
                            </div>
 
@@ -412,7 +412,7 @@
              <tab ng-click="selected($index);showDailySocialData();showLast7Days();showHourlySocialData();getSocialDayReport();showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
               <!--<tab-heading><i class="fa fa-users"></i> Social</tab-heading>-->
-              <tab-heading>Your Social Media</tab-heading>
+              <tab-heading>Social Media View</tab-heading>
 
                  <div class="date">{{dateRange}}</div>
 
@@ -539,13 +539,13 @@
                            <div class="panel-body">
                               <div class="row">
                                    <div class="col-md-9">
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
                                        <h4 class="hourz">Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
-=======
+<!--=======-->
 
                                        <h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
 
->>>>>>> master
+<!--&gt;>>>>>> master-->
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>
@@ -567,7 +567,7 @@
                          <div class="panel-body">
                            <div class="row">
                              <div class="col-md-9">
-                               <h4 class="top20mentions">Top 20 Mentions in your Area</h4>
+                               <h4 class="top20mentions">Trending Keywords in Your Area</h4>
                              </div>
                            </div>
                            <div class="row">
