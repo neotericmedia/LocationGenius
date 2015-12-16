@@ -123,7 +123,10 @@ div.jqcloud span { padding: 0; }
 
 
 
-
+.navbar {
+  position:fixed;
+  float:right;
+}
 
 #wordcloud {
    width: 300px;
