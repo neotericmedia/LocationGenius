@@ -449,35 +449,22 @@
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
 
-                                <accordion-group is-open="true" >
+                                <accordion-group is-open="status.isFirstOpen">
 
-                                  <accordion-heading>
-                                    <h4 style="font-size:20px; margin-bottom:0px;" class="beef">Social Highlights at a Glance</h4>
-                                    <div style="display:block;margin-top:14px;">
-                                      <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                       <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
-                                      </span>
-                                    </div>
-
-                                <accordion-group is-open="status.isFirstOpen" >
                                  <accordion-heading>
                                         <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</h4>
-
                                  </accordion-heading>
-
-
 
                                   <div ng-controller="FilterController" class="well well-lg highlightsPanel" style="margin-top:0px">
 
                                     <ul style="margin-bottom:0px;">
-                                      <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> social media activity from <span class="hLight">{{dateRange}}</span></li>
+                                      <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
                                       <li>Highest Tweeted Hour: <span class="hLight" ng-bind = "hhmmsstt">{{highestTweetedHour }}</span></li>
                                       <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
                                       <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
 
                                     </ul>
                                   </div>
-
 
                                 </accordion-group>
                              </accordion>
@@ -539,13 +526,7 @@
                            <div class="panel-body">
                               <div class="row">
                                    <div class="col-md-9">
-<!--<<<<<<< HEAD-->
                                        <h4 class="hourz">Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
-<!--=======-->
-
-                                       <h4>Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
-
-<!--&gt;>>>>>> master-->
                                    </div>
                                    <!--<div class="col-md-4 col-md-offset-8 ">
                                        <span class="date2"> {{dailyReportDate | capitalize}} </span>

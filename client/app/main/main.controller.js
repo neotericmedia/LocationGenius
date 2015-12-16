@@ -522,7 +522,6 @@ angular.module('telusLg2App')
          };
       }
 
-
       var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
       var hours = $scope.hourlyData[day];
       var hourly = google.visualization.arrayToDataTable(hours);
