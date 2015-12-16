@@ -124,7 +124,6 @@ div.jqcloud span { padding: 0; }
 
 
 .navbar {
-  position:fixed;
   float:right;
 }
 
@@ -911,6 +910,10 @@ p.ng-binding, h2 {
   .tst {
     float: right;
   }
+  .navbar {
+    position:fixed;
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 75em) {
   /* 1200 =================================================== */
@@ -1074,5 +1077,3 @@ p.ng-binding, h2 {
   .gmnoprint div {
     display:none !important;
   }
-
-
