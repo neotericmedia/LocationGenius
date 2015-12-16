@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
+  .controller('MainCtrl', function ($scope,  User, Auth, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
     var visitorchart;
     var onsiteVisitorChart;
 
 
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
 
 
@@ -19,17 +23,34 @@ angular.module('telusLg2App')
       $scope.words.splice(-5);
     };
 
-    // Get the locations from the Location Service
+
+
     $http({
       method: 'GET',
       url: '/api/locations',
-      // headers: {
-      //     'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==',
-      // }
     })
-      .success(function (locations) {
-        $scope.locations = locations;
-      })
+    .success(function (locations) {
+      $scope.locations = locations;
+    })
+
+
+    // $http({
+    //   method: 'GET',
+    //   url: '/api/locations',
+    // })
+    // .success(function (locations) {
+    //   if ($scope.getCurrentUser().name === "Admin" || $scope.getCurrentUser().name === "pattUser") {
+    //       $scope.locations = locations;
+    //       console.log('user has access, guy')
+    //   }
+    //   if ($scope.getCurrentUser().name != "pattUser" && $scope.getCurrentUser().name != "Admin") {
+    //     console.log('user does not have access, guy')
+    //   }
+    // })
+
+
+
+
 
 
 
