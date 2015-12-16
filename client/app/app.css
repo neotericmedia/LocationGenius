@@ -1,4 +1,4 @@
-le
+
 /**
  * Bootstrap Fonts
  */
@@ -996,9 +996,13 @@ p.ng-binding, h2 {
 
   .linechart_div {
     page-break-before: avoid !important;
-    margin-left: -5% !important;
-    margin-bottom: 20%
+    margin-left: 0 !important;
+    margin-bottom: 20%;
 
+  }
+
+  .onsite_visitors_barchart_div {
+    margin-left:0 !important;
   }
 
   .wordbarchart_div{
@@ -1011,12 +1015,21 @@ p.ng-binding, h2 {
   }
 
   h2 {
-    page-break-after: always !important; /*for top 20 */
+    /*page-break-after: always !important; /*for top 20 */
     margin-bottom: 1px !important;
+  }
+
+  .repeatvisitors {
+    display: inline !important;
+  }
+
+  .onsite_loyalty_chart_div {
+    margin-top:5px;
   }
 
   h4 {
     float:none !important;
+    margin-bottom: auto;
   }
   h5{
     page-break-before: avoid !important;
@@ -1039,8 +1052,6 @@ p.ng-binding, h2 {
       page-break-before: always !important;
     }
   }
-
-
 
   h6 {
     display: none !important;
