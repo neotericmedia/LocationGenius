@@ -14,6 +14,12 @@ angular.module('telusLg2App')
         controller: 'SignupCtrl',
         authenticate: true
       })
+        .state('support', {
+            url: '/support',
+            templateUrl: 'app/account/support/support.html',
+            controller: 'SupportCtrl',
+            authenticate: true
+        })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',
