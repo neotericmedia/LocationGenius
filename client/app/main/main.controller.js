@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('telusLg2App')
-  .controller('MainCtrl', function ($scope, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
+  .controller('MainCtrl', function ($scope,  User, Auth, $http, $rootScope, TweeterSearch, TweeterResults, TweetReports, LocationResults, OnsitePregenReport, CarrierPregenReport) {
     var visitorchart;
     var onsiteVisitorChart;
 
 
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
 
 
@@ -19,17 +23,34 @@ angular.module('telusLg2App')
       $scope.words.splice(-5);
     };
 
-    // Get the locations from the Location Service
+
+
     $http({
       method: 'GET',
       url: '/api/locations',
-      // headers: {
-      //     'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw==',
-      // }
     })
-      .success(function (locations) {
-        $scope.locations = locations;
-      })
+    .success(function (locations) {
+      $scope.locations = locations;
+    })
+
+
+    // $http({
+    //   method: 'GET',
+    //   url: '/api/locations',
+    // })
+    // .success(function (locations) {
+    //   if ($scope.getCurrentUser().name === "Admin" || $scope.getCurrentUser().name === "pattUser") {
+    //       $scope.locations = locations;
+    //       console.log('user has access, guy')
+    //   }
+    //   if ($scope.getCurrentUser().name != "pattUser" && $scope.getCurrentUser().name != "Admin") {
+    //     console.log('user does not have access, guy')
+    //   }
+    // })
+
+
+
+
 
 
 
@@ -83,6 +104,7 @@ angular.module('telusLg2App')
 
 
     $scope.currentLocation = LocationResults.getCurrentLocation();
+    //console.log("CurrentLocation:" + $scope.currentLocation);
 
    //  $scope.getTabA = function () {
    //    $('.tab-pane:nth-child(1)').hide();
@@ -105,6 +127,7 @@ angular.module('telusLg2App')
      *************************************************************************************/
     $scope.setSelectedLocation = function (location) {
 
+      //console.log("Setting selected location:" + location.name);
       //document.getElementById("contentArea").style.display = "block";
       $('#contentArea').hide();
       $('#contentArea').slideDown(1500);
@@ -115,6 +138,9 @@ angular.module('telusLg2App')
 
       LocationResults.setCurrentLocation(location);
       $scope.currentLocation = LocationResults.getCurrentLocation();
+      //console.log("New CurrentLocation:" + $scope.currentLocation);
+      //console.log("Location lat:" + $scope.currentLocation.center.latitude);
+      //console.log("Location lng:" + $scope.currentLocation.center.longitude);
 
       //this tells function getReport to function showLast7Days which gets getSocialDayReport. getSocialDayReport tells tweetReports based on location. magic happens in this function.
       $scope.showLast7Days(7);      // Initially we get the last 7 days of data
@@ -124,12 +150,14 @@ angular.module('telusLg2App')
 
 
     $scope.showLast7Days = function () {
+      //console.log("Last 7 days");
       $scope.getSocialDayReport(7);
       $scope.getCarrierDataPreGenReport(7);
     }
 
 
     $scope.addLocationToMap = function () {
+      //console.log("Showing selected location...");
       $scope.marker.coords = {
         latitude: $scope.currentLocation.center.lat,
         longitude: $scope.currentLocation.center.lon
@@ -144,6 +172,10 @@ angular.module('telusLg2App')
         latitude: $scope.currentLocation.center.lat,
         longitude: $scope.currentLocation.center.lon
       };
+
+
+      //console.log("Setting map Location lat:" + $scope.currentLocation.center.latitude);
+      //console.log("Setting map Location lng:" + $scope.currentLocation.center.longitude);
 
       $scope.circles[0].center = {
         latitude: $scope.currentLocation.center.lat,
@@ -172,11 +204,14 @@ angular.module('telusLg2App')
 
 
     $scope.getSelectedLocation = function () {
+      //console.log("Getting selected location...");
       $scope.currentLocation = LocationResults.getCurrentLocation();
     }
 
 
     if ($scope.currentLocation != null) {
+      //console.log("Showing selected location..." + $scope.currentLocation.center.latitude);
+      //$scope.addLocationToMap();
       $scope.marker.coords = {
         latitude: $scope.currentLocation.center.lat,
         longitude: $scope.currentLocation.center.lon
@@ -218,15 +253,15 @@ angular.module('telusLg2App')
            chartArea: {left: 40, top: 60, width: '100%'},
            legend: {
              position: 'none',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
+             textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            format: 'short',
            fontSize: 11,
            tooltip: {
-             textStyle: {fontName: 'telusweb',fontSize: 12},
+             textStyle: {fontName: 'telusweb',fontSize: 20},
              trigger: 'selection'
            },
-           vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
          };
       }
@@ -238,14 +273,14 @@ angular.module('telusLg2App')
            chartArea: {left: 100, top: 60, width: '100%'},
            legend: {
              position: 'none',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
+             textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            format: 'short',
            fontSize: 11,
            tooltip: {
-             textStyle: {fontName: 'telusweb',fontSize: 12}
+             textStyle: {fontName: 'telusweb',fontSize: 20}
            },
-           vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
          };
       }
@@ -266,16 +301,16 @@ angular.module('telusLg2App')
              chartArea: {left: 40, top: 60, width: '100%'},
              legend: {
                position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
+               textStyle: { fontName: 'telusweb', fontSize: 20 }
              },
              format: 'short',
              fontSize: 11,
              tooltip: {
-              textStyle: {fontName: 'telusweb',fontSize: 12},
+              textStyle: {fontName: 'telusweb',fontSize: 20},
               trigger: 'selection'
              },
-             vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-             hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
+             vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12}} ,
+             hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12}}
             };
            chart.draw($scope.data, options);
         });
@@ -288,12 +323,12 @@ angular.module('telusLg2App')
              chartArea: {left: 100, top: 60, width: '100%'},
              legend: {
                position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
+               textStyle: { fontName: 'telusweb', fontSize: 20 }
              },
              format: 'short',
              fontSize: 11,
-             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-             vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
+             vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
             };
            chart.draw($scope.data, options);
@@ -301,12 +336,14 @@ angular.module('telusLg2App')
       }
       // Every time the table fires the "select" event, it should call your
       // selectSocialHandler() function.
+      //console.log("Setting handler...");
       google.visualization.events.addListener(chart, 'select', selectSocialHandler);
     }
 
 
     function selectSocialHandler(e) {
       var selection = chart.getSelection();
+      //console.log("Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -367,11 +404,13 @@ angular.module('telusLg2App')
       var wordData = [];
       wordData.push(item);
       var word;
+      //console.log( "Number of words=" + $scope.words.length);
       for(var i=0; i< $scope.words.length;i++ ) {
         if(i==20) {
           break;
         }
         word = $scope.words[i];
+        //console.log( "Word=" + word.text + " Freq=" + word.weight);
         item = [word.text, parseInt(word.weight), '#6ebe44'];
         wordData.push(item)
       }
@@ -436,6 +475,7 @@ angular.module('telusLg2App')
 
 
    var showDay = function (day) {
+      //console.log("Day Index:" + day);
       $scope.dayIndex = day;
       if ($scope.tweetReports.dailyReports[$scope.dayIndex] != null) {
          //$scope.dailyReportDate = $scope.tweetReports.dailyReports[$scope.dayIndex].day.toLowerCase();
@@ -456,12 +496,12 @@ angular.module('telusLg2App')
            colors: ['#6ebe44'],
            legend: {
              position: 'none',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
+             textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            chartArea: {left: 40, top: 60, width: '95%'},
            fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
+           vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
          };
       }
@@ -472,16 +512,15 @@ angular.module('telusLg2App')
            colors: ['#6ebe44'],
            legend: {
              position: 'none',
-             textStyle: { fontName: 'telusweb', fontSize: 12 }
+             textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            chartArea: {left: 100, top: 60, width: '88%'},
            fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
+           vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
          };
       }
-
 
       var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
       var hours = $scope.hourlyData[day];
@@ -492,15 +531,15 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 350,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              legend: {
                position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
+               textStyle: { fontName: 'telusweb', fontSize: 20 }
              },
              chartArea: {left: 40, top: 60, width: '95%'},
              fontSize: 11,
-             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-             vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
+             vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }}
            };
            linechart.draw(hourly, options);
@@ -510,7 +549,7 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 450,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              legend: {
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
@@ -518,7 +557,7 @@ angular.module('telusLg2App')
              chartArea: {left: 100, top: 60, width: '88%'},
              fontSize: 11,
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-             vAxis: {title: "Number of Engagements", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
            };
            linechart.draw(hourly, options);
@@ -652,6 +691,7 @@ angular.module('telusLg2App')
       };
 
       $scope.selected = function (i) {
+        //console.log("Selected 7 days");
         $scope.selectedIndex = 0;
         $scope.getSocialDayReport(7);
       };
@@ -661,15 +701,19 @@ angular.module('telusLg2App')
 
 
     $scope.showLast4Weeks = function () {
+      //console.log("Last 4 weeks");
       $scope.getSocialDayReport(28);
     }
     $scope.showLast8Weeks = function () {
+      //console.log("Last 8 weeks");
       $scope.getSocialDayReport(56);
     }
     $scope.showLast84days = function () {
+      //console.log("Last 8 weeks");
       $scope.getSocialDayReport(84);
     }
     $scope.showLast112days = function () {
+      //console.log("Last 8 weeks");
       $scope.getSocialDayReport(112);
     }
 
@@ -679,6 +723,154 @@ angular.module('telusLg2App')
      * for the specified number of days.
      * @param numDays
      */
+   //  $scope.getSocialDayReport = function (numDays) {
+   //    $scope.currentLocation = LocationResults.getCurrentLocation();
+   //    //console.log("Getting social day reports for Location:" + $scope.currentLocation);
+    //
+   //    // Get the Twitter daily report
+   //    $scope.tweetReports;
+   //    //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
+   //    var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
+   //    $scope.results = TweetReports.query(params);
+    //
+   //    $scope.results.$promise.then(function (results) {
+   //      //console.log("Social Report Results:" + results);
+   //      $scope.tweetReports = results;
+   //      //console.log("Tweet Reports:" + $scope.tweetReports);
+   //      LocationResults.setTweetReports($scope.tweetReports);
+   //      $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
+   //      $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
+   //      //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
+   //      var wc  = results.wordCloud;
+   //      $scope.words = results.wordCloud;
+   //      //console.log("Tweet Word Cloud" + $scope.words);
+   //      $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
+   //      $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
+   //      $scope.topTweeters = $scope.tweetReports.topTweeters;
+   //      //console.log("Top Tweeters:" + $scope.topTweeters);
+   //      $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
+   //      $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
+    //
+    //
+   //      $scope.hourlyData = [];  // HourlyData contains the hourly totals for each day
+   //      var hourData = [];
+   //      var hourItem = [];
+   //      var dailyData = [];
+   //      var day;
+   //      var date;
+   //      // Items are what goes into the graph data.  The first one describes the data
+   //      var item = ['Day', 'Number of Interactions', {role: 'style'}];
+   //      dailyData.push(item);
+    //
+   //      var dailyReports = $scope.tweetReports.dailyReports;
+   //      $scope.numberOfdailyReports = dailyReports.length;
+    //
+   //      /*
+   //       * Parse each daily report. We get the total tweets for each day
+   //       * as well as the hourly tweets.  This creates data for the top two tabs.
+   //       */
+   //      for (var i = 0; i < dailyReports.length; i++) {
+   //        if (dailyReports[i] != null) {
+   //          //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
+    //
+   //          //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
+   //          //var day = dailyReports[i].day;
+    //
+   //          //day = dailyReports[i].day.split(" ")[0];
+   //          //date = dailyReports[i].day.split(" ")[1];
+    //
+   //       //   day = dailyReports[i].day.split(" ")[0];
+   //       //   date = dailyReports[i].day.split(" ")[1];
+   //       //   date = date.substr(date.indexOf('-') + 1);
+    //
+   //         //// For just a week, we can put the full day name on the graph, otherwise use the shorter date
+   //         //if (numDays > 7) {
+   //         //  day = day.toLowerCase();
+   //         //  day = day.charAt(0).toUpperCase() + day.substr(1);
+   //         //} else {
+   //         //  day = date;
+   //         //}
+    //
+   //         // Push one days data into the graph data.
+    //
+    //
+   //         var formattedDate = formatDate(dailyReports[i].day);
+   //         console.log("Date=" + formattedDate);
+   //         item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
+   //         dailyData.push(item);
+    //
+    //
+   //          // For just a week, we can put the full day name on the graph, otherwise use the shorter date
+   //          if (numDays > 7) {
+   //            day = day.toLowerCase();
+   //            day = day.charAt(0).toUpperCase() + day.substr(1);
+   //          } else {
+   //            day = date;
+   //          }
+    //
+    //
+   //          /*
+   //           *  Get the hourly data for that day and push it into a separate array
+   //           *  We push an array of 24 hourly totals, for each day in the report.
+   //           */
+   //          hourData = [];
+   //          hourItem = [];
+   //          hourItem = ['Time', 'Number of Interactions', {role: 'style'}];
+   //          hourData.push(hourItem);
+   //          var ampm = "am";
+   //          var h = 0;
+   //          for (var j = 0; j < 24; j++) {
+   //            if (j > 11) {
+   //              ampm = "pm";
+   //              if (h >= 13) {
+   //                h = h - 12;
+   //              }
+   //            }
+   //            hourItem = [h + ampm, dailyReports[i].hourly[j], '#6ebe44'];
+   //            hourData.push(hourItem);
+   //            h++;
+   //          }
+   //          $scope.hourlyData.push(hourData);
+   //        }
+    //
+   //      }
+   //      $scope.dayIndex = 0;
+    //
+   //      // This is the date that goes with time breakdown
+   //      if ($scope.tweetReports.dailyReports[0] != null) {
+   //        $scope.dailyReportDate = $scope.tweetReports.dailyReports[0].day;
+   //        formattedDate = $scope.dailyReportDate;
+   //      }
+    //
+    //
+   //      // DailyData is the array for graphing total interactions per day
+   //      // If there is only one, there is no data, it is just the headers.
+   //      if (dailyData.length > 1) {
+   //        //console.log("Daily data:" + dailyData);
+   //        $scope.data = google.visualization.arrayToDataTable(dailyData);
+   //        $scope.showDailySocialData();
+   //      }
+    //
+   //      if ($scope.hourlyData.length > 0) {
+   //        //console.log("Hourly data:" + $scope.hourlyData);
+   //        $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
+   //        $scope.showHourlySocialData(0);
+   //      }
+    //
+    //
+   //      $scope.searchString = $scope.currentLocation.address;
+   //      $scope.searchStringName = $scope.currentLocation.name;
+   //      $scope.dayrange = numDays;
+   //      TweeterResults.setTweeters($scope.topTweeters);
+   //      $scope.tweeterResults   = $scope.topTweeters;
+    //
+   //      $scope.showWordData();
+    //
+   //    })
+   //  }
+
+
+    //formatting social bar chart dates..
     function formatDate(date) {
          var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
@@ -697,27 +889,34 @@ angular.module('telusLg2App')
 
       $scope.getSocialDayReport = function (numDays) {
            $scope.currentLocation = LocationResults.getCurrentLocation();
+           //console.log("Getting social day reports for Location:" + $scope.currentLocation);
 
            //loader animation
            $scope.loading = true;
 
            // Get the Twitter daily report
            $scope.tweetReports;
+           //console.log("Social Location id:" + $scope.currentLocation.buildingId + " NumDays:" + numDays);
            var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays};
            $scope.results = TweetReports.query(params);
 
            $scope.results.$promise.then(function (results) {
 
 
+             //console.log("Social Report Results:" + results);
              $scope.tweetReports = results;
+             //console.log("Tweet Reports:" + $scope.tweetReports);
              LocationResults.setTweetReports($scope.tweetReports);
              $rootScope.$broadcast('newReportsEvent', $scope.tweetReports);
              $scope.dateRange = getFormattedDataRange($scope.tweetReports.dateRange);
+             //console.log("Tweet Report date:" + $scope.tweetReports.dateRange);
              var wc  = results.wordCloud;
              $scope.words = results.wordCloud;
+             //console.log("Tweet Word Cloud" + $scope.words);
              $scope.totalInteractions = $scope.tweetReports.weeklyTweetTotal.toLocaleString();
              $scope.highestTweetedDay = $scope.tweetReports.highestTweetedDay;
              $scope.topTweeters = $scope.tweetReports.topTweeters;
+             //console.log("Top Tweeters:" + $scope.topTweeters);
              $scope.mostFrequentAuthor = $scope.tweetReports.mostFrequentAuthor;
              $scope.highestTweetedHour = $scope.tweetReports.highestTweetedHour;
 
@@ -729,7 +928,7 @@ angular.module('telusLg2App')
              var day;
              var date;
              // Items are what goes into the graph data.  The first one describes the data
-             var item = ['Day', 'Number of Interactions', {role: 'style'}];
+             var item = ['Day', 'Number of Tweet', {role: 'style'}];
              dailyData.push(item);
 
              var dailyReports = $scope.tweetReports.dailyReports;
@@ -741,6 +940,7 @@ angular.module('telusLg2App')
               */
              for (var i = 0; i < dailyReports.length; i++) {
                if (dailyReports[i] != null) {
+                 //console.log("Tweets on " + dailyReports[i].day + ":" + dailyReports[i].tweets);
                  day = dailyReports[i].day.split(" ")[0];
                  date = dailyReports[i].day.split(" ")[1];
                  date = date.substr(date.indexOf('-') + 1);
@@ -756,9 +956,12 @@ angular.module('telusLg2App')
                  //item = [day, dailyReports[i].tweets, '#6ebe44'];
                  //dailyData.push(item);
 
+
                  var formattedDate = formatDate(dailyReports[i].day);
+                 //console.log("Date=" + formattedDate);
                  item = [formattedDate, dailyReports[i].tweets, '#6ebe44 '];
                  dailyData.push(item);
+
 
 
                  /*
@@ -767,7 +970,7 @@ angular.module('telusLg2App')
                   */
                  hourData = [];
                  hourItem = [];
-                 hourItem = ['Time', 'Number of Interactions', {role: 'style'}];
+                 hourItem = ['Time', 'Number of Tweets', {role: 'style'}];
                  hourData.push(hourItem);
                  var ampm = "am";
                  var h = 0;
@@ -799,11 +1002,13 @@ angular.module('telusLg2App')
              // DailyData is the array for graphing total interactions per day
              // If there is only one, there is no data, it is just the headers.
              if (dailyData.length > 1) {
+               //console.log("Daily data:" + dailyData);
                $scope.data = google.visualization.arrayToDataTable(dailyData);
                $scope.showDailySocialData();
              }
 
              if ($scope.hourlyData.length > 0) {
+               //console.log("Hourly data:" + $scope.hourlyData);
                $scope.hourly = google.visualization.arrayToDataTable($scope.hourlyData);
                $scope.showHourlySocialData(0);
              }
@@ -849,6 +1054,8 @@ angular.module('telusLg2App')
      */
     $scope.getOnsiteDataPreGenReport = function () {
       $scope.currentLocation = LocationResults.getCurrentLocation();
+      //console.log("Onsite data CurrentLocation:" + $scope.currentLocation.buildingId);
+
       $scope.mostVisitedHour = "N/A";
       $scope.mostPostalCode = "N/A";
       $scope.mostVisitsToDate = "N/A";
@@ -870,18 +1077,25 @@ angular.module('telusLg2App')
       var item = ['Day', 'New Visitors', {role: 'style'}, 'Existing Visitors', {role: 'style'}];
       dailyVisitorData.push(item);
 
+      //console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
+
+
       var dateobj = new Date();
       var month = dateobj.getMonth() + 1;
       var day = dateobj.getDate();
       var year = dateobj.getFullYear();
 
+
       var dateString = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + day).slice(-2);
 
+      console.log("Date: " + dateString);
       var params = {"buildingId": $scope.currentLocation.buildingId, "dt": dateString};
 
 
+      //console.log("Onsite Report params..." + params.buildingId + " " + params.dt);
       $scope.report = OnsitePregenReport.query(params);
       $scope.report.$promise.then(function (results) {
+        //console.log("Onsite Report Results:" + results.totalVisits);
         if (results != null) {
           if(results.totalVisits!=null) {
             $scope.onsiteVisitorsWeek = results.totalVisits;
@@ -889,6 +1103,7 @@ angular.module('telusLg2App')
             $scope.onsiteVisitorsWeek = "N/A";
           }
 
+          //$scope.onsiteVisitorsWeek.toLocaleString();
           $scope.onsiteWeek = results.weekName;
 
           $scope.averageVisitorsDay = results.averageVisitorsDay;
@@ -899,6 +1114,7 @@ angular.module('telusLg2App')
           } else {
             $scope.weekChange = "N/A";
           }
+
 
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
@@ -961,6 +1177,7 @@ angular.module('telusLg2App')
 
           for (var i = 0; i < dailyReports.length; i++) {
             if (dailyReports[i] != null) {
+              //console.log("Visits on " + dailyReports[i].dayOfWeek + " " + dailyReports[i].day + ":" + dailyReports[i].total_visit);
               var date = dailyReports[i].day;
               item = [date, dailyReports[i].newMac, '#6ebe44', dailyReports[i].existing, '#49166d'];
               dailyVisitorData.push(item);
@@ -972,7 +1189,13 @@ angular.module('telusLg2App')
           var hourlyitem = ['Hour', 'Number of Visitors', {role: 'style'}];
           $scope.hourlyVisitorData.push(hourlyitem);
 
+          //var hourlyTotals = results.hourlyBreakdown;
           $scope.onsiteHourlyTotals = results.hourlyData;
+
+          // This is the date that goes with time breakdown
+         //  if ($scope.tweetReports.dailyReports[0] != null) {
+         //    $scope.dailyReportDate = formatDate($scope.tweetReports.dailyReports[0].day);
+         //  }
 
           $scope.durations = results.durations;
 
@@ -991,6 +1214,8 @@ angular.module('telusLg2App')
 
 
     $scope.showOnsiteDailyVisitorData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
       if (window.innerWidth < 984) {
          var options = {
            width: document.getElementById("container").clientWidth - 50,
@@ -998,14 +1223,15 @@ angular.module('telusLg2App')
            colors: ['#ffffff', '#6ebe44'],
            chartArea: {left: 60, top: 60, width: '94%'},
            legend: {position: 'none'},
-           fontSize: 11,
+           fontSize: 15,
            tooltip: {
-            textStyle: {fontName: 'telusweb',fontSize: 12},
+            textStyle: {fontName: 'telusweb',fontSize: 20},
             trigger: 'selection'
            },
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize:12  }} ,
          };
       }
       else {
@@ -1015,8 +1241,8 @@ angular.module('telusLg2App')
            colors: ['#ffffff', '#6ebe44'],
            chartArea: {left: 100, top: 60, width: '94%'},
            legend: {position: 'none'},
-           fontSize: 11,
-           tooltip: {textStyle: { fontName: 'telusweb', fontSize: 12 } },
+           fontSize: 15,
+           tooltip: {textStyle: { fontName: 'telusweb', fontSize: 20 } },
            //focusTarget: 'category',
            isStacked: true,
            hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
@@ -1025,8 +1251,27 @@ angular.module('telusLg2App')
          };
       }
 
+
+         // Create and draw the visualization.
+         // new google.visualization.ColumnChart(document.getElementById('custom_html_content_div')).draw(dataTable, options);
+         // }
+
+         // function createCustomHTMLContent(flagURL, totalGold, totalSilver, totalBronze) {
+         // return '<div style="padding:5px 5px 5px 5px;">' +
+         //     '<img src="' + flagURL + '" style="width:75px;height:50px"><br/>' +
+         //     '<table class="medals_layout">' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Gold_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalGold + '</b></td>' + '</tr>' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Silver_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalSilver + '</b></td>' + '</tr>' + '<tr>' +
+         //     '<td><img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Bronze_medal.svg" style="width:25px;height:25px"/></td>' +
+         //     '<td><b>' + totalBronze + '</b></td>' + '</tr>' + '</table>' + '</div>';
+         // }
+
+
       onsiteVisitorChart = new google.visualization.ColumnChart(document.getElementById('onsite_visitors_barchart_div'));
       onsiteVisitorChart.draw($scope.visitordata, options);
+
 
       if (window.innerWidth < 984) {
         $(window).resize(function(){
@@ -1037,9 +1282,9 @@ angular.module('telusLg2App')
              chartArea: {left: 50, top: 60, width: '94%'},
              legend: {position: 'none'},
              isStacked: true,
-             fontSize: 11,
+             fontSize: 15,
              tooltip: {
-              textStyle: {fontName: 'telusweb',fontSize: 12},
+              textStyle: {fontName: 'telusweb',fontSize: 20},
               trigger: 'selection'
              },
              hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
@@ -1058,15 +1303,21 @@ angular.module('telusLg2App')
              chartArea: {left: 100, top: 60, width: '94%'},
              legend: {position: 'none'},
              isStacked: true,
-             fontSize: 11,
-             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+             fontSize: 15,
+             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
              hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
             onsiteVisitorChart.draw($scope.visitordata, options);
         });
       }
 
+
+
+
+      // Every time the table fires the "select" event, it should call your
+      // select Handler() function.
       google.visualization.events.addListener(onsiteVisitorChart, 'select', selectOnsiteDayHandler);
 
     }
@@ -1074,6 +1325,9 @@ angular.module('telusLg2App')
 
 
     $scope.showOnsiteLoyaltyData = function () {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+
       if (window.innerWidth < 984) {
          var options = {
            width: document.getElementById("container").clientWidth - 50,
@@ -1081,11 +1335,11 @@ angular.module('telusLg2App')
            colors: ['#ffffff', '#6ebe44'],
            chartArea: {left: 50, top: 60, width: '94%'},
            legend: {position: 'none'},
-           fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+           fontSize: 15,
+           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
            isStacked: true,
-           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Repeat Visits", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
       else {
@@ -1095,13 +1349,33 @@ angular.module('telusLg2App')
            colors: ['#ffffff', '#6ebe44'],
            chartArea: {left: 100, top: 60, width: '94%'},
            legend: {position: 'none'},
-           fontSize: 11,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
+           fontSize: 15,
+           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 15 } },
            isStacked: true,
-           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Repeat Visits", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           vAxis: {
+             title: "Number of Visitors",
+             format:'#',
+             slantedText: false,
+             slantedTextAngle: 45,
+             textStyle: {fontName: 'telusweb', fontSize: 12 },
+          }
          };
       }
+
+
+      // var options = {
+      //   //width: 1075,
+      //   width: document.getElementById("container").clientWidth - 50,
+      //   height: 450,
+      //   colors: ['#6ebe44'],
+      //   chartArea: {left: 100, top: 60, width: '94%'},
+      //   legend: {position: 'none'},
+      //   hAxis: {title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+      //   vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+      //   fontSize: 11,
+      //   tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+      // };
 
       var customers = $scope.topCustomers;
 
@@ -1111,26 +1385,40 @@ angular.module('telusLg2App')
 
       var loyaltyCounts = [];
 
+      //console.log("Customers count " + j + ":" + customers.length);
       var index = 0;
       if (customers != null) {
         for (var j = 0; j < customers.length; j++) {
+          //console.log("Loyalty count " + j + ":" + customers[j].numVisits);
           index = parseInt(customers[j].numVisits);
+          //console.log("index " + index);
           if (loyaltyCounts[index] === undefined) {
             loyaltyCounts[index] = 1;
           } else {
             loyaltyCounts[index]++;
           }
 
+
+          //console.log("Loyalty count " + j + ":" + loyaltyCounts[j]);
+
         }
         for (var j = 1; j < loyaltyCounts.length; j++) {
+          //console.log("Count " + j + ":" + loyaltyCounts[j]);
           loyaltyItem = [j,loyaltyCounts[j], '#6ebe44'];
           loyaltyData.push(loyaltyItem);
         }
       }
 
+
+
       var data = google.visualization.arrayToDataTable(loyaltyData);
       var onsiteLoyaltyChart = new google.visualization.ColumnChart(document.getElementById('onsite_loyalty_chart_div'));
       onsiteLoyaltyChart.draw(data, options);
+
+      //  $(window).resize(function(){
+      //     onsiteLoyaltyChart.draw(data, options);
+      //  });
+
 
        if (window.innerWidth < 984) {
          $(window).resize(function(){
@@ -1141,9 +1429,9 @@ angular.module('telusLg2App')
               colors: ['#6ebe44'],
               chartArea: {left: 50, top: 60, width: '94%'},
               legend: {position: 'none'},
-              fontSize: 11,
-              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {title: "Number of Repeat Visits", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+              fontSize: 15,
+              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
@@ -1158,10 +1446,10 @@ angular.module('telusLg2App')
               colors: ['#6ebe44'],
               chartArea: {left: 100, top: 60, width: '94%'},
               legend: {position: 'none'},
-              fontSize: 11,
-              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-              vAxis: {title: "Number of Repeat Visits", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
-              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
+              fontSize: 15,
+              hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
+              tooltip: { textStyle: { fontName: 'telusweb', fontSize:12 } }
             };
             onsiteLoyaltyChart.draw(data, options);
          });
@@ -1179,6 +1467,7 @@ angular.module('telusLg2App')
      */
     function selectOnsiteDayHandler(e) {
       var selection = onsiteVisitorChart.getSelection();
+      //console.log("Onsite Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -1197,6 +1486,9 @@ angular.module('telusLg2App')
     }
 
     $scope.showOnsiteHourlyVisitorData = function (day) {
+      // Instantiate and draw our chart, passing in some options.
+      // Set chart options
+      //console.log("Graphing hourly data for day " + day);
       if (window.innerWidth < 984) {
          var options = {
             width: document.getElementById("container").clientWidth - 50,
@@ -1208,7 +1500,7 @@ angular.module('telusLg2App')
              textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           fontSize: 11,
+           fontSize:15,
            hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
@@ -1224,8 +1516,8 @@ angular.module('telusLg2App')
              textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           fontSize: 11,
-           hAxis: {title: "Hours", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           fontSize: 15,
+           hAxis: {title: "Hours", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize:12 }} ,
            vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
@@ -1246,6 +1538,7 @@ angular.module('telusLg2App')
         }
       }
 
+      //console.log("HourlyTotals:" + hourlyTotals);
 
       var ampm = "am";
       var h = 0;
@@ -1263,6 +1556,7 @@ angular.module('telusLg2App')
       }
 
       var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
+      //console.log("Graphing ..." + $scope.hourlyVisitorData);
       var hourly = google.visualization.arrayToDataTable($scope.hourlyVisitorData);
 
       linechart.draw(hourly, options);
@@ -1273,15 +1567,15 @@ angular.module('telusLg2App')
             var options = {
                width: document.getElementById("container").clientWidth - 50,
               height: 350,
-              colors: ['#6ebe44'],
+              colors: ['blue'],
               chartArea: {left: 60, top: 60, width: '90%'},
               legend: {
                 position: 'none',
                 textStyle: { fontName: 'telusweb', fontSize: 12 }
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-              fontSize: 11,
-              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              fontSize: 50,
+              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12}} ,
               vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
             linechart.draw(hourly, options);
@@ -1292,14 +1586,14 @@ angular.module('telusLg2App')
             var options = {
                width: document.getElementById("container").clientWidth - 50,
               height: 450,
-              colors: ['#6ebe44'],
+              colors: ['blue'],
               chartArea: {left: 100, top: 60, width: '90%'},
               legend: {
                 position: 'none',
                 textStyle: { fontName: 'telusweb', fontSize: 12 }
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-              fontSize: 11,
+              fontSize: 15,
               hAxis: {title: "Hours", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
@@ -1342,6 +1636,8 @@ angular.module('telusLg2App')
 
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
+      //console.log("Graphing online visitor duration data...");
+
 
 
       if (window.innerWidth < 984) {
@@ -1355,9 +1651,9 @@ angular.module('telusLg2App')
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
-           hAxis: {title: "Number of Minutes", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-           fontSize: 11,
+           fontSize: 15,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
          };
       }
@@ -1372,9 +1668,9 @@ angular.module('telusLg2App')
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
-           hAxis: {title: "Number of Minutes", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-           fontSize: 11,
+           fontSize: 15,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
          };
       }
@@ -1382,6 +1678,7 @@ angular.module('telusLg2App')
 
 
       var linechart = new google.visualization.ColumnChart(document.getElementById('onsite_visitor_chart_div'));
+      //console.log("Graphing ..." + durationData);
       var minutesData = google.visualization.arrayToDataTable(durationData);
       linechart.draw(minutesData, options);
 
@@ -1391,14 +1688,14 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 350,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              chartArea: {left: 50, top: 60, width: '100%'},
              legend: {
                  position: 'none',
                  textStyle: { fontName: 'telusweb', fontSize: 12 }
              },
-             fontSize: 11,
-             hAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             fontSize: 15,
+             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
              vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
            };
@@ -1409,14 +1706,14 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 450,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              chartArea: {left: 100, top: 60, width: '100%'},
              legend: {
                  position: 'none',
                  textStyle: { fontName: 'telusweb', fontSize: 12 }
              },
-             fontSize: 11,
-             hAxis: {title: "Number of Visitors", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+             fontSize: 15,
+             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
              vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
            };
@@ -1439,6 +1736,7 @@ angular.module('telusLg2App')
     $scope.getCarrierDataPreGenReport = function (numDays) {
       $scope.currentLocation = LocationResults.getCurrentLocation();
       var xfactor =  $scope.currentLocation.xfactor;
+      //console.log("Location Xfactor:" + xfactor);
       if(xfactor==null) {
         xfactor = 1.0;
       }
@@ -1450,12 +1748,14 @@ angular.module('telusLg2App')
 
       var item = ['Day', 'All Visitors', {role: 'style'}, 'New Visitors', {role: 'style'}];
       dailyCarrierVisitorData.push(item);
+      //console.log("Getting carrierreport for :" + $scope.currentLocation.buildingId + " for " + numDays + " days");
 
       var params = {"locationId": $scope.currentLocation.buildingId, "days": numDays, "endDate": "2014-08-18"};
 
       $scope.report = CarrierPregenReport.query(params);
       $scope.report.$promise.then(function (results) {
 
+          //console.log("Results = " +  results);
           if (results != null) {
             var reports = results.reports;
             if(reports!=null) {
@@ -1464,13 +1764,18 @@ angular.module('telusLg2App')
           }
           $scope.carrierUniqueVisitors = 0;
           $scope.carrierAverageVisitorsDay = 0;
+          //console.log("Reports = " +  reports);
           // The results come in reverse order
           for (var i = 0; i< reports.length;  i++) {
+            //console.log("Carrier UniqueVisitors = " + i + " " + results[i].uniqueVisitors);
             var visitors = Math.round(reports[i].uniqueVisitors * xfactor);
             var newVisitors = Math.round(reports[i].newVisitors * xfactor);
+            //console.log("Adjusted Carrier UniqueVisitors = " + i + " " + visitors);
+            //console.log("Carrier Date = " + results[i].date);
             $scope.carrierUniqueVisitors = $scope.carrierUniqueVisitors + visitors;
 
             var d = new Date(reports[i].date);
+            //console.log("Date=" + d);
             var res = d.toDateString().split(" ");
             var formattedDate=  res[1] + " " + res[2] + "," + res[3];
             item = [formattedDate, visitors, '#49166d', newVisitors, '#6ebe44'];
@@ -1495,6 +1800,7 @@ angular.module('telusLg2App')
               }
               var hourlyTotal = Math.round(reports[i].hourlyTotals[j] * xfactor);
               hourItem = [h + ampm, hourlyTotal, '#6ebe44'];
+              //hourItem = [h + ampm, results[i].hourlyTotals[j], '#6ebe44'];
               hourData.push(hourItem);
               h++;
             }
@@ -1508,6 +1814,7 @@ angular.module('telusLg2App')
           $scope.demographicReport = results.demographicReport;
           $scope.tiles = results.tiles;
 
+          //console.log("Demographic=" + results.demographicReport);
           $scope.showDemographicData();
 
           $scope.carrierAverageVisitorsDay = Math.round($scope.carrierUniqueVisitors / reports.length);
@@ -1519,7 +1826,14 @@ angular.module('telusLg2App')
             $scope.showHourlyCarrierVisitorData(reports.length - 1);
           }
 
+          //$scope.carrierDwellTimeData = [];
+          //var dwellTimeItem = ['Minutes', 'Number of Visits', {role: 'style'}];
+          //$scope.carrierDwellTimeData.push();
+
+          //console.log("Graphing: " + results[0].dwellTimes)
           $scope.showCarrierDwellTimesData(0);
+
+
 
         }
       });
@@ -1533,6 +1847,8 @@ angular.module('telusLg2App')
     $scope.showDemographicData = function() {
 
       if($scope.demographicReport!=null) {
+        //console.log("Tiles=" + $scope.tiles.length);
+        //console.log("Incomes=" + $scope.demographicReport.incomeCounts);
 
         $scope.mostPopularEthnicity = ethnicitieLabels[$scope.demographicReport.largestEthnicity];
         $scope.mostPopularIncomeLevel = incomeLevelsLabels[$scope.demographicReport.largestIncomeIndex];
@@ -1822,9 +2138,11 @@ angular.module('telusLg2App')
 
     $scope.showHeatMapData = function() {
       if($scope.tiles!=null) {
+        //console.log("Tiles=" + $scope.tiles.length);
         var callsForService = [];
 
         for (var i = 0; i < $scope.tiles.length; i++) {
+          //console.log("Tile=" + $scope.tiles[i].centerPoint.lat + " " + $scope.tiles[i].centerPoint.lon);
           callsForService.push(new google.maps.LatLng($scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon));
         }
 
@@ -1867,6 +2185,7 @@ angular.module('telusLg2App')
      */
     $scope.showVisitorMapData = function() {
       if($scope.tiles!=null) {
+        //console.log("Visitor Tiles=" + $scope.tiles.length);
 
         var info = "";
         var visitorData = [];
@@ -1874,6 +2193,7 @@ angular.module('telusLg2App')
         var size = Math.min($scope.tiles.length,200); // cut it off at 200 max
         for (var i = 0;i < size;i++){
           info = createInfoWindow($scope.tiles[i]);
+          //console.log( "Info:" + info);
           if($scope.tiles[i].sampleSize>=4) {
             visitorData.push([$scope.tiles[i].centerPoint.lat, $scope.tiles[i].centerPoint.lon, info, 'pink']);
           } else if($scope.tiles[i].sampleSize >2 ){
@@ -2068,6 +2388,7 @@ angular.module('telusLg2App')
      * Displays the graph for the daily carrier visits
      */
     $scope.showCarrierDailyVisitorData = function () {
+      //console.log("Graphing carrier visitors data" );
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
       if (window.innerWidth < 984) {
@@ -2082,7 +2403,7 @@ angular.module('telusLg2App')
           },
           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
           isStacked: true,
-          fontSize: 11,
+          fontSize: 15,
           hAxis: {title: "Date", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
           vAxis: {title: "Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
         };
@@ -2099,7 +2420,7 @@ angular.module('telusLg2App')
           },
           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
           isStacked: true,
-          fontSize: 11,
+          fontSize: 15,
           hAxis: {title: "Date", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
           vAxis: {title: "Visitors", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
         };
@@ -2119,7 +2440,7 @@ angular.module('telusLg2App')
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
               isStacked: true,
-              fontSize: 11,
+              fontSize: 15,
               hAxis: {title: "Date", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
@@ -2137,7 +2458,7 @@ angular.module('telusLg2App')
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
               isStacked: true,
-              fontSize: 11,
+              fontSize: 15,
               hAxis: {title: "Date", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Visitors", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
@@ -2160,6 +2481,7 @@ angular.module('telusLg2App')
      */
     function selectCarrierDayHandler(e) {
       var selection = visitorchart.getSelection();
+      //console.log("Carrier Selection " + selection.length);
       var index;
       var item = selection[0];
       if (item != null) {
@@ -2173,6 +2495,7 @@ angular.module('telusLg2App')
     }
 
     var showCarrierDay = function (day) {
+      //console.log("Carrier Day Index:" + day);
 
       if ($scope.carrierReports[day] != null) {
         $scope.showHourlyCarrierVisitorData(day);
@@ -2188,6 +2511,7 @@ angular.module('telusLg2App')
     $scope.showHourlyCarrierVisitorData = function (day) {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
+      //console.log("Graphing hourly carrier data...");
       if (window.innerWidth < 984) {
          var options = {
            //width: 1075,
@@ -2200,7 +2524,7 @@ angular.module('telusLg2App')
                textStyle: { fontName: 'telusweb', fontSize: 12 }
            },
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-           fontSize: 11,
+           fontSize: 15,
            hAxis: {title: "Hours", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {title: "Interactions", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
@@ -2226,6 +2550,7 @@ angular.module('telusLg2App')
 
 
       var linechart = new google.visualization.AreaChart(document.getElementById('carrier_timebreakdown_chart_div'));
+      //console.log("Graphing ..." + $scope.hourlyVisitorData);
       var hours = $scope.carrierHourlyData[day];
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
@@ -2235,7 +2560,7 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 350,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              chartArea: {left: 60, top: 60, width: '100%'},
              legend: {
                  position: 'none',
@@ -2253,7 +2578,7 @@ angular.module('telusLg2App')
         $(window).resize(function(){
            var options = {
              height: 550,
-             colors: ['#6ebe44'],
+             colors: ['blue'],
              chartArea: {left: 60, top: 60, width: '100%'},
              legend: {
                  position: 'none',
@@ -2279,11 +2604,13 @@ angular.module('telusLg2App')
     $scope.showCarrierDwellTimesData = function (day) {
       // Instantiate and draw our chart, passing in some options.
       // Set chart options
+      //console.log("Graphing carrier visitor dwell time data for day:" + day);
+
       if (window.innerWidth < 984) {
         var options = {
           width: document.getElementById("container").clientWidth - 50,
           height: 350,
-          colors: ['#6ebe44'],
+          colors: ['blue'],
           chartArea: {left: 60, top: 60, width: '100%'},
           legend: {
               position: 'none',
@@ -2299,7 +2626,7 @@ angular.module('telusLg2App')
         var options = {
           width: document.getElementById("container").clientWidth - 50,
           height: 550,
-          colors: ['#6ebe44'],
+          colors: ['blue'],
           chartArea: {left: 60, top: 60, width: '100%'},
           legend: {
               position: 'none',
@@ -2323,7 +2650,7 @@ angular.module('telusLg2App')
       $scope.carrierDwellTimeData.push(dwellTimeItem);
       if (dwellTimes != null) {
         for (var j = 0; j < dwellTimes.length; j++) {
-          dwellTimeItem = [j, dwellTimes[j], '#6ebe44'];
+          dwellTimeItem = [j, dwellTimes[j], 'blue'];
           $scope.carrierDwellTimeData.push(dwellTimeItem);
         }
         var minutesData = google.visualization.arrayToDataTable($scope.carrierDwellTimeData);
@@ -2334,7 +2661,7 @@ angular.module('telusLg2App')
           $(window).resize(function(){
              var options = {
               height: 350,
-              colors: ['#6ebe44'],
+              colors: ['blue'],
               chartArea: {left: 60, top: 60, width: '100%'},
               legend: {
                   position: 'none',
@@ -2351,7 +2678,7 @@ angular.module('telusLg2App')
           $(window).resize(function(){
              var options = {
               height: 550,
-              colors: ['#6ebe44'],
+              colors: ['blue'],
               chartArea: {left: 60, top: 60, width: '100%'},
               legend: {
                   position: 'none',
@@ -2391,9 +2718,12 @@ angular.module('telusLg2App')
       $scope.tweeterResults;
       var geocoder = new google.maps.Geocoder();
       if ($scope.searchString != null) {
+        //console.log("Searching for tweeters at address :" + $scope.searchString);
+        //console.log("Days :" + $scope.dayrange + " Meters :" + $scope.searchrange + " Limit :" + $scope.limit);
 
         geocoder.geocode({'address': $scope.searchString}, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
+            //console.log("status:" + results[0].geometry.location);
             $scope.marker.coords = {
               latitude: results[0].geometry.location.lat(),
               longitude: results[0].geometry.location.lng()
@@ -2414,6 +2744,7 @@ angular.module('telusLg2App')
             };
 
           } else {
+            //console.log('Geocode was not successful for the following reason: ' + status);
           }
         });
         $scope.address = $scope.searchString;
@@ -2426,9 +2757,11 @@ angular.module('telusLg2App')
           "range": $scope.searchrange,
           "top": $scope.limit
         };
+        //console.log(params);
         $scope.tweeters = TweeterSearch.query(params);
 
         $scope.tweeters.$promise.then(function (results) {
+          //console.log("Tweeters size:" + results.length);
           $scope.tweeterResults = new Array(results.length);
 
           for (var i = 0; i < results.length; i++) {
@@ -2573,4 +2906,5 @@ angular.module('telusLg2App')
     $scope.ddMMMMyyyy = $filter('date')(new Date(), 'dd, MMMM yyyy');
     $scope.HHmmss = $filter('date')(new Date(), 'HH:mm:ss'); //24 hour
     $scope.hhmmsstt = $filter('date')(new Date(), 'hh:mm a');  //12hour
+    $scope.mm = $filter('date')(new Date(), 'mm:ss'); // just min
   })
