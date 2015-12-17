@@ -49,6 +49,12 @@ PANTONE 2745 C
   width: 100%;
 }*/
 
+
+input .searchInput {
+  cursor: default;
+}
+
+
 .loading {
   position: fixed;
   top: 50%;
