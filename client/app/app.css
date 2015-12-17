@@ -123,9 +123,7 @@ div.jqcloud span { padding: 0; }
 
 
 
-.navbar {
-  float:right;
-}
+
 
 #wordcloud {
    width: 300px;
@@ -913,6 +911,7 @@ p.ng-binding, h2 {
   .navbar {
     position:fixed;
     width: 100%;
+    z-index: 10001;
   }
 }
 @media only screen and (min-width: 75em) {
