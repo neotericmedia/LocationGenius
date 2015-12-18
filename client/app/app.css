@@ -54,6 +54,14 @@ input .searchInput {
   cursor: default;
 }
 
+h4 a.print-icon,h4.engage a.print-icon,h4.top20mentions a.print-icon,h4.hourz a.print-icon {
+  color: #ccc;
+  font-size: .45em;
+  padding-top: 27px;
+}
+h4 a.print-icon:hover,h4.engage a.print-icon:hover,h4.top20mentions a.print-icon:hover,h4.hourz a.print-icon:hover {
+  color: #666;
+}
 
 .loading {
   position: fixed;

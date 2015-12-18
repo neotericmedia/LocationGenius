@@ -64,7 +64,7 @@ angular.module('telusLg2App')
       //options : {panControl:true, tilt:45},
       //options: {scrollwheel: false, pan: true, panControl: true, tilt: 45, mapTypeId: google.maps.MapTypeId.HYBRID}
       //options: {scrollwheel: false,pan: true, panControl:true, tilt:45, mapTypeId: google.maps.MapTypeId.SATELLITE }
-      options: {scrollwheel: false,pan: true, panControl:true, tilt:45}
+      options: {draggable: false,zoomControl: false,disableDoubleClickZoom: true,streetViewControl: false,scrollwheel: false,disableDefaultUI: true, tilt:45}
     };
 
     $scope.marker = {
@@ -276,7 +276,7 @@ angular.module('telusLg2App')
              textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            format: 'short',
-           fontSize: 11,
+           fontSize: 15,
            tooltip: {
              textStyle: {fontName: 'telusweb',fontSize: 20}
            },
@@ -326,7 +326,7 @@ angular.module('telusLg2App')
                textStyle: { fontName: 'telusweb', fontSize: 20 }
              },
              format: 'short',
-             fontSize: 11,
+             fontSize: 15,
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
              vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              hAxis: {title: "Date", format:'MMM d, y', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
@@ -494,6 +494,7 @@ angular.module('telusLg2App')
            width: document.getElementById("container").clientWidth - 50,
            height: 350,
            colors: ['#6ebe44'],
+           pointSize: 4,
            legend: {
              position: 'none',
              textStyle: { fontName: 'telusweb', fontSize: 20 }
@@ -510,19 +511,33 @@ angular.module('telusLg2App')
            width: document.getElementById("container").clientWidth - 50,
            height: 450,
            colors: ['#6ebe44'],
+           pointSize: 4,
            legend: {
              position: 'none',
              textStyle: { fontName: 'telusweb', fontSize: 20 }
            },
            chartArea: {left: 100, top: 60, width: '88%'},
-           fontSize: 11,
+           fontSize: 15,
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
            vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
+           hAxis: {
+             title: "Hours",
+             format:'#',
+             slantedText: true,
+             slantedTextAngle: 25,
+             textStyle: {
+               fontName: 'telusweb',
+               fontSize: 12
+             },
+            //  viewWindow: {
+            //    min: 10,
+            //    max: 30
+            //  }
+           }
          };
       }
 
-      var linechart = new google.visualization.AreaChart(document.getElementById('linechart_div'));
+      var linechart = new google.visualization.LineChart(document.getElementById('linechart_div'));
       var hours = $scope.hourlyData[day];
       var hourly = google.visualization.arrayToDataTable(hours);
       linechart.draw(hourly, options);
@@ -532,6 +547,7 @@ angular.module('telusLg2App')
            var options = {
              height: 350,
              colors: ['blue'],
+             pointSize: 4,
              legend: {
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 20 }
@@ -550,12 +566,13 @@ angular.module('telusLg2App')
            var options = {
              height: 450,
              colors: ['blue'],
+             pointSize: 4,
              legend: {
                position: 'none',
                textStyle: { fontName: 'telusweb', fontSize: 12 }
              },
              chartArea: {left: 100, top: 60, width: '88%'},
-             fontSize: 11,
+             fontSize: 15,
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
              vAxis: {title: "Number of Tweets", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }}
@@ -1056,6 +1073,9 @@ angular.module('telusLg2App')
       $scope.currentLocation = LocationResults.getCurrentLocation();
       //console.log("Onsite data CurrentLocation:" + $scope.currentLocation.buildingId);
 
+
+      $scope.onsiteUniqueVisitors = "N/A";
+
       $scope.mostVisitedHour = "N/A";
       $scope.mostPostalCode = "N/A";
       $scope.mostVisitsToDate = "N/A";
@@ -1078,7 +1098,6 @@ angular.module('telusLg2App')
       dailyVisitorData.push(item);
 
       //console.log("Getting onsite report for :" + $scope.currentLocation.buildingId);
-
 
       var dateobj = new Date();
       var month = dateobj.getMonth() + 1;
@@ -1115,7 +1134,7 @@ angular.module('telusLg2App')
             $scope.weekChange = "N/A";
           }
 
-
+          $scope.onsiteUniqueVisitors = results.uniqueVisitors;
           $scope.onsiteMostVisitedDay = results.mostVisitedDay;
           $scope.onsiteMostPostalCode = results.mostPostalCode;
           $scope.onsiteMostVisitedDayTotal = results.mostVisitedDayTotal;
@@ -1229,7 +1248,7 @@ angular.module('telusLg2App')
             trigger: 'selection'
            },
            isStacked: true,
-           hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize:12  }} ,
          };
@@ -1245,7 +1264,7 @@ angular.module('telusLg2App')
            tooltip: {textStyle: { fontName: 'telusweb', fontSize: 20 } },
            //focusTarget: 'category',
            isStacked: true,
-           hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 14 }} ,
            vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
 
          };
@@ -1287,7 +1306,7 @@ angular.module('telusLg2App')
               textStyle: {fontName: 'telusweb',fontSize: 20},
               trigger: 'selection'
              },
-             hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
@@ -1305,7 +1324,7 @@ angular.module('telusLg2App')
              isStacked: true,
              fontSize: 15,
              tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
-             hAxis: {title: "Date", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+             hAxis: {title: "Date", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
              //vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
              vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            };
@@ -1339,7 +1358,7 @@ angular.module('telusLg2App')
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 20 } },
            isStacked: true,
            hAxis: {minValue: 0, gridlines:{ color:'transparent' },title: "Number of Repeat Visits", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
-           vAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
+           vAxis: {title: "Number of Visitors", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
       else {
@@ -1356,8 +1375,8 @@ angular.module('telusLg2App')
            vAxis: {
              title: "Number of Visitors",
              format:'#',
-             slantedText: false,
-             slantedTextAngle: 45,
+             slantedText: true,
+             slantedTextAngle: 25,
              textStyle: {fontName: 'telusweb', fontSize: 12 },
           }
          };
@@ -1494,6 +1513,7 @@ angular.module('telusLg2App')
             width: document.getElementById("container").clientWidth - 50,
            height: 350,
            colors: ['#6ebe44'],
+           pointSize: 4,
            chartArea: {left: 60, top: 60, width: '90%'},
            legend: {
              position: 'none',
@@ -1501,7 +1521,7 @@ angular.module('telusLg2App')
            },
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            fontSize:15,
-           hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+           hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
            vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
@@ -1510,6 +1530,7 @@ angular.module('telusLg2App')
             width: document.getElementById("container").clientWidth - 50,
            height: 450,
            colors: ['#6ebe44'],
+           pointSize: 4,
            chartArea: {left: 100, top: 60, width: '90%'},
            legend: {
              position: 'none',
@@ -1517,7 +1538,7 @@ angular.module('telusLg2App')
            },
            tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
            fontSize: 15,
-           hAxis: {title: "Hours", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize:12 }} ,
+           hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize:12 }} ,
            vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
          };
       }
@@ -1555,7 +1576,7 @@ angular.module('telusLg2App')
         h++;
       }
 
-      var linechart = new google.visualization.AreaChart(document.getElementById('onsite_timebreakdown_chart_div'));
+      var linechart = new google.visualization.LineChart(document.getElementById('onsite_timebreakdown_chart_div'));
       //console.log("Graphing ..." + $scope.hourlyVisitorData);
       var hourly = google.visualization.arrayToDataTable($scope.hourlyVisitorData);
 
@@ -1568,6 +1589,7 @@ angular.module('telusLg2App')
                width: document.getElementById("container").clientWidth - 50,
               height: 350,
               colors: ['blue'],
+              pointSize: 4,
               chartArea: {left: 60, top: 60, width: '90%'},
               legend: {
                 position: 'none',
@@ -1575,7 +1597,7 @@ angular.module('telusLg2App')
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
               fontSize: 50,
-              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12}} ,
+              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12}} ,
               vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
             linechart.draw(hourly, options);
@@ -1587,6 +1609,7 @@ angular.module('telusLg2App')
                width: document.getElementById("container").clientWidth - 50,
               height: 450,
               colors: ['blue'],
+              pointSize: 4,
               chartArea: {left: 100, top: 60, width: '90%'},
               legend: {
                 position: 'none',
@@ -1594,7 +1617,7 @@ angular.module('telusLg2App')
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
               fontSize: 15,
-              hAxis: {title: "Hours", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
+              hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12 }} ,
               vAxis: {title: "Number of Visitors", format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
             };
             linechart.draw(hourly, options);
