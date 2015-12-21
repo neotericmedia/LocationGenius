@@ -957,7 +957,13 @@ p.ng-binding, h2 {
     top: 130px;
     width: 800px;
   }
+#printableAreaVisitors{
+    page-break-before: always !important;
+}
 
+#repeatvisitors{
+    page-break-before: always !important;
+}
 
   #searchbar {
     display:none !important;
