@@ -2929,5 +2929,5 @@ angular.module('telusLg2App')
     $scope.ddMMMMyyyy = $filter('date')(new Date(), 'dd, MMMM yyyy');
     $scope.HHmmss = $filter('date')(new Date(), 'HH:mm:ss'); //24 hour
     $scope.hhmmsstt = $filter('date')(new Date(), 'hh:mm a');  //12hour
-    $scope.mm = $filter('date')(new Date(), 'mm:ss'); // just min
+    $scope.hhmm = $filter('date')(new Date(), 'mm a'); // just min
   })
