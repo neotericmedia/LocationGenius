@@ -2965,11 +2965,15 @@ angular.module('telusLg2App')
 
 
 
+
+
+
+
   .controller('PasswordCtrl', function ($scope, $http) {
      $('.alert-success').hide();
-     $scope.subject = 'Please send me a new password.';
-     $scope.reset = function() {
-       $http.post('/reset', {
+     $scope.subject = "Please send me a new password"
+     $scope.passwordReset = function() {
+       $http.post('/passwordReset', {
               name: $scope.name,
               email: $scope.email,
               subject: $scope.subject,
@@ -2977,14 +2981,11 @@ angular.module('telusLg2App')
        .success(function () {
            $('.alert-success').slideDown(500);
                setTimeout(function() {
-                window.location.href = "/login"
+                window.location.href = "/"
               }, 6000);
        })
       };
   })
-
-
-
 
 
 

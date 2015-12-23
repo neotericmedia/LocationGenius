@@ -174,14 +174,14 @@
 
 
 
-
+               <div id="printableAreaMediaActivityA">
                <div class="panel panel-default graphPanel">
                  <div class="panel-body">
 
                   <div class="row">
                      <div class="col-md-12">
                         <br>
-                        <h4>Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span></h4>
+                        <h4>Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityA');"><i class="fa fa-print"></i></a></h4>
                      </div>
                   </div>
 
@@ -237,15 +237,16 @@
 
                  </div>
                </div>
+               </div>
 
 
 
 
 
-
+               <div id="printableAreaMediaActivityB">
                   <div class="panel panel-default graphPanel">
                      <div class="panel-body">
-                        <h4>Hourly Breakdowns<span class="locateSub">&nbsp;&nbsp;Average for {{hourlyBreakDownDate}}</span></h4>
+                        <h4>Hourly Breakdowns<span class="locateSub">&nbsp;&nbsp;Average for {{hourlyBreakDownDate}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityB');"><i class="fa fa-print"></i></a></h4>
                         <div class="row">
                            <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
                               <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
@@ -253,26 +254,29 @@
                         </div>
                      </div>
                   </div>
-
+               </div>
 
 
 
 
                   <div class="panel panel-default graphPanel">
                      <div class="panel-body">
-                        <h4 id="repeatvisitors">Repeat Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span>
-                        <div class="row">
+                        <h4 id="repeatvisitors">Repeat Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityC');"><i class="fa fa-print"></i></a></h4>
+                        <div id="printableAreaMediaActivityC"><div class="row">
                            <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
                               <div id="onsite_loyalty_chart_div"></div>
                            </div>
-                        </div>
+                        </div></div>
                      </div>
                   </div>
 
 
+
+
+               <div id="printableAreaMediaActivityD">
                   <div class="panel panel-default graphPanel">
                      <div class="panel-body">
-                        <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span></h4>
+                        <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityD');"><i class="fa fa-print"></i></a></h4>
                               <div class="totals">
                                  <span class="totalBorderB">
                                     <span class="visitorsA">{{averageVisitDuration}} MIN</span>
@@ -286,7 +290,7 @@
                               </div>
                      </div>
                   </div>
-
+               </div>
              </tab>
              <!--END ON-SITE TAB-->
 
@@ -363,13 +367,13 @@
 
 
 
-
+                       <div id="printableAreaMediaActivityE">
                        <div class="panel panel-default">
                           <div class="panel-body">
 
                              <div class="row">
                                  <div class="col-md-12">
-                                   <h4 class="engage">Social Media Activity<span class="locateSub">{{dateRange}}</span></h4>
+                                   <h4 class="engage">Social Media Activity<span class="locateSub">{{dateRange}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityE');"><i class="fa fa-print"></i></a></h4>
                                 </div>
                              </div>
 
@@ -384,18 +388,19 @@
 
                           </div>
                        </div>
+                       </div>
 
 
 
 
 
 
-
+                       <div id="printableAreaMediaActivityF">
                        <div class="panel panel-default">
                            <div class="panel-body">
                               <div class="row">
                                  <div class="col-md-12">
-                                   <h4 class="hourz">Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
+                                   <h4 class="hourz">Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityF');"><i class="fa fa-print"></i></a></h4>
                                  </div>
                               </div>
 
@@ -406,14 +411,18 @@
                               </div>
                            </div>
                        </div>
+                       </div>
 
 
 
+
+
+                       <div id="printableAreaMediaActivityG">
                        <div class="panel panel-default">
                          <div class="panel-body">
                            <div class="row">
-                             <div class="col-md-9">
-                               <h4 class="top20mentions">Trending Keywords in Your Area </h4>
+                             <div class="col-md-12">
+                               <h4 class="top20mentions">Trending Keywords in Your Area <span class="locateSub"></span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityG');"><i class="fa fa-print"></i></a></h4>
                              </div>
                            </div>
                            <div class="row">
@@ -422,6 +431,7 @@
                                </div>
                            </div>
                          </div>
+                       </div>
                        </div>
 
 
