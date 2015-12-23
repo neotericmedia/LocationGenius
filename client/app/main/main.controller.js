@@ -28,29 +28,49 @@ angular.module('telusLg2App')
     };
 
 
+   //  $http({
+   //    method: 'GET',
+   //    url: '/api/locations',
+   //  })
+   //  .success(function (locations) {
+   //    //if ($scope.getCurrentUser().name === "Admin" || $scope.getCurrentUser().name === "Cam Milne") {
+   //    if ($scope.getCurrentUser().name === "Admin") {
+   //        $scope.locations = locations;
+   //        console.log('user has access, guy')
+   //    }
+   //    // if ($scope.getCurrentUser().name != "pattUser" && $scope.getCurrentUser().name != "Admin") {
+   //    //   console.log('user does not have access, guy')
+   //    // }
+   //  })
 
     $http({
       method: 'GET',
-      url: '/api/locations',
+      url: '/api/locationsLG',
     })
     .success(function (locations) {
-      $scope.locations = locations;
+      if ($scope.getCurrentUser().name === "Admin") {
+          $scope.locations = locations;
+      } else {}
+    })
+    $http({
+      method: 'GET',
+      url: '/api/locationsPat',
+    })
+    .success(function (locations) {
+      if ($scope.getCurrentUser().name === "Cam Milne" || $scope.getCurrentUser().name === "Ian Gadsby" || $scope.getCurrentUser().name === "Jessica Littlejohn" || $scope.getCurrentUser().name === "Kathy Cormier" || $scope.getCurrentUser().name === "Bob Leroux" || $scope.getCurrentUser().name === "Kathy Frias" || $scope.getCurrentUser().name === "Jeff Findlay" || $scope.getCurrentUser().name === "Dan Fraser" || $scope.getCurrentUser().name === "Joe Donaldson") {
+          $scope.locations = locations;
+      } else {}
+    })
+    $http({
+      method: 'GET',
+      url: '/api/locationsTit',
+    })
+    .success(function (locations) {
+      if ($scope.getCurrentUser().name === "Trevor Heselton" || $scope.getCurrentUser().name === "Megan Dunlop" || $scope.getCurrentUser().name === "Christine Reynolds") {
+          $scope.locations = locations;
+      } else {}
     })
 
-
-    // $http({
-    //   method: 'GET',
-    //   url: '/api/locations',
-    // })
-    // .success(function (locations) {
-    //   if ($scope.getCurrentUser().name === "Admin" || $scope.getCurrentUser().name === "pattUser") {
-    //       $scope.locations = locations;
-    //       console.log('user has access, guy')
-    //   }
-    //   if ($scope.getCurrentUser().name != "pattUser" && $scope.getCurrentUser().name != "Admin") {
-    //     console.log('user does not have access, guy')
-    //   }
-    // })
 
 
 
@@ -1604,7 +1624,7 @@ angular.module('telusLg2App')
                 textStyle: { fontName: 'telusweb', fontSize: 12 }
               },
               tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } },
-              fontSize: 50,
+              fontSize: 15,
               hAxis: {title: "Hours", format:'#', slantedText: true, slantedTextAngle: 25, textStyle: { fontName: 'telusweb', fontSize: 12}} ,
               vAxis: {title: "Number of Visitors", viewWindowMode:'explicit',viewWindow: {
                   min: 4},format:'#', textStyle: {fontName: 'telusweb', fontSize: 12 }},
@@ -2948,21 +2968,19 @@ angular.module('telusLg2App')
   .controller('PasswordCtrl', function ($scope, $http) {
      $('.alert-success').hide();
      $scope.subject = 'Please send me a new password.';
-     $scope.reset = function(isValid) {
-        if (isValid) {
-          $http.post('/reset', {
-                 name: $scope.name,
-                 email: $scope.email,
-                 subject: $scope.subject,
-          })
-          .success(function () {
-              $('.alert-success').slideDown(500);
-                  setTimeout(function() {
-                   window.location.href = "/login"
-                 }, 6000);
-          })
-         };
-      }
+     $scope.reset = function() {
+       $http.post('/reset', {
+              name: $scope.name,
+              email: $scope.email,
+              subject: $scope.subject,
+       })
+       .success(function () {
+           $('.alert-success').slideDown(500);
+               setTimeout(function() {
+                window.location.href = "/login"
+              }, 6000);
+       })
+      };
   })
 
 
@@ -2985,20 +3003,18 @@ angular.module('telusLg2App')
 
      $('.alert-success').hide();
 
-     $scope.support = function(isValid) {
-        if (isValid) {
-          $http.post('/support', {
-                 name: $scope.name,
-                 email: $scope.email,
-                 subject: $scope.subject,
-                 message: $scope.message,
-          })
-          .success(function () {
-              $('.alert-success').slideDown(500);
-                  setTimeout(function() {
-                   window.location.href = "/"
-                 }, 6000);
-          })
-         };
-      }
+     $scope.support = function() {
+       $http.post('/support', {
+              name: $scope.name,
+              email: $scope.email,
+              subject: $scope.subject,
+              message: $scope.message,
+       })
+       .success(function () {
+           $('.alert-success').slideDown(500);
+               setTimeout(function() {
+                window.location.href = "/"
+              }, 6000);
+       })
+      };
   })

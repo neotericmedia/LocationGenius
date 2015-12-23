@@ -154,6 +154,9 @@ module.exports = function(app) {
   app.use('/api/carrier', require('./api/carrier'));
   app.use('/api/social', require('./api/social'));
   app.use('/api/twitter', require('./api/twitter'));
+  app.use('/api/locationsLG', require('./api/locationsLG'));
+  app.use('/api/locationsTit', require('./api/locationsTit'));
+  app.use('/api/locationsPat', require('./api/locationsPat'));
   app.use('/api/locations', require('./api/locations'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));

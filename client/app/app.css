@@ -927,6 +927,9 @@ p.ng-binding, h2 {
     width: 100%;
     z-index: 10001;
   }
+  .onsite-margin {
+     margin-top:52px;
+  }
 }
 @media only screen and (min-width: 75em) {
   /* 1200 =================================================== */
