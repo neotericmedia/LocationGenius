@@ -1,0 +1,69 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+  <div class="row" style="padding-top:100px;">
+
+
+
+
+     <h1 class="locationDataTitle ng-binding" align="center">Support Ticket</h1>
+     <span class="subTxt ng-binding">Please fill out the form below.</span>
+
+     <div class="col-lg-12">
+       <div class="panel panel-default" style="padding: 0px 30px 10px 25px">
+
+
+
+
+          <form class="form-horizontal" id="contact_form" action="/support" method="post" name="userForm">
+             <fieldset>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="name">Name</label>
+                 <div class="col-md-9">
+                 <input id="name" name="name" type="text" class="form-control" value="{{ name }}" readonly="true" />
+                 </div>
+             </div>
+             <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                 <label class="col-md-3 control-label" for="email">Email</label>
+                 <div class="col-md-9">
+                    <input id="email" name="email" type="email" class="form-control" value="{{ email }}" readonly="true" />
+                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                 </div>
+             </div>
+             <div class="form-group" ng-class="{ 'has-error' : userForm.subject.$invalid && !userForm.subject.$pristine }">
+                 <label class="col-md-3 control-label" for="subject">Subject</label>
+                 <div class="col-md-9">
+                 <input autocomplete='off'class="form-control input-md input-gold" tabindex='3' type="text" name="subject" id="subject" placeholder="..." maxlength='50' size="25">
+                 <p ng-show="userForm.subject.$invalid && !userForm.subject.$pristine" class="help-block">Enter a valid subject.</p>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="msg">Message</label>
+                 <div class="col-md-9">
+                  <textarea class="form-control" id="message" name="message" cols="6" rows="6" placeholder="..." ></textarea>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="submit"></label>
+                 <div class="col-md-9">
+                  <button class="frg-button color-purple" type="submit">
+                  Send
+                  </button>
+                 </div>
+             </div>
+          </form>
+
+       </div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

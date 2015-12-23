@@ -12,6 +12,14 @@ angular.module('telusLg2App')
     $scope.getCurrentUser = Auth.getCurrentUser;
 
 
+    $http.get('/api/users/me')
+     .then(function(result) {
+        $scope.userId = result.data._id;
+        $scope.user = result.data.name;
+    })
+    $scope.name = $scope.getCurrentUser().name;
+    $scope.email = $scope.getCurrentUser().email;
+
 
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var incomeLevelsLabels = ["$0-$39,000", "$40,000-$59,000", "$60,000-$79,000", "$80,000-$99,000", "$100,000-$124,000", "$125,000+"];
@@ -2930,4 +2938,27 @@ angular.module('telusLg2App')
     $scope.HHmmss = $filter('date')(new Date(), 'HH:mm:ss'); //24 hour
     $scope.hhmmsstt = $filter('date')(new Date(), 'hh:mm a');  //12hour
     $scope.mm = $filter('date')(new Date(), 'mm:ss'); // just min
+  })
+
+
+
+
+  .controller('PasswordCtrl', function ($scope, $http) {
+     $('.alert-success').hide();
+     $scope.subject = 'Please send me a new password.';
+     $scope.reset = function(isValid) {
+        if (isValid) {
+          $http.post('/reset', {
+                 name: $scope.name,
+                 email: $scope.email,
+                 subject: $scope.subject,
+          })
+          .success(function () {
+              $('.alert-success').slideDown(500);
+                  setTimeout(function() {
+                   window.location.href = "/login"
+                 }, 8000);
+          })
+         };
+      }
   })

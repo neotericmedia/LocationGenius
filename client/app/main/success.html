@@ -7,12 +7,25 @@
 
 
 
+     <div class="col-lg-12">
+       <div class="panel panel-default" style="padding: 0px 30px 10px 25px">
+          <h1 class="locationDataTitle ng-binding" align="center">Support Ticket Sent</h1>
+          <span class="subTxt ng-binding">Someone will be in contact shortly.</span>
+       </div>
+     </div>
 
 
 
-    <div ng-repeat="location in locations">
-      {{ location.address }}
-    </div>
+<script>
+$(document).ready(function(){
+ setTimeout(function() {
+  window.location.href = "/login;"
+}, 8000);
+});
+</script>
+
+
+
 
 
 

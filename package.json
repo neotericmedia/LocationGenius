@@ -22,7 +22,8 @@
     "composable-middleware": "^0.3.0",
     "connect-mongo": "^0.4.1",
     "cors": "^2.5.1",
-    "request": "^2.60.0"
+    "request": "^2.60.0",
+    "mandrill-api": "^1.0.45"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",
