@@ -129,7 +129,7 @@ module.exports = function(app) {
     mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message}, function(result) {
       console.log(result);
       //res.json(result);
-      res.redirect('/success2');
+      //res.redirect('/success2');
     }, function(e) {
       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
     });

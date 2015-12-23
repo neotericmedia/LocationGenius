@@ -15,27 +15,15 @@ angular.module('telusLg2App')
       controller: 'MainCtrl',
       authenticate: 'true'
     })
-    .state('support', {
-     url: '/support',
-     templateUrl: 'app/main/support.html',
-     controller: 'MainCtrl',
-     authenticate: 'true'
-    })
-    .state('success', {
-     url: '/success',
-     templateUrl: 'app/main/success.html',
-     controller: 'MainCtrl',
-     authenticate: 'true'
-    })
     .state('password', {
      url: '/password',
      templateUrl: 'app/main/password.html',
      controller: 'PasswordCtrl'
     })
-    .state('success2', {
-     url: '/success2',
-     templateUrl: 'app/main/success2.html',
-     controller: 'PasswordCtrl'
+    .state('callSupport', {
+     url: '/callSupport',
+     templateUrl: 'app/main/callSupport.html',
+     controller: 'SupportCtrl'
     })
     .state('main2', {
       url: '/main2',
