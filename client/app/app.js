@@ -6,8 +6,7 @@ angular.module('telusLg2App', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'uiGmapgoogle-maps',
-  'angular-jqcloud'
+  'uiGmapgoogle-maps'
 ])
 
 

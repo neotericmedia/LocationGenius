@@ -7,23 +7,33 @@ Interactive Data Collection & Visualization by Via Informatics Inc. June 17, 201
 * Interactive Data Collection & Visualization by Via Informatics Inc.
 * 1.0
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* [Website](http://locationgenius.com)
+* [Alpha](http://alpha.locationgenius.com)
+* [Beta](http://beta.locationgenius.com)
 
-### How do I get set up? ###
+### Technologies ###
+MEAN Stack - http://mean.io/
+Angular Seed - https://github.com/angular/angular-seed
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Main Contributor:
+Doug Garrigan - doug@locationgenius.com
 
-### Contribution guidelines ###
+Contributors:
+Taimoor Khan - taimoor@locationgenius.com
 
-* Writing tests
-* Code review
-* Other guidelines
 
-### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Locations = require('./locations.model');
+var Locations = require('./locationsLG.model');
 var request = require('request');
 
 
@@ -9,7 +9,7 @@ var request = require('request');
 // Get list of locationss
 exports.index = function(req, res) {
    request({
-       url: 'http://10.117.192.55:9100/user/lgweb/location',
+       url: 'http://10.117.192.55:9100/user/locationgenius/location',
        //url: 'http://192.99.16.178:9100/user/lgweb/location',
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',

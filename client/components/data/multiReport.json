@@ -1,0 +1,201 @@
+{
+  "buildingId": "108",
+  "totalVisits": 1797,
+  "averageVisitorsDay": 449,
+  "mostVisitedDay": {
+    "date": "2015-11-18",
+    "dayCount": 548
+  },
+  "averageVisitDuration": "07:06",
+  "mostFrequentCustomer": {
+    "mac": "44cb6ce8d687d657d5910db13c1ba52b41c8f7e08d2ada3484444b50248e300e",
+    "numVisits": 25
+  },
+  "busiestHour": {
+    "hour": "9",
+    "day": null,
+    "visits": 277
+  },
+  "topCustomers": [
+    {
+      "mac": "44cb6ce8d687d657d5910db13c1ba52b41c8f7e08d2ada3484444b50248e300e",
+      "numVisits": 25
+    },
+    {
+      "mac": "8e701128b05a7815a8535d6a18316e89efd0ae18aa9f4b0039741cb7e81464cb",
+      "numVisits": 13
+    },
+    {
+      "mac": "495ca78ebb469180216ba669d67e24d2b9c4bf914e3f5f54f09f75b577f26920",
+      "numVisits": 10
+    },
+    {
+      "mac": "2b34d7480528b402b8b0cc552160748bf9b51d2c3ac9e0bbffdb2cdd90a118e5",
+      "numVisits": 8
+    },
+    {
+      "mac": "57418eb636d0b8bb19d6e3c9454d2a630ae50631e6e10593e0a33bee0aa2cee0",
+      "numVisits": 7
+    },
+    {
+      "mac": "95228624d6bb6cfee5447a8719663668aae82f4f11373e4ed4510c6302607f86",
+      "numVisits": 6
+    },
+    {
+      "mac": "bdd6ac02bad0b613a454b879568b7e475b18efb4d33448a341e29e0a589c23b3",
+      "numVisits": 5
+    },
+    {
+      "mac": "e0e442859def1250d5c54120b0f0f8954619ce5de096e7c5722ec7c9b47ebf61",
+      "numVisits": 5
+    },
+    {
+      "mac": "95e2af8f4bca1acda2314288619ad21597c63a0efa463b25b87fd370314b3a74",
+      "numVisits": 5
+    },
+    {
+      "mac": "03e523d6e441d26a957baf964e851e6dbfb9133ef781e54dfd40c2ebdde154b7",
+      "numVisits": 4
+    },
+    {
+      "mac": "741c7105df5bd7628bc4a9942f31b6e8259a9d663a031f7c1765716c4ff715c7",
+      "numVisits": 4
+    },
+    {
+      "mac": "6e2431b88ef8d07bd4d68ab8e39ad5357ea41c64e9cce383a634cae6f2b60a8e",
+      "numVisits": 4
+    },
+    {
+      "mac": "643893e106fdc28313e0dbc281a87d0f703b0c873d3dee0e0c17f877a0467b9e",
+      "numVisits": 4
+    },
+    {
+      "mac": "1071d9454a7810e3c1d3832ecca559fe64ba7e6ea6bc9dbf766b4c0eeddbb7b0",
+      "numVisits": 4
+    },
+    {
+      "mac": "0cef8f6b81de60c748ba76a7a4b0089d8c0fb46d46bd65cbc1572e0fcaa699c4",
+      "numVisits": 4
+    },
+    {
+      "mac": "8da709945e18231eb6f5e8edf9c07795bfc4ef2a89bba044b92e0097a6d2425d",
+      "numVisits": 4
+    },
+    {
+      "mac": "c15a280dc54adcbe53632f1c3cb0190e907cac10e70f588bbbe9693bec64e3c6",
+      "numVisits": 3
+    },
+    {
+      "mac": "c71531e78b496abf339bacbfdff0e0125102465cb058dcf72612edfb270d9ee1",
+      "numVisits": 3
+    },
+    {
+      "mac": "4a88179552359ad3cc4aac1e9ddcecc0257db6d73c64171bddb26d9caa1bf656",
+      "numVisits": 3
+    },
+    {
+      "mac": "2b6b76cb08267d511eb13b6a745af4effd915ff5de24393a2dc0205c18512436",
+      "numVisits": 3
+    },
+    {
+      "mac": "b7488fb83ea0accf2345cb7678f7dba936ceb4f791fa5fcd1a531bc7a7e594e8",
+      "numVisits": 3
+    },
+    {
+      "mac": "035b6d4d66855871356626ad70cf7859a802435730cf39f6637d0480171f9c64",
+      "numVisits": 3
+    },
+    {
+      "mac": "1202fdf8fce70d3a247fdf59c7e9b9d6e25ffb6506e0ba9f28a8db7a54531eaf",
+      "numVisits": 3
+    },
+    {
+      "mac": "91a14d750d0d70e1e933dcfd156707285aab2b95c75e5734e314cad245274b01",
+      "numVisits": 2
+    },
+    {
+      "mac": "19dc3aefff1ff8d136f70daedcbdc97cb2f74ce74a5c265f8a978bd1be08b3ae",
+      "numVisits": 2
+    },
+    {
+      "mac": "dc1bc921219bd7c53cd961f42fe579b6e6d46110116941cfb7293d5ef213a899",
+      "numVisits": 2
+    },
+    {
+      "mac": "6eac34112d2fe09ec55d934efe426885ba1d0257f9120280e4475385c3d4e62e",
+      "numVisits": 2
+    },
+    {
+      "mac": "c6a2e4815a63c60b80b57e9ef098dda5b8ea310dfa78852a4525def457f9ddb4",
+      "numVisits": 2
+    },
+    {
+      "mac": "ee2969931062115438acfd9957a56b533e9d9351b859f468c869d5dcec525c15",
+      "numVisits": 2
+    },
+    {
+      "mac": "1db76fb9c12dfa859f17878737b838f6a7af06dc7630cf5bcbf378e57ee2e0ca",
+      "numVisits": 2
+    },
+    {
+      "mac": "0b6b7e50ecc9b43512656817d6924b7dbabb66b01b28373af42ef3476b8b68cb",
+      "numVisits": 2
+    },
+    {
+      "mac": "2a9df9a712e0253bdd5ae7b2587e1e630256ca4115632e62871123b5b817625d",
+      "numVisits": 2
+    },
+    {
+      "mac": "7c192c7cd281ea0f501eb7dc3be634567661e4139908e5a8a779abe7efff89ec",
+      "numVisits": 2
+    },
+    {
+      "mac": "aee29824ffe7d223467a409285de2003bffa8ea5f26ab5ef7108188ea45109bf",
+      "numVisits": 2
+    },
+    {
+      "mac": "604e61012e9ba9096e370677c9bc04665d219a027513058d5ece13231938bc24",
+      "numVisits": 2
+    },
+    {
+      "mac": "d473b24fcb06838ae8cbbbe9f0aca307ff85311aa7a8ca23624c841e5812707b",
+      "numVisits": 2
+    },
+    {
+      "mac": "001397293b1fe46e32b361df23e61cc787f4011c4cdbb33832d42b4f56b0137d",
+      "numVisits": 2
+    },
+    {
+      "mac": "cddbb521f9998ac3617c258bd2eeb62b5b1dc1ebc5b33ac7bd428a1144d61574",
+      "numVisits": 2
+    },
+    {
+      "mac": "fb651b1a7f4e3be821523a22bcd1a6a0839cd2bab8f4c02de624d2d976d8b90c",
+      "numVisits": 2
+    },
+    {
+      "mac": "29a69d8dd4820d1739b0251a6684e54618bc29d8fa3397f0c0b79e3f6deba0b9",
+      "numVisits": 2
+    },
+    {
+      "mac": "84d704c46330fff39ca741226b7048a2c4fdc1dee456af6e2b6ccc2f3ef48e24",
+      "numVisits": 2
+    },
+    {
+      "mac": "b5f9659d17d306c20680ef7fb28389682f724b3be072ef3b019e2f7e5856483d",
+      "numVisits": 2
+    },
+    {
+      "mac": "55c07c98dd01cc707c0ef66aa48ac6c63e3cb79cbc80c089ed3d72081587e651",
+      "numVisits": 2
+    },
+    {
+      "mac": "5277484ac6ee31cf3a66d4e3549f87ad53f341b5e864f90311ff4c90e71c75aa",
+      "numVisits": 2
+    },
+    {
+      "mac": "32a6f31625ec64ea90f18ed83a41d91c23694c39c1d82729eaffca5fd0aa8cfa",
+      "numVisits": 2
+    }
+  ]
+}
