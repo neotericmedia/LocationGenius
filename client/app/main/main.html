@@ -130,7 +130,7 @@
         <div class="col-md-12">
 
 
-           <!--/////////////////////////SOCIAL-->
+           <!--/////////////////////////LOCATION VIEW-->
            <tabset justified="false">
              <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
@@ -274,6 +274,9 @@
 
 
 
+
+
+
                <div id="printableAreaMediaActivityD">
                   <div class="panel panel-default graphPanel">
                      <div class="panel-body">
@@ -285,9 +288,28 @@
                               </div>
 
                               <div class="row">
-                                 <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                                    <div id="onsite_visitor_chart_div"></div>
-                                 </div>
+                                <tabset justified="false" style="margin-top:10px;">
+                                    <tab ng-click="">
+                                      <tab-heading>10 Minutes</tab-heading>
+                                       <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                          <div id="yourLocation_1Mduration_chart_div"></div>
+                                       </div>
+                                    </tab>
+                                  <tab ng-click="">
+                                  <tab-heading>10-60 Minutes</tab-heading>
+                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                      <div id="yourLocation_10to60Mduration_chart_div"></div>
+                                    </div>
+                                  </tab>
+                                  <tab ng-click="">
+                                  <tab-heading>60-210 Minutes</tab-heading>
+                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                      <div id="yourLocation_60to210Mduration_chart_div"></div>
+                                    </div>
+                                  </tab>
+
+
+                                </tabset>
                               </div>
                      </div>
                   </div>
