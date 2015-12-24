@@ -23,7 +23,7 @@
 
 
 
-                     <div class="col-sm-6">
+                     <div class="col-sm-8">
                         <form role="search" ng-submit="showTweeters()">
                            <div class="input-group" style="width:100%" >
                               <input type="text" class="form-control searchInput" style="border:none; background: transparent" readonly placeholder="Please choose a location from the drop down menu" ng-model="searchString">
@@ -38,8 +38,6 @@
 
         </div>
     <!--SEARCH END-->
-
-    </div>
 </div>
 
 
@@ -80,12 +78,6 @@
 
 
 
-<!-- <div class="csliderup"><a href="#btm">More</a></div> -->
-<!--<div class="clear" style="height:30px;"></div>-->
-<!-- <div id="btm"></div> -->
-
-
-
 
 <!--///////////////////////////////////////////////////////////////////CONTENT AREA-->
 
@@ -103,57 +95,27 @@
 
 
 <div id="contentArea" class="content">
-<div class="container">
-  <div class="row">
+   <div class="container">
+      <div class="row">
 
+         <loading></loading>
 
-    <loading></loading>
-
-
-     <tabs>
-      <pane
-         active="pane.active"
-         heading="{{pane.title}}"
-         ng-repeat="pane in panes"
-      >
-         <div ng-include="pane.content"></div>
-      </pane>
-     </tabs>
-
-
-
-
-
-
-       <!-- <div class="col-md-12">
-          <div class="row ">
-           <div class="col-md-10">
-           </div>
-           <div class="col-md-2">
-
-
-              <span class="uts">
-                <span>
-                  <a onclick="print();">
-                  <i class="fa fa-print"></i>
-                  &lt;!&ndash;<i class="fa fa-plus" style="padding-left:10px;padding-right:10px;font-size:.75em;color:#ccc"></i>
-                  <i class="fa fa-save"></i>&ndash;&gt;
-                  </a>
-                </span>
-                &lt;!&ndash;<span><a onclick="saveAs();"><i class="fa fa-envelope"></i></a></span>&ndash;&gt;
-              </span>
-
-
-           </div>
-          </div>
-        </div>-->
+         <tabs>
+            <pane
+               active="pane.active"
+               heading="{{pane.title}}"
+               ng-repeat="pane in panes"
+               >
+               <div ng-include="pane.content"></div>
+            </pane>
+         </tabs>
 
 
 
 
         <div class="col-md-12">
           <div class="row ">
-              <div class="locationData" >
+              <div class="locationData">
                  <h1 class="locationDataTitle" align="center">{{currentLocation.name}}</h1>
                  <span class="subTxt">{{currentLocation.address}}<br>
                  {{currentLocation.gps}}</span>
@@ -164,92 +126,47 @@
 
 
 
-
-
         <!--///////////////////////////TABS-->
-        <div class="col-md-12" >
+        <div class="col-md-12">
 
 
            <!--/////////////////////////SOCIAL-->
            <tabset justified="false">
-
              <tab ng-click="selected($index);showOnsiteDailyVisitorData();showOnsiteLoyaltyData();showOnsiteDurationData();getOnsiteDataPreGenReport();">
 
                <tab-heading>Location View</tab-heading>
-
                <div class="date">{{onsiteWeek}}</div>
 
-               <!-- <div id="miniTab" class="row">
-                 <div class="col-md-12">
-                   <div id="crumbs" class="filters_ct" ng-controller="selectFilter">
-                     <ul class="boo" ng-repeat="filter in filters" ng-click="select($index)" ng-class="{active: $index===selectedIndex}">
-                       <li>
-                         <a href="" ng-click="filter.showLast7Days();filter.showLast4Weeks();filter.showLast8Weeks();filter.showLast84days();filter.showLast112days();">{{filter.time}}</a>
-                       </li>
-                     </ul>
-                   </div> -->
-                   <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
-                     <tab heading="Last Week" ng-click="showLast7Days()"></tab>
-                     <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
-                     <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                     <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
-                     <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
-                  </tabset>-->
-                 <!-- </div>
-               </div> -->
 
 
+               <div class="onsite-margin row">
+                     <div class="col-md-6">
+                      <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
 
+                        <div ng-controller="AccordionDemoCtrl">
+                          <accordion close-others="oneAtATime">
+                            <accordion-group is-open="status.isFirstOpen" >
+                              <accordion-heading>
+                                <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
+                              </accordion-heading>
+                              <div class="well well-lg highlightsPanel" style="margin-top:0px">
+                                <ul style="margin-bottom:0px;">
+                                  <li>Most Visits in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
+                                  <li>Most Visits in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
+                                  <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration }}  Minutes</span></li>
+                                  <li>Average Busiest hour <span class="hLight">{{busiestHourDay}} {{mostVisitedHour}}</span></li>
+                                </ul>
+                              </div>
+                            </accordion-group>
+                          </accordion>
+                        </div>
 
-               <div class="row" style="margin-top:53px;">
-                 <div class="col-md-6">
-
-                   <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;padding-top:0px;">
-
-                     <div ng-controller="AccordionDemoCtrl">
-
-                       <accordion close-others="oneAtATime">
-
-
-                         <accordion-group is-open="status.isFirstOpen" >
-                           <accordion-heading>
-                             <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;On-Site Highlights at a Glance</h4>
-                             <!--<div style="display:block;margin-top:14px;">
-                               <span class="totalBorderA" style="padding-top:11px;border:1px solid #ccc">
-                                <a href="#"><i class="fa fa-angle-right" style="top:0px; font-size:1.35em;"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</a>
-                               </span>
-                             </div>-->
-                           </accordion-heading>
-
-                           <div class="well well-lg highlightsPanel" style="margin-top:0px">
-                             <ul style="margin-bottom:0px;">
-                               <li>Most Visitors in a Week: <span class="hLight">{{onsiteVisitorsWeek | number}}</span> visitors <span class="hLight">{{onsiteWeek}}</span></li>
-                               <li>Most Visitors in a Day: <span class="hLight">{{onsiteMostVisitedDayTotal | number}}</span> visitors on <span class="hLight">{{onsiteMostVisitedDay}}</span></li>
-                               <li>Average Visit Duration: <span class="hLight">{{averageVisitDuration }}  Minutes</span></li>
-                               <li>Average Busiest hour <span class="hLight">{{busiestHourDay}} {{mostVisitedHour}}</span></li>
-                             </ul>
-                           </div>
-
-                         </accordion-group>
-
-
-
-
-
-
-                       </accordion>
-
+                      </div>
                      </div>
 
-                   </div>
-                 </div>
-
-
-
-
-                 <div class="col-md-3" style="text-align:right;">
-                   <br>
-                 </div>
+                     <div class="col-md-3" style="text-align:right;">
+                      <br>
+                     </div>
                </div>
 
 
@@ -257,169 +174,133 @@
 
 
 
-
-<div id="printableAreaVisitors">
+               <div id="printableAreaMediaActivityA">
                <div class="panel panel-default graphPanel">
-                 <div class="panel-body" >
+                 <div class="panel-body">
 
-
-                   <div class="row">
+                  <div class="row">
                      <div class="col-md-12">
-                       <br>
-                       <h4>Visitors<a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a>
-                       <span class="locateSub">{{onsiteWeek}}</span></h4>
+                        <br>
+                        <h4>Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityA');"><i class="fa fa-print"></i></a></h4>
                      </div>
-                   </div>
-
-
+                  </div>
 
                    <div class="row">
                      <div class="col-lg-12">
 
-                       <div style="float:left; margin-right:20px;">
-                         <div class="totals">
-                                         <span class="totalBorderB">
-                                           <span class="visitorsA">{{onsiteUniqueVisitors | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Unique Visitors</span>
-                         </div>
-                       </div>
+                        <div style="float:left; margin-right:20px;">
+                           <div class="totals">
+                              <span class="totalBorderB">
+                                 <span class="visitorsA">{{onsiteUniqueVisitors | number}}</span>
+                              </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Unique Visitors</span>
+                           </div>
+                        </div>
 
+                        <div style="float:left; margin-right:20px;">
+                           <div class="totals">
+                              <span class="{{changeImage}}" style="padding-right:30px;">
+                                 <span class="visitorsB">{{weekChange | number:1}}</span>
+                                 <span id="changeIcon" class="{{changeIcon}}"></span>
+                              </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
+                           </div>
+                        </div>
 
-                       <div style="float:left; margin-right:20px;">
-                         <div class="totals">
-                                         <span class="{{changeImage}}" style="padding-right:30px;">
-                                           <span class="visitorsB">{{weekChange | number:1}}</span>
-                                           <span id="changeIcon" class="{{changeIcon}}"></span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Compared to previous week</span>
-                         </div>
-                       </div>
+                        <div style="float:left">
+                           <div class="totals">
+                              <span class="totalBorderB">
+                                 <span class="visitorsA">{{averageVisitorsDay | number}}</span>
+                              </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
+                           </div>
+                        </div>
 
-
-                       <div style="float:left">
-                         <div class="totals">
-                                         <span class="totalBorderB">
-                                           <span class="visitorsA">{{averageVisitorsDay | number}}</span>
-                                         </span>&nbsp;&nbsp;&nbsp;<span style="line-height:35px">Average Visitors/Day</span>
-                         </div>
-                       </div>
-
-
-                       <div class="legend">
-                         <div class="cNewA">
-                           <div class="cNewB"></div>Existing Visitors
-                         </div>
-                         <div class="cNewC">
-                           <div class="cAll"></div>New Visitors
-                         </div>
-                       </div>
+                        <div class="legend">
+                           <div class="cNewA">
+                              <div class="cNewB"></div>Existing Visitors
+                           </div>
+                           <div class="cNewC">
+                              <div class="cAll"></div>New Visitors
+                           </div>
+                        </div>
 
 
                        <div style="clear: both"></div>
+
                      </div>
-
-
-
-                     <!--<div class="row">
-                        <div class="col-lg-12">
-                           <div style="padding: 15px 0px 0px 18px; color: #999; font-size: .85em">&#42;Daily selections for both New and Existing Visitors, represents the same Hourly Breakdown; details following this chart.</div>
-                        </div>
-                     </div>-->
-
-
-
-
-
-
-
-
-
                    </div>
-
 
 
                    <div class="col-md-11 col-md-offset-1" style="margin-left:0;">
-
                      <div id="onsite_visitors_barchart_div"></div>
-
                    </div>
+
+
+
                  </div>
                </div>
-</div>
+               </div>
 
 
 
 
 
-               <div id="printableAreaHourly">
-               <div class="panel panel-default graphPanel">
-                 <div class="panel-body" >
-
-                   <h4>Hourly Breakdowns<a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a>
-                   <span class="locateSub">Average for {{hourlyBreakDownDate}}</span></h4>
-
-                   <!-- <div class="totals">
-                                <span class="totalBorderB" style="width: 130px">
-                                  <span class="visitorsA">{{busiestHourDay}} {{mostVisitedHour}}</span>
-                               </span>&nbsp;&nbsp;<span style="line-height:35px">Busiest Hour (average)</span>
-                   </div> -->
-
-                   <div class="row">
-                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                       <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
+               <div id="printableAreaMediaActivityB">
+                  <div class="panel panel-default graphPanel">
+                     <div class="panel-body">
+                        <h4>Hourly Breakdowns<span class="locateSub">&nbsp;&nbsp;Average for {{hourlyBreakDownDate}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityB');"><i class="fa fa-print"></i></a></h4>
+                        <div class="row">
+                           <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                              <div id="onsite_timebreakdown_chart_div" style="width: 90%; height: 20%;"></div>
+                           </div>
+                        </div>
                      </div>
-                   </div>
-                 </div>
+                  </div>
                </div>
-                 </div>
 
 
 
 
-               <div id="printableAreaRepeat">
-               <div class="panel panel-default graphPanel">
-                 <div class="panel-body" >
-                   <h4 id="repeatvisitors">Repeat Visitors<a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a>
-
-                   <span class="locateSub">{{onsiteWeek}}</span></h4>
-
-                   <div class="row">
-                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                       <div id="onsite_loyalty_chart_div"></div>
+                  <div class="panel panel-default graphPanel">
+                     <div class="panel-body">
+                        <h4 id="repeatvisitors">Repeat Visitors<span class="locateSub">&nbsp;&nbsp;{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityC');"><i class="fa fa-print"></i></a></h4>
+                        <div id="printableAreaMediaActivityC"><div class="row">
+                           <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                              <div id="onsite_loyalty_chart_div"></div>
+                           </div>
+                        </div></div>
                      </div>
-                   </div>
-                 </div>
-               </div>
-                 </div>
+                  </div>
 
-               <div id="printableAreaDuration">
-               <div class="panel panel-default graphPanel">
-                 <div class="panel-body" >
-                   <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span><a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a></h4>
 
-                   <div class="totals">
-                                <span class="totalBorderB">
-                                  <span class="visitorsA">{{averageVisitDuration}} MIN</span>
-                               </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration
 
-                   </span>
 
-                   </div>
+               <div id="printableAreaMediaActivityD">
+                  <div class="panel panel-default graphPanel">
+                     <div class="panel-body">
+                        <h4>Visit Duration  <span class="locateSub">{{onsiteWeek}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityD');"><i class="fa fa-print"></i></a></h4>
+                              <div class="totals">
+                                 <span class="totalBorderB">
+                                    <span class="visitorsA">{{averageVisitDuration}} MIN</span>
+                                 </span>&nbsp;&nbsp;<span style="line-height:35px">Average Visit Duration</span>
+                              </div>
 
-                   <div class="row">
-                     <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-                       <div id="onsite_visitor_chart_div"></div>
+                              <div class="row">
+                                 <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
+                                    <div id="onsite_visitor_chart_div"></div>
+                                 </div>
+                              </div>
                      </div>
-                   </div>
-                 </div>
+                  </div>
                </div>
-              </div>
-
              </tab>
-
-
-
-
              <!--END ON-SITE TAB-->
+
+
+
+
+
+
+
+
 
 
 
@@ -439,13 +320,6 @@
                              </li>
                           </ul>
                       </div>
-                      <!--<tabset type="pills" class="ng-isolate-scope ng-scope">
-                        <tab heading="Last Week" ng-click="showLast7Days()"></tab>
-                        <tab heading="Last 4 Weeks" ng-click="showLast4Weeks()"></tab>
-                        <tab heading="Last 8 Weeks" ng-click="showLast8Weeks()"></tab>
-                        <tab heading="Last 3 Months" ng-click="showLast84days()"></tab>
-                        <tab heading="Last 4 Months" ng-click="showLast112days()"></tab>
-                     </tabset>-->
                    </div>
                  </div>
 
@@ -457,37 +331,33 @@
 
 
 
-                 <div class="row">
+                   <div class="row">
                        <div class="col-md-8">
                           <div id="social-highlights-panel" style="position:relative; padding-bottom:10px;">
+
+
                             <div ng-controller="AccordionDemoCtrl">
                              <accordion close-others="oneAtATime">
-
                                 <accordion-group is-open="status.isFirstOpen">
-
                                  <accordion-heading>
                                         <h4 style="font-size:20px; margin-bottom:0px;" class="beef"><i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Social Highlights at a Glance</h4>
                                  </accordion-heading>
-
                                   <div ng-controller="FilterController" class="well well-lg highlightsPanel" style="margin-top:0px">
-
                                     <ul style="margin-bottom:0px;">
                                       <li>Weekly Tweet Total: <span class="hLight">{{totalInteractions}}</span> engagements from <span class="hLight">{{dateRange}}</span></li>
-                                      <li>Highest Tweeted Hour: <span class="hLight">{{highestTweetedHour }}</span></li>
+                                      <li>Highest Tweeted Hour: <span class="hLight" ng-bind = "hhmmsstt">{{highestTweetedHour }}</span></li>
                                       <li>Highest Tweeted Day: <span class="hLight">{{highestTweetedDay.date | date:'MMM dd, yyyy'}}</span></li>
                                       <li>Total Tweets: <span class="hLight">{{highestTweetedDay.totalTweets}}</span></li>
-
+                                     <li>Average Busiest hour <span class="hLight">{{busiestHourDay}} {{mostVisitedHour}}</span></li>
                                     </ul>
                                   </div>
-
                                 </accordion-group>
                              </accordion>
                             </div>
+
+
                           </div>
                        </div>
-
-
-
                     </div>
 
 
@@ -497,57 +367,43 @@
 
 
 
-
-               <div id="printableAreaMediaActivity">
+                       <div id="printableAreaMediaActivityE">
                        <div class="panel panel-default">
                           <div class="panel-body">
 
                              <div class="row">
                                  <div class="col-md-12">
-                                   <h4 class="engage">Social Media Activity<a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a>
-                                     <span class="locateSub">{{dateRange}}</span></h4>
-                                 </div>
+                                   <h4 class="engage">Social Media Activity<span class="locateSub">{{dateRange}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityE');"><i class="fa fa-print"></i></a></h4>
+                                </div>
                              </div>
-
-
-
 
                              <div class="row">
                                 <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
-
                                   <div class="totals">
-                                    <span class="totalBorderB">
-                                      <span class="visitorsA">{{totalInteractions}}</span>
-                                   </span>&nbsp;&nbsp;<span style="line-height:35px">Total Social Media Activity</span>
+                                    <span class="totalBorderB"><span class="visitorsA">{{totalInteractions}}</span></span>&nbsp;&nbsp;<span style="line-height:35px">Total Social Media Activity</span>
                                   </div>
-                                  <h3>
-                                   <div id="barchart_div"></div>
-                                  </h3>
+                                  <div id="barchart_div"></div>
                                 </div>
                              </div>
 
                           </div>
                        </div>
-</div>
+                       </div>
 
 
 
 
 
 
-
-                        <div id="printableAreaHourlyBreak">
-                         <div class="panel panel-default">
+                       <div id="printableAreaMediaActivityF">
+                       <div class="panel panel-default">
                            <div class="panel-body">
                               <div class="row">
-                                   <div class="col-md-12">
-                                       <h4 class="hourz">Hourly Breakdown<a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a>
-                                         <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span></h4>
-                                   </div>
-                                   <!--<div class="col-md-4 col-md-offset-8 ">
-                                       <span class="date2"> {{dailyReportDate | capitalize}} </span>
-                                   </div>-->
+                                 <div class="col-md-12">
+                                   <h4 class="hourz">Hourly Breakdown <span class="locateSub">Average for {{dailyReportDate | capitalize}}</span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityF');"><i class="fa fa-print"></i></a></h4>
+                                 </div>
                               </div>
+
                               <div class="row">
                                    <div class="col-md-11 col-md-offset-1" style="margin-left:0px;">
                                       <h5> <div id="linechart_div"></div></h5>
@@ -555,16 +411,18 @@
                               </div>
                            </div>
                        </div>
-                    </div>
+                       </div>
 
 
 
-<div id="printableAreaTrend">
+
+
+                       <div id="printableAreaMediaActivityG">
                        <div class="panel panel-default">
                          <div class="panel-body">
                            <div class="row">
-                             <div class="col-md-9">
-                               <h4 class="top20mentions">Trending Keywords in Your Area <a onclick="printDiv('printableAreaMediaActivity');" class="print-icon pull-right"><i class="fa fa-print"></i></a></h4>
+                             <div class="col-md-12">
+                               <h4 class="top20mentions">Trending Keywords in Your Area <span class="locateSub"></span><a class="print-icon pull-right" onclick="printDiv('printableAreaMediaActivityG');"><i class="fa fa-print"></i></a></h4>
                              </div>
                            </div>
                            <div class="row">
@@ -574,7 +432,7 @@
                            </div>
                          </div>
                        </div>
-</div>
+                       </div>
 
 
 
@@ -583,11 +441,6 @@
 
            </tab>
            <!--END SOCIAL TAB-->
-
-
-
-
-
 
 
 
@@ -606,10 +459,13 @@
 
 
 
+        <a href="#top" class="pull-right"><i class="fa fa-arrow-circle-o-up"></i> Top</a>
 
-     </div><a href="#top" class="pull-right"><i class="fa fa-arrow-circle-o-up"></i> Top</a>
+
+
      </div>
   </div>
+</div>
 
 
 

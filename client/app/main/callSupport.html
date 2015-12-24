@@ -1,0 +1,73 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+  <div class="row" style="padding-top:100px;">
+
+
+
+
+     <h1 class="locationDataTitle ng-binding" align="center">Support Ticket</h1>
+     <span class="subTxt ng-binding">Please fill out the form below.</span>
+
+     <div class="col-lg-12">
+       <div class="panel panel-default" style="padding: 0px 30px 10px 25px">
+
+
+
+
+          <form class="form-horizontal" ng-submit="support(userForm.$valid)" id="contact_form" name="userForm" novalidate>
+             <fieldset>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="name">Name</label>
+                 <div class="col-md-9">
+                 <input id="name" name="name" type="text" class="form-control" value="{{ name }}" readonly="true" />
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="email">Email</label>
+                 <div class="col-md-9">
+                    <input id="email" name="email" type="email" class="form-control" value="{{ email }}" readonly="true" />
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="subject">Subject</label>
+                 <div class="col-md-9">
+                 <input autocomplete='off'class="form-control input-md input-gold" tabindex='3' type="text" name="subject" id="subject" ng-model="subject" placeholder="..." maxlength='50' size="25">
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="msg">Message</label>
+                 <div class="col-md-9">
+                  <textarea class="form-control" id="message" ng-model="message" name="message" cols="6" rows="6" placeholder="..." ></textarea>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-md-3 control-label" for="submit"></label>
+                 <div class="col-md-9">
+                  <button class="frg-button color-purple" ng-disabled="userForm.$invalid" type="submit">
+                  Send
+                  </button>
+                 </div>
+             </div>
+          </form>
+
+          <div class="row" style="margin-top:50px;">
+            <div class="col-md-6 col-md-offset-3 alert alert-success" role="alert" style="text-align:center">
+               Support Ticket Sent. Someone will be in contact shortly.
+            </div>
+          </div>
+
+       </div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

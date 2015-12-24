@@ -9,70 +9,8 @@ var https = require('https');
 var http = require('http');
 var url = require('url');
 var request = require('request');
-
-
-
-
-
-// request('https://modulus.io', function (error, response, body) {
-//     //Check for error
-//     if(error){
-//         return console.log('Error:', error);
-//     }
-//     //Check for right status code
-//     if(response.statusCode !== 200){
-//         return console.log('Invalid Status Code Returned:', response.statusCode);
-//     }
-//     //All is good. Print the body
-//     console.log(body); // Show the HTML for the Modulus homepage.
-// });
-
-
-
-   // request({
-   //     //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-   //     //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-   //     url: 'http://52.3.87.216:9100/user/lgweb/location',
-   //     //qs: {from: 'blog example', time: +new Date()}, //Query string data
-   //     method: 'GET',
-   //     headers: {
-   //         'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
-   //     }
-   // }, function(error, response, body){
-   //     if(error) {
-   //         console.log(error);
-   //     } else {
-   //         console.log(body);
-   //         //res.send(body)
-   //     }
-   // });
-
-
-   // request({
-   //     //url: 'http://54.86.239.240:7777/twitterdayreports/:locationId?days=:days&top=100', //URL to hit
-   //     //url: 'http://54.86.239.240:7777/twitterdayreports/180?days=7&top=100', //URL to hit
-   //     //url: 'http://192.99.16.178:9100/onsitereport/:buildingId?date=:dt',
-   //     url: 'http://192.99.16.178:9100/carrier/180/7?endDate=2014-08-18',
-   //     //qs: {from: 'blog example', time: +new Date()}, //Query string data
-   //     method: 'GET',
-   //     headers: {
-   //         'Authorization': 'Basic bGd3ZWI6bGdlbjF1cw=='
-   //     }
-   // }, function(error, response, body){
-   //     if(error) {
-   //         console.log(error);
-   //     } else {
-   //         console.log(body);
-   //         //res.send(body)
-   //     }
-   // });
-
-
-
-
-
-
-
+var mandrill = require('mandrill-api/mandrill');
+var mandrill_client = new mandrill.Mandrill('2g8BY5TcNOtrI4FrcFqG0Q');
 
 
 
@@ -96,6 +34,118 @@ module.exports = function(app) {
 
 
 
+  //mandrill
+  app.post('/support', function(req, res) {
+    var fromEmail = 'support@telus.com';
+    var fromName = 'Telus Support Ticket';
+    var toEmail = "doug@neotericmediainc.com";
+    var toName = 'Admin';
+    var replyTo = 'noreply@telus.com';
+    var template_name = "Telus LG Support";
+    var template_content = [{
+            "name": "content",
+            "content": "<p>Name:</p><p>" + req.body.name + "</p><p>Email:</p><p>" + req.body.email + "</p><p>Message:</p><p>" + req.body.message + "</p>"
+        },
+        {
+            "name": "message",
+            "content": req.body.message,
+            "resident": req.body.resident
+        }
+        ];
+    var message = {
+      "html": "<p>Name:</p><p>" + req.body.name + "</p><p>Email:</p><p>" + req.body.email + "</p><p>Message:</p><p>" + req.body.message + "</p>",
+      "text": req.body.message,
+      //"subject": "Telus Support Ticket",
+      "subject": req.body.subject,
+      "from_email": fromEmail,
+      "from_name": fromName,
+      "to": [{
+        "email": toEmail,
+        "name": toName,
+        "type": "to"
+      }],
+      //{
+        //"email": toEmail,
+        //"name": toName,
+        //"type": "to"
+      //}
+      "headers": {
+        "Reply-To": replyTo
+      }
+    };
+    //mandrill_client.messages.send({"message": message, "async": async}, function(result) {
+    mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message}, function(result) {
+      console.log(result);
+      //res.json(result);
+      res.redirect('/success');
+    }, function(e) {
+      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+    });
+  })
+
+
+
+
+  //mandrill
+  app.post('/passwordReset', function(req, res) {
+    var fromEmail = 'support@telus.com';
+    var fromName = 'Telus Password Reset Request';
+    var toEmail = "doug@neotericmediainc.com";
+    var toName = 'Admin';
+    var replyTo = 'noreply@telus.com';
+    var template_name = "Telus LG Password";
+    var template_content = [{
+            "name": "content",
+            "content": "<p>Name:</p><p>" + req.body.name + "</p><p>Email:</p><p>" + req.body.email + "</p>"
+        },
+        {
+            "name": "message",
+            "content": req.body.message,
+            "resident": req.body.resident
+        }
+        ];
+    var message = {
+      "html": "<p>Name:</p><p>" + req.body.name + "</p><p>Email:</p><p>" + req.body.email + "</p><p>Message:</p><p>" + req.body.message + "</p>",
+      "text": req.body.message,
+      //"subject": "Telus Support Ticket",
+      "subject": req.body.subject,
+      "from_email": fromEmail,
+      "from_name": fromName,
+      "to": [{
+        "email": toEmail,
+        "name": toName,
+        "type": "to"
+      }],
+      //{
+        //"email": toEmail,
+        //"name": toName,
+        //"type": "to"
+      //}
+      //],
+      "headers": {
+        "Reply-To": replyTo
+      }
+    };
+    mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message}, function(result) {
+      console.log(result);
+      //res.json(result);
+      res.redirect('/success2');
+    }, function(e) {
+      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+    });
+
+  })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,6 +154,9 @@ module.exports = function(app) {
   app.use('/api/carrier', require('./api/carrier'));
   app.use('/api/social', require('./api/social'));
   app.use('/api/twitter', require('./api/twitter'));
+  app.use('/api/locationsLG', require('./api/locationsLG'));
+  app.use('/api/locationsTit', require('./api/locationsTit'));
+  app.use('/api/locationsPat', require('./api/locationsPat'));
   app.use('/api/locations', require('./api/locations'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
