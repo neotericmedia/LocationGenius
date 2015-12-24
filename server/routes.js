@@ -38,7 +38,7 @@ module.exports = function(app) {
   app.post('/support', function(req, res) {
     var fromEmail = 'support@telus.com';
     var fromName = 'Telus Support Ticket';
-    var toEmail = "doug@neotericmediainc.com";
+    var toEmail = "support@locationgenius.com";
     var toName = 'Admin';
     var replyTo = 'noreply@telus.com';
     var template_name = "Telus LG Support";
@@ -90,7 +90,7 @@ module.exports = function(app) {
   app.post('/passwordReset', function(req, res) {
     var fromEmail = 'support@telus.com';
     var fromName = 'Telus Password Reset Request';
-    var toEmail = "doug@neotericmediainc.com";
+    var toEmail = "support@locationgenius.com";
     var toName = 'Admin';
     var replyTo = 'noreply@telus.com';
     var template_name = "Telus LG Password";
