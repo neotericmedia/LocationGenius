@@ -1,0 +1,70 @@
+[
+  {
+    "buildingId": 100,
+    "name": "Pen Centre",
+    "center": {
+      "lat": 43.134378,
+      "lon": -79.223393
+    },
+    "searchRadiusMeters": 2000,
+    "address": "221 Glendale Ave, St.Catharines, Canada",
+    "uid": [
+      "locationgenius",
+      "lgweb",
+      "titan"
+    ],
+    "xfactor": 1,
+    "timezone": "America/Toronto"
+  },
+  {
+    "buildingId": 148,
+    "name": "White Oaks Mall",
+    "center": {
+      "lat": 42.931539,
+      "lon": -81.224689
+    },
+    "searchRadiusMeters": 2000,
+    "address": "1105 Wellington Rd Unit 151, London, Canada",
+    "uid": [
+      "locationgenius",
+      "lgweb",
+      "titan"
+    ],
+    "xfactor": 1,
+    "timezone": "America/Toronto"
+  },
+  {
+    "buildingId": 164,
+    "name": "Masonville",
+    "center": {
+      "lat": 43.026039,
+      "lon": -81.27869
+    },
+    "searchRadiusMeters": 2000,
+    "address": "1680 Richmond St N Unit L026, London",
+    "uid": [
+      "locationgenius",
+      "lgweb",
+      "titan"
+    ],
+    "xfactor": 1,
+    "timezone": "America/Toronto"
+  },
+  {
+    "buildingId": 108,
+    "name": "LocationGenius",
+    "center": {
+      "lat": 43.636193,
+      "lon": -79.418582
+    },
+    "searchRadiusMeters": 2000,
+    "address": "111 Richmond Street W, Toronto, Canada",
+    "uid": [
+      "locationgenius",
+      "lgweb",
+      "titan"
+    ],
+    "xfactor": 1,
+    "timezone": "America/Toronto"
+  }
+]

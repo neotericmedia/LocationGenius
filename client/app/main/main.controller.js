@@ -45,31 +45,31 @@ angular.module('telusLg2App')
 
     $http({
       method: 'GET',
-      url: '/api/locationsLG',
+      url: '/api/locations',
     })
     .success(function (locations) {
       if ($scope.getCurrentUser().name === "Admin") {
           $scope.locations = locations;
       } else {}
     })
-    $http({
-      method: 'GET',
-      url: '/api/locationsPat',
-    })
-    .success(function (locations) {
-      if ($scope.getCurrentUser().name === "Cam Milne" || $scope.getCurrentUser().name === "Ian Gadsby" || $scope.getCurrentUser().name === "Jessica Littlejohn" || $scope.getCurrentUser().name === "Kathy Cormier" || $scope.getCurrentUser().name === "Bob Leroux" || $scope.getCurrentUser().name === "Kathy Frias" || $scope.getCurrentUser().name === "Jeff Findlay" || $scope.getCurrentUser().name === "Dan Fraser" || $scope.getCurrentUser().name === "Joe Donaldson") {
-          $scope.locations = locations;
-      } else {}
-    })
-    $http({
-      method: 'GET',
-      url: '/api/locationsTit',
-    })
-    .success(function (locations) {
-      if ($scope.getCurrentUser().name === "Trevor Heselton" || $scope.getCurrentUser().name === "Megan Dunlop" || $scope.getCurrentUser().name === "Christine Reynolds") {
-          $scope.locations = locations;
-      } else {}
-    })
+   //  $http({
+   //    method: 'GET',
+   //    url: '/api/locationsPat',
+   //  })
+   //  .success(function (locations) {
+   //    if ($scope.getCurrentUser().name === "Cam Milne" || $scope.getCurrentUser().name === "Ian Gadsby" || $scope.getCurrentUser().name === "Jessica Littlejohn" || $scope.getCurrentUser().name === "Kathy Cormier" || $scope.getCurrentUser().name === "Bob Leroux" || $scope.getCurrentUser().name === "Kathy Frias" || $scope.getCurrentUser().name === "Jeff Findlay" || $scope.getCurrentUser().name === "Dan Fraser" || $scope.getCurrentUser().name === "Joe Donaldson") {
+   //        $scope.locations = locations;
+   //    } else {}
+   //  })
+   //  $http({
+   //    method: 'GET',
+   //    url: '/api/locationsTit',
+   //  })
+   //  .success(function (locations) {
+   //    if ($scope.getCurrentUser().name === "Trevor Heselton" || $scope.getCurrentUser().name === "Megan Dunlop" || $scope.getCurrentUser().name === "Christine Reynolds") {
+   //        $scope.locations = locations;
+   //    } else {}
+   //  })
 
 
 

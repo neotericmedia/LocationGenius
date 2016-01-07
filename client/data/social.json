@@ -1,0 +1,436 @@
+{
+  "dateRange": "2015-12-11:2016-01-07",
+  "numDaysInRange": 28,
+  "dailyReports": [
+    {
+      "day": "Tuesday 2015-12-15",
+      "tweets": 74,
+      "hourly": [
+        9,
+        1,
+        0,
+        0,
+        1,
+        2,
+        0,
+        7,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        4,
+        9,
+        9,
+        7,
+        1,
+        4,
+        5,
+        1,
+        3
+      ]
+    },
+    {
+      "day": "Wednesday 2015-12-16",
+      "tweets": 111,
+      "hourly": [
+        4,
+        4,
+        2,
+        0,
+        1,
+        1,
+        3,
+        4,
+        10,
+        5,
+        5,
+        3,
+        5,
+        6,
+        5,
+        4,
+        7,
+        5,
+        4,
+        6,
+        9,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "day": "Thursday 2015-12-17",
+      "tweets": 120,
+      "hourly": [
+        4,
+        0,
+        1,
+        1,
+        0,
+        1,
+        3,
+        4,
+        1,
+        5,
+        5,
+        4,
+        10,
+        10,
+        6,
+        5,
+        9,
+        4,
+        7,
+        11,
+        7,
+        7,
+        7,
+        8
+      ]
+    },
+    {
+      "day": "Friday 2015-12-18",
+      "tweets": 150,
+      "hourly": [
+        3,
+        5,
+        2,
+        0,
+        0,
+        0,
+        1,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        10,
+        10,
+        4,
+        12,
+        6,
+        11,
+        16,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "day": "Saturday 2015-12-19",
+      "tweets": 148,
+      "hourly": [
+        4,
+        4,
+        7,
+        2,
+        2,
+        2,
+        1,
+        6,
+        5,
+        4,
+        7,
+        8,
+        10,
+        9,
+        14,
+        8,
+        7,
+        5,
+        11,
+        6,
+        7,
+        8,
+        6,
+        5
+      ]
+    },
+    {
+      "day": "Sunday 2015-12-20",
+      "tweets": 125,
+      "hourly": [
+        5,
+        5,
+        3,
+        3,
+        4,
+        3,
+        4,
+        1,
+        1,
+        2,
+        9,
+        6,
+        10,
+        5,
+        10,
+        9,
+        6,
+        8,
+        7,
+        4,
+        5,
+        5,
+        6,
+        4
+      ]
+    },
+    {
+      "day": "Monday 2015-12-21",
+      "tweets": 30,
+      "hourly": [
+        4,
+        1,
+        1,
+        0,
+        0,
+        0,
+        2,
+        2,
+        6,
+        5,
+        3,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "weeklyTweetTotal": 1400,
+  "highestTweetedDay": {
+    "date": "Dec 12, 2015",
+    "totalTweets": 165
+  },
+  "highestTweetedHour": 19,
+  "mostFrequentAuthor": null,
+  "tweetsPerDay": {
+    "WEDNESDAY": 49859,
+    "MONDAY": 23530,
+    "THURSDAY": 59198,
+    "SUNDAY": 46931,
+    "TUESDAY": 28323,
+    "FRIDAY": 106947,
+    "SATURDAY": 122704
+  },
+  "topTweeters": [
+    {
+      "name": "tofire",
+      "tweets": 9095,
+      "followers": 5891,
+      "imageUrl": "http://twitter.com/tofire",
+      "description": "Toronto Fire Active Incidents.  NOT affiliated with Toronto Fire Dept. or City of Toronto.",
+      "text": "Medical (Unconscious) - Queen St West @ Portland St, Toronto (2 Trucks)"
+    },
+    {
+      "name": "tofireS",
+      "tweets": 7934,
+      "followers": 3749,
+      "imageUrl": "null",
+      "description": "Toronto Fire South Command Active Incidents.  Not affiliated with Toronto Fire Department or the City of Toronto.",
+      "text": "Natural Gas Leak - Bathurst St @ Front St West, Toronto (2 Trucks)"
+    },
+    {
+      "name": "tofireW",
+      "tweets": 6707,
+      "followers": 2837,
+      "imageUrl": "null",
+      "description": "Toronto Fire West Command Active Incidents.  Not affiliated with Toronto Fire Dept. or The City of Toronto.",
+      "text": "Carbon Monoxide (Non Medical) - Tyndall Avenue b/w Temple Avenue / King St West, Toronto (2 Trucks)"
+    },
+    {
+      "name": "atlasespressoTO",
+      "tweets": 6457,
+      "followers": 334,
+      "imageUrl": "null",
+      "description": "Small independent friendly off-the-beaten-track coffee shop at Front W & Portland in Toronto!",
+      "text": "Customer revived. #coffee #forhumansbyhumans #urbanoasis #customerfeedback #coffeelife #funtimes… https://t.co/On7oxbXC07"
+    },
+    {
+      "name": "tavaresoriental",
+      "tweets": 6319,
+      "followers": 392,
+      "imageUrl": "null",
+      "description": "Importer & distributor of fine decorative carpets. A division of Decor Terminal & Marinas Interior Design. Serving the GTA for over 35 years.",
+      "text": "@disfunkshion_ &amp; @scheanamarie making our rug look good! 💙⭐️🌙🙏\n\n#interiordesign #interiordecor… https://t.co/G8WiygKL6N"
+    },
+    {
+      "name": "LeDolci",
+      "tweets": 6247,
+      "followers": 3450,
+      "imageUrl": "null",
+      "description": "Culinary Classes & Bake Shop. Visit us: 1006 Dundas St W. 3km from CN Tower.",
+      "text": "Our Yule log peeking out of its box -made for the amazing ladies pinktwigfloral @ Le Dolci… https://t.co/lLVXeHLuwF"
+    },
+    {
+      "name": "tofiref",
+      "tweets": 4756,
+      "followers": 1356,
+      "imageUrl": "null",
+      "description": "Toronto Fire FIRE active incidents (Minus ALARM Calls)  Not affiliated with Toronto Fire Dept. or City of Toronto.",
+      "text": "Vehicle Fire - Bathurst St @ Fleet St, Toronto (2 Trucks)"
+    },
+    {
+      "name": "dothedaniel",
+      "tweets": 4337,
+      "followers": 4251,
+      "imageUrl": "null",
+      "description": "#DoTheDaniel Founder, #FASHIONIGHTS Business Manager & everything in between.\nMedia Inquiries: Daniel@DoTheDaniel.com ✌",
+      "text": "#IWantRudsak &amp; so does the fashionista in your life. @rudsakcanada has an AMAZING #Contest! https://t.co/wL9VouLeOH 🎄🎁🎅"
+    },
+    {
+      "name": "missgo2girl",
+      "tweets": 4276,
+      "followers": 2898,
+      "imageUrl": "null",
+      "description": "BOSS of #Go2GirlMedia | CREATOR of http://missgo2girl.com | RADIO HOST G987FM #TheAfricanGrooveShow | #AEAwards Media Mgr | #GHANASOWN #CreatingMyOwnOPPORTUNITY",
+      "text": "The promoters of Rouge 3.0 🔴 @sampypro newlevelentertainment #africans #party #event #toronto… https://t.co/39RGK3VzSy"
+    },
+    {
+      "name": "crownflora",
+      "tweets": 3935,
+      "followers": 710,
+      "imageUrl": "null",
+      "description": "// we are adam + davis and we make things //\r\n\r\ninstagram: crownflora",
+      "text": "Oh yeah, we will be there too at the #crownfloraholidaymarket 🎄 Join us and all of the amazing… https://t.co/Rfk5e4ckgw"
+    }
+  ],
+  "wordCloud": [
+    {
+      "text": "toronto",
+      "weight": 537
+    },
+    {
+      "text": "night",
+      "weight": 136
+    },
+    {
+      "text": "last",
+      "weight": 88
+    },
+    {
+      "text": "tonight",
+      "weight": 86
+    },
+    {
+      "text": "great",
+      "weight": 83
+    },
+    {
+      "text": "love",
+      "weight": 70
+    },
+    {
+      "text": "good",
+      "weight": 67
+    },
+    {
+      "text": "party",
+      "weight": 63
+    },
+    {
+      "text": "new",
+      "weight": 61
+    },
+    {
+      "text": "city",
+      "weight": 60
+    },
+    {
+      "text": "bar",
+      "weight": 60
+    },
+    {
+      "text": "best",
+      "weight": 59
+    },
+    {
+      "text": "today",
+      "weight": 58
+    },
+    {
+      "text": "happy",
+      "weight": 57
+    },
+    {
+      "text": "royal",
+      "weight": 57
+    },
+    {
+      "text": "time",
+      "weight": 56
+    },
+    {
+      "text": "show",
+      "weight": 54
+    },
+    {
+      "text": "thanks",
+      "weight": 51
+    },
+    {
+      "text": "birthday",
+      "weight": 50
+    },
+    {
+      "text": "christmas",
+      "weight": 48
+    },
+    {
+      "text": "morning",
+      "weight": 46
+    },
+    {
+      "text": "halloween",
+      "weight": 45
+    },
+    {
+      "text": "brunch",
+      "weight": 44
+    },
+    {
+      "text": "billy",
+      "weight": 44
+    },
+    {
+      "text": "bishop",
+      "weight": 43
+    },
+    {
+      "text": "ontario",
+      "weight": 43
+    },
+    {
+      "text": "queen",
+      "weight": 42
+    },
+    {
+      "text": "photo",
+      "weight": 42
+    },
+    {
+      "text": "like",
+      "weight": 41
+    },
+    {
+      "text": "hotel",
+      "weight": 38
+    }
+  ]
+}
