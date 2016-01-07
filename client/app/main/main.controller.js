@@ -1249,7 +1249,16 @@ angular.module('telusLg2App')
           $scope.visitordata = google.visualization.arrayToDataTable(dailyVisitorData);
           $scope.showOnsiteDailyVisitorData();
           $scope.showOnsiteHourlyVisitorData(0);
-          $scope.showOnsiteDurationData();
+
+          var dwellTimeBuckets = ["1", "2", "3", "4", "5", "6","7","8","9","10+"];
+          $scope.showOnsiteDurationDataIntervals(dwellTimeBuckets,results.oneDurations,'yourLocation_1Mduration_chart_div');
+
+          dwellTimeBuckets = ["10", "15", "20", "25", "30", "35","40","45","50","55+"];
+          $scope.showOnsiteDurationDataIntervals(dwellTimeBuckets,results.fiveDurations,'yourLocation_10to60Mduration_chart_div');
+
+          dwellTimeBuckets = ["60", "75", "90", "105", "120", "135","150","165","180","195+"];
+          $scope.showOnsiteDurationDataIntervals(dwellTimeBuckets,results.fifteenDurations,'yourLocation_60to210Mduration_chart_div');
+
           $scope.showOnsiteLoyaltyData();
 
         }
@@ -1659,125 +1668,139 @@ angular.module('telusLg2App')
     }
 
 
-
-
-
-    $scope.showOnsiteDurationData = function () {
-      var dwellTimeBuckets = ["0-30", "31-60", "61-90", "91-120", "121-150", "151-180"];
+    $scope.showOnsiteDurationDataIntervals = function (dwellTimeBuckets, durations, chartId) {
+      console.log("Graphing online visitor duration data 1 minute Intervals..." + chartId);
 
       var durationData = [];
       var otherTotal = 0;
       var durationitem = ['Minutes', 'Number of Visitors in Range', {role: 'style'}];
       durationData.push(durationitem);
 
-      for (var i = 0; i < $scope.durations.length; i++) {
+      if(durations!=null) {
 
-        if(i<=5) {
-          durationitem = [dwellTimeBuckets[i], $scope.durations[i], '#6ebe44'];
+        for (var i = 0; i < dwellTimeBuckets.length-1; i++) {
+          durationitem = [dwellTimeBuckets[i], durations[i], '#6ebe44'];
           durationData.push(durationitem);
-        }else {
-          otherTotal += $scope.durations[i];
+        }
+
+        var other =0;
+        // pool all the extras into the last bar e.g. 10+
+        if( durations.length>dwellTimeBuckets.length) {
+          for(var i = dwellTimeBuckets.length; i< durations.length;i++) {
+            other += durations[i];
+          }
+          durationitem = [dwellTimeBuckets[dwellTimeBuckets.length-1], other, '#6ebe44'];
+          durationData.push(durationitem);
+
+        }
+
+
+        if (window.innerWidth < 984) {
+          var options = {
+            //width: 1075,
+            width: document.getElementById("container").clientWidth - 50,
+            height: 450,
+            colors: ['#6ebe44'],
+            chartArea: {left: 100, top: 60, width: '100%'},
+            legend: {
+              position: 'none',
+              textStyle: {fontName: 'telusweb', fontSize: 12}
+            },
+            hAxis: {
+              title: "Number of Minutes Spent in Location",
+              format: '#',
+              slantedText: true,
+              slantedTextAngle: 45,
+              textStyle: {fontName: 'telusweb', fontSize: 12}
+            },
+            vAxis: {title: "Number of Visitors", format: '#', textStyle: {fontName: 'telusweb', fontSize: 12}},
+            fontSize: 15,
+            tooltip: {textStyle: {fontName: 'telusweb', fontSize: 12}}
+          };
+        }
+        else {
+          var options = {
+            //width: 1075,
+            width: document.getElementById("container").clientWidth - 50,
+            height: 450,
+            colors: ['#6ebe44'],
+            chartArea: {left: 100, top: 60, width: '100%'},
+            legend: {
+              position: 'none',
+              textStyle: {fontName: 'telusweb', fontSize: 12}
+            },
+            hAxis: {
+              title: "Number of Minutes Spent in Location",
+              format: '#',
+              slantedText: false,
+              slantedTextAngle: 45,
+              textStyle: {fontName: 'telusweb', fontSize: 12}
+            },
+            vAxis: {title: "Number of Visitors", format: '#', textStyle: {fontName: 'telusweb', fontSize: 12}},
+            fontSize: 15,
+            tooltip: {textStyle: {fontName: 'telusweb', fontSize: 12}}
+          };
+        }
+
+        //var linechart = new google.visualization.ColumnChart(document.getElementById('onsite_visitor_chart_div'));
+        var linechart = new google.visualization.ColumnChart(document.getElementById(chartId));
+        console.log("Graphing ..." + durationData);
+        var minutesData = google.visualization.arrayToDataTable(durationData);
+        linechart.draw(minutesData, options);
+
+        if (window.innerWidth < 984) {
+          $(window).resize(function () {
+            var options = {
+              height: 350,
+              colors: ['blue'],
+              chartArea: {left: 50, top: 60, width: '100%'},
+              legend: {
+                position: 'none',
+                textStyle: {fontName: 'telusweb', fontSize: 12}
+              },
+              fontSize: 15,
+              hAxis: {
+                title: "Number of Minutes Spent in Location",
+                format: '#',
+                slantedText: true,
+                slantedTextAngle: 45,
+                textStyle: {fontName: 'telusweb', fontSize: 12}
+              },
+              vAxis: {title: "Number of Minutes", format: '#', textStyle: {fontName: 'telusweb', fontSize: 12}},
+              tooltip: {textStyle: {fontName: 'telusweb', fontSize: 12}}
+            };
+            linechart.draw(minutesData, options);
+          });
+        }
+        else {
+          $(window).resize(function () {
+            var options = {
+              height: 450,
+              colors: ['blue'],
+              chartArea: {left: 100, top: 60, width: '100%'},
+              legend: {
+                position: 'none',
+                textStyle: {fontName: 'telusweb', fontSize: 12}
+              },
+              fontSize: 15,
+              hAxis: {
+                title: "Number of Minutes Spent in Location",
+                format: '#',
+                slantedText: false,
+                slantedTextAngle: 45,
+                textStyle: {fontName: 'telusweb', fontSize: 12}
+              },
+              vAxis: {title: "Number of Minutes", format: '#', textStyle: {fontName: 'telusweb', fontSize: 12}},
+              tooltip: {textStyle: {fontName: 'telusweb', fontSize: 12}}
+            };
+            linechart.draw(minutesData, options);
+          });
         }
       }
 
-      if(otherTotal>0) {
-        durationitem = ["180+", otherTotal, '#6ebe44'];
-        durationData.push(durationitem);
-      }
-
-
-
-      // Instantiate and draw our chart, passing in some options.
-      // Set chart options
-      //console.log("Graphing online visitor duration data...");
-
-
-
-      if (window.innerWidth < 984) {
-         var options = {
-           //width: 1075,
-           width: document.getElementById("container").clientWidth - 50,
-           height: 450,
-           colors: ['#6ebe44'],
-           chartArea: {left: 100, top: 60, width: '100%'},
-           legend: {
-               position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
-           },
-           hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
-           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-           fontSize: 15,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-         };
-      }
-      else {
-         var options = {
-           //width: 1075,
-           width: document.getElementById("container").clientWidth - 50,
-           height: 450,
-           colors: ['#6ebe44'],
-           chartArea: {left: 100, top: 60, width: '100%'},
-           legend: {
-               position: 'none',
-               textStyle: { fontName: 'telusweb', fontSize: 12 }
-           },
-           hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
-           vAxis: {title: "Number of Visitors", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-           fontSize: 15,
-           tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-         };
-      }
-
-
-
-      var linechart = new google.visualization.ColumnChart(document.getElementById('onsite_visitor_chart_div'));
-      //console.log("Graphing ..." + durationData);
-      var minutesData = google.visualization.arrayToDataTable(durationData);
-      linechart.draw(minutesData, options);
-
-
-
-      if (window.innerWidth < 984) {
-        $(window).resize(function(){
-           var options = {
-             height: 350,
-             colors: ['blue'],
-             chartArea: {left: 50, top: 60, width: '100%'},
-             legend: {
-                 position: 'none',
-                 textStyle: { fontName: 'telusweb', fontSize: 12 }
-             },
-             fontSize: 15,
-             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: true, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
-             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-           };
-           linechart.draw(minutesData, options);
-        });
-      }
-      else {
-        $(window).resize(function(){
-           var options = {
-             height: 450,
-             colors: ['blue'],
-             chartArea: {left: 100, top: 60, width: '100%'},
-             legend: {
-                 position: 'none',
-                 textStyle: { fontName: 'telusweb', fontSize: 12 }
-             },
-             fontSize: 15,
-             hAxis: {title: "Number of Minutes Spent in Location", format:'#', slantedText: false, slantedTextAngle: 45, textStyle: {fontName: 'telusweb', fontSize: 12 }},
-             vAxis: {title: "Number of Minutes", format:'#',textStyle: { fontName: 'telusweb', fontSize: 12 }},
-             tooltip: { textStyle: { fontName: 'telusweb', fontSize: 12 } }
-           };
-           linechart.draw(minutesData, options);
-        });
-      }
-
-
-
-
     }
+
+
 
 
 

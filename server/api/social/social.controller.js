@@ -9,8 +9,9 @@ var request = require('request');
 // e.g.192.99.16.178:9100/twitter/dayreports/180?days=7&top=100
 exports.show = function(req, res) {
   request({
-    //url: 'http://10.117.192.55:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
     url: 'http://localhost:9000/data/social.json',
+    //url: 'http://192.99.16.178:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
+    //url: 'http://10.117.192.55:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
     //url: 'http://localhost:9100/twitter/dayreports/' + req.params.id + '?days=' + req.query.days + '&top=' + req.query.top,
     method: 'GET',
     headers: {
