@@ -10,7 +10,8 @@ var request = require('request');
 exports.index = function(req, res) {
    request({
        //url: 'http://10.117.192.55:9100/user/lgweb/location',
-       url: 'http://localhost:9000/data/locations.json',
+       //url: 'http://localhost:9000/data/locations.json',
+       url: 'http://54.213.250.90/data/locations.json',
        //url: 'http://192.99.16.178:9100/user/lgweb/location',
        //qs: {from: 'blog example', time: +new Date()}, //Query string data
        method: 'GET',

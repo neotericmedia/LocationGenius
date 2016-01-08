@@ -9,7 +9,8 @@ var request = require('request');
 //http://10.117.192.55:9111/multidays/108/2?endDate=2015-11-28
 exports.show = function(req, res) {
   //var onsiteUrl = 'http://10.117.192.55:9111/multidays/' + req.params.id + '/7?endDate=' + req.query.date;
-  var onsiteUrl = 'http://localhost:9000/data/onsite.json';
+  //var onsiteUrl = 'http://localhost:9000/data/onsite.json';
+  var onsiteUrl = 'http://54.213.250.90/data/onsite.json';
 
   request({
 
